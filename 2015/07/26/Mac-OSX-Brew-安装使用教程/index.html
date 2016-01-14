@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mac OSX Brew 安装使用教程 | MakeHui&#39;s 超平和バスターズはずっとなかよし</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Homebrew 可谓是 Mac 开发者必备的工具之一, 就像apt-get对于ubuntu, 它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持. 使用brew在Mac上安装软件, 不能更赞了.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac OSX Brew 安装使用教程">
+<meta property="og:url" content="http://huyaohui.com/2015/07/26/Mac-OSX-Brew-安装使用教程/index.html">
+<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="Homebrew 可谓是 Mac 开发者必备的工具之一, 就像apt-get对于ubuntu, 它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持. 使用brew在Mac上安装软件, 不能更赞了.">
+<meta property="og:updated_time" content="2016-01-03T03:11:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac OSX Brew 安装使用教程">
+<meta name="twitter:description" content="Homebrew 可谓是 Mac 开发者必备的工具之一, 就像apt-get对于ubuntu, 它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持. 使用brew在Mac上安装软件, 不能更赞了.">
+  
+    <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/author.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">MakeHui</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories/iOS">iOS</a></li>
+				        
+							<li><a href="/Niconiconi">Niconiconi</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+					        
+								<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Branckets/" style="font-size: 12.86px;">Branckets</a> <a href="/tags/Brew/" style="font-size: 10px;">Brew</a> <a href="/tags/Build/" style="font-size: 10px;">Build</a> <a href="/tags/CLI/" style="font-size: 10px;">CLI</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/CocoaPods/" style="font-size: 10px;">CocoaPods</a> <a href="/tags/Config/" style="font-size: 10px;">Config</a> <a href="/tags/Cordova/" style="font-size: 12.86px;">Cordova</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="/tags/GitHub-page/" style="font-size: 10px;">GitHub page</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/HTML5/" style="font-size: 15.71px;">HTML5</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo/" style="font-size: 11.43px;">Hexo</a> <a href="/tags/HybridApp/" style="font-size: 12.86px;">HybridApp</a> <a href="/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/tags/Note/" style="font-size: 18.57px;">Note</a> <a href="/tags/Plugin/" style="font-size: 14.29px;">Plugin</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/ShareSDK/" style="font-size: 11.43px;">ShareSDK</a> <a href="/tags/Storyboard/" style="font-size: 10px;">Storyboard</a> <a href="/tags/Swift/" style="font-size: 17.14px;">Swift</a> <a href="/tags/TextEditor/" style="font-size: 12.86px;">TextEditor</a> <a href="/tags/Think/" style="font-size: 11.43px;">Think</a> <a href="/tags/Web/" style="font-size: 14.29px;">Web</a> <a href="/tags/WebApp/" style="font-size: 10px;">WebApp</a> <a href="/tags/Xcode/" style="font-size: 11.43px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iTerm/" style="font-size: 10px;">iTerm</a> <a href="/tags/sshpass/" style="font-size: 10px;">sshpass</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">热爱各种黑科技, 擅长服务器运维和数据库架构优化, 目前从事 Native App for iOS 的开发, 以及 Hybrid App for HTML5 的研究, 正在向着全栈工程师的不归路前进着.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">MakeHui</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/author.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">MakeHui</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories/iOS">iOS</a></li>
+		        
+					<li><a href="/Niconiconi">Niconiconi</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+			        
+						<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Mac-OSX-Brew-安装使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/26/Mac-OSX-Brew-安装使用教程/" class="article-date">
+  	<time datetime="2015-07-26T08:39:15.000Z" itemprop="datePublished">2015-07-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mac OSX Brew 安装使用教程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Brew/">Brew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac-OSX/">Mac OSX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/">Note</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Brew/">Brew</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Homebrew 可谓是 Mac 开发者必备的工具之一, 就像apt-get对于ubuntu, 它承载在各种包管理的特性以及拥有一票热情高涨的社区提供强大支持. 使用brew在Mac上安装软件, 不能更赞了. </p>
+<a id="more"></a>
+<h2 id="获取_Homebrew">获取 Homebrew</h2><p>Homebrew的安装非常简单, 在终端程序中输入以下命令即可. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用_Homebrew">使用 Homebrew</h2><p>Homebrew的可执行命令是brew，其基本使用方法如下（以wget为例）。</p>
+<h3 id="查找软件包">查找软件包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew search wget</span><br></pre></td></tr></table></figure>
+<h3 id="安装软件包">安装软件包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></table></figure>
+<h3 id="安装带GUI的软件包">安装带GUI的软件包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask google-chrome</span><br></pre></td></tr></table></figure>
+<h3 id="列出已安装的软件包">列出已安装的软件包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list</span><br></pre></td></tr></table></figure>
+<h3 id="删除软件包">删除软件包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew remove wget</span><br></pre></td></tr></table></figure>
+<h3 id="查看软件包信息">查看软件包信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew info wget</span><br></pre></td></tr></table></figure>
+<h3 id="列出软件包的依赖关系">列出软件包的依赖关系</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew deps wget</span><br></pre></td></tr></table></figure>
+<h3 id="更新brew">更新brew</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br></pre></td></tr></table></figure>
+<h3 id="列出过时的软件包（已安装但不是最新版本）">列出过时的软件包（已安装但不是最新版本）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew outdated</span><br></pre></td></tr></table></figure>
+<h3 id="更新过时的软件包（全部或指定）">更新过时的软件包（全部或指定）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade 或 brew upgrade wget</span><br></pre></td></tr></table></figure>
+<h2 id="定制自己的软件包">定制自己的软件包</h2><p>如果自己需要的软件包并不能在Homebrew中找到，怎么办呢。当然，我们可以自行编译安装，但手工安装的软件包游离于Homebrew之外，管理起来不是很方便。</p>
+<p>前文说过，Homebrew使用Ruby实现的软件包配置非常方便，下面简单谈一谈软件包的定制（假定软件包名称是bar，来自foo站点）。</p>
+<h3 id="测试源">测试源</h3><p>首先找到待安装软件的源码下载地址<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://foo.com/bar-<span class="number">1.0</span>.tgz</span><br></pre></td></tr></table></figure></p>
+<h3 id="建立自己的formula">建立自己的formula</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew create http://foo.com/bar-<span class="number">1.0</span>.tgz</span><br></pre></td></tr></table></figure>
+<h3 id="编辑formula">编辑formula</h3><p>上一步建立成功后，Homebrew会自动打开新建的formula进行编辑，也可用如下命令打开formula进行编辑。<br>Homebrew自动建立的formula已经包含了基本的configure和make install命令，对于大部分软件，不需要进行修改，退出编辑即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew edit bar</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装">安装</h2><p>输入以下命令安装自定义的软件包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install bar</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考资料">参考资料</h2><h3 id="官方资料">官方资料</h3><p><a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">brew.sh</a></p>
+<h3 id="第三方资料">第三方资料</h3><p><a href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/" target="_blank" rel="external">Homebrew的安装与使用</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/14/iOS-Swift-命名布局习惯/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          iOS Swift 命名布局习惯
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/12/iOS-CocoaPods安装和使用教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS CocoaPods安装和使用教程</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Mac-OSX-Brew-安装使用教程" data-title="Mac OSX Brew 安装使用教程" data-url="http://huyaohui.com/2015/07/26/Mac-OSX-Brew-安装使用教程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"makehui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 MakeHui
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

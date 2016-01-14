@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Cordova plugins explain | MakeHui&#39;s 超平和バスターズはずっとなかよし</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Cordova插件为我们提供了一个本地化的API, 供javascript调用, 能使我们很方便的使用javascript使用NativeApp的一些特性. 这里主要是记录一些比较常用切比较调用比较简单插件, 比较复杂的会另起篇幅进行说明.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cordova plugins explain">
+<meta property="og:url" content="http://huyaohui.com/2015/11/14/Cordova-plugins-explain/index.html">
+<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="Cordova插件为我们提供了一个本地化的API, 供javascript调用, 能使我们很方便的使用javascript使用NativeApp的一些特性. 这里主要是记录一些比较常用切比较调用比较简单插件, 比较复杂的会另起篇幅进行说明.">
+<meta property="og:updated_time" content="2016-01-03T02:58:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cordova plugins explain">
+<meta name="twitter:description" content="Cordova插件为我们提供了一个本地化的API, 供javascript调用, 能使我们很方便的使用javascript使用NativeApp的一些特性. 这里主要是记录一些比较常用切比较调用比较简单插件, 比较复杂的会另起篇幅进行说明.">
+  
+    <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/author.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">MakeHui</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories/iOS">iOS</a></li>
+				        
+							<li><a href="/Niconiconi">Niconiconi</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+					        
+								<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Branckets/" style="font-size: 12.86px;">Branckets</a> <a href="/tags/Brew/" style="font-size: 10px;">Brew</a> <a href="/tags/Build/" style="font-size: 10px;">Build</a> <a href="/tags/CLI/" style="font-size: 10px;">CLI</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/CocoaPods/" style="font-size: 10px;">CocoaPods</a> <a href="/tags/Config/" style="font-size: 10px;">Config</a> <a href="/tags/Cordova/" style="font-size: 12.86px;">Cordova</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="/tags/GitHub-page/" style="font-size: 10px;">GitHub page</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/HTML5/" style="font-size: 15.71px;">HTML5</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo/" style="font-size: 11.43px;">Hexo</a> <a href="/tags/HybridApp/" style="font-size: 12.86px;">HybridApp</a> <a href="/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/tags/Note/" style="font-size: 18.57px;">Note</a> <a href="/tags/Plugin/" style="font-size: 14.29px;">Plugin</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/ShareSDK/" style="font-size: 11.43px;">ShareSDK</a> <a href="/tags/Storyboard/" style="font-size: 10px;">Storyboard</a> <a href="/tags/Swift/" style="font-size: 17.14px;">Swift</a> <a href="/tags/TextEditor/" style="font-size: 12.86px;">TextEditor</a> <a href="/tags/Think/" style="font-size: 11.43px;">Think</a> <a href="/tags/Web/" style="font-size: 14.29px;">Web</a> <a href="/tags/WebApp/" style="font-size: 10px;">WebApp</a> <a href="/tags/Xcode/" style="font-size: 11.43px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iTerm/" style="font-size: 10px;">iTerm</a> <a href="/tags/sshpass/" style="font-size: 10px;">sshpass</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">热爱各种黑科技, 擅长服务器运维和数据库架构优化, 目前从事 Native App for iOS 的开发, 以及 Hybrid App for HTML5 的研究, 正在向着全栈工程师的不归路前进着.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">MakeHui</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/author.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">MakeHui</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories/iOS">iOS</a></li>
+		        
+					<li><a href="/Niconiconi">Niconiconi</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+			        
+						<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Cordova-plugins-explain" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/14/Cordova-plugins-explain/" class="article-date">
+  	<time datetime="2015-11-14T14:56:31.000Z" itemprop="datePublished">2015-11-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cordova plugins explain
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cordova/">Cordova</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HybridApp/">HybridApp</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/HTML5/">HTML5</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Cordova插件为我们提供了一个本地化的API, 供javascript调用, 能使我们很方便的使用javascript使用NativeApp的一些特性. 这里主要是记录一些比较常用切比较调用比较简单插件, 比较复杂的会另起篇幅进行说明. </p>
+<a id="more"></a>
+<h2 id="各种loading(菊花)">各种loading(菊花)</h2><p><a href="https://github.com/pbernasconi/cordova-progressIndicator" target="_blank" rel="external">pbernasconi/cordova-progressIndicator</a></p>
+<p>详细文档: <a href="http://paolobernasconi.com/cordova-progressIndicator/" target="_blank" rel="external">http://paolobernasconi.com/cordova-progressIndicator/</a></p>
+<p>Install:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add org.pbernasconi.progressindicator</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">phonegap <span class="built_in">local</span> plugin add org.pbernasconi.progressindicator</span><br></pre></td></tr></table></figure></p>
+<p>Use:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ProgressIndicator.showSimple(<span class="literal">true</span>);</span><br><span class="line">ProgressIndicator.showSimpleWithLabel(<span class="literal">false</span>, <span class="string">'Loading...'</span>);</span><br><span class="line">ProgressIndicator.showSimpleWithLabelDetail(<span class="literal">false</span>, <span class="string">'Loading...'</span>, <span class="string">'Refreshing list'</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="crosswalk引擎">crosswalk引擎</h2><p><a href="https://crosswalk-project.org" target="_blank" rel="external">crosswalk</a></p>
+<p>webview引擎, 主要给安卓4.0~4.3提供一个统一的webview运行环境</p>
+<p>Install<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add cordova-plugin-crosswalk-webview</span><br></pre></td></tr></table></figure></p>
+<p>Use:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cordova build android</span><br><span class="line"></span><br><span class="line"><span class="comment">// outputs</span></span><br><span class="line">/path/to/hello/platforms/android/build/outputs/apk/android-x86-debug.apk</span><br><span class="line">/path/to/hello/platforms/android/build/outputs/apk/android-armv7-debug.apk</span><br></pre></td></tr></table></figure></p>
+<h2 id="控制台显示console-log">控制台显示console.log</h2><p><a href="https://github.com/apache/cordova-plugin-console" target="_blank" rel="external">apache/cordova-plugin-console</a><br>没有安装此插件是无法输出javascript控制台日志的, 仅用于调试使用, 一般发布都会删除此插件</p>
+<p>Install:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add cordova-plugin-console</span><br></pre></td></tr></table></figure></p>
+<p>Use:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"deviceready"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"console.log works well"</span>);</span><br><span class="line">    <span class="built_in">console</span>.error</span><br><span class="line">    <span class="built_in">console</span>.exception</span><br><span class="line">    <span class="built_in">console</span>.warn</span><br><span class="line">    <span class="built_in">console</span>.info</span><br><span class="line">    <span class="built_in">console</span>.debug</span><br><span class="line">    <span class="built_in">console</span>.assert</span><br><span class="line">    <span class="built_in">console</span>.dir</span><br><span class="line">    <span class="built_in">console</span>.dirxml</span><br><span class="line">    <span class="built_in">console</span>.time</span><br><span class="line">    <span class="built_in">console</span>.timeEnd</span><br><span class="line">    <span class="built_in">console</span>.table</span><br><span class="line">    <span class="comment">// Partially supported Methods</span></span><br><span class="line">    <span class="built_in">console</span>.group</span><br><span class="line">    <span class="built_in">console</span>.groupCollapsed</span><br><span class="line">    <span class="comment">// Not supported Methods</span></span><br><span class="line">    <span class="built_in">console</span>.clear</span><br><span class="line">    <span class="built_in">console</span>.trace</span><br><span class="line">    <span class="built_in">console</span>.groupEnd</span><br><span class="line">    <span class="built_in">console</span>.timeStamp</span><br><span class="line">    <span class="built_in">console</span>.profile</span><br><span class="line">    <span class="built_in">console</span>.profileEnd</span><br><span class="line">    <span class="built_in">console</span>.count</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="图片多选">图片多选</h2><p><a href="https://github.com/wymsee/cordova-imagePicker" target="_blank" rel="external">wymsee/cordova-imagePicker</a></p>
+<p>Install:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">phonegap plugin add https://github.com/wymsee/cordova-imagePicker.git</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">cordova plugin add https://github.com/wymsee/cordova-imagePicker.git</span><br></pre></td></tr></table></figure></p>
+<p>Use:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.imagePicker.getPictures(</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">results</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// success</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; results.length; i++) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'Image URI: '</span> + results[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// error</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Error: '</span> + error);</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="comment">// options</span></span><br><span class="line">        maximumImagesCount: <span class="number">10</span>,</span><br><span class="line">        width: <span class="number">800</span></span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h2 id="微信分享">微信分享</h2><p><a href="https://github.com/xu-li/cordova-plugin-wechat" target="_blank" rel="external">xu-li/cordova-plugin-wechat</a></p>
+<p>Use:<br><a href="/2015/11/12/Cordova-微信分享插件使用详记/">Cordova 微信分享插件使用详记</a></p>
+<h2 id="base64编码">base64编码</h2><p><a href="https://github.com/hazemhagrass/phonegap-base64" target="_blank" rel="external">hazemhagrass/phonegap-base64</a><br>warning: 依赖<a href="https://github.com/apache/cordova-plugin-device" target="_blank" rel="external">apache/cordova-plugin-device</a></p>
+<p>Install:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">phonegap <span class="built_in">local</span> plugin add org.apache.cordova.device</span><br><span class="line">phonegap <span class="built_in">local</span> plugin add https://github.com/hazemhagrass/phonegap-base64.git</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">cordova plugin add org.apache.cordova.device</span><br><span class="line">cordova plugin add https://github.com/hazemhagrass/phonegap-base64.git</span><br></pre></td></tr></table></figure></p>
+<p>Use:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'deviceready'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.plugins.Base64.encodeFile(filePath, <span class="function"><span class="keyword">function</span>(<span class="params">base64</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'file base64 encoding: '</span> + base64);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="二维码扫描">二维码扫描</h2><p><a href="https://github.com/wildabeast/BarcodeScanner" target="_blank" rel="external">wildabeast/BarcodeScanner</a></p>
+<h2 id="照相机">照相机</h2><p><a href="https://github.com/apache/cordova-plugin-camera" target="_blank" rel="external">cordova-plugin-camera</a></p>
+<p>Install:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add cordova-plugin-camera</span><br></pre></td></tr></table></figure></p>
+<p>Use:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'deviceready'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    navigator.camera.getPicture(<span class="function"><span class="keyword">function</span> (<span class="params">imageURI</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// success</span></span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'myImage'</span>).src = imageURI;</span><br><span class="line">    &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// error</span></span><br><span class="line">        alert(<span class="string">'Failed because: '</span> + message);</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="comment">// options</span></span><br><span class="line">        quality: <span class="number">50</span>,</span><br><span class="line">        destinationType: Camera.DestinationType.FILE_URI</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="修改图片尺寸">修改图片尺寸</h2><p><a href="https://github.com/protonet/cordova-plugin-image-resizer" target="_blank" rel="external">protonet/cordova-plugin-image-resizer</a></p>
+<p>Install:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add https://github.com/protonet/cordova-plugin-image-resizer.git</span><br></pre></td></tr></table></figure></p>
+<p>Use:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.ImageResizer.resize(&#123;</span><br><span class="line">        uri: imageUrl,</span><br><span class="line">        folderName: <span class="string">"Protonet Messenger"</span>,</span><br><span class="line">        quality: <span class="number">90</span>,</span><br><span class="line">        width: <span class="number">120</span>,</span><br><span class="line">        height: <span class="number">120</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">image</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'myImage'</span>).src = image;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// failed: grumpy cat likes this function</span></span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/15/WebApp-Canvas-压缩上传图片/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          WebApp HTML5 Canvas 压缩上传图片
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/13/Web-前端开发技术资料集锦/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Web 前端开发技术资料集锦</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Cordova-plugins-explain" data-title="Cordova plugins explain" data-url="http://huyaohui.com/2015/11/14/Cordova-plugins-explain/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"makehui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 MakeHui
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

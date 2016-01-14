@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS CocoaPods安装和使用教程 | MakeHui&#39;s 超平和バスターズはずっとなかよし</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开发iOS项目时肯定会用到许多第三方项目,比如说：ASIHttprequest,JSONKit等等，一些类库可能又关联着其他类库，如果超过一定的数量，手动去下载这些类库难免会有一些麻烦，并且还要去配置参数，等到类库更新的时候，我们还得重新下载一份，这些没有技术含量的活有没有办法避免呢？答案是肯定的，今天就学习了一下iOS下面依赖包管理的工具，这个工具的名字是CocoaPods">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS CocoaPods安装和使用教程">
+<meta property="og:url" content="http://huyaohui.com/2015/07/12/iOS-CocoaPods安装和使用教程/index.html">
+<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="开发iOS项目时肯定会用到许多第三方项目,比如说：ASIHttprequest,JSONKit等等，一些类库可能又关联着其他类库，如果超过一定的数量，手动去下载这些类库难免会有一些麻烦，并且还要去配置参数，等到类库更新的时候，我们还得重新下载一份，这些没有技术含量的活有没有办法避免呢？答案是肯定的，今天就学习了一下iOS下面依赖包管理的工具，这个工具的名字是CocoaPods">
+<meta property="og:updated_time" content="2016-01-03T02:59:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS CocoaPods安装和使用教程">
+<meta name="twitter:description" content="开发iOS项目时肯定会用到许多第三方项目,比如说：ASIHttprequest,JSONKit等等，一些类库可能又关联着其他类库，如果超过一定的数量，手动去下载这些类库难免会有一些麻烦，并且还要去配置参数，等到类库更新的时候，我们还得重新下载一份，这些没有技术含量的活有没有办法避免呢？答案是肯定的，今天就学习了一下iOS下面依赖包管理的工具，这个工具的名字是CocoaPods">
+  
+    <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/author.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">MakeHui</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories/iOS">iOS</a></li>
+				        
+							<li><a href="/Niconiconi">Niconiconi</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+					        
+								<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Branckets/" style="font-size: 12.86px;">Branckets</a> <a href="/tags/Brew/" style="font-size: 10px;">Brew</a> <a href="/tags/Build/" style="font-size: 10px;">Build</a> <a href="/tags/CLI/" style="font-size: 10px;">CLI</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/CocoaPods/" style="font-size: 10px;">CocoaPods</a> <a href="/tags/Config/" style="font-size: 10px;">Config</a> <a href="/tags/Cordova/" style="font-size: 12.86px;">Cordova</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="/tags/GitHub-page/" style="font-size: 10px;">GitHub page</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/HTML5/" style="font-size: 15.71px;">HTML5</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo/" style="font-size: 11.43px;">Hexo</a> <a href="/tags/HybridApp/" style="font-size: 12.86px;">HybridApp</a> <a href="/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/tags/Note/" style="font-size: 18.57px;">Note</a> <a href="/tags/Plugin/" style="font-size: 14.29px;">Plugin</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/ShareSDK/" style="font-size: 11.43px;">ShareSDK</a> <a href="/tags/Storyboard/" style="font-size: 10px;">Storyboard</a> <a href="/tags/Swift/" style="font-size: 17.14px;">Swift</a> <a href="/tags/TextEditor/" style="font-size: 12.86px;">TextEditor</a> <a href="/tags/Think/" style="font-size: 11.43px;">Think</a> <a href="/tags/Web/" style="font-size: 14.29px;">Web</a> <a href="/tags/WebApp/" style="font-size: 10px;">WebApp</a> <a href="/tags/Xcode/" style="font-size: 11.43px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iTerm/" style="font-size: 10px;">iTerm</a> <a href="/tags/sshpass/" style="font-size: 10px;">sshpass</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">热爱各种黑科技, 擅长服务器运维和数据库架构优化, 目前从事 Native App for iOS 的开发, 以及 Hybrid App for HTML5 的研究, 正在向着全栈工程师的不归路前进着.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">MakeHui</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/author.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">MakeHui</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories/iOS">iOS</a></li>
+		        
+					<li><a href="/Niconiconi">Niconiconi</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+			        
+						<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-iOS-CocoaPods安装和使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/12/iOS-CocoaPods安装和使用教程/" class="article-date">
+  	<time datetime="2015-07-12T08:39:15.000Z" itemprop="datePublished">2015-07-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS CocoaPods安装和使用教程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CocoaPods/">CocoaPods</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/iOS/">iOS</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>开发iOS项目时肯定会用到许多第三方项目,比如说：ASIHttprequest,JSONKit等等，一些类库可能又关联着其他类库，如果超过一定的数量，手动去下载这些类库难免会有一些麻烦，并且还要去配置参数，等到类库更新的时候，我们还得重新下载一份，这些没有技术含量的活有没有办法避免呢？答案是肯定的，今天就学习了一下iOS下面依赖包管理的工具，这个工具的名字是CocoaPods</p>
+<a id="more"></a>
+<h2 id="安装CocoaPods">安装CocoaPods</h2><p>在Terminator（也就是终端）中输入以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure>
+<h2 id="使用CocoaPods">使用CocoaPods</h2><p>好了, 安装好CocoPods之后, 接下来就是使用它. 所幸, 使用CocoPods和安装它一样简单, 也是通过一两行命令就可以搞定. </p>
+<p>这里以Alamofire为例, 演示</p>
+<h3 id="参看_CocoaPods_是否支持该库">参看 CocoaPods 是否支持该库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod search Alamofire</span><br></pre></td></tr></table></figure>
+<h3 id="创建Podfile文件">创建Podfile文件</h3><p>在终端中进入（cd命令）你项目所在目录, 然后在当前目录下, 利用vim创建<code>Podfile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim Podfile</span><br></pre></td></tr></table></figure></p>
+<p>如果没有创建<code>Podfile</code>文件将无法安装, CocoaPods都不知道改安装说明, 怎么去安装呢, 对吧.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!] No `Podfile<span class="string">' found in the project directory.</span></span><br></pre></td></tr></table></figure></p>
+<p>输入以下代码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://github.com/CocoaPods/Specs.git'</span></span><br><span class="line">platform :ios, <span class="string">'8.0'</span></span><br><span class="line">use_frameworks!</span><br><span class="line"></span><br><span class="line">pod <span class="string">'Alamofire'</span>, <span class="string">'~&gt; 2.0'</span></span><br></pre></td></tr></table></figure></p>
+<p>然后保存退出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装_Alamofire">安装 Alamofire</h3><p>这时候, 你就可以利用CocoPods下载Alamofire类库了. 还是在终端中的当前项目目录下, 运行以下命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure></p>
+<p>安装完后输出信息:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Analyzing dependencies</span><br><span class="line"></span><br><span class="line">CocoaPods <span class="number">0.39</span>.<span class="number">0</span>.beta.<span class="number">4</span> is available.</span><br><span class="line">To update use: `gem install cocoapods --pre`</span><br><span class="line">[!] This is a <span class="built_in">test</span> version we<span class="string">'d love you to try.</span><br><span class="line"></span><br><span class="line">For more information see http://blog.cocoapods.org</span><br><span class="line">and the CHANGELOG for this version http://git.io/BaH8pQ.</span><br><span class="line"></span><br><span class="line">Downloading dependencies</span><br><span class="line">Installing Alamofire (2.0.2)</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line"></span><br><span class="line">[!] Please close any current Xcode sessions and use `Text.xcworkspace` for this project from now on.</span></span><br></pre></td></tr></table></figure></p>
+<p>注意最后一句话, 意思是: 以后打开项目就用 CocoaPodsDemo.xcworkspace 打开, 而不是之前的.xcodeproj文件. </p>
+<h3 id="编译运行一个包含CocoPods类库的项目">编译运行一个包含CocoPods类库的项目</h3><p>你也许曾经遇到过（特别是新手iOS开发者）这种情况, 好不容易在GitHub上找到一份代码符合自己想需求, 兴冲冲下载下来, 一编译, 傻眼了, 发现有各种各样错误. 一看, 原来是缺失了各种其他第三方类库. 这时候莫慌, 你再仔细一看, 会发现你下载的代码包含了Podfile. 没错, 这意味着你可以用CocoaPods很方便下载所需要的类库. </p>
+<p>下面, UAAppReviewManager 为例来说明如何正确编译运行一个包含CocoPods类库的项目. </p>
+<p>UAAppReviewManager是一个能够让你方便地将提醒用户评分的功能加入你的应用中. 当你去UAAppReviewManager的GitHub地址下载这份代码之后, 打开Example工程（UAAppReviewManagerExample）, 编译, 你会发现Xcode报告一大堆错误, 基本都是说你编译的这份代码找不到某某头文件, 这就意味着你要成功编译UAAppReviewManager的Example代码, 必须先导入一些第三方类库. 同时你会发现在UAAppReviewManagerExample文件夹下面有三个跟CocosPods相关的文件（文件夹）: Podfile, Podfile.lock和Pods. </p>
+<p>这时候, 打开终端, 进入UAAppReviewManagerExample所在的目录, 也就是和Podfile在同一目录下, 和场景1一样, 输入以下命令（由于已经有Podfile, 所以不需要再创建Podfile）: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod update</span><br></pre></td></tr></table></figure>
+<p>过几秒（也许需要十几秒, 取决于你的网络状况）之后, 终端出现: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Analyzing dependencies</span><br><span class="line">Fetching podspec <span class="keyword">for</span> `UAAppReviewManager` from `../`</span><br><span class="line">Downloading dependencies</span><br><span class="line">Installing UAAppReviewManager (<span class="number">0.1</span>.<span class="number">6</span>)</span><br><span class="line">Generating Pods project</span><br><span class="line">Integrating client project</span><br><span class="line"></span><br><span class="line">[!] From now on use `UAAppReviewManagerExample.xcworkspace`.</span><br></pre></td></tr></table></figure>
+<p>这时候, 再回到UAAppReviewManagerExample文件夹看一看, 会看到多了一个文件UAAppReviewManagerExample.xcworkspace.<br>根据终端的信息提示, 你以后就需用新产生的UAAppReviewManagerExample.xcworkspace来运行这个Example代码了. </p>
+<p>Ps: 注意, 这里有个小问题, 如果刚刚你不是输入<code>pod update</code>, 而是输入<code>pod install</code>, 会发现类库导入不成功, 并且终端出现下面提示:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[!] Required version (UAAppReviewManager (from `../`)) not found <span class="keyword">for</span> `UAAppReviewManager`.</span><br><span class="line">Available versions: <span class="number">0.1</span>.<span class="number">6</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的意思大概是<code>Podfile</code>文件过期, 类库有升级, 但是Podfile没有更改. <code>pod install</code>只会按照<code>Podfile</code>的要求来请求类库, 如果类库版本号有变化, 那么将获取失败. 但是 <code>pod update</code>会更新所有的类库, 获取最新版本的类库. 而且你会发现, 如果用了 <code>pod update</code>, 再用 <code>pod install</code> 就成功了. </p>
+<p>那你也许会问, 什么时候用<code>pod install</code>, 什么时候用<code>pod update</code> 呢, 我又不知道类库有没有新版本. 好吧, 那你每次直接用<code>pod update</code> 算了. 或者先用<code>pod install</code>, 如果不行, 再用<code>pod update</code>. </p>
+<h2 id="常用命令">常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索</span></span><br><span class="line">pod search Alamofire</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">pod install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">pod update</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料">参考资料</h2><h3 id="官方资料">官方资料</h3><p><a href="https://cocoapods.org/" target="_blank" rel="external">cocoapods.org</a><br><a href="https://github.com/CocoaPods/CocoaPods/wiki" target="_blank" rel="external">CocoaPods/CocoaPods</a></p>
+<h3 id="第三方资料">第三方资料</h3><p><a href="http://www.cnblogs.com/ios-dd/p/3633709.html" target="_blank" rel="external">iOS开发利器-CocoaPods安装和使用教程</a><br><a href="http://code4app.com/article/cocoapods-install-usage" target="_blank" rel="external">CocoaPods安装和使用教程</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/26/Mac-OSX-Brew-安装使用教程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Mac OSX Brew 安装使用教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/24/学习使用-Swift-编写-iOS-应用程序教程-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">学习使用 Swift 编写 iOS 应用程序教程 1： Welcome to Programming</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS-CocoaPods安装和使用教程" data-title="iOS CocoaPods安装和使用教程" data-url="http://huyaohui.com/2015/07/12/iOS-CocoaPods安装和使用教程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"makehui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 MakeHui
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

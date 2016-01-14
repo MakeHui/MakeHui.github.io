@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS Swift 跳转传值 | MakeHui&#39;s 超平和バスターズはずっとなかよし</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="通过重写, Swift提供的一个监听方法prepareForSegue来实现页面之间的传值, 相对来说还是比较简单的, 只不过对于完全没有接触过面向对象编程的同学来说, 理解起来还是比较困难的, 不过没关系, 我们先掌握这门用, 以后自然就明白了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS Swift 跳转传值">
+<meta property="og:url" content="http://huyaohui.com/2015/06/01/iOS-Swift-跳转传值/index.html">
+<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="通过重写, Swift提供的一个监听方法prepareForSegue来实现页面之间的传值, 相对来说还是比较简单的, 只不过对于完全没有接触过面向对象编程的同学来说, 理解起来还是比较困难的, 不过没关系, 我们先掌握这门用, 以后自然就明白了">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2mMLBcVXXXXawXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2.M2BcVXXXXa0XXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2ttTncVXXXXbUXpXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2j0fqcVXXXXXIXpXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2hpLCcVXXXXbcXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB20Y_tcVXXXXXIXpXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB27.DwcVXXXXcvXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:updated_time" content="2016-01-03T03:00:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS Swift 跳转传值">
+<meta name="twitter:description" content="通过重写, Swift提供的一个监听方法prepareForSegue来实现页面之间的传值, 相对来说还是比较简单的, 只不过对于完全没有接触过面向对象编程的同学来说, 理解起来还是比较困难的, 不过没关系, 我们先掌握这门用, 以后自然就明白了">
+  
+    <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/author.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">MakeHui</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories/iOS">iOS</a></li>
+				        
+							<li><a href="/Niconiconi">Niconiconi</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+					        
+								<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Branckets/" style="font-size: 12.86px;">Branckets</a> <a href="/tags/Brew/" style="font-size: 10px;">Brew</a> <a href="/tags/Build/" style="font-size: 10px;">Build</a> <a href="/tags/CLI/" style="font-size: 10px;">CLI</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/CocoaPods/" style="font-size: 10px;">CocoaPods</a> <a href="/tags/Config/" style="font-size: 10px;">Config</a> <a href="/tags/Cordova/" style="font-size: 12.86px;">Cordova</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="/tags/GitHub-page/" style="font-size: 10px;">GitHub page</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/HTML5/" style="font-size: 15.71px;">HTML5</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo/" style="font-size: 11.43px;">Hexo</a> <a href="/tags/HybridApp/" style="font-size: 12.86px;">HybridApp</a> <a href="/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/tags/Note/" style="font-size: 18.57px;">Note</a> <a href="/tags/Plugin/" style="font-size: 14.29px;">Plugin</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/ShareSDK/" style="font-size: 11.43px;">ShareSDK</a> <a href="/tags/Storyboard/" style="font-size: 10px;">Storyboard</a> <a href="/tags/Swift/" style="font-size: 17.14px;">Swift</a> <a href="/tags/TextEditor/" style="font-size: 12.86px;">TextEditor</a> <a href="/tags/Think/" style="font-size: 11.43px;">Think</a> <a href="/tags/Web/" style="font-size: 14.29px;">Web</a> <a href="/tags/WebApp/" style="font-size: 10px;">WebApp</a> <a href="/tags/Xcode/" style="font-size: 11.43px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iTerm/" style="font-size: 10px;">iTerm</a> <a href="/tags/sshpass/" style="font-size: 10px;">sshpass</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">热爱各种黑科技, 擅长服务器运维和数据库架构优化, 目前从事 Native App for iOS 的开发, 以及 Hybrid App for HTML5 的研究, 正在向着全栈工程师的不归路前进着.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">MakeHui</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/author.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">MakeHui</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories/iOS">iOS</a></li>
+		        
+					<li><a href="/Niconiconi">Niconiconi</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+			        
+						<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-iOS-Swift-跳转传值" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/01/iOS-Swift-跳转传值/" class="article-date">
+  	<time datetime="2015-06-01T08:24:27.000Z" itemprop="datePublished">2015-06-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS Swift 跳转传值
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/iOS/">iOS</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过重写, Swift提供的一个监听方法<code>prepareForSegue</code>来实现页面之间的传值, 相对来说还是比较简单的, 只不过对于完全没有接触过面向对象编程的同学来说, 理解起来还是比较困难的, 不过没关系, 我们先掌握这门用, 以后自然就明白了</p>
+<a id="more"></a>
+<h2 id="新建一个Swift_iOS_项目">新建一个Swift iOS 项目</h2><p>老样子我们先新建一个single view application</p>
+<p>参照这个就行了 <a href="http://huyaohui.com/2015/05/28/resignFirstResponder-close-keyboard/">http://huyaohui.com/2015/05/28/resignFirstResponder-close-keyboard/</a></p>
+<h2 id="拖动一个button到viewController">拖动一个button到viewController</h2><p>我们要进行跳转自然需要进行触发咯, 一个app不可能无缘无故的进行跳转的对吧, 我们这里就简单的通过一个button进行跳转<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2mMLBcVXXXXawXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h2 id="添加一个viewcontroller">添加一个viewcontroller</h2><p>上面说到了跳转, 那么往哪里跳呢, 肯定不可能忘河里跳对不, OK, 从 object library 中拖一个view controller到storyboard中, 我们就跳转到这个ViewController中去 (ViewController就把他当真一个放东西的合作, 一个app功能很多, 我们肯定不能把所有的东西都放到一个盒子里, 那岂不是乱套了, 聪明的开发者想到了把他们放到不同的盒子内, 让不同的盒子展现不同的内容, 这样不是很棒吗, 各司其职)<br><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2.M2BcVXXXXa0XXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h3 id="拖动一个label到Viewcontroller中">拖动一个label到Viewcontroller中</h3><p>用于表示我们把数据传递到了这里面来<br><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2ttTncVXXXXbUXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h2 id="连线">连线</h2><p>当然两个盒子没有联系自然是不行的, 那么就需要把他们链接起来咯</p>
+<p>按住ctrl 双击我们的那个button拖动到我们新建的那个ViewController再敲开触摸板 -&gt; 选择modal<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2j0fqcVXXXXXIXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h2 id="新建一个_NextViewController-swift">新建一个 NextViewController.swift</h2><p>我们刚拖了一个viewController到storyboard中, 这个时候他还是一个冷冰冰的界面, 还只能静态的展一些东西. 这样当然不行了, 这时候我们需要新建一个类来关联这个ViewController, 那么你可能要问了, 为什么默认的那个不需要进行关联呢. 哈哈, 其实是默认关联了 iOS系统提供的一个类<code>UIViewController</code>, 其实我们使用到的比较大的类, 基本都是直接或间接继承<code>UIViewController</code>的. 虽然他默认关联了一个类, 但是并没什么卵用, 因为这是系统提供的类, 我们并不能对其进行修改, 所有我们需要新建一个类并继承<code>UIViewController</code>, 这样我们就能对这个类进行操作了</p>
+<ul>
+<li><p>cmd+N -&gt; iOS -&gt; Source -&gt; Cocoa Touch Class -&gt; Next<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2hpLCcVXXXXbcXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+</li>
+<li><p>Class 就是我们需要新建的文件的名字不需要加后缀名的, Subclass of这里选择 UIViewController 然后Next 我们就新建了一个Swift类了<br><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB20Y_tcVXXXXXIXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
+</li>
+</ul>
+<h3 id="关联到ViewController上">关联到ViewController上</h3><p>①选择这个ViewController -&gt; ②打开identity inspector -&gt; ③下拉选择我们新建的那个类(记得敲下回车, 不敲十有八九不会保存的)<br><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB27.DwcVXXXXcvXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h2 id="编写代码">编写代码</h2><h3 id="首先打开NextViewController-swift">首先打开NextViewController.swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NextViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 这里是我们需要传递过来的值, 这是一个可选类型</span></span><br><span class="line">	<span class="comment">// 因为我们还不知道他到底有没有值</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用来表示我们到底又没有把值传过来</span></span><br><span class="line">    <span class="preprocessor">@IBOutlet</span> <span class="keyword">var</span> labelName: <span class="type">UILabel</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果name有值就把值付过getName</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> getName = name &#123;</span><br><span class="line">        	<span class="comment">// 如果把值传过来了就把他显示到label中</span></span><br><span class="line">            labelName.text = getName</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编辑ViewController-swift">编辑ViewController.swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">UIKit</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">prepareForSegue</span><span class="params">(segue: UIStoryboardSegue, sender: AnyObject?)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 设置需要跳转到那个viewController</span></span><br><span class="line">        <span class="keyword">var</span> vc = segue.destinationViewController <span class="keyword">as</span>! <span class="type">NextViewController</span></span><br><span class="line">        <span class="comment">// 设置要传输的数据</span></span><br><span class="line">        vc.name = <span class="string">"我过来了你造吗"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码地址">代码地址</h2><p><a href="https://github.com/MakeHui/SwiftBaseCodes" target="_blank" rel="external">MakeHui/SwiftBaseCodes</a></p>
+<h2 id="总结">总结</h2><p>千万不要看写了这么, 其实大部分时间都是在扯淡, 安装这个来的话, 也许未必成, 因为Swift的接口参数经常变动, 建议不要直接考代码, 自己手动输入看提示就好了, 应该是没什么问题的. 好, 就写到这了</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/06/02/iOS-Swift-使用closure-反向传值/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          iOS Swift 使用closure 反向传值
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/30/iOS-SwiftUIImageView-loading-webImg/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS-Swift-UIImageView loadingload webImg</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS-Swift-跳转传值" data-title="iOS Swift 跳转传值" data-url="http://huyaohui.com/2015/06/01/iOS-Swift-跳转传值/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"makehui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 MakeHui
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
