@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Nginx配置性能优化 | MakeHui&#39;s 超平和バスターズはずっとなかよし</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在大多数情况下, 一个常规安装的Nginx已经可以满足大部分的需求了. 然而如果你想压榨出Nginx的所有性能, 就需要了解哪些指令会影响Nginx性能, 这里将会简单粗暴的方法来提升Nginx的性能, 可能不会去深入解释各个配置项之间的联系. 经过一系列的网上搜索资料和测试, 我大概整理了一些能够提升Nginx性能的方法和参数, 这里写出来供大家参考.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx配置性能优化">
+<meta property="og:url" content="http://huyaohui.com/2016/07/16/Nginx配置性能优化/index.html">
+<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="在大多数情况下, 一个常规安装的Nginx已经可以满足大部分的需求了. 然而如果你想压榨出Nginx的所有性能, 就需要了解哪些指令会影响Nginx性能, 这里将会简单粗暴的方法来提升Nginx的性能, 可能不会去深入解释各个配置项之间的联系. 经过一系列的网上搜索资料和测试, 我大概整理了一些能够提升Nginx性能的方法和参数, 这里写出来供大家参考.">
+<meta property="og:updated_time" content="2016-07-16T09:08:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx配置性能优化">
+<meta name="twitter:description" content="在大多数情况下, 一个常规安装的Nginx已经可以满足大部分的需求了. 然而如果你想压榨出Nginx的所有性能, 就需要了解哪些指令会影响Nginx性能, 这里将会简单粗暴的方法来提升Nginx的性能, 可能不会去深入解释各个配置项之间的联系. 经过一系列的网上搜索资料和测试, 我大概整理了一些能够提升Nginx性能的方法和参数, 这里写出来供大家参考.">
+  
+    <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/author.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">MakeHui</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories/iOS">iOS</a></li>
+				        
+							<li><a href="/Niconiconi">Niconiconi</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+					        
+								<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Branckets/" style="font-size: 12.86px;">Branckets</a> <a href="/tags/Brew/" style="font-size: 10px;">Brew</a> <a href="/tags/Build/" style="font-size: 10px;">Build</a> <a href="/tags/CLI/" style="font-size: 10px;">CLI</a> <a href="/tags/CentOS/" style="font-size: 11.43px;">CentOS</a> <a href="/tags/CocoaPods/" style="font-size: 10px;">CocoaPods</a> <a href="/tags/Config/" style="font-size: 10px;">Config</a> <a href="/tags/Cordova/" style="font-size: 12.86px;">Cordova</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="/tags/GitHub-page/" style="font-size: 10px;">GitHub page</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/Google/" style="font-size: 10px;">Google</a> <a href="/tags/HTML5/" style="font-size: 15.71px;">HTML5</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/Hexo/" style="font-size: 11.43px;">Hexo</a> <a href="/tags/HybridApp/" style="font-size: 12.86px;">HybridApp</a> <a href="/tags/LNMP/" style="font-size: 10px;">LNMP</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/Note/" style="font-size: 18.57px;">Note</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Plugin/" style="font-size: 14.29px;">Plugin</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/ShareSDK/" style="font-size: 10px;">ShareSDK</a> <a href="/tags/Software/" style="font-size: 11.43px;">Software</a> <a href="/tags/Storyboard/" style="font-size: 10px;">Storyboard</a> <a href="/tags/Swift/" style="font-size: 17.14px;">Swift</a> <a href="/tags/TextEditor/" style="font-size: 12.86px;">TextEditor</a> <a href="/tags/Think/" style="font-size: 11.43px;">Think</a> <a href="/tags/Thunder/" style="font-size: 10px;">Thunder</a> <a href="/tags/Web/" style="font-size: 14.29px;">Web</a> <a href="/tags/WebApp/" style="font-size: 10px;">WebApp</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/Xcode/" style="font-size: 11.43px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iTerm/" style="font-size: 10px;">iTerm</a> <a href="/tags/sshpass/" style="font-size: 10px;">sshpass</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">热爱各种黑科技, 擅长服务器运维和数据库架构优化, 目前从事 Native App for iOS 的开发, 以及 Hybrid App for HTML5 的研究, 正在向着全栈工程师的不归路前进着.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">MakeHui</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/author.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">MakeHui</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">あの日見た花の名前を僕達はまだ知らない。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories/iOS">iOS</a></li>
+		        
+					<li><a href="/Niconiconi">Niconiconi</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/MakeHui" title="github">github</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/Make_hui" title="twitter">twitter</a>
+			        
+						<a class="mail" target="_blank" href="/makehuir@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Nginx配置性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/16/Nginx配置性能优化/" class="article-date">
+  	<time datetime="2016-07-16T07:30:40.000Z" itemprop="datePublished">2016-07-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nginx配置性能优化
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Nginx/">Nginx</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在大多数情况下, 一个常规安装的Nginx已经可以满足大部分的需求了. 然而如果你想压榨出Nginx的所有性能, 就需要了解哪些指令会影响Nginx性能, 这里将会简单粗暴的方法来提升Nginx的性能, 可能不会去深入解释各个配置项之间的联系. 经过一系列的网上搜索资料和测试, 我大概整理了一些能够提升Nginx性能的方法和参数, 这里写出来供大家参考. </p>
+<a id="more"></a>
+<h2 id="默认配置">默认配置</h2><p>这里先贴出Nginx安装完的默认配置, 方便到时候做对比</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"># For more information on configuration, see:</span><br><span class="line">#   * Official English Documentation: http://nginx.org/en/docs/</span><br><span class="line">#   * Official Russian Documentation: http://nginx.org/ru/docs/</span><br><span class="line"></span><br><span class="line">user  nginx;</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">error_log  /var/log/nginx/error.log;</span><br><span class="line">#error_log  /var/log/nginx/error.log  notice;</span><br><span class="line">#error_log  /var/log/nginx/error.log  info;</span><br><span class="line"></span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span><br><span class="line">                      '$status $body_bytes_sent "$http_referer" '</span><br><span class="line">                      '"$http_user_agent" "$http_x_forwarded_for"';</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    # Load modular configuration files from the /etc/nginx/conf.d directory.</span><br><span class="line">    # See http://nginx.org/en/docs/ngx_core_module.html#include</span><br><span class="line">    # for more information.</span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line"></span><br><span class="line">    index   index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        root         /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  /var/log/nginx/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the static page /40x.html</span><br><span class="line">        #</span><br><span class="line">        error_page  404              /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the static page /50x.html</span><br><span class="line">        #</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">        #</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        #    proxy_pass   http://127.0.0.1;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line">        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">        #</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        #    root           html;</span><br><span class="line">        #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        #    fastcgi_index  index.php;</span><br><span class="line">        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span><br><span class="line">        #    include        fastcgi_params;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line">        # deny access to .htaccess files, if Apache's document root</span><br><span class="line">        # concurs with nginx's one</span><br><span class="line">        #</span><br><span class="line">        #location ~ /\.ht &#123;</span><br><span class="line">        #    deny  all;</span><br><span class="line">        #&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # another virtual host using mix of IP-, name-, and port-based configuration</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       8000;</span><br><span class="line">    #    listen       somename:8080;</span><br><span class="line">    #    server_name  somename  alias  another.alias;</span><br><span class="line">    #    root         html;</span><br><span class="line"></span><br><span class="line">    #    location / &#123;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # HTTPS server</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       443;</span><br><span class="line">    #    server_name  localhost;</span><br><span class="line">    #    root         html;</span><br><span class="line"></span><br><span class="line">    #    ssl                  on;</span><br><span class="line">    #    ssl_certificate      cert.pem;</span><br><span class="line">    #    ssl_certificate_key  cert.key;</span><br><span class="line"></span><br><span class="line">    #    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">    #    ssl_protocols  SSLv2 SSLv3 TLSv1;</span><br><span class="line">    #    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">    #    ssl_prefer_server_ciphers   on;</span><br><span class="line"></span><br><span class="line">    #    location / &#123;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="优化后的配置">优化后的配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"># 运行用户</span><br><span class="line">user  www www;</span><br><span class="line"># 启动进程, 通常设置成和cpu的数量相等</span><br><span class="line">worker_processes  4;</span><br><span class="line"></span><br><span class="line"># 记录最少的错误信息, 节省磁盘IO上的损耗</span><br><span class="line">error_log  /var/log/nginx/error.log crit;</span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"># 指定最大可打开文件个是, 这里直接设置成系统最大文件打开数</span><br><span class="line">worker_rlimit_nofile 65535;</span><br><span class="line"></span><br><span class="line">events&#123;</span><br><span class="line">    # epoll是多路复用IO(I/O Multiplexing)中的一种方式,</span><br><span class="line">    # 仅用于linux2.6以上内核,可以大大提高nginx的性能</span><br><span class="line">    # 这个也是Windows系统上是用Nginx就是渣渣的原因, Windows不支持epoll模式</span><br><span class="line">    use epoll;</span><br><span class="line">    </span><br><span class="line">    #单个后台worker process进程的最大并发链接数</span><br><span class="line">    # 这里照样设置成系统最大文件打开数</span><br><span class="line">    worker_connections 65535;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 前排说明: 经测试http中的配置, 貌似并没有对提升Nginx性能有多大帮助</span><br><span class="line"># 这里建议还是使用默认值吧, 不过我这里仍然把收集到的一些信息列出来, 方便有心人查阅</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    # 设定mime类型,类型由mime.type文件定义</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    # 设定日志格式</span><br><span class="line">    log_format '$remote_addr - $remote_user [$time_local] "$request" '</span><br><span class="line">                  '$status $body_bytes_sent "$http_referer" '</span><br><span class="line">                  '"$http_user_agent" "$http_x_forwarded_for"';</span><br><span class="line">    </span><br><span class="line">    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，</span><br><span class="line">    #对于普通应用，必须设为 on,</span><br><span class="line">    #如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，</span><br><span class="line">    #以平衡磁盘与网络I/O处理速度，降低系统的uptime.</span><br><span class="line">    sendfile on;</span><br><span class="line"></span><br><span class="line">    # 告诉nginx不要缓存数据, 而是一段一段的发送--当需要及时发送数据时, 就应该给应用设置这个属性, 这样发送一小块数据信息时就不能立即得到返回值</span><br><span class="line">    tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">    # 设定请求缓冲</span><br><span class="line">    # 这里的配置比较接近默认配置</span><br><span class="line">    # 如果你内存紧张的话可以大大削减这里buffer的大小</span><br><span class="line">    server_names_hash_bucket_size 128;</span><br><span class="line">    # 用于设置客户端请求的Header头缓冲区大小, 一般4KB大小足够了</span><br><span class="line">    # 没记错的话默认值好像是16k</span><br><span class="line">    client_header_buffer_size 32k;</span><br><span class="line">    # nginx默认会用client_header_buffer_size这个buffer来读取header值</span><br><span class="line">    large_client_header_buffers 4 32k;</span><br><span class="line">    # 设置客户端能够上传的文件大小, 默认为1m</span><br><span class="line">    client_max_body_size 8m;</span><br><span class="line">    </span><br><span class="line">    # 连接超时时间</span><br><span class="line">    keepalive_timeout 60;</span><br><span class="line">    </span><br><span class="line">    # fastcgi相关配置</span><br><span class="line">    # 指定同FastCGI服务器的连接超时时间</span><br><span class="line">    fastcgi_connect_timeout 300;</span><br><span class="line">    # 指令为上游服务器设置等待一个FastCGI进程的传送数据时间，如果有一些直到它们运行完才有输出的长时间运行的FastCGI进程，那么可以修改这个值，如果你在上有服务器的error log里面发现一些超时错误，那么可以恰当的增加这个值。</span><br><span class="line">    # 指令指定请求服务器的超时时间，指完成了2次握手的连接，而不是完整的连接，如果在这期间客户端没有进行数据传递，那么服务器将关闭这个连接。</span><br><span class="line">    # 在Nginx+FastCGI 配置测试中, 其中在request_terminate_timeout设置为永不超时的情况下，nginx中fastcgi_read_timeout 的设置时间将影响到最终的超时时间。</span><br><span class="line">    fastcgi_send_timeout 300;</span><br><span class="line">    # 前端FastCGI服务器的响应超时时间，如果有一些直到它们运行完才有输出的长时间运行的FastCGI进程，或者在错误日志中出现前端服务器响应超时错误，可能需要调整这个值。</span><br><span class="line">    fastcgi_read_timeout 300;</span><br><span class="line">    # 读取fastcgi应答第一部分需要多大缓冲区，该值表示使用1个64kb的缓冲区读取应答第一部分(应答头),可以设置为fastcgi_buffers选项缓冲区大小</span><br><span class="line">    fastcgi_buffer_size 64k;</span><br><span class="line">    # 指定本地需要多少和多大的缓冲区来缓冲fastcgi应答请求，假设一个php或java脚本所产生页面大小为256kb,那么会为其分配4个64kb的缓冲来缓存；若页面大于256kb,那么大于的256kb的部分会缓存到fastcgi_temp指定路径中，这并非是个好办法，内存数据处理快于硬盘，一般该值应该为站点中php/java脚本所产生页面大小中间值，如果站点大部分脚本所产生的页面大小为256kb，那么可把值设置为16 16k,4 64k等</span><br><span class="line">    fastcgi_buffers 4 64k;</span><br><span class="line">    # 默认为fastcgi_buffer的2倍</span><br><span class="line">    fastcgi_busy_buffers_size 128k;</span><br><span class="line">    </span><br><span class="line">    # 开启压缩</span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length  1k;</span><br><span class="line">    gzip_buffers     4 16k;</span><br><span class="line">    gzip_http_version 1.0;</span><br><span class="line">    gzip_comp_level 2;</span><br><span class="line">    gzip_types       text/plain application/x-javascript text/css application/xml;</span><br><span class="line">    gzip_vary on;</span><br><span class="line">    </span><br><span class="line">    # 导入server配置文件</span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2><p>经过一系列的测试发现, 如果只是把Nginx当做普通的web server使用, 默认的配置基本就能满足当前的使用了, 然后就是把<code>worker_rlimit_nofile</code>, <code>worker_connections</code>的值根据系统配置进行相应的调整(PS: 我这里比较暴力, 直接开到了最大), 基本就能把性能调到最佳了. 然后就是<code>FastCGI</code>进程的问题里, 这个到时候另起一篇文章讲. OK, 完美</p>
+<h2 id="参考资料">参考资料</h2><p><a href="http://linux008.blog.51cto.com/2837805/547236" target="_blank" rel="external">http://linux008.blog.51cto.com/2837805/547236</a><br><a href="http://www.nginx.cn/76.html" target="_blank" rel="external">http://www.nginx.cn/76.html</a><br><a href="https://mos.meituan.com/library/30/how-to-optimize-nginx/" target="_blank" rel="external">https://mos.meituan.com/library/30/how-to-optimize-nginx/</a><br><a href="http://www.linuxidc.com/Linux/2014-10/108012.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2014-10/108012.htm</a><br><a href="http://www.2cto.com/os/201407/316653.html" target="_blank" rel="external">http://www.2cto.com/os/201407/316653.html</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/07/16/Nginx配置性能优化/">Nginx配置性能优化</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 MakeHui 的个人博客">MakeHui</a></p>
+        <p><span>发布时间:</span>2016年07月16日 - 15时30分</p>
+        <p><span>最后更新:</span>2016年07月16日 - 17时08分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/16/Nginx配置性能优化/" title="Nginx配置性能优化">http://huyaohui.com/2016/07/16/Nginx配置性能优化/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://huyaohui.com/2016/07/16/Nginx配置性能优化/　　作者: MakeHui" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/30/CentOS6.8-使用非官方源安装LNMP环境-PHP7-MySQL55-Nginx18/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CentOS6.8 使用非官方源安装LNMP环境 PHP7 MySQL55 Nginx18</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Nginx配置性能优化" data-title="Nginx配置性能优化" data-url="http://huyaohui.com/2016/07/16/Nginx配置性能优化/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"makehui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 MakeHui
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
