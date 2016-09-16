@@ -23,13 +23,15 @@
 
 <body style="margin: 0;">
     <video autoplay="autoplay" loop="loop" id="video" style="position: fixed;top: -120px;">
-        <source src="/img/niconiconi.mp4" type="video/mp4">
+        <source src="/videos/niconiconi.mp4" type="video/mp4">
     </video>
 
     <script type="text/javascript">
-        onresize, onload = function () {
+        function windowResize() {
             document.getElementById('video').style.left = -(1920 - document.body.clientWidth) / 2 + 'px';
         }
+        window.addEventListener('resize', windowResize, false);
+        window.addEventListener('load', windowResize, false);
     </script>
 </body>
 
