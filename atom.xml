@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2016-09-16T13:53:42.000Z</updated>
+  <updated>2016-12-26T13:55:00.000Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -14,6 +14,266 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>A simple C++ framework based on file</title>
+    <link href="http://huyaohui.com/2016/12/26/A-simple-CPP-framework-based-on-file/"/>
+    <id>http://huyaohui.com/2016/12/26/A-simple-CPP-framework-based-on-file/</id>
+    <published>2016-12-26T12:49:12.000Z</published>
+    <updated>2016-12-26T13:55:00.000Z</updated>
+    
+    <content type="html">&lt;p&gt;A simple C++ framework based on file.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;瞎扯淡&quot;&gt;瞎扯淡&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;前段时间(其实离现在已经不短了)印象笔记免费用户限制客户端同步个数, 像我这样 WindowsPC, WindowsBook, WindowsPad, WindowsPhoen, iPhone, MacBook, AndroidPad这么多设备需要同(我真不是装逼, 好吧我在装逼), 两台设备配额肯定不够的啊, 有木有, 别跟我说可以付费啊, 付费就不限制了, 反正我就不付费. &lt;/p&gt;
+&lt;p&gt;于是乎就突发奇想, 自己开发一个笔记应用, 那么问题来了, 得需要服务器呢, 怎么办, 想来想去, 想到不是有git吗? 我可以用git来做服务器存储笔记文件啊, 我真他妈是个天才, 恩, 我差点就信了. &lt;/p&gt;
+&lt;p&gt;经过一段时间的构思, 想起如果使用数据库的话, 会生成字节码文件, 这可不妙, git 对处理字节码可不在行, 思前想后, 最终决定使用纯纯文本文件为存储源, 存储数据, 反正也不会有很大的数据量, 于是乎就google了一番, 没找到相关的开源库, 心想这下坑爹了. 最终没办法, 只能自学了C++开始写这个库, 不要问我为什么不用自己擅长的语言写, 我要跨平台啊, 啊, 啊, 啊… 跨平台的话, 除了C/C++, 我还没有找到很好的选择. 这个项目我是准备支持全平台的, 好吧, 给自己挖了个巨坑… 反正无所谓了, 挖了就挖了, 填补填的上就看造化了.&lt;/p&gt;
+&lt;p&gt;废话就这么多了, 下面是文档和开源地址&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;GitHub&quot;&gt;GitHub&lt;/h2&gt;&lt;h2 id=&quot;Get_Started&quot;&gt;Get Started&lt;/h2&gt;&lt;h3 id=&quot;Use&quot;&gt;Use&lt;/h3&gt;&lt;p&gt;Drag &lt;code&gt;src/*&lt;/code&gt; to your projects&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;preprocessor&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;include&lt;/span&gt; &quot;FdbrQueryBuilder.h&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;namespace&lt;/span&gt; FileDBR;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; argc, &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; * argv[])&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;FdbrQueryBuilder &lt;span class=&quot;title&quot;&gt;queryBuilder&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&quot;/Users/MakeHui/Desktop/&quot;)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Definition&quot;&gt;Definition&lt;/h3&gt;&lt;p&gt;Create table and delete table&lt;/p&gt;
+&lt;h4 id=&quot;createTable&quot;&gt;createTable&lt;/h4&gt;&lt;p&gt;Create table&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bool createTable(string table, vector&amp;lt;string&amp;gt; columns)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;columns: create column name&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: bool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; data = queryBuilder.createTable(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field3&quot;&lt;/span&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;deleteTable&quot;&gt;deleteTable&lt;/h4&gt;&lt;p&gt;Delete table&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bool createTable(string table)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: bool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; data = queryBuilder.deleteTable(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Where&quot;&gt;Where&lt;/h3&gt;&lt;p&gt;In the basic use. You can use symbols to filter parameters.&lt;/p&gt;
+&lt;h4 id=&quot;equality&quot;&gt;equality&lt;/h4&gt;&lt;p&gt;field1 = 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// or&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 =&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;not_equal&quot;&gt;not equal&lt;/h4&gt;&lt;p&gt;field1 != 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 !=&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;greater&quot;&gt;greater&lt;/h4&gt;&lt;p&gt;field1 &amp;gt; 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 &amp;gt;&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;lesser&quot;&gt;lesser&lt;/h4&gt;&lt;p&gt;field1 &amp;lt; 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 &amp;lt;&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;greater_or_equal&quot;&gt;greater or equal&lt;/h4&gt;&lt;p&gt;field1 &amp;gt;= 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 &amp;gt;=&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;lesser_or_equal&quot;&gt;lesser or equal&lt;/h4&gt;&lt;p&gt;field1 &amp;lt;= 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 &amp;lt;=&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;like&quot;&gt;like&lt;/h4&gt;&lt;p&gt;field1 like 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 ~&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;not_like&quot;&gt;not like&lt;/h4&gt;&lt;p&gt;field1 not like 123&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1 !~&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Query&quot;&gt;Query&lt;/h3&gt;&lt;p&gt;Some to the query method in common use.&lt;/p&gt;
+&lt;h4 id=&quot;select&quot;&gt;select&lt;/h4&gt;&lt;p&gt;Select data from table&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;vector&amp;lt;map&amp;lt;string, string&amp;gt;&amp;gt; select(string table, vector&amp;lt;string&amp;gt; columns = {}, map&amp;lt;string, string&amp;gt; where = {}, map&amp;lt;string, string&amp;gt; order = {})&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;columns: The target columns of data will be fetched&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;order: Sorting conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: vector&amp;lt;map&amp;lt;string, string&amp;gt;&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt;&amp;gt; data = queryBuilder.select(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;DESC&quot;&lt;/span&gt;&amp;#125;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;insert&quot;&gt;insert&lt;/h4&gt;&lt;p&gt;Insert new records in table&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bool insert(string table, map&amp;lt;string, string&amp;gt; datas)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;datas: The data will be inserted into table&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: bool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; data = queryBuilder.insert(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field3&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;456&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;update&quot;&gt;update&lt;/h4&gt;&lt;p&gt;Modify data in table&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;unsigned int update(string table, map&amp;lt;string, string&amp;gt; datas, map&amp;lt;string, string&amp;gt; where = {})&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;datas: The data that will be modified&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: The number of rows affected&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; data = queryBuilder.update(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;111&quot;&lt;/span&gt;&amp;#125;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;del&quot;&gt;del&lt;/h4&gt;&lt;p&gt;Delete data from table&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;unsigned int del(string table, map&amp;lt;string, string&amp;gt; where = {})&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: The number of rows affected&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; data = queryBuilder.del(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;get&quot;&gt;get&lt;/h4&gt;&lt;p&gt;Get only one record from table&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;map&amp;lt;string, string&amp;gt; get(string table, vector&amp;lt;string&amp;gt; columns = {}, map&amp;lt;string, string&amp;gt; where = {}, map&amp;lt;string, string&amp;gt; order = {})&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;columns: The target columns of data will be fetched&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;order: Sorting conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return map&amp;lt;string, string&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt;&amp;gt; data = queryBuilder.get(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;&amp;#125;&amp;#125;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ASC&quot;&lt;/span&gt;&amp;#125;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;has&quot;&gt;has&lt;/h4&gt;&lt;p&gt;Determine whether the target data existed&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bool has(string table, map&amp;lt;string, string&amp;gt; where = {})&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: bool&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; data = queryBuilder.has(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;count&quot;&gt;count&lt;/h4&gt;&lt;p&gt;Counts the number of rows&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;unsigned int count(string table, map&amp;lt;string, string&amp;gt; where = {});&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: unsigned int&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; data = queryBuilder.count(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;max&quot;&gt;max&lt;/h4&gt;&lt;p&gt;Get the maximum value for the column and support string&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;string max(string table, string column, map&amp;lt;string, string&amp;gt; where = {})&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;column: The target column will be calculated&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: string&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; data = queryBuilder.max(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;min&quot;&gt;min&lt;/h4&gt;&lt;p&gt;Get the minimum value for the column and support string&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;string min(string table, string column, map&amp;lt;string, string&amp;gt; where = {});&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;column: The target column will be calculated&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: string&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; data = queryBuilder.min(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;avg&quot;&gt;avg&lt;/h4&gt;&lt;p&gt;Get the average value for the column&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;long double avg(string table, string column, map&amp;lt;string, string&amp;gt; where = {});&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;column: The target column will be calculated&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: long double&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; data = queryBuilder.avg(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;sum&quot;&gt;sum&lt;/h4&gt;&lt;p&gt;Get the total value for the column&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;long double sum(string table, string column, map&amp;lt;string, string&amp;gt; where = {});&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;table: The table name&lt;/li&gt;
+&lt;li&gt;column: The target column will be calculated&lt;/li&gt;
+&lt;li&gt;where: Query conditions&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;return: long double&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; data = queryBuilder.sum(&lt;span class=&quot;string&quot;&gt;&quot;tablename.fdbr&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;field2&quot;&lt;/span&gt;, &amp;#123;&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;field1&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;100&quot;&lt;/span&gt;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;License&quot;&gt;License&lt;/h2&gt;&lt;p&gt;FileDBR is under the LGPLv2.1 license.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;A simple C++ framework based on file.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="GitNoteR" scheme="http://huyaohui.com/categories/GitNoteR/"/>
+    
+    
+      <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
+    
+      <category term="FileDBR" scheme="http://huyaohui.com/tags/FileDBR/"/>
+    
+      <category term="Library" scheme="http://huyaohui.com/tags/Library/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CMake 编译 Qt 安装第三方 libqgit2 扩展</title>
+    <link href="http://huyaohui.com/2016/11/11/CMake-%E7%BC%96%E8%AF%91-Qt-%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9-libqgit2-%E6%89%A9%E5%B1%95/"/>
+    <id>http://huyaohui.com/2016/11/11/CMake-编译-Qt-安装第三方-libqgit2-扩展/</id>
+    <published>2016-11-11T08:33:25.000Z</published>
+    <updated>2016-12-20T01:17:57.000Z</updated>
+    
+    <content type="html">&lt;p&gt;虽然非常不愿意踏上编译这条不归路, 谁叫我爱折腾跨平台呢.&lt;br&gt;之前一直在搞 Cordova, 不过现在彻底对 H5 跨平台绝望了, 这里不做过多说明了, 可能以后会单独拿出来说道说道.&lt;br&gt;该扯得蛋也扯完了, ok, 进入正题, 编译 Qt 扩展, 坑坑坑…&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;这里我以编译&lt;code&gt;libqgit2&lt;/code&gt;为例说明&lt;/p&gt;
+&lt;h2 id=&quot;下载安装相关依赖&quot;&gt;下载安装相关依赖&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://download.qt.io/official_releases/qt/5.7/5.7.0/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;download.qt.io 下载 qt-opensource-mac-x64-clang-5.7.0.dmg 安装包&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/anselmolsm/libqgit2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;anselmolsm/libqgit2 下载libqgit2源码&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/libgit2/libgit2/releases?after=v0.23.1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;libgit2/libgit2/releases 下载 libgit2 v0.23.0源码&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;安装_Qt&quot;&gt;安装 Qt&lt;/h3&gt;&lt;p&gt;傻瓜式安装 Pass…&lt;/p&gt;
+&lt;p&gt;Ps: 不要忘记了安装目录, 要不就要悲剧了, 不过你不可能这么蠢的对不…&lt;/p&gt;
+&lt;h3 id=&quot;编译准备&quot;&gt;编译准备&lt;/h3&gt;&lt;p&gt;先列出几个遇到的错误, 编译最坑的莫过于各种依赖了, 而且安装方式还不一样&lt;/p&gt;
+&lt;h4 id=&quot;Building_with_Qt4_support&quot;&gt;Building with Qt4 support&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;-- Building with Qt4 support&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;CMake Error at /usr/&lt;span class=&quot;built_in&quot;&gt;local&lt;/span&gt;/Cellar/cmake/&lt;span class=&quot;number&quot;&gt;3.6&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;/share/cmake/Modules/FindQt4.cmake:&lt;span class=&quot;number&quot;&gt;1328&lt;/span&gt; (message):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Found unsuitable Qt version &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; from NOTFOUND, this code requires Qt &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;.x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Call Stack (most recent call first):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  CMakeLists.txt:&lt;span class=&quot;number&quot;&gt;57&lt;/span&gt; (find_package)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-- Configuring incomplete, errors occurred!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;See also &lt;span class=&quot;string&quot;&gt;&quot;/Users/MakeHui/Downloads/libqgit2-master/build/CMakeFiles/CMakeOutput.log&quot;&lt;/span&gt;.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;错误原因: 是找不到 Qt 库&lt;br&gt;解决方法: 需要指定 Qt 库的路径&lt;/p&gt;
+&lt;h4 id=&quot;No_libgit2_found&quot;&gt;No libgit2 found&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;FATAL_ERROR &lt;span class=&quot;string&quot;&gt;&quot;No libgit2 found!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Install the libgit2 development files to your system.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Alternatively define LIBGIT2_SRC_DIR to point to a libgit2 source directory.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;错误原因: 找不到 libgit2 库&lt;br&gt;解决方法: 有两种解决方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装&lt;code&gt;libgit2&lt;/code&gt;库, 但是千万别&lt;code&gt;brew install libgit2&lt;/code&gt;这样安装(这个非常坑爹, 差点搞的但都碎了), 原因是这样安装的一定是最新版, 但是&lt;code&gt;libqgit2&lt;/code&gt;这个库不支持最新版本的&lt;code&gt;libgit2&lt;/code&gt;, 够囧吧(主要还是没什么人维护了, 库原地址: &lt;a href=&quot;https://github.com/KDE/libqgit2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/KDE/libqgit2&lt;/a&gt; 有能力的可以去贡献代码)&lt;/li&gt;
+&lt;li&gt;指定 &lt;code&gt;LIBGIT2_SRC_DIR&lt;/code&gt; 参数, 也就是指定&lt;code&gt;libgit2&lt;/code&gt;源代码的位置, 直接一并编译安装, 或者你先去手动编译安装一个低版本的&lt;code&gt;libgit2&lt;/code&gt;库同样没问题, 这里我推荐直接包含在&lt;code&gt;libqgit2&lt;/code&gt;中编译&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;Could_NOT_find_Doxygen&quot;&gt;Could NOT find Doxygen&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Could NOT find Doxygen (missing:  DOXYGEN_EXECUTABLE)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这个错误不是很懂什么意思, 不过直接&lt;code&gt;brew install doxygen&lt;/code&gt;完事&lt;br&gt;&lt;a href=&quot;http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;修改_CMakeLists-txt_文件&quot;&gt;修改 CMakeLists.txt 文件&lt;/h4&gt;&lt;p&gt;添加下面两行&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; (CMAKE_PREFIX_PATH &lt;span class=&quot;string&quot;&gt;&quot;/Applications/Qt/5.7/clang_64&quot;&lt;/span&gt;)         &lt;span class=&quot;comment&quot;&gt;# Qt 库的路径&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; (LIBGIT2_SRC_DIR &lt;span class=&quot;string&quot;&gt;&quot;/Users/MakeHui/Downloads/libgit2-0.23.0&quot;&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;# libgit2 源码的路径&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;编译&quot;&gt;编译&lt;/h3&gt;&lt;p&gt;上面的准备工作完成后执行下面的命令开始编译&lt;br&gt;Ps: 先切换到&lt;code&gt;libqgit2&lt;/code&gt;源文件根目录&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Building (out of source build):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ &amp;gt; mkdir build &amp;amp;&amp;amp; &lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; build&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ &amp;gt; cmake .. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ &amp;gt; cmake --build .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Testing: 可不检查&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ &amp;gt; ctest -V&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Install:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ &amp;gt; cmake --build . --target install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;默认安装路径: &lt;code&gt;/usr/local&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://doc.qt.io/qt-5/cmake-manual.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://doc.qt.io/qt-5/cmake-manual.html&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://blog.claves.me/2015/04/29/cmake/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.claves.me/2015/04/29/cmake/&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/listensong/p/4316944.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/listensong/p/4316944.html&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://svn.osgeo.org/ossim/trunk/ossim_package_support/cmake/CMakeModules/FindQt5.cmake&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://svn.osgeo.org/ossim/trunk/ossim_package_support/cmake/CMakeModules/FindQt5.cmake&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://stackoverflow.com/questions/15639781/how-to-find-qt5-cmake-module-on-windows&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/15639781/how-to-find-qt5-cmake-module-on-windows&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cppblog.com/Error/archive/2013/04/13/199407.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cppblog.com/Error/archive/2013/04/13/199407.aspx&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://blog.csdn.net/u010598445/article/details/46729705&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/u010598445/article/details/46729705&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://stackoverflow.com/questions/33728905/qt-creator-project-error-xcode-not-set-up-properly-you-may-need-to-confirm-t&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/33728905/qt-creator-project-error-xcode-not-set-up-properly-you-may-need-to-confirm-t&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然非常不愿意踏上编译这条不归路, 谁叫我爱折腾跨平台呢.&lt;br&gt;之前一直在搞 Cordova, 不过现在彻底对 H5 跨平台绝望了, 这里不做过多说明了, 可能以后会单独拿出来说道说道.&lt;br&gt;该扯得蛋也扯完了, ok, 进入正题, 编译 Qt 扩展, 坑坑坑…&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Qt" scheme="http://huyaohui.com/categories/Qt/"/>
+    
+    
+      <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
+    
+      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
+    
+      <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
+    
+      <category term="libgit2" scheme="http://huyaohui.com/tags/libgit2/"/>
+    
+      <category term="libqgit2" scheme="http://huyaohui.com/tags/libqgit2/"/>
+    
+  </entry>
   
   <entry>
     <title>简单使用 Apache JMeter 进行压力测试</title>
@@ -1147,77 +1407,6 @@
       <category term="Cordova" scheme="http://huyaohui.com/tags/Cordova/"/>
     
       <category term="HybridApp" scheme="http://huyaohui.com/tags/HybridApp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iTerm 保存远程登入密码</title>
-    <link href="http://huyaohui.com/2015/10/26/iTerm-%E4%BF%9D%E5%AD%98%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%85%A5%E5%AF%86%E7%A0%81/"/>
-    <id>http://huyaohui.com/2015/10/26/iTerm-保存远程登入密码/</id>
-    <published>2015-10-26T07:33:17.000Z</published>
-    <updated>2016-01-03T03:10:10.000Z</updated>
-    
-    <content type="html">&lt;p&gt;在 Mac OSX 上 iterm2 是很好的终端, 但却不能很好的支持多profiles, 当要管理的机器较多时, 就比较麻烦了. 好在它有profiles设置, 只是不能保存ssh登录帐号及密码, 它还提供了加载profiles时执行外部命令的功能, 因此, 这里就可以使用sshpass来帮它执行.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;安装_sshpass&quot;&gt;安装 sshpass&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;brew install http://git.io/sshpass.rb&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;iTerm_配置&quot;&gt;iTerm 配置&lt;/h2&gt;&lt;p&gt;Profile -&amp;gt; General -&amp;gt; 配置&lt;br&gt;&lt;img src=&quot;https://img.alicdn.com/imgextra/i3/1134915854/TB2QaQqgpXXXXaEXpXXXXXXXXXX_!!1134915854.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/usr/&lt;span class=&quot;built_in&quot;&gt;local&lt;/span&gt;/bin/sshpass -p 密码 ssh root@地址&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在 Mac OSX 上 iterm2 是很好的终端, 但却不能很好的支持多profiles, 当要管理的机器较多时, 就比较麻烦了. 好在它有profiles设置, 只是不能保存ssh登录帐号及密码, 它还提供了加载profiles时执行外部命令的功能, 因此, 这里就可以使用sshpass来帮它执行.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="iTerm" scheme="http://huyaohui.com/categories/iTerm/"/>
-    
-    
-      <category term="Note" scheme="http://huyaohui.com/tags/Note/"/>
-    
-      <category term="iTerm" scheme="http://huyaohui.com/tags/iTerm/"/>
-    
-      <category term="sshpass" scheme="http://huyaohui.com/tags/sshpass/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git 常用命令使用方法</title>
-    <link href="http://huyaohui.com/2015/10/22/Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
-    <id>http://huyaohui.com/2015/10/22/Git-常用命令使用方法/</id>
-    <published>2015-10-22T10:02:49.000Z</published>
-    <updated>2016-06-29T05:12:50.000Z</updated>
-    
-    <content type="html">&lt;p&gt;版本控制系统是为懒人准备的, 它让懒人们比那些善于备份文档的勤劳人拥有更干净的文件系统以及更多的可以活着的时间. 那么一个程序猿, 一个哎偷懒的程序猿有什么理由不使用它呢.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;简单命令&quot;&gt;简单命令&lt;/h2&gt;&lt;h3 id=&quot;查看分支&quot;&gt;查看分支&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 查看创建的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git branch &lt;span class=&quot;operator&quot;&gt;-l&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 查看远程分支&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git branch -r&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 查看所有分支&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git branch &lt;span class=&quot;operator&quot;&gt;-a&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;创建分支&quot;&gt;创建分支&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch &amp;lt;分支名&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;切换分支&quot;&gt;切换分支&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout &amp;lt;分支名&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;创建并同时切换分支&quot;&gt;创建并同时切换分支&lt;/h3&gt;&lt;p&gt;这条命令同样可以切换到远程分支&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout -b &amp;lt;分支名&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;回滚&quot;&gt;回滚&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git reset [版本号]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;回退操作&quot;&gt;回退操作&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 如果修改已经加入暂存区的话&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 也可以取消合并操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git reset --hard [版本号] &amp;amp;&amp;amp;  git clean -xdf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 没有加入缓存区&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git checkout . &amp;amp;&amp;amp; git clean -xdf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;分支合并&quot;&gt;分支合并&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 如果要将开发中的分支(develop), 合并到稳定分支(master)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 首先切换的master分支&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git checkout master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 然后执行合并操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git merge develop&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 如果有冲突, 会提示你, 然后查看冲突文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git add .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git commit -m &lt;span class=&quot;string&quot;&gt;&quot;备注&quot;&lt;/span&gt; *&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;提交分支到远程仓库&quot;&gt;提交分支到远程仓库&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git push origin develop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;获取远程主机上的修改&quot;&gt;获取远程主机上的修改&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 获取所有&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git fetch &amp;lt;远程主机名&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 获取某个&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git fetch &amp;lt;远程主机名&amp;gt; &amp;lt;分支名&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;设置默然push,_pull提交分支&quot;&gt;设置默然push, pull提交分支&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch --set-upstream-to=origin/develop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;取消对master的跟踪&quot;&gt;取消对master的跟踪&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch --unset-upstream master&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;分支衍合&quot;&gt;分支衍合&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 分支衍合和分支合并的差别在于, 分支衍合不会保留合并的日志, 不留痕迹&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 而分支合并则会保留合并的日志&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 要将开发中的分支(develop), 衍合到稳定分支(master)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 首先切换的master分支&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git checkout master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 然后执行衍和操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git rebase develop&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 如果有冲突, 会提示你, 然后查看冲突文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git add .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 所有冲突解决后, 提交更改&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git rebase --continue&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;删除分支&quot;&gt;删除分支&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch &lt;span class=&quot;operator&quot;&gt;-d&lt;/span&gt; &amp;lt;分支名&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 如果该分支没有合并到主分支会报错&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 可以用以下命令强制删除分支&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git branch -D &amp;lt;分支名&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;版本控制系统是为懒人准备的, 它让懒人们比那些善于备份文档的勤劳人拥有更干净的文件系统以及更多的可以活着的时间. 那么一个程序猿, 一个哎偷懒的程序猿有什么理由不使用它呢.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Git" scheme="http://huyaohui.com/categories/Git/"/>
-    
-    
-      <category term="CLI" scheme="http://huyaohui.com/tags/CLI/"/>
-    
-      <category term="Git" scheme="http://huyaohui.com/tags/Git/"/>
-    
-      <category term="Note" scheme="http://huyaohui.com/tags/Note/"/>
     
   </entry>
   
