@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huyaohui.com/2017/01/08/Libqgit2-clone-error-unable-to-lock-mwindow-mutex/</loc>
+    <lastmod>2017-01-08T08:22:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2016/11/11/CMake-%E7%BC%96%E8%AF%91-Qt-%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9-libqgit2-%E6%89%A9%E5%B1%95/</loc>
+    <lastmod>2017-01-08T07:34:35.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2016/12/26/A-simple-CPP-framework-based-on-file/</loc>
     <lastmod>2016-12-26T13:55:00.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/09/30/Apple-D-U-N-S-Number-%E6%B3%A8%E5%86%8C%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/08/15/%E5%9C%A8%E5%90%8C%E4%B8%AA%E5%B7%A5%E7%A8%8B%E4%B8%AD%E4%BD%BF%E7%94%A8-Swift-%E5%92%8C-Objective-C(Swift-and-Objective-C-in-the-Same-Project)/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
   <url>
@@ -32,7 +32,7 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/07/26/Mac-OSX-Brew-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
+    <loc>http://huyaohui.com/2015/05/04/To-Learn-Swift/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
@@ -107,22 +107,22 @@
   </url>
   
   <url>
+    <loc>http://huyaohui.com/2015/09/30/Apple-D-U-N-S-Number-%E6%B3%A8%E5%86%8C%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2015/09/30/Apple-developer-%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2016/11/11/CMake-%E7%BC%96%E8%AF%91-Qt-%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9-libqgit2-%E6%89%A9%E5%B1%95/</loc>
+    <loc>http://huyaohui.com/2015/08/15/%E5%9C%A8%E5%90%8C%E4%B8%AA%E5%B7%A5%E7%A8%8B%E4%B8%AD%E4%BD%BF%E7%94%A8-Swift-%E5%92%8C-Objective-C(Swift-and-Objective-C-in-the-Same-Project)/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://huyaohui.com/2015/03/19/Hello-Hexo/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/05/04/To-Learn-Swift/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
@@ -138,6 +138,11 @@
   
   <url>
     <loc>http://huyaohui.com/2015/03/22/Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BF%83%E9%85%B8%E5%8E%86%E7%A8%8B/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/07/26/Mac-OSX-Brew-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
