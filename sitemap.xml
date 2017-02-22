@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huyaohui.com/2017/02/22/%E5%81%9A%E6%B8%B8%E6%88%8F%E7%A9%B6%E7%AB%9F%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E6%8A%80%E8%83%BD%E5%91%A2/</loc>
+    <lastmod>2017-02-22T06:20:55.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2017/02/22/%E5%81%9A%E6%B8%B8%E6%88%8F%E7%A9%B6%E7%AB%9F%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E6%8A%80%E8%83%BD/</loc>
+    <lastmod>2017-02-22T06:16:09.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2017/01/08/Libqgit2-clone-error-unable-to-lock-mwindow-mutex/</loc>
     <lastmod>2017-01-08T08:22:57.000Z</lastmod>
   </url>
@@ -17,22 +27,12 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/09/26/%E5%85%B3%E4%BA%8E%E7%95%AA%E7%BE%BD%E5%BC%93%E8%99%BD%E8%AE%BF%E9%97%AEGoogle%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    <loc>http://huyaohui.com/2015/05/28/iOS-Swift-resignFirstResponder-close-keyboard/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/06/19/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0-iOS-Swift-%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%82%9F/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/about/index.html</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/05/04/To-Learn-Swift/</loc>
+    <loc>http://huyaohui.com/2015/06/23/Swift-Language-Tutorials-%E4%B8%AD%E6%96%87%E7%89%88/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
@@ -72,12 +72,12 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/06/24/%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8-Swift-%E7%BC%96%E5%86%99-iOS-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%95%99%E7%A8%8B-1/</loc>
+    <loc>http://huyaohui.com/2015/08/15/%E5%9C%A8%E5%90%8C%E4%B8%AA%E5%B7%A5%E7%A8%8B%E4%B8%AD%E4%BD%BF%E7%94%A8-Swift-%E5%92%8C-Objective-C(Swift-and-Objective-C-in-the-Same-Project)/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/05/28/iOS-Swift-resignFirstResponder-close-keyboard/</loc>
+    <loc>http://huyaohui.com/2015/06/24/%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8-Swift-%E7%BC%96%E5%86%99-iOS-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%95%99%E7%A8%8B-1/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
@@ -107,7 +107,22 @@
   </url>
   
   <url>
+    <loc>http://huyaohui.com/2015/09/26/%E5%85%B3%E4%BA%8E%E7%95%AA%E7%BE%BD%E5%BC%93%E8%99%BD%E8%AE%BF%E9%97%AEGoogle%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/06/19/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0-iOS-Swift-%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%82%9F/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2015/09/30/Apple-D-U-N-S-Number-%E6%B3%A8%E5%86%8C%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/05/04/To-Learn-Swift/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
@@ -117,7 +132,12 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/08/15/%E5%9C%A8%E5%90%8C%E4%B8%AA%E5%B7%A5%E7%A8%8B%E4%B8%AD%E4%BD%BF%E7%94%A8-Swift-%E5%92%8C-Objective-C(Swift-and-Objective-C-in-the-Same-Project)/</loc>
+    <loc>http://huyaohui.com/2015/03/27/Sime-Thoughts-on-software-development/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/about/index.html</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
@@ -127,22 +147,12 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/06/23/Swift-Language-Tutorials-%E4%B8%AD%E6%96%87%E7%89%88/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/03/27/Sime-Thoughts-on-software-development/</loc>
+    <loc>http://huyaohui.com/2015/07/26/Mac-OSX-Brew-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://huyaohui.com/2015/03/22/Hexo-GitHub-Pages-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BF%83%E9%85%B8%E5%8E%86%E7%A8%8B/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/07/26/Mac-OSX-Brew-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
