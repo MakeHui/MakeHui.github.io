@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huyaohui.com/2017/03/06/WebSocket-%E6%B5%85%E6%9E%90/</loc>
+    <lastmod>2017-03-06T10:21:02.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2017/02/25/Cocos-Creator-hot-update/</loc>
     <lastmod>2017-02-25T09:07:37.000Z</lastmod>
   </url>
@@ -29,11 +34,6 @@
   <url>
     <loc>http://huyaohui.com/2016/12/26/A-simple-CPP-framework-based-on-file/</loc>
     <lastmod>2016-12-26T13:55:00.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/about/index.html</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
   <url>
@@ -112,6 +112,11 @@
   </url>
   
   <url>
+    <loc>http://huyaohui.com/2015/06/19/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0-iOS-Swift-%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%82%9F/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2015/09/30/Apple-D-U-N-S-Number-%E6%B3%A8%E5%86%8C%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
@@ -122,17 +127,12 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/06/19/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0-iOS-Swift-%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%82%9F/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/03/19/Hello-Hexo/</loc>
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://huyaohui.com/2015/05/04/To-Learn-Swift/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/about/index.html</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
@@ -143,6 +143,11 @@
   
   <url>
     <loc>http://huyaohui.com/2015/03/27/Sime-Thoughts-on-software-development/</loc>
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/03/19/Hello-Hexo/</loc>
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
   </url>
   
