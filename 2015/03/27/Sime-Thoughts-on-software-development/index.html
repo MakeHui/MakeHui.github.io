@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="摘要: 最近在忙项目的事, 其中遇到了很多非技术上的问题(我个人认为是非技术的问题). 特写下这篇博文, 阐述下自己的观点. 并没有什么针对性的问题, 也只是闲谈下">
+<meta name="keywords" content="Think">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sime Thoughts on software development">
 <meta property="og:url" content="http://huyaohui.com/2015/03/27/Sime-Thoughts-on-software-development/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="摘要: 最近在忙项目的事, 其中遇到了很多非技术上的问题(我个人认为是非技术的问题). 特写下这篇博文, 阐述下自己的观点. 并没有什么针对性的问题, 也只是闲谈下">
 <meta property="og:updated_time" content="2016-12-20T01:17:57.000Z">
 <meta name="twitter:card" content="summary">
@@ -26,15 +27,13 @@
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
 
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
-
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -155,12 +154,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -200,8 +193,8 @@
   <div class="article-entry">
     <p>摘要: 最近在忙项目的事, 其中遇到了很多非技术上的问题(我个人认为是非技术的问题). 特写下这篇博文, 阐述下自己的观点. 并没有什么针对性的问题, 也只是闲谈下</p>
 <a id="more"></a>
-<h2 id="前言">前言</h2><p>至冯诺依曼协助开发人类历史上第一台计算机起(也许不是第一台), 数学就和计算机结下了不解之缘. 可以想象一下没有数学, 当代计算机会变成什么样子, 软件行业还能像现在这样蓬勃发展吗</p>
-<h2 id="正文">正文</h2><p>一个问题引发的血案</p>
+<p>##前言<br>至冯诺依曼协助开发人类历史上第一台计算机起(也许不是第一台), 数学就和计算机结下了不解之缘. 可以想象一下没有数学, 当代计算机会变成什么样子, 软件行业还能像现在这样蓬勃发展吗</p>
+<p>##正文<br>一个问题引发的血案</p>
 <!-- 
 小明的问题 No.1
 小明问: 计算机既然只能执行二进制语言, 而且效率是最高的,  为什么后来有要出什么 汇编, C/C++这样的语言呢, 然后有基于C/C++这样的语言在开发其他的语言的呢, 这样岂不是运行越来越慢
@@ -209,9 +202,10 @@
 小明: 那按照老师的说法, 为什么不能自己写一个, 基于低级语言的方法库呢, 需要的时候拿出来用就是了, 然后性能也不损失, 也能完成工作, 哈哈... 自己太聪明了
 老师: ...
  -->
-<h3 id="小明的问题">小明的问题</h3><p>小明问: 老师我要使用怎样式子才能解决结果一定等于<code>2</code>呢<br>老师回答: <code>1+1=2</code> 或 <code>x+y=2</code><br>小明: 好简单啊: 1+1=2 x+y怎么能等于2呢<br>老师: …</p>
-<h3 id="关于自己的一点看法">关于自己的一点看法</h3><p>我个人比较喜欢使用框架去完成一项工作</p>
-<h3 id="一个框架">一个框架</h3><ul>
+<p>###小明的问题<br>小明问: 老师我要使用怎样式子才能解决结果一定等于<code>2</code>呢<br>老师回答: <code>1+1=2</code> 或 <code>x+y=2</code><br>小明: 好简单啊: 1+1=2 x+y怎么能等于2呢<br>老师: …</p>
+<p>###关于自己的一点看法<br>我个人比较喜欢使用框架去完成一项工作</p>
+<p>###一个框架</p>
+<ul>
 <li><p>并不是能解决你的说有问题, 而是能解决你大部分核心问题, 那他就是一个适合自己项目的框架了<br>在包含上条的时候同时, 语法友好, 表层简单代码(复杂关系封装在相对底层的代码内)</p>
 </li>
 <li><p>当一个问题有几种, 乃至几十种的可能性的时候, 你需要写多少代码才能解决这问题呢<br>最主要还是写完了还不一定就能把所有问题就解决, 因为仍然有很多问题是我们未能及时想到的<br>而框架中我们多半只需要一个函数就能解决这些问题</p>
@@ -223,8 +217,9 @@
 <p>  ok<br>  如果是我, 我会安装框架定义的标准去已插件的形式去给框架扩展功能, 而不是把功能独立于框架而存在<br>  当使用框架的时候, 整套框架就已经===你的项目了<br>  剩下的还用我多说吗</p>
 </li>
 </ul>
-<h3 id="回答小明的问题">回答小明的问题</h3><p>自己想去..</p>
-<h2 id="总结">总结</h2><ul>
+<p>###回答小明的问题<br>自己想去..</p>
+<p>##总结</p>
+<ul>
 <li>没有银弹</li>
 <li>现代的程序猿很幸福, 前辈们为我们留下一大笔财富(代码)和经验</li>
 <li>能在坑上搭桥过去, 为何要先用绳索爬下坑, 再用绳索从坑里爬到对岸呢</li>
@@ -255,29 +250,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="Sime-Thoughts-on-software-development" data-title="Sime Thoughts on software development" data-url="http://huyaohui.com/2015/03/27/Sime-Thoughts-on-software-development/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -293,10 +282,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -360,12 +349,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

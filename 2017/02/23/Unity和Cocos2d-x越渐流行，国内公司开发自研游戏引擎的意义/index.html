@@ -13,12 +13,13 @@
 </title>
 
 <meta name="description" content="该篇文章来自至cocos贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.原文貌似来自知乎: https://www.zhihu.com/question/23881759">
+<meta name="keywords" content="Game,Unity,Cocos2d-x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义">
 <meta property="og:url" content="http://huyaohui.com/2017/02/23/Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="该篇文章来自至cocos贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.原文貌似来自知乎: https://www.zhihu.com/question/23881759">
-<meta property="og:updated_time" content="2017-02-23T10:37:19.000Z">
+<meta property="og:updated_time" content="2017-02-23T10:37:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义">
 <meta name="twitter:description" content="该篇文章来自至cocos贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.原文貌似来自知乎: https://www.zhihu.com/question/23881759">
@@ -26,15 +27,13 @@
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
 
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
-
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -155,12 +154,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -200,7 +193,7 @@
   <div class="article-entry">
     <p>该篇文章来自至<code>cocos</code>贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.<br>原文貌似来自知乎: <a href="https://www.zhihu.com/question/23881759" target="_blank" rel="external">https://www.zhihu.com/question/23881759</a></p>
 <a id="more"></a>
-<h2 id="A回答">A回答</h2><blockquote>
+<h2 id="A回答"><a href="#A回答" class="headerlink" title="A回答"></a>A回答</h2><blockquote>
 <p>我觉得比我早回答的人都已经说了很多了，我就说一点我看到的东西吧。</p>
 <p>去年到今年大半年都从事有关引擎和前端适配的工作，给我的感觉就是这两个引擎以目前的势头来说必定会席卷整个业界。</p>
 <p>但是如果从我的工作上来看的话，一个开发公司往往要的不是一个单纯的引擎，而是一个解决方案，所以Cocos2d-x相比于u3d还是有很大差距的，在3D方面的工作我不了解，所以对U3D不做评价。而在2D游戏的制作方面，采用Cocos2d-x带来的问题也会不少，最为突出的还是美术和程序之间的矛盾。最为诟病的是官方出的那个编辑器，虽然引擎是开源的，但是编辑器是闭源的，而且还做的很烂（相比于传统老牌Flash来说）。在一个项目要动工的时候，必须去权衡这个编辑器不能提供的功能所带来的损失，截止我不参与这项工作的时候，官方编辑器能支持的东西还是很少，很多项目上要用的也没有，因此而转向我原来参与的编辑器适配的技术，希望能够找到一个功能完善（如Flash）的编辑器，通过一个通用的适配器来适配上各种引擎。这个愿景是美好的。</p>
@@ -208,12 +201,12 @@
 <p>举这样一个栗子就是想说明，一个引擎再优秀，当项目需求发生变化时，也不可能做出万全的准备，各种各样的需求也就催生出各种各样的解决方案，这些方案里面就不乏自研引擎。感觉这个就好像是即使在windows统一天下的时候，也还存在着各种linux，正式他们不放弃，才得以发展。</p>
 <p>存在即合理。从技术研究上讲我是很喜欢公司做这种基础建设的，虽然研究了好久的东西最终还是被砍了TAT</p>
 </blockquote>
-<h2 id="B回答">B回答</h2><blockquote>
+<h2 id="B回答"><a href="#B回答" class="headerlink" title="B回答"></a>B回答</h2><blockquote>
 <p>我们团队08年顺应端游大潮，出来创业，本人负责改引擎。当时手握的一款05年前的商业引擎，连shader系统都没有，于是剃掉渲染层和一些老旧的部件重做。终于到了10年游戏出来了，当时的市面上国产网游整个场景用动态阴影的并不多，更流行的做法是只是人物做成动态，毕竟网游需要照顾低端配置，我们能上得益于深度定制引擎所带来的效能提升，这种提升是完全依赖于当时的游戏类型的，估计自研的优势也在于此。 举些例子，比如固定视角时，地形的像素面积过大，可以通过编写美术工具来限制层数，废弃多遍渲染。又比如，如果玩家视野有限，用多层阴影略显浪费，但单层又有些不够用，于是可以定制一个梯形变形+渐变的解决方案。深度定制还有个好处是可以满足美术的特殊需求，比如某些奇怪的光泽，某些奇怪的朦胧的雾或者水下的感觉，美术们都很感性，但需要你的理性实现他们。</p>
 <p>接着后话，游戏代理给了某知名网游公司，一直不温不火。团队快饿死了，于是饿死之前做了款全3D的，在此之前我的理想游戏挣钱了是全新开发一款全3d的引擎，但既然是要饿死了也没这些想法了，直接把这款完全为2.5d定制的引擎硬改成3d，效率勉强撑得住，12年游戏又上了，牛逼哄哄滴注册个名著的名字，然后依然不温不火。公司被收购，我们一帮核心成员带着遗憾离开，多少理想热血已成往事。</p>
 <p>再接着，再次组建团队，当然规模小了，但还是端游，周边项目组都是些用unity的年轻人， 我自己因为人手不足也写起了逻辑，写起了ai. 讨论起了游戏策划，更多的困扰是经济以及前途的压力，以及各种烦人的人事。 当年怀揣一本doom启示录以引擎程序员为骄傲杀入行业，如今觉得真的到了离开的时候。<br>也许我在软件园门口买烧饼的时候，能和顾客们讨论讨论PSSM，呵呵。</p>
 </blockquote>
-<h2 id="C回答">C回答</h2><p>分几个角度来说：</p>
+<h2 id="C回答"><a href="#C回答" class="headerlink" title="C回答"></a>C回答</h2><p>分几个角度来说：</p>
 <blockquote>
 <p>一、我认为，Unity3D将无可挽回的，或者说，势在必得的，成为接下来很多年内，世界移动领域游戏引擎市场霸主。</p>
 <blockquote>
@@ -232,7 +225,7 @@
 <p>1、船小好调头，任何一个大的引擎，达到一定的规模，它登陆一个新的平台或环境都会有比较大的时间成本。相比起来，小规模引擎快速登陆一个平台，在新的平台上快速抢占市场，会是比较大的机会。这个方案的典型代表是Unity3D自己。在几年前，提到游戏引擎的时候人们想到的都是Unreal、Crystal，而那时候的Unity3D只是一个活在浏览器插件里的、主要面向甚至不完全是游戏的，极小众的引擎。但是Unity3D抓住了智能手机浪潮的先机，快速抢占了市场，不但成就了新一轮的神话，甚至在PC、主机等平台上产生了反攻之势。这件事是否会重演？谁也不知道。<br>2、服务，服务，还是服务。对于一部分客户来说，他们不关心这个引擎的核心多么有技术含量，所用的算法有多么高大上，他们最关心的，是他们面临的需求和问题能否得到解决。比起十几年的技术积累，丰富的文档资料，他们更想要的是一封快速回复的邮件，一个电话，甚至是一次上门的培训或技术支撑。想要做好服务，你需要是一个有一定技术积累的团队，但你甚至未必需要有一个自己的引擎。想想吧，当windows大潮来临的时候，真正赚钱的是投入几千万几亿研发一个新操作系统试图跟windows正面抗衡的公司，还是那些卖盗版碟，搞windows office培训班的团队？<br>3、适应新的互联网时代社会化大生产模式。作为一个引擎团队，你具备的可能是技术实力、研发能力，有可能你认为自己不适合去做什么经销培训的事情，那么一定还有一件事情你可以做，就是借助社区和平台，进行互联网式的分工协作。一个别人无法完成的需求，一个别人无法实现的技术难题，如果对于你来说是迎刃而解的，那么不必拥有自己的引擎，你也可以在互联网时代获得你自己的立足之地。</p>
 </blockquote>
 </blockquote>
-<h2 id="参考资料">参考资料</h2><p>原贴地址: <a href="http://tieba.baidu.com/p/4055902638" target="_blank" rel="external">http://tieba.baidu.com/p/4055902638</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>原贴地址: <a href="http://tieba.baidu.com/p/4055902638" target="_blank" rel="external">http://tieba.baidu.com/p/4055902638</a></p>
 
   </div>
   <footer class="article-footer">
@@ -258,29 +251,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义" data-title="Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义" data-url="http://huyaohui.com/2017/02/23/Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -296,10 +283,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -363,12 +350,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

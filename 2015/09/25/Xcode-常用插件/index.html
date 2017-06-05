@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="工欲善其事, 必先利其器. Xcode虽然已经很强大了, 但是并不是尽善尽美, 这时候就要使用强大的插件来完善Xcode的不足的地方了. 下面我列出一些自己平常使用的插件, 共大家参考, 也方便自己查阅(PS: 每次升级Xcode都要重装, 烦…)">
+<meta name="keywords" content="Plugin,Xcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xcode 常用插件">
 <meta property="og:url" content="http://huyaohui.com/2015/09/25/Xcode-常用插件/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="工欲善其事, 必先利其器. Xcode虽然已经很强大了, 但是并不是尽善尽美, 这时候就要使用强大的插件来完善Xcode的不足的地方了. 下面我列出一些自己平常使用的插件, 共大家参考, 也方便自己查阅(PS: 每次升级Xcode都要重装, 烦…)">
 <meta property="og:image" content="https://img.alicdn.com/imgextra/i3/1134915854/TB2tZ01fFXXXXbgXXXXXXXXXXXX_!!1134915854.png">
 <meta property="og:image" content="https://img.alicdn.com/imgextra/i2/1134915854/TB2zFxyfFXXXXb2XpXXXXXXXXXX_!!1134915854.png">
@@ -33,19 +34,18 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode 常用插件">
 <meta name="twitter:description" content="工欲善其事, 必先利其器. Xcode虽然已经很强大了, 但是并不是尽善尽美, 这时候就要使用强大的插件来完善Xcode的不足的地方了. 下面我列出一些自己平常使用的插件, 共大家参考, 也方便自己查阅(PS: 每次升级Xcode都要重装, 烦…)">
+<meta name="twitter:image" content="https://img.alicdn.com/imgextra/i3/1134915854/TB2tZ01fFXXXXbgXXXXXXXXXXXX_!!1134915854.png">
 <meta name="twitter:creator" content="@Make_hui">
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
-
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
 
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -166,12 +166,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -211,42 +205,42 @@
   <div class="article-entry">
     <p>工欲善其事, 必先利其器. Xcode虽然已经很强大了, 但是并不是尽善尽美, 这时候就要使用强大的插件来完善Xcode的不足的地方了. 下面我列出一些自己平常使用的插件, 共大家参考, 也方便自己查阅(PS: 每次升级Xcode都要重装, 烦…)</p>
 <a id="more"></a>
-<h2 id="包管理工具">包管理工具</h2><p>名称: <a href="http://alcatraz.io/" target="_blank" rel="external">Alcatraz</a></p>
+<h2 id="包管理工具"><a href="#包管理工具" class="headerlink" title="包管理工具"></a>包管理工具</h2><p>名称: <a href="http://alcatraz.io/" target="_blank" rel="external">Alcatraz</a></p>
 <p>说明:过去，安装Xcode插件往往令人抓狂不已，但Alcatraz的出现彻底改写了这一历史。今年早些时候，Alcatraz迎来了发展道路上的里程碑——1.0版本，现在如今已经可以与Xcode 5相兼容。如果大家还没有安装Alcatraz，我建议大家首先完成这项工作。</p>
 <p><img src="https://img.alicdn.com/imgextra/i3/1134915854/TB2tZ01fFXXXXbgXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
 <p>使用方法: </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理缓冲</span></span><br><span class="line">rm -rf ~/Library/Application\ Support/Alcatraz</span><br></pre></td></tr></table></figure>
-<h2 id="高亮显示">高亮显示</h2><p>名称: <a href="https://github.com/limejelly/Backlight-for-XCode" target="_blank" rel="external">Backlight</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装</span></div><div class="line">curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</div><div class="line"></div><div class="line"><span class="comment"># 卸载</span></div><div class="line">rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin</div><div class="line"></div><div class="line"><span class="comment"># 清理缓冲</span></div><div class="line">rm -rf ~/Library/Application\ Support/Alcatraz</div></pre></td></tr></table></figure>
+<h2 id="高亮显示"><a href="#高亮显示" class="headerlink" title="高亮显示"></a>高亮显示</h2><p>名称: <a href="https://github.com/limejelly/Backlight-for-XCode" target="_blank" rel="external">Backlight</a></p>
 <p>说明: 某些插件从表面上看似乎无足轻重或者有些简陋，但只要大家加以合理运用、它们都将迸发出惊人的能量。Backlight就是这样一款插件。它惟一的能力就是对当前正在进行编辑的代码行加以高亮显示——没错，虽然看起来简单，但却极具价值。</p>
 <p><img src="https://img.alicdn.com/imgextra/i2/1134915854/TB2zFxyfFXXXXb2XpXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="CocoaPods">CocoaPods</h2><p>名称: <a href="https://github.com/kattrali/cocoapods-xcode-plugin" target="_blank" rel="external">CocoaPods</a></p>
+<h2 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h2><p>名称: <a href="https://github.com/kattrali/cocoapods-xcode-plugin" target="_blank" rel="external">CocoaPods</a></p>
 <p>说明: CocoaPods实际上是一款面向iOS与OS X开发工作的关联性管理器。如果大家还没有使用过CocoaPods，我建议各位赶紧找来试试。点击此处查看相关教程，不到十分钟大家就能轻松掌控其使用方法。面向Xcode的CocoaPods插件也是存在的，它的主要作用是大大简化CocoaPods的集成方式。这款CocoaPods插件能够直接在Xcode的Product菜单中加入CocoaPods子菜单。如果大家不喜欢命令行，那么这款插件绝对能给大家带来惊喜。</p>
 <p><img src="https://img.alicdn.com/imgextra/i1/1134915854/TB2qdNyfFXXXXb0XpXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="查看git版本变化">查看git版本变化</h2><p>名称: <a href="https://github.com/johnno1962/GitDiff" target="_blank" rel="external">GitDiff</a></p>
+<h2 id="查看git版本变化"><a href="#查看git版本变化" class="headerlink" title="查看git版本变化"></a>查看git版本变化</h2><p>名称: <a href="https://github.com/johnno1962/GitDiff" target="_blank" rel="external">GitDiff</a></p>
 <p>说明: 对于大多数开发人员而言，使用图形化用户界面能够大大降低git使用中面对的工作强度。尽管Tower与SourceTree等应用程序已经相当出色，但我有时候还是希望能了解到目前正在Xcode代码编辑器中处理的文件到底发生了哪些内部变化。在这种情况下，GitDiff挺身而出帮助我们解决难题，而且其表现相当出色。这是一套精妙的Xcode代码编辑器强化方案，通过适量的可视化信息提示我们文件自上次提交之后出现了哪些变动。</p>
 <p><img src="https://img.alicdn.com/imgextra/i4/1134915854/TB2DjJWfFXXXXaGXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="自动补全">自动补全</h2><p>名称: <a href="https://github.com/FuzzyAutocomplete/FuzzyAutocompletePlugin" target="_blank" rel="external">FuzzyAutocomplete</a></p>
+<h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p>名称: <a href="https://github.com/FuzzyAutocomplete/FuzzyAutocompletePlugin" target="_blank" rel="external">FuzzyAutocomplete</a></p>
 <p>说明: 说起自动补全, 大多数iOS与OS X开发人员在实际工作中都会对Xocde的卓越自动补全功能赞不绝口. 不过Xcode在处理自动补全任务时的表现远称不上完美, 我们有时候根本得不到那些自己预期或者希望获得的提示结果. </p>
 <p><img src="https://img.alicdn.com/imgextra/i4/1134915854/TB29ZFOfFXXXXb6XXXXXXXXXXXX_!!1134915854.gif" alt=""></p>
-<h2 id="第三方文档">第三方文档</h2><p>名称: <a href="http://kapeli.com/dash" target="_blank" rel="external">Dash for Xcode</a>  <a href="https://github.com/omz/Dash-Plugin-for-Xcode" target="_blank" rel="external">github</a></p>
+<h2 id="第三方文档"><a href="#第三方文档" class="headerlink" title="第三方文档"></a>第三方文档</h2><p>名称: <a href="http://kapeli.com/dash" target="_blank" rel="external">Dash for Xcode</a>  <a href="https://github.com/omz/Dash-Plugin-for-Xcode" target="_blank" rel="external">github</a></p>
 <p>说明: 该插件能够在我们按住Option并点击对应文档后利用Dash而非Xcode自带文档浏览器将其打开。Dash不仅运行速度极快，同时还能与CocoaDocs相集成。</p>
 <p><img src="https://img.alicdn.com/imgextra/i3/1134915854/TB2ARBzfFXXXXbUXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="代码格式化">代码格式化</h2><p>名称: <a href="https://github.com/qfish/XAlign" target="_blank" rel="external">XAlign</a></p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><p>名称: <a href="https://github.com/qfish/XAlign" target="_blank" rel="external">XAlign</a></p>
 <p>说明: XAlign是一款专门用于代码整理的Xcode插件，其作者为来自Geek Zoo Studio的开发者QFish。XAlign能够对开发者的代码非常快速地进行对齐优化，有“=”、宏定义、属性三种对齐模式。当然，如果默认的对齐风格不是自己喜欢的，开发者还可以自定义或提出issues。</p>
 <p><img src="https://img.alicdn.com/imgextra/i1/1134915854/TB2wrdOfFXXXXcpXXXXXXXXXXXX_!!1134915854.gif" alt=""></p>
-<h2 id="自动隐藏Debugger">自动隐藏Debugger</h2><p>名称: <a href="https://github.com/neonichu/BBUDebuggerTuckAway" target="_blank" rel="external">BBUDebuggerTuckAway</a></p>
+<h2 id="自动隐藏Debugger"><a href="#自动隐藏Debugger" class="headerlink" title="自动隐藏Debugger"></a>自动隐藏Debugger</h2><p>名称: <a href="https://github.com/neonichu/BBUDebuggerTuckAway" target="_blank" rel="external">BBUDebuggerTuckAway</a></p>
 <p>说明: BBUDebuggerTuckAway是一款支持自动隐藏Debugger的Xcode插件，其开发者为来自德国柏林Contentful GmbH公司的Boris Bügling。使用BBUDebuggerTuckAway，开发者能够实现在编辑代码时，自动隐藏底部的调试栏。</p>
 <p><img src="https://img.alicdn.com/imgextra/i2/1134915854/TB2cW8WfFXXXXaNXXXXXXXXXXXX_!!1134915854.gif" alt=""></p>
-<h2 id="取色工具">取色工具</h2><p>名称: <a href="https://github.com/NorthernRealities/ColorSenseRainbow" target="_blank" rel="external">ColorSenseRainbow</a></p>
+<h2 id="取色工具"><a href="#取色工具" class="headerlink" title="取色工具"></a>取色工具</h2><p>名称: <a href="https://github.com/NorthernRealities/ColorSenseRainbow" target="_blank" rel="external">ColorSenseRainbow</a></p>
 <p>说明: ColorSenseRainbow是方便程序员定义颜色的。当你用UIColor生成颜色时，它会把该颜色在代码右上角显示出来，减少错误代码。</p>
 <p><img src="https://img.alicdn.com/imgextra/i2/1134915854/TB2KztxfFXXXXb.XpXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="快速查找">快速查找</h2><p>名称: <a href="https://github.com/macoscope/CodePilot" target="_blank" rel="external">CodePilot</a></p>
+<h2 id="快速查找"><a href="#快速查找" class="headerlink" title="快速查找"></a>快速查找</h2><p>名称: <a href="https://github.com/macoscope/CodePilot" target="_blank" rel="external">CodePilot</a></p>
 <p>说明: Code Pilot是Xcode 5的一款扩充插件，能够帮助开发者无需鼠标操作，即可在项目中快速方便地查找文件、方法和符号。Code Pilot由Macoscope公司开发，其CEO为Zbigniew Sobiecki。Code Pilot基于Apache 2.0许可协议开源，采用模糊查询来匹配，计算结果依照其相关性进行排序，而开发者只需轻点几下键盘就可以跳转到自己所寻找的方法。</p>
 <p><img src="https://img.alicdn.com/imgextra/i4/1134915854/TB2TeCufFXXXXaRXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="快速添加注释">快速添加注释</h2><p>名称: <a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external">VVDocumenter-Xcode</a></p>
+<h2 id="快速添加注释"><a href="#快速添加注释" class="headerlink" title="快速添加注释"></a>快速添加注释</h2><p>名称: <a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external">VVDocumenter-Xcode</a></p>
 <p>说明: 很多时候，为了快速开发，很多的技术文档都是能省则省，这个时候注释就变得异常重要，再配合Doxygen这种注释自动生成文档的，就完美了。但是每次都要手动输入规范化的注释，着实也麻烦，但有了VVDocumenter，只需要在要写文档的代码上面连打三个斜杠，就能自动提取参数等生成规范的Javadoc格式文档注释。</p>
 <p><img src="https://img.alicdn.com/imgextra/i4/1134915854/TB2By5xfFXXXXaUXXXXXXXXXXXX_!!1134915854.gif" alt=""></p>
-<h2 id="参考资料">参考资料</h2><p>-1. <a href="http://blog.csdn.net/linwenbang/article/details/45121639" target="_blank" rel="external">iOS-Xcode开发常用插件</a><br>-2. <a href="http://segmentfault.com/a/1190000000495808" target="_blank" rel="external">盘点开发者最喜爱的十大开源Xcode插件</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>-1. <a href="http://blog.csdn.net/linwenbang/article/details/45121639" target="_blank" rel="external">iOS-Xcode开发常用插件</a><br>-2. <a href="http://segmentfault.com/a/1190000000495808" target="_blank" rel="external">盘点开发者最喜爱的十大开源Xcode插件</a></p>
 
   </div>
   <footer class="article-footer">
@@ -272,29 +266,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="Xcode-常用插件" data-title="Xcode 常用插件" data-url="http://huyaohui.com/2015/09/25/Xcode-常用插件/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -310,10 +298,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -377,12 +365,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

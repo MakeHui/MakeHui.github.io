@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="上传说了正向传值, 那么自然就有反向传值咯, 不过apple并没有为我们封装类似于正向传值那样方便好用的方法, 也是因为方向传值并不是那么常见, 不过我觉得我们仍然还是需要掌握的, Swift中为我们提供了一个很好的特性, 就是闭包(closure), 使用闭包我们能很轻易的实现反向传值, 接下来跟着我一起做吧. go">
+<meta name="keywords" content="iOS,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS Swift 使用closure 反向传值">
 <meta property="og:url" content="http://huyaohui.com/2015/06/02/iOS-Swift-使用closure-反向传值/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="上传说了正向传值, 那么自然就有反向传值咯, 不过apple并没有为我们封装类似于正向传值那样方便好用的方法, 也是因为方向传值并不是那么常见, 不过我觉得我们仍然还是需要掌握的, Swift中为我们提供了一个很好的特性, 就是闭包(closure), 使用闭包我们能很轻易的实现反向传值, 接下来跟着我一起做吧. go">
 <meta property="og:image" content="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB21wnHcVXXXXafXpXXXXXXXXXX_!!1134915854.png">
 <meta property="og:image" content="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2RZTBcVXXXXcDXpXXXXXXXXXX_!!1134915854.png">
@@ -24,19 +25,18 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS Swift 使用closure 反向传值">
 <meta name="twitter:description" content="上传说了正向传值, 那么自然就有反向传值咯, 不过apple并没有为我们封装类似于正向传值那样方便好用的方法, 也是因为方向传值并不是那么常见, 不过我觉得我们仍然还是需要掌握的, Swift中为我们提供了一个很好的特性, 就是闭包(closure), 使用闭包我们能很轻易的实现反向传值, 接下来跟着我一起做吧. go">
+<meta name="twitter:image" content="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB21wnHcVXXXXafXpXXXXXXXXXX_!!1134915854.png">
 <meta name="twitter:creator" content="@Make_hui">
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
-
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
 
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -157,12 +157,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -202,21 +196,21 @@
   <div class="article-entry">
     <p>上传说了正向传值, 那么自然就有反向传值咯, 不过apple并没有为我们封装类似于正向传值那样方便好用的方法, 也是因为方向传值并不是那么常见, 不过我觉得我们仍然还是需要掌握的, Swift中为我们提供了一个很好的特性, 就是闭包(closure), 使用闭包我们能很轻易的实现反向传值, 接下来跟着我一起做吧. go</p>
 <a id="more"></a>
-<h2 id="新建一个Swift_iOS_项目">新建一个Swift iOS 项目</h2><p>老样子我们先新建一个single view application</p>
+<h2 id="新建一个Swift-iOS-项目"><a href="#新建一个Swift-iOS-项目" class="headerlink" title="新建一个Swift iOS 项目"></a>新建一个Swift iOS 项目</h2><p>老样子我们先新建一个single view application</p>
 <p>参照这个就行了 <a href="http://huyaohui.com/2015/05/28/resignFirstResponder-close-keyboard/">http://huyaohui.com/2015/05/28/resignFirstResponder-close-keyboard/</a></p>
-<h2 id="新建一个ViewController">新建一个ViewController</h2><p>我们需要两个ViewController才能演示回传嘛, 对不, 一个的话不就是自己传给自己那还有什么好说的呢</p>
+<h2 id="新建一个ViewController"><a href="#新建一个ViewController" class="headerlink" title="新建一个ViewController"></a>新建一个ViewController</h2><p>我们需要两个ViewController才能演示回传嘛, 对不, 一个的话不就是自己传给自己那还有什么好说的呢</p>
 <p>其实在上次写的那个正向传值的基础上再在nextViewController上加上一个Button就就行了, 这样我们就能出发返回到上一个ViewController了</p>
 <p>同样的需要新建一个Swift文件关联这个ViewController以控制这个ViewController</p>
 <p>参考: <a href="http://huyaohui.com/2015/06/01/iOS-Swift-%E8%B7%B3%E8%BD%AC%E4%BC%A0%E5%80%BC/">iOS Swift 跳转传值</a></p>
 <p><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB21wnHcVXXXXafXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="编写代码">编写代码</h2><p>闭包这个概念其实有点难懂的, 不过照着做就是了, 其实实际的应用场景不是很多的, 了解下就好</p>
-<h3 id="Viewcontroller-swift">Viewcontroller.swift</h3><p>直接看注释就行了, 就不解释了<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">UIKit</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="preprocessor">@IBOutlet</span> <span class="keyword">var</span> changeLabel: <span class="type">UILabel</span>!</span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// MARK: 数据回传函数</span></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">someFunctionThatTakesAClosure</span><span class="params">(labelValue:String)</span></span> -&gt; <span class="type">Void</span> &#123;</span><br><span class="line">        changeLabel.text = labelValue</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 跳转监听</span></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">prepareForSegue</span><span class="params">(segue: UIStoryboardSegue, sender: AnyObject?)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> vc = segue.destinationViewController <span class="keyword">as</span>! <span class="type">NextViewController</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 这里把对象的指针传到第二个ViewController中</span></span><br><span class="line">        <span class="comment">// 在第二个ViewController中就可以间接控制这个对象了</span></span><br><span class="line">        vc.closure = someFunctionThatTakesAClosure</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回时监听的方法, modal跳转时需要用到这个方法才能返回的</span></span><br><span class="line">    <span class="preprocessor">@IBAction</span> <span class="func"><span class="keyword">func</span> <span class="title">closed</span><span class="params">(segue: UIStoryboardSegue)</span></span> &#123;</span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"已经返回了哦"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="NextViewController-swift">NextViewController.swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">UIKit</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个闭包类型</span></span><br><span class="line"><span class="comment">// 与上一个ViewController传过来的指针的类型需要保持一致</span></span><br><span class="line"><span class="keyword">typealias</span> <span class="type">SendValueClosure</span> = (labelValue:<span class="type">String</span>) -&gt; <span class="type">Void</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NextViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个闭包类型的对象用于接收传过来的指针</span></span><br><span class="line">    <span class="keyword">var</span> closure: <span class="type">SendValueClosure</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="preprocessor">@IBAction</span> <span class="func"><span class="keyword">func</span> <span class="title">clickButton</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 在这里调用这个指针函数, 修改上一个对象的属性</span></span><br><span class="line">        <span class="comment">// 其实在当前的这个对象内就已经把上一个对象的属性改变了</span></span><br><span class="line">        <span class="comment">// 而不是跳转过去之后才发生的改变</span></span><br><span class="line">        <span class="comment">// 这点很重要</span></span><br><span class="line">        closure!(labelValue: <span class="string">"数据回传咯"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="modal跳转返回">modal跳转返回</h3><p>当modal方式跳转的时候, 我们需要在你要返回的ViewController中定义一个返回的方法, 这样才能进行返回, 否则是无法返回的</p>
+<h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><p>闭包这个概念其实有点难懂的, 不过照着做就是了, 其实实际的应用场景不是很多的, 了解下就好</p>
+<h3 id="Viewcontroller-swift"><a href="#Viewcontroller-swift" class="headerlink" title="Viewcontroller.swift"></a>Viewcontroller.swift</h3><p>直接看注释就行了, 就不解释了<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">var</span> changeLabel: <span class="type">UILabel</span>!</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// MARK: 数据回传函数</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someFunctionThatTakesAClosure</span><span class="params">(labelValue:String)</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">        changeLabel.text = labelValue</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 跳转监听</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">prepareForSegue</span><span class="params">(segue: UIStoryboardSegue, sender: AnyObject?)</span></span> &#123;</div><div class="line">        </div><div class="line">        <span class="keyword">var</span> vc = segue.destinationViewController <span class="keyword">as</span>! <span class="type">NextViewController</span></div><div class="line">        </div><div class="line">        <span class="comment">// 这里把对象的指针传到第二个ViewController中</span></div><div class="line">        <span class="comment">// 在第二个ViewController中就可以间接控制这个对象了</span></div><div class="line">        vc.closure = someFunctionThatTakesAClosure</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 返回时监听的方法, modal跳转时需要用到这个方法才能返回的</span></div><div class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">closed</span><span class="params">(segue: UIStoryboardSegue)</span></span> &#123;</div><div class="line">        <span class="built_in">println</span>(<span class="string">"已经返回了哦"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="NextViewController-swift"><a href="#NextViewController-swift" class="headerlink" title="NextViewController.swift"></a>NextViewController.swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"></div><div class="line"><span class="comment">// 定义一个闭包类型</span></div><div class="line"><span class="comment">// 与上一个ViewController传过来的指针的类型需要保持一致</span></div><div class="line"><span class="keyword">typealias</span> <span class="type">SendValueClosure</span> = (labelValue:<span class="type">String</span>) -&gt; <span class="type">Void</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">NextViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 定义一个闭包类型的对象用于接收传过来的指针</span></div><div class="line">    <span class="keyword">var</span> closure: <span class="type">SendValueClosure</span>?</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.didReceiveMemoryWarning()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">clickButton</span><span class="params">(sender: AnyObject)</span></span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 在这里调用这个指针函数, 修改上一个对象的属性</span></div><div class="line">        <span class="comment">// 其实在当前的这个对象内就已经把上一个对象的属性改变了</span></div><div class="line">        <span class="comment">// 而不是跳转过去之后才发生的改变</span></div><div class="line">        <span class="comment">// 这点很重要</span></div><div class="line">        closure!(labelValue: <span class="string">"数据回传咯"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="modal跳转返回"><a href="#modal跳转返回" class="headerlink" title="modal跳转返回"></a>modal跳转返回</h3><p>当modal方式跳转的时候, 我们需要在你要返回的ViewController中定义一个返回的方法, 这样才能进行返回, 否则是无法返回的</p>
 <p>然后再通过拉线拖到Exit上, 选择我们写的那个closed方法关上就行了</p>
 <p><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2RZTBcVXXXXcDXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h2 id="代码地址">代码地址</h2><p><a href="https://github.com/MakeHui/SwiftBaseCodes" target="_blank" rel="external">MakeHui/SwiftBaseCodes</a></p>
-<h2 id="总结">总结</h2><p>还是那句话场景并不是很多, 我所用到的也就只是反向传值而已, 其实也是比较简单的, 总共都 没有几行代码. 总的来说大概明白是怎么回事就好了</p>
+<h2 id="代码地址"><a href="#代码地址" class="headerlink" title="代码地址"></a>代码地址</h2><p><a href="https://github.com/MakeHui/SwiftBaseCodes" target="_blank" rel="external">MakeHui/SwiftBaseCodes</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>还是那句话场景并不是很多, 我所用到的也就只是反向传值而已, 其实也是比较简单的, 总共都 没有几行代码. 总的来说大概明白是怎么回事就好了</p>
 
   </div>
   <footer class="article-footer">
@@ -242,29 +236,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="iOS-Swift-使用closure-反向传值" data-title="iOS Swift 使用closure 反向传值" data-url="http://huyaohui.com/2015/06/02/iOS-Swift-使用closure-反向传值/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -280,10 +268,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -347,12 +335,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

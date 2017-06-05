@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="关于H5图片上传一直是一个非常蛋痛的问题, 以至于现在都没有找到一个非常好的解决方案, 去年的年初尝试gokercebeci/canvasResize这个方案勉强解决了这个问题, 但是并不算是十分理想, iOS上仍然是拍照后会莫名旋转, 曾经在GitHub上看到有位大神谢了一个库是专门处理这个问题的, 自己试了下貌似并不行, 也不知道现在是个什么情况了, 有空再去看下(但愿会有空吧), 这里提供一">
+<meta name="keywords" content="HTML5,Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebApp HTML5 Canvas 压缩上传图片">
 <meta property="og:url" content="http://huyaohui.com/2015/11/15/WebApp-Canvas-压缩上传图片/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="关于H5图片上传一直是一个非常蛋痛的问题, 以至于现在都没有找到一个非常好的解决方案, 去年的年初尝试gokercebeci/canvasResize这个方案勉强解决了这个问题, 但是并不算是十分理想, iOS上仍然是拍照后会莫名旋转, 曾经在GitHub上看到有位大神谢了一个库是专门处理这个问题的, 自己试了下貌似并不行, 也不知道现在是个什么情况了, 有空再去看下(但愿会有空吧), 这里提供一">
 <meta property="og:updated_time" content="2016-01-03T03:11:05.000Z">
 <meta name="twitter:card" content="summary">
@@ -26,15 +27,13 @@
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
 
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
-
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -155,12 +154,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -200,9 +193,9 @@
   <div class="article-entry">
     <p>关于H5图片上传一直是一个非常蛋痛的问题, 以至于现在都没有找到一个非常好的解决方案, 去年的年初尝试<a href="https://github.com/gokercebeci/canvasResize" target="_blank" rel="external">gokercebeci/canvasResize</a>这个方案勉强解决了这个问题, 但是并不算是十分理想, iOS上仍然是拍照后会莫名旋转, 曾经在GitHub上看到有位大神谢了一个库是专门处理这个问题的, 自己试了下貌似并不行, 也不知道现在是个什么情况了, 有空再去看下(但愿会有空吧), 这里提供一个Jquery版本的图片压缩上传的方案. </p>
 <a id="more"></a>
-<h2 id="代码实现">代码实现</h2><p>底层代码是通过Canvas进行了压缩, 最终返回base64编码的字符串, H5的前端压缩除了Canvas应该没有更便捷的方法了吧, 嘻嘻..</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"javascript:;"</span> <span class="attribute">id</span>=<span class="value">"change_avatar"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 这里需要写两个input代码才能执行, 原因密 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"photo"</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">style</span>=<span class="value">"display: none;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">"photo"</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">style</span>=<span class="value">"display: none;"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/jquery.exif.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/jquery.canvasResize.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">$(<span class="string">'#change_avatar'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">'input[name=photo]'</span>).trigger(<span class="string">'click'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">'input[name=photo]'</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> file = e.target.files[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">// CANVAS RESIZING</span></span><br><span class="line">    $.canvasResize(file, &#123;</span><br><span class="line">        width: <span class="number">150</span>,</span><br><span class="line">        height: <span class="number">0</span>,</span><br><span class="line">        crop: <span class="literal">false</span>,</span><br><span class="line">        quality: <span class="number">80</span>,</span><br><span class="line">        callback: <span class="function"><span class="keyword">function</span>(<span class="params">base64_img, width, height</span>) </span>&#123;</span><br><span class="line">            $.post(</span><br><span class="line">                settings.jsonp_Server + <span class="string">'/user/upload_image'</span>, &#123;</span><br><span class="line">                    phone_num: phone_num,</span><br><span class="line">                    base64_img: base64_img,</span><br><span class="line">                    dataType: <span class="string">"jsonp"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">                    alert(<span class="string">'上传成功'</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">"json"</span></span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="参考资料">参考资料</h2><p><a href="https://github.com/gokercebeci/canvasResize" target="_blank" rel="external">gokercebeci/canvasResize</a><br><a href="https://github.com/think2011/LocalResizeIMG" target="_blank" rel="external">think2011/LocalResizeIMG</a><br><a href="http://a3147972.blog.51cto.com/2366547/1554698" target="_blank" rel="external">移动端图片上传方法【更好的兼容安卓IOS和微信】</a><br><a href="http://my.oschina.net/hzplay/blog/160806" target="_blank" rel="external">HTML5+Canvas手机拍摄，本地压缩上传图片，案例实测报告</a></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>底层代码是通过Canvas进行了压缩, 最终返回base64编码的字符串, H5的前端压缩除了Canvas应该没有更便捷的方法了吧, 嘻嘻..</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">id</span>=<span class="string">"change_avatar"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 这里需要写两个input代码才能执行, 原因密 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"photo"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"photo"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery.exif.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery.canvasResize.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">$(<span class="string">'#change_avatar'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="string">'input[name=photo]'</span>).trigger(<span class="string">'click'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$(<span class="string">'input[name=photo]'</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> file = e.target.files[<span class="number">0</span>];</div><div class="line">    <span class="comment">// CANVAS RESIZING</span></div><div class="line">    $.canvasResize(file, &#123;</div><div class="line">        <span class="attr">width</span>: <span class="number">150</span>,</div><div class="line">        <span class="attr">height</span>: <span class="number">0</span>,</div><div class="line">        <span class="attr">crop</span>: <span class="literal">false</span>,</div><div class="line">        <span class="attr">quality</span>: <span class="number">80</span>,</div><div class="line">        <span class="attr">callback</span>: <span class="function"><span class="keyword">function</span>(<span class="params">base64_img, width, height</span>) </span>&#123;</div><div class="line">            $.post(</div><div class="line">                settings.jsonp_Server + <span class="string">'/user/upload_image'</span>, &#123;</div><div class="line">                    <span class="attr">phone_num</span>: phone_num,</div><div class="line">                    <span class="attr">base64_img</span>: base64_img,</div><div class="line">                    <span class="attr">dataType</span>: <span class="string">"jsonp"</span></div><div class="line">                &#125;,</div><div class="line">                <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">                    alert(<span class="string">'上传成功'</span>);</div><div class="line">                &#125;,</div><div class="line">                <span class="string">"json"</span></div><div class="line">            );</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/gokercebeci/canvasResize" target="_blank" rel="external">gokercebeci/canvasResize</a><br><a href="https://github.com/think2011/LocalResizeIMG" target="_blank" rel="external">think2011/LocalResizeIMG</a><br><a href="http://a3147972.blog.51cto.com/2366547/1554698" target="_blank" rel="external">移动端图片上传方法【更好的兼容安卓IOS和微信】</a><br><a href="http://my.oschina.net/hzplay/blog/160806" target="_blank" rel="external">HTML5+Canvas手机拍摄，本地压缩上传图片，案例实测报告</a></p>
 
   </div>
   <footer class="article-footer">
@@ -228,29 +221,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="WebApp-Canvas-压缩上传图片" data-title="WebApp HTML5 Canvas 压缩上传图片" data-url="http://huyaohui.com/2015/11/15/WebApp-Canvas-压缩上传图片/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -266,10 +253,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -333,12 +320,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

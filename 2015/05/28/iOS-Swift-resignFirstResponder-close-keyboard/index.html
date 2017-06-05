@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="iOS Swift resignFirstResponder 属性使用方法, 当我们不想输入的时候软键盘是不会自动关闭的, 而需要手动关闭, 这时候我们就需要用到resignFirstResponder这个属性了">
+<meta name="keywords" content="iOS,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Swift-resignFirstResponder close keyboard">
 <meta property="og:url" content="http://huyaohui.com/2015/05/28/iOS-Swift-resignFirstResponder-close-keyboard/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="iOS Swift resignFirstResponder 属性使用方法, 当我们不想输入的时候软键盘是不会自动关闭的, 而需要手动关闭, 这时候我们就需要用到resignFirstResponder这个属性了">
 <meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2nhCmcVXXXXcRXXXXXXXXXXXX_!!1134915854.png">
 <meta property="og:image" content="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2Na1ucVXXXXbIXXXXXXXXXXXX_!!1134915854.png">
@@ -34,19 +35,18 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Swift-resignFirstResponder close keyboard">
 <meta name="twitter:description" content="iOS Swift resignFirstResponder 属性使用方法, 当我们不想输入的时候软键盘是不会自动关闭的, 而需要手动关闭, 这时候我们就需要用到resignFirstResponder这个属性了">
+<meta name="twitter:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2nhCmcVXXXXcRXXXXXXXXXXXX_!!1134915854.png">
 <meta name="twitter:creator" content="@Make_hui">
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
-
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
 
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -167,12 +167,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -212,24 +206,24 @@
   <div class="article-entry">
     <p>iOS Swift resignFirstResponder 属性使用方法, 当我们不想输入的时候软键盘是不会自动关闭的, 而需要手动关闭, 这时候我们就需要用到<code>resignFirstResponder</code>这个属性了</p>
 <a id="more"></a>
-<h2 id="新建一个Swift_iOS_项目">新建一个Swift iOS 项目</h2><h3 id="打开xcode选择Create_a_bew_Xcode_project">打开xcode选择Create a bew Xcode project</h3><p><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2nhCmcVXXXXcRXXXXXXXXXXXX_!!1134915854.png" alt="打开xcode选择Create a bew Xcode project"></p>
-<h3 id="选择_Application下的Single_View_Application_-&gt;_next">选择 Application下的Single View Application -&gt; next</h3><p><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2Na1ucVXXXXbIXXXXXXXXXXXX_!!1134915854.png" alt="选择 Application下的Single View Application next"></p>
-<h3 id="给项目去一个名字(是可以改的)_-&gt;_next">给项目去一个名字(是可以改的) -&gt; next</h3><p><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB21m08cVXXXXaZXpXXXXXXXXXX_!!1134915854.png" alt="给项目去一个名字(是可以改的) next"></p>
-<h3 id="选择一个存放项目的路径_Create">选择一个存放项目的路径 Create</h3><p><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2SxCtcVXXXXb3XXXXXXXXXXXX_!!1134915854.png" alt="选择一个存放项目的路径 Create"></p>
-<h3 id="项目新建完成">项目新建完成</h3><p>给自己鼓个掌, 啪啪啪… ((⊙o⊙)…好像有点猥琐额)<br><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2ZtuhcVXXXXXvXpXXXXXXXXXX_!!1134915854.png" alt="项目新建完成(给自己鼓个掌, 啪啪啪... (⊙o⊙)…好像有点猥琐额)"></p>
-<h2 id="设置storyboard">设置storyboard</h2><h3 id="关闭_Use_Size_Classes">关闭 Use Size Classes</h3><p>现在还不需要用到这个技术<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2kVjBcVXXXXboXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
-<h3 id="添加控件到ViewController">添加控件到ViewController</h3><p>①选择Main.storyboard -&gt; ②点击utilities -&gt; ③打开object library -&gt; ④找到TextField -&gt; ⑤双击拖动TextField到storyboard中(鼠标的话单击左键拖动)<br><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2rmh9cVXXXXbrXpXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
-<h2 id="连线(把控件连接到代码内)">连线(把控件连接到代码内)</h2><h3 id="拖动控件">拖动控件</h3><p>①打开assistant editor -&gt; ②按住option点击viewcontroller.swift -&gt; ③按住control+双击拖动到代码区内(鼠标右击拖动)<br><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2zO88cVXXXXbiXpXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
-<h3 id="创建链接">创建链接</h3><p>connection为Outlet, 然后给这个链接取一个名字<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2buWscVXXXXcfXXXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
-<h3 id="连线完成">连线完成</h3><p>啪啪啪…<br><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2TZ9tcVXXXXbaXXXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
-<h2 id="编写代码">编写代码</h2><p>终于要开始编写代码了, 如果能不写代码就完成这个功能就好了</p>
-<h3 id="打开ViewController-swift">打开ViewController.swift</h3><p>重写<code>touchesBegan</code>方法</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">touchesBegan</span><span class="params">(touches: Set&lt;NSObject&gt;, withEvent event: UIEvent)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 失去第一响应(也就是失去焦点)</span></span><br><span class="line">    myTextField.resignFirstResponder()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="完整代码">完整代码</h3><p><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB20DOacVXXXXaFXpXXXXXXXXXX_!!1134915854.png" alt="完整代码"></p>
-<h2 id="最终效果">最终效果</h2><p><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2dRi3cVXXXXXjXpXXXXXXXXXX_!!1134915854.gif" alt="最终效果"></p>
-<h2 id="示例地址">示例地址</h2><p><a href="https://github.com/MakeHui/SwiftBaseCodes" target="_blank" rel="external">https://github.com/MakeHui/SwiftBaseCodes</a></p>
-<h2 id="代码地址">代码地址</h2><p><a href="https://github.com/MakeHui/SwiftBaseCodes" target="_blank" rel="external">MakeHui/SwiftBaseCodes</a></p>
-<h2 id="总结">总结</h2><p>总结: 其实代码量还是很少的, 更多的操作其实就是点点鼠标配置一下, 就像我上面说的那样, 其实这个功能能集成到IB上就好了, 因为基本上有TextField的地方基本都需要这样写</p>
+<h2 id="新建一个Swift-iOS-项目"><a href="#新建一个Swift-iOS-项目" class="headerlink" title="新建一个Swift iOS 项目"></a>新建一个Swift iOS 项目</h2><h3 id="打开xcode选择Create-a-bew-Xcode-project"><a href="#打开xcode选择Create-a-bew-Xcode-project" class="headerlink" title="打开xcode选择Create a bew Xcode project"></a>打开xcode选择Create a bew Xcode project</h3><p><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2nhCmcVXXXXcRXXXXXXXXXXXX_!!1134915854.png" alt="打开xcode选择Create a bew Xcode project"></p>
+<h3 id="选择-Application下的Single-View-Application-gt-next"><a href="#选择-Application下的Single-View-Application-gt-next" class="headerlink" title="选择 Application下的Single View Application -&gt; next"></a>选择 Application下的Single View Application -&gt; next</h3><p><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2Na1ucVXXXXbIXXXXXXXXXXXX_!!1134915854.png" alt="选择 Application下的Single View Application next"></p>
+<h3 id="给项目去一个名字-是可以改的-gt-next"><a href="#给项目去一个名字-是可以改的-gt-next" class="headerlink" title="给项目去一个名字(是可以改的) -&gt; next"></a>给项目去一个名字(是可以改的) -&gt; next</h3><p><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB21m08cVXXXXaZXpXXXXXXXXXX_!!1134915854.png" alt="给项目去一个名字(是可以改的) next"></p>
+<h3 id="选择一个存放项目的路径-Create"><a href="#选择一个存放项目的路径-Create" class="headerlink" title="选择一个存放项目的路径 Create"></a>选择一个存放项目的路径 Create</h3><p><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2SxCtcVXXXXb3XXXXXXXXXXXX_!!1134915854.png" alt="选择一个存放项目的路径 Create"></p>
+<h3 id="项目新建完成"><a href="#项目新建完成" class="headerlink" title="项目新建完成"></a>项目新建完成</h3><p>给自己鼓个掌, 啪啪啪… ((⊙o⊙)…好像有点猥琐额)<br><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2ZtuhcVXXXXXvXpXXXXXXXXXX_!!1134915854.png" alt="项目新建完成(给自己鼓个掌, 啪啪啪... (⊙o⊙)…好像有点猥琐额)"></p>
+<h2 id="设置storyboard"><a href="#设置storyboard" class="headerlink" title="设置storyboard"></a>设置storyboard</h2><h3 id="关闭-Use-Size-Classes"><a href="#关闭-Use-Size-Classes" class="headerlink" title="关闭 Use Size Classes"></a>关闭 Use Size Classes</h3><p>现在还不需要用到这个技术<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2kVjBcVXXXXboXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h3 id="添加控件到ViewController"><a href="#添加控件到ViewController" class="headerlink" title="添加控件到ViewController"></a>添加控件到ViewController</h3><p>①选择Main.storyboard -&gt; ②点击utilities -&gt; ③打开object library -&gt; ④找到TextField -&gt; ⑤双击拖动TextField到storyboard中(鼠标的话单击左键拖动)<br><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2rmh9cVXXXXbrXpXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
+<h2 id="连线-把控件连接到代码内"><a href="#连线-把控件连接到代码内" class="headerlink" title="连线(把控件连接到代码内)"></a>连线(把控件连接到代码内)</h2><h3 id="拖动控件"><a href="#拖动控件" class="headerlink" title="拖动控件"></a>拖动控件</h3><p>①打开assistant editor -&gt; ②按住option点击viewcontroller.swift -&gt; ③按住control+双击拖动到代码区内(鼠标右击拖动)<br><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2zO88cVXXXXbiXpXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
+<h3 id="创建链接"><a href="#创建链接" class="headerlink" title="创建链接"></a>创建链接</h3><p>connection为Outlet, 然后给这个链接取一个名字<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2buWscVXXXXcfXXXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
+<h3 id="连线完成"><a href="#连线完成" class="headerlink" title="连线完成"></a>连线完成</h3><p>啪啪啪…<br><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2TZ9tcVXXXXbaXXXXXXXXXXXX_!!1134915854.png" alt="设置storyboard"></p>
+<h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><p>终于要开始编写代码了, 如果能不写代码就完成这个功能就好了</p>
+<h3 id="打开ViewController-swift"><a href="#打开ViewController-swift" class="headerlink" title="打开ViewController.swift"></a>打开ViewController.swift</h3><p>重写<code>touchesBegan</code>方法</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">touchesBegan</span><span class="params">(touches: Set&lt;NSObject&gt;, withEvent event: UIEvent)</span></span> &#123;</div><div class="line">	<span class="comment">// 失去第一响应(也就是失去焦点)</span></div><div class="line">    myTextField.resignFirstResponder()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><p><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB20DOacVXXXXaFXpXXXXXXXXXX_!!1134915854.png" alt="完整代码"></p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2dRi3cVXXXXXjXpXXXXXXXXXX_!!1134915854.gif" alt="最终效果"></p>
+<h2 id="示例地址"><a href="#示例地址" class="headerlink" title="示例地址"></a>示例地址</h2><p><a href="https://github.com/MakeHui/SwiftBaseCodes" target="_blank" rel="external">https://github.com/MakeHui/SwiftBaseCodes</a></p>
+<h2 id="代码地址"><a href="#代码地址" class="headerlink" title="代码地址"></a>代码地址</h2><p><a href="https://github.com/MakeHui/SwiftBaseCodes" target="_blank" rel="external">MakeHui/SwiftBaseCodes</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结: 其实代码量还是很少的, 更多的操作其实就是点点鼠标配置一下, 就像我上面说的那样, 其实这个功能能集成到IB上就好了, 因为基本上有TextField的地方基本都需要这样写</p>
 
   </div>
   <footer class="article-footer">
@@ -255,29 +249,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="iOS-Swift-resignFirstResponder-close-keyboard" data-title="iOS-Swift-resignFirstResponder close keyboard" data-url="http://huyaohui.com/2015/05/28/iOS-Swift-resignFirstResponder-close-keyboard/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -293,10 +281,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -360,12 +348,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

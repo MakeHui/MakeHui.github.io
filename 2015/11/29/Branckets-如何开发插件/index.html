@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="有个功能Brackets一直没有, 也没有找到相关的插件, 所以转载官方的这篇关于如何开发Brackets插件的wiki, 方便自己有空的时候来学习下.">
+<meta name="keywords" content="TextEditor,Branckets,Plugin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Branckets 如何开发插件">
 <meta property="og:url" content="http://huyaohui.com/2015/11/29/Branckets-如何开发插件/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="有个功能Brackets一直没有, 也没有找到相关的插件, 所以转载官方的这篇关于如何开发Brackets插件的wiki, 方便自己有空的时候来学习下.">
 <meta property="og:updated_time" content="2016-01-03T02:58:14.000Z">
 <meta name="twitter:card" content="summary">
@@ -26,15 +27,13 @@
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
 
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
-
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -155,12 +154,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -200,21 +193,21 @@
   <div class="article-entry">
     <p>有个功能Brackets一直没有, 也没有找到相关的插件, 所以转载官方的这篇关于<code>如何开发Brackets插件</code>的wiki, 方便自己有空的时候来学习下. </p>
 <a id="more"></a>
-<h2 id="如何开发Brackets插件">如何开发Brackets插件</h2><p>开发一个插件需要三个步骤：</p>
+<h2 id="如何开发Brackets插件"><a href="#如何开发Brackets插件" class="headerlink" title="如何开发Brackets插件"></a>如何开发Brackets插件</h2><p>开发一个插件需要三个步骤：</p>
 <ol>
 <li><a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#creating-an-extension" target="_blank" rel="external">创建</a>基本的插件模板。</li>
 <li><a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#wiki-common-how-tos" target="_blank" rel="external">开发</a>插件并<a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#testingdebugging-workflow" target="_blank" rel="external">调试</a>。</li>
 <li><a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#publishing-extensions" target="_blank" rel="external">打包并发布</a>插件以供其他人使用</li>
 </ol>
 <p>通过以上链接阅读这些章节的详细内容！</p>
-<h2 id="创建插件">创建插件</h2><ul>
+<h2 id="创建插件"><a href="#创建插件" class="headerlink" title="创建插件"></a>创建插件</h2><ul>
 <li>点击Brackets的“帮助&gt;显示插件目录”打开放置插件的文件夹。</li>
 <li>插件文件夹的“user”文件夹，并以“插件的名称”为文件夹名创建一个新的文件夹，再在新建的文件夹中新建main.js文件。</li>
 <li>为了快速开始，可以复制<a href="https://github.com/adobe/brackets/wiki/Simple-%22Hello-World%22-extension" target="_blank" rel="external">Simple “Hello World” extension</a>或[已存在的插件][<a href="https://github.com/adobe/brackets/wiki/Brackets-Extensions]，以开发相似的功能。" target="_blank" rel="external">https://github.com/adobe/brackets/wiki/Brackets-Extensions]，以开发相似的功能。</a></li>
 <li>如果你对Brackets有任何建议，可以发送到<a href="https://groups.google.com/forum/#!forum/brackets-dev" target="_blank" rel="external">brackets-dev Google group</a>或<a href="http://freenode.net/" target="_blank" rel="external">#brackets IRC channel on freenode，Brackets</a>会尽早给予反馈（可能其他人也会与你有相同的想法）。</li>
 </ul>
 <p>*注意：因为通过Brackets的插件管理器很容易删除正在开发的插件，所以更安全的方式是把插件文件夹新建在Brackets安装目录下的src/extensions/dev目录下。可通过修改权限保证文件夹是可写的，or by <a href="https://github.com/adobe/brackets/wiki/How-to-Hack-on-Brackets" target="_blank" rel="external">cloning the Brackets source</a> and using that copy.</p>
-<h2 id="测试或调试">测试或调试</h2><ul>
+<h2 id="测试或调试"><a href="#测试或调试" class="headerlink" title="测试或调试"></a>测试或调试</h2><ul>
 <li>编辑main.js文件。</li>
 <li>保存文件并通过Brackets的”Debug&gt;Reload Brackets”重启Brackets，以进行测试。</li>
 <li>通过Brackets的”Debug&gt;Show Developer Tools”（依赖于Chrome浏览器），并可使用Chrome浏览器的控制台。<ul>
@@ -224,33 +217,33 @@
 </ul>
 <p>查看<a href="https://github.com/adobe/brackets/wiki/Debugging-Brackets" target="_blank" rel="external">Debugging Brackets</a>获取更完善描述。</p>
 <p>还可以为插件编写单元测试。</p>
-<h2 id="发布插件">发布插件</h2><ol>
+<h2 id="发布插件"><a href="#发布插件" class="headerlink" title="发布插件"></a>发布插件</h2><ol>
 <li>向main.js所在的目录中添加<a href="https://github.com/adobe/brackets/wiki/Extension-package-format#packagejson-format" target="_blank" rel="external">package.json</a>文件。</li>
-<li>打包整个插件目录为ZIP格式（更快捷的使用GitHub的“Download ZIP”按钮下载ZIP包）或通过命令git archive —format zip -o yourextension.zip master生成ZIP包。</li>
+<li>打包整个插件目录为ZIP格式（更快捷的使用GitHub的“Download ZIP”按钮下载ZIP包）或通过命令git archive –format zip -o yourextension.zip master生成ZIP包。</li>
 <li>通过上传ZIP包到<a href="https://brackets-registry.aboutweb.com/" target="_blank" rel="external">Brackets Extension Registry</a>，以发布插件</li>
 </ol>
 <p>更多信息，参见<a href="https://github.com/adobe/brackets/wiki/Extension-Registry-Help" target="_blank" rel="external">Extension Registry Help</a>。</p>
-<h2 id="常见操作">常见操作</h2><h3 id="使用模块">使用模块</h3><ul>
+<h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><h3 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h3><ul>
 <li>从插件的文件夹树中加载模块，使用require()方法，传入相对于插件根目录的相对路径做为参数。</li>
 <li>加载Brackets的核心模块，使用brackets.getModule()方法，传入相对于Brackets的src目录的相对路径做为参数。</li>
 <li>不能到其他插件中加载模块（暂时还不支持）</li>
 </ul>
 <p>也可以插件中使用其他的文件，例如下文的“Load a CSS file”。</p>
-<h3 id="添加菜单项与键盘快捷键">添加菜单项与键盘快捷键</h3><p>查看<a href="https://github.com/adobe/brackets/wiki/Simple-%22Hello-World%22-extension" target="_blank" rel="external">Simple “Hello World” extension</a>代码示例。</p>
+<h3 id="添加菜单项与键盘快捷键"><a href="#添加菜单项与键盘快捷键" class="headerlink" title="添加菜单项与键盘快捷键"></a>添加菜单项与键盘快捷键</h3><p>查看<a href="https://github.com/adobe/brackets/wiki/Simple-%22Hello-World%22-extension" target="_blank" rel="external">Simple “Hello World” extension</a>代码示例。</p>
 <p>对于任何一个新的行为，都要通过CommandManager.resiger()方法注册一个Command以实现它。Command通过Command Id（字符串类型）映射到实现行为的函数。使用包命名的方式为Command Id命名（例如：myorg.myextendsion.mycommand）以避免与其他插件冲突。（参见：<a href="https://github.com/adobe/brackets/wiki/Brackets%20Development%20How%20Tos#commands" target="_blank" rel="external">higher-level overview of command architecture</a>）。</p>
 <p><em>添加菜单项:</em> 通过Menus.getMenu()方法，传入Menus.AppMenuBar常量（当前包含FILE_MENU，EDIT_MENU, VIEW_MENU, NAVIGATE_MENU或HELP_MENU），获取顶级菜单。再通过theMenu.addMenuItem()方法，传入要执行的Command Id以添加菜单项。这样就把菜单项与Command关联起来，Command被创建后，它的名称将被显示为菜单项标签。</p>
 <p>约定，调用addMenuItems()方法的同时为Command创建键盘快捷键。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取顶级的菜单</span></span><br><span class="line"><span class="keyword">var</span> editorMenu = Menus.getMenu(Menus.AppMenuBar.EDIT_MENU);</span><br><span class="line"><span class="comment">// 以包命名风格命名Command Id</span></span><br><span class="line"><span class="keyword">var</span> commandId = <span class="string">"com.wanggit.commandId"</span>;</span><br><span class="line"><span class="comment">// 注册Command</span></span><br><span class="line">CommandManager.register(<span class="string">"Custom Command"</span>, commandId, customFunction);</span><br><span class="line"><span class="comment">// 添加菜单项，并指菜单项执行commandId的命令，快捷键为Ctrl-Shift-O</span></span><br><span class="line">editorMenu.addMenuItem(commandId, <span class="string">"Ctrl-Shift-O"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取顶级的菜单</span></div><div class="line"><span class="keyword">var</span> editorMenu = Menus.getMenu(Menus.AppMenuBar.EDIT_MENU);</div><div class="line"><span class="comment">// 以包命名风格命名Command Id</span></div><div class="line"><span class="keyword">var</span> commandId = <span class="string">"com.wanggit.commandId"</span>;</div><div class="line"><span class="comment">// 注册Command</span></div><div class="line">CommandManager.register(<span class="string">"Custom Command"</span>, commandId, customFunction);</div><div class="line"><span class="comment">// 添加菜单项，并指菜单项执行commandId的命令，快捷键为Ctrl-Shift-O</span></div><div class="line">editorMenu.addMenuItem(commandId, <span class="string">"Ctrl-Shift-O"</span>);</div></pre></td></tr></table></figure>
 <p><em>添加上下文菜单项:</em> 通过Menus.getContextMenu()方法，传入Menus.ContextMenuIds常量（目前包含EDITOR_MENU, INLINE_EDITOR_MENU, PROJECT_MENU或WORKING_SET_MENU），可获取上下文菜单。通过theContextMenu.addMenuItem()方法，传入要执行的Command Id以添加上下文菜单项，上下文菜单项标签的显示与菜单项相同。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取编辑器的上下文菜单</span></span><br><span class="line"><span class="keyword">var</span> contextMenu = Menu.getContextMenu(Menus.ContextMenuIds.EDITOR_MENU);</span><br><span class="line"><span class="comment">// 省略Command的定义</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">// 添加上下文菜单，并指定要执行的Command，指定快捷键</span></span><br><span class="line">contextMenu.addMenuItem(commandId, <span class="string">"Ctrl-Shift-L"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取编辑器的上下文菜单</span></div><div class="line"><span class="keyword">var</span> contextMenu = Menu.getContextMenu(Menus.ContextMenuIds.EDITOR_MENU);</div><div class="line"><span class="comment">// 省略Command的定义</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="comment">// 添加上下文菜单，并指定要执行的Command，指定快捷键</span></div><div class="line">contextMenu.addMenuItem(commandId, <span class="string">"Ctrl-Shift-L"</span>);</div></pre></td></tr></table></figure>
 <p><em>添加菜单分隔线:</em> 依据以上的说明获取顶级菜单或上下文菜单，再通过theMenu.addMenuDivider()添加菜单分隔线。这个方法总要把分隔线添加到菜单当前状态的最后一个位置。通过传入first与last参数，指分隔线的位置。另外，还可以通过传入before或after与相对那个菜单的Command Id，以指定分隔线显示的某菜单项之前或之后。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加一个分隔线到菜单当前状态的最后一个位置</span></span><br><span class="line">menu.addMenuDivider();</span><br><span class="line"><span class="comment">// 添加到最前面，相关参数还有FIRST,LAST,BEFORE,AFTER</span></span><br><span class="line">menu.addMenuDivider(Menus.FIRST);</span><br><span class="line"><span class="comment">// 在Commands.EDIT_FIND命令对应的菜单前添加分隔线</span></span><br><span class="line">menu.addMenuDivider(Menus.before, Commands.EDIT_FIND);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加一个分隔线到菜单当前状态的最后一个位置</span></div><div class="line">menu.addMenuDivider();</div><div class="line"><span class="comment">// 添加到最前面，相关参数还有FIRST,LAST,BEFORE,AFTER</span></div><div class="line">menu.addMenuDivider(Menus.FIRST);</div><div class="line"><span class="comment">// 在Commands.EDIT_FIND命令对应的菜单前添加分隔线</span></div><div class="line">menu.addMenuDivider(Menus.before, Commands.EDIT_FIND);</div></pre></td></tr></table></figure>
 <p><em>添加快捷键:</em> 通过KeyBindingManager.addBinding()方法，传入快捷键要执行的Command Id与快捷键组合，可以在不关联菜单项的情况下新建快捷键。务必在Brackets Shortcuts页面查看那些快捷键是没被占用，并把自定义的快捷键添中到此页面列表中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CommandManager.register(<span class="string">"Handler Enter"</span>, commandId, handlerEnter);</span><br><span class="line">KeyBindingManager.addBinding(commandId, <span class="string">"Ctrl-Enter"</span>, <span class="string">"linux"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandManager.register(<span class="string">"Handler Enter"</span>, commandId, handlerEnter);</div><div class="line">KeyBindingManager.addBinding(commandId, <span class="string">"Ctrl-Enter"</span>, <span class="string">"linux"</span>);</div></pre></td></tr></table></figure>
 <p>通过拒绝(decline)键盘事件，并允许其他功能处理这个键盘事件，那么就一定要在Command的执行方法中返回一个已reject()的$.Promise对象。（如果想要光标在某个位置时重写Enter的事件，那么这就非常有用处）（此功能在Sprint 18及以上的版本有效）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> commandId = <span class="string">"wanggit.test"</span>;</span><br><span class="line"><span class="comment">// 捕捉Enter事件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handlerEnter</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Handler Enter"</span>);</span><br><span class="line">    <span class="comment">// 创建Deferred对象</span></span><br><span class="line">    <span class="keyword">var</span> deferred = <span class="keyword">new</span> $.Deferred();</span><br><span class="line">    <span class="comment">// 拒绝Enter事件，在调用reject方法之后，并返回$.Promise对象，那么此时Enter事件，还可以被其他功能捕捉。</span></span><br><span class="line">    deferred.reject();</span><br><span class="line">    <span class="comment">// 返回$.Promise对象。如果不返回一个已调用过reject方法的$.Promise对象，那么其他功能就不能再捕捉到Enter事件了。</span></span><br><span class="line">    <span class="keyword">return</span> deferred.promise();</span><br><span class="line">&#125;</span><br><span class="line">CommandManager.register(<span class="string">"Handler Enter"</span>, commandId, handlerEnter);</span><br><span class="line"><span class="comment">// 绑定键盘事件</span></span><br><span class="line">KeyBindingManager.addBinding(commandId, <span class="string">"Enter"</span>, <span class="string">"linux"</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="添加新UI元素">添加新UI元素</h3><p>向Edtior的下面添加Panel:首先Panel要添加.bottom-panel，具体可以参见JSLint bottom-panel.html的例子。通过PanelManager.createBottomPanel(“yourExtension.name”, $(panelHtml))可以在状态栏之上新建一个Panel。You may see Resizer.makeResizable()and manual DOM insertion of panels in some extensions but this parctice is being phased out since the introduction of PanelManager.</p>
-<h2 id="参考资料">参考资料</h2><p><a href="https://github.com/adobe/brackets/wiki/如何开发插件" target="_blank" rel="external">如何开发插件</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> commandId = <span class="string">"wanggit.test"</span>;</div><div class="line"><span class="comment">// 捕捉Enter事件</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handlerEnter</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Handler Enter"</span>);</div><div class="line">    <span class="comment">// 创建Deferred对象</span></div><div class="line">    <span class="keyword">var</span> deferred = <span class="keyword">new</span> $.Deferred();</div><div class="line">    <span class="comment">// 拒绝Enter事件，在调用reject方法之后，并返回$.Promise对象，那么此时Enter事件，还可以被其他功能捕捉。</span></div><div class="line">    deferred.reject();</div><div class="line">    <span class="comment">// 返回$.Promise对象。如果不返回一个已调用过reject方法的$.Promise对象，那么其他功能就不能再捕捉到Enter事件了。</span></div><div class="line">    <span class="keyword">return</span> deferred.promise();</div><div class="line">&#125;</div><div class="line">CommandManager.register(<span class="string">"Handler Enter"</span>, commandId, handlerEnter);</div><div class="line"><span class="comment">// 绑定键盘事件</span></div><div class="line">KeyBindingManager.addBinding(commandId, <span class="string">"Enter"</span>, <span class="string">"linux"</span>);</div></pre></td></tr></table></figure>
+<h3 id="添加新UI元素"><a href="#添加新UI元素" class="headerlink" title="添加新UI元素"></a>添加新UI元素</h3><p>向Edtior的下面添加Panel:首先Panel要添加.bottom-panel，具体可以参见JSLint bottom-panel.html的例子。通过PanelManager.createBottomPanel(“yourExtension.name”, $(panelHtml))可以在状态栏之上新建一个Panel。You may see Resizer.makeResizable()and manual DOM insertion of panels in some extensions but this parctice is being phased out since the introduction of PanelManager.</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/adobe/brackets/wiki/如何开发插件" target="_blank" rel="external">如何开发插件</a></p>
 
   </div>
   <footer class="article-footer">
@@ -276,29 +269,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="Branckets-如何开发插件" data-title="Branckets 如何开发插件" data-url="http://huyaohui.com/2015/11/29/Branckets-如何开发插件/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -314,10 +301,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -381,12 +368,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

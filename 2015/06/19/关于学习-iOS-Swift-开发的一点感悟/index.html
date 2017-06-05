@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="截止2015-06-01从事IT行业已经两年, 从一个菜鸟到一个老鸟(也不知道算不算是), 曲曲折折的就这样过来了. 很多当时觉得无比艰难的问题, 现在回头看看, 也就只能笑笑了">
+<meta name="keywords" content="iOS,Think,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于学习 iOS Swift 开发的一点感悟">
 <meta property="og:url" content="http://huyaohui.com/2015/06/19/关于学习-iOS-Swift-开发的一点感悟/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="截止2015-06-01从事IT行业已经两年, 从一个菜鸟到一个老鸟(也不知道算不算是), 曲曲折折的就这样过来了. 很多当时觉得无比艰难的问题, 现在回头看看, 也就只能笑笑了">
 <meta property="og:updated_time" content="2016-12-20T01:17:57.000Z">
 <meta name="twitter:card" content="summary">
@@ -26,15 +27,13 @@
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
 
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
-
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -155,12 +154,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -200,15 +193,15 @@
   <div class="article-entry">
     <p>截止<code>2015-06-01</code>从事IT行业已经两年, 从一个菜鸟到一个老鸟(也不知道算不算是), 曲曲折折的就这样过来了. 很多当时觉得无比艰难的问题, 现在回头看看, 也就只能笑笑了</p>
 <a id="more"></a>
-<h2 id="关于">关于</h2><p>在还没有开始从事iOS开发之前, 就有听说了iOS Swift这门语言了. 当时觉得还是挺新奇的, 其实也就是语法啦, 和javascript还是很像的. 也是在网上随便找了点资料看了下, 当时还以为apple不会大力发展这门语言的, 看样子我是错了, 也许会在不久的一两年之内, Swift 就会替代 objective-C 成为apple开发的主流开发语言了, 就拿现在来看, 一些开发中比用的主流库都有了Swift版本的这一点来看也可以应证我上面的说法, 就拿我现在做的这个应用来说, 需要用的第三方库的地方也都找到了复合我项目需求的库. 这不是很好吗</p>
-<h2 id="初体验">初体验</h2><p>学习一门新语言的时候总是能让人兴奋的, 特别还是一门刚被创造出来的语言, 我们就是第一批吃螃蟹的人, 哈哈… 就像我上面说的那样Swift的很像javascript, 对于一个略懂web开发的我来说还是相当亲切的. 当然学习中还是遇到了很多的的问题, 甚至有的问题花了好几天才解决, 不过编程不久是这样嘛, 遇到问题解决问题, 乐趣也就在这咯. </p>
+<h2 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h2><p>在还没有开始从事iOS开发之前, 就有听说了iOS Swift这门语言了. 当时觉得还是挺新奇的, 其实也就是语法啦, 和javascript还是很像的. 也是在网上随便找了点资料看了下, 当时还以为apple不会大力发展这门语言的, 看样子我是错了, 也许会在不久的一两年之内, Swift 就会替代 objective-C 成为apple开发的主流开发语言了, 就拿现在来看, 一些开发中比用的主流库都有了Swift版本的这一点来看也可以应证我上面的说法, 就拿我现在做的这个应用来说, 需要用的第三方库的地方也都找到了复合我项目需求的库. 这不是很好吗</p>
+<h2 id="初体验"><a href="#初体验" class="headerlink" title="初体验"></a>初体验</h2><p>学习一门新语言的时候总是能让人兴奋的, 特别还是一门刚被创造出来的语言, 我们就是第一批吃螃蟹的人, 哈哈… 就像我上面说的那样Swift的很像javascript, 对于一个略懂web开发的我来说还是相当亲切的. 当然学习中还是遇到了很多的的问题, 甚至有的问题花了好几天才解决, 不过编程不久是这样嘛, 遇到问题解决问题, 乐趣也就在这咯. </p>
 <font class="remark">念念碎: 说的自己很牛B似的, 就差没被Swift虐成狗了</font>
 
-<h2 id="学习">学习</h2><p>提到学习Swift, 还真是坎坷. 我们都知道, 要学习一样东西肯定的先找资料和组织, 对不. 现在google上乱搜一通, 看到有官方文档, 就跟着学, 发现很多都没法运行起来(这真是个悲伤的故事), 之后就是找视频资源咯. 看了中国某人的视频, 直接崩了(什么玩意). 然后在慕课网上终于找到了合适的视频资源(我真没有打广告, 不信你自己去看), 万幸. 跟着视频一步一步做下来, 过了几天感觉, 已经能掌握常用控件的使用了, 也就开始了自己的iOS Swift 开发.</p>
-<h2 id="开发">开发</h2><p>至于实际开发当中遇到的问题, 那可比学习中遇到的问题多得多了, 我也就不想一个一个阐述了. 我只是问我们永远的好老师 <code>google</code> 至少我遇到的问题, 我基本都直接或间接的解决了, 这是真是一个欢欣鼓舞的消息. 这里也不得不感谢那些先驱者, 为我们这些后来者留下的宝贵财富, 感恩</p>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><p>提到学习Swift, 还真是坎坷. 我们都知道, 要学习一样东西肯定的先找资料和组织, 对不. 现在google上乱搜一通, 看到有官方文档, 就跟着学, 发现很多都没法运行起来(这真是个悲伤的故事), 之后就是找视频资源咯. 看了中国某人的视频, 直接崩了(什么玩意). 然后在慕课网上终于找到了合适的视频资源(我真没有打广告, 不信你自己去看), 万幸. 跟着视频一步一步做下来, 过了几天感觉, 已经能掌握常用控件的使用了, 也就开始了自己的iOS Swift 开发.</p>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>至于实际开发当中遇到的问题, 那可比学习中遇到的问题多得多了, 我也就不想一个一个阐述了. 我只是问我们永远的好老师 <code>google</code> 至少我遇到的问题, 我基本都直接或间接的解决了, 这是真是一个欢欣鼓舞的消息. 这里也不得不感谢那些先驱者, 为我们这些后来者留下的宝贵财富, 感恩</p>
 <font class="remark">念念碎: 如果以后自己有了能力的话, 也必将一定回报, 毕竟终有一天我们也会成为先驱者. 恩… 加油</font>
 
-<h2 id="总结">总结</h2><p>不知不觉也说八道了这么多了, 乱七八糟的, 不管了, 反正也没人会看的. 毕竟学习了这么久, 总的留下写什么吧, 对吧… 嘻嘻</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不知不觉也说八道了这么多了, 乱七八糟的, 不管了, 反正也没人会看的. 毕竟学习了这么久, 总的留下写什么吧, 对吧… 嘻嘻</p>
 
   </div>
   <footer class="article-footer">
@@ -234,29 +227,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="关于学习-iOS-Swift-开发的一点感悟" data-title="关于学习 iOS Swift 开发的一点感悟" data-url="http://huyaohui.com/2015/06/19/关于学习-iOS-Swift-开发的一点感悟/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -272,10 +259,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -339,12 +326,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>

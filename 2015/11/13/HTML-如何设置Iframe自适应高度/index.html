@@ -13,10 +13,11 @@
 </title>
 
 <meta name="description" content="不带边框的iframe因为能和网页无缝的结合从而不刷新页面的情况下更新页面的部分数据成为可能，可是 iframe的大小却不像层那样可以“伸缩自如”，所以带来了使用上的麻烦，给iframe设置高度的时候多了也不好，少了更是不行，现在，让我来告诉大 家一种iframe动态调整高度的方法">
+<meta name="keywords" content="HTML5,Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML 如何设置Iframe自适应高度">
 <meta property="og:url" content="http://huyaohui.com/2015/11/13/HTML-如何设置Iframe自适应高度/index.html">
-<meta property="og:site_name" content="MakeHui's 超平和バスターズはずっとなかよし">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="不带边框的iframe因为能和网页无缝的结合从而不刷新页面的情况下更新页面的部分数据成为可能，可是 iframe的大小却不像层那样可以“伸缩自如”，所以带来了使用上的麻烦，给iframe设置高度的时候多了也不好，少了更是不行，现在，让我来告诉大 家一种iframe动态调整高度的方法">
 <meta property="og:updated_time" content="2016-01-03T02:59:06.000Z">
 <meta name="twitter:card" content="summary">
@@ -26,15 +27,13 @@
 <link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
 
 
-  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
-
 
 
   <link rel="icon" href="/images/info/favicon.ico">
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css" type="text/css">
-<link rel="stylesheet" href="/styles/main.css" type="text/css">
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
 
 
 
@@ -155,12 +154,6 @@
               </li>
             
           
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
         </ul>
       
     
@@ -200,18 +193,18 @@
   <div class="article-entry">
     <p>不带边框的iframe因为能和网页无缝的结合从而不刷新页面的情况下更新页面的部分数据成为可能，可是 iframe的大小却不像层那样可以“伸缩自如”，所以带来了使用上的麻烦，给iframe设置高度的时候多了也不好，少了更是不行，现在，让我来告诉大 家一种iframe动态调整高度的方法</p>
 <a id="more"></a>
-<h2 id="方案一">方案一</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SetWinHeight</span>(<span class="params">obj</span>)　　 </span>&#123;　　</span><br><span class="line">    <span class="keyword">var</span> win = obj;　　</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.getElementById)　　 &#123;　　</span><br><span class="line">        <span class="keyword">if</span> (win &amp;&amp; !<span class="built_in">window</span>.opera)　　 &#123;　　</span><br><span class="line">            <span class="keyword">if</span> (win.contentDocument &amp;&amp; win.contentDocument.body.offsetHeight) &#123;</span><br><span class="line">                win.height = win.contentDocument.body.offsetHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (win.Document &amp;&amp; win.Document.body.scrollHeight) &#123;</span><br><span class="line">                win.height = win.Document.body.scrollHeight;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;　　</span><br><span class="line">    &#125;　　</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SetWinHeight</span>(<span class="params">obj</span>)　　 </span>&#123;　　</div><div class="line">    <span class="keyword">var</span> win = obj;　　</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.getElementById)　　 &#123;　　</div><div class="line">        <span class="keyword">if</span> (win &amp;&amp; !<span class="built_in">window</span>.opera)　　 &#123;　　</div><div class="line">            <span class="keyword">if</span> (win.contentDocument &amp;&amp; win.contentDocument.body.offsetHeight) &#123;</div><div class="line">                win.height = win.contentDocument.body.offsetHeight;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (win.Document &amp;&amp; win.Document.body.scrollHeight) &#123;</div><div class="line">                win.height = win.Document.body.scrollHeight;</div><div class="line">            &#125;</div><div class="line">        &#125;　　</div><div class="line">    &#125;　　</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>最后，加入iframe,不能丢掉onload属性，当然了，id也必须也函数中的win匹配；</p>
-<h2 id="方案二">方案二</h2><p>我们看看另一种情况的iframe解决方案<br>重要提示：src=中你必须填写的网页地址，一定要和本页面在同一个站点上，否则，会抱错，说“拒绝访问!”(实际上这是因为Js的跨域问题导致拒绝访问的)现在给大家分享一下：</p>
+<h2 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h2><p>我们看看另一种情况的iframe解决方案<br>重要提示：src=中你必须填写的网页地址，一定要和本页面在同一个站点上，否则，会抱错，说“拒绝访问!”(实际上这是因为Js的跨域问题导致拒绝访问的)现在给大家分享一下：</p>
 <ol>
 <li><p>建立一个bottom.js的文件，然后输入下面的代码；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parent.document.all(<span class="string">"框架ID名"</span>).style.height=<span class="built_in">document</span>.body.scrollHeight;</span><br><span class="line">parent.document.all(<span class="string">"框架ID名"</span>).style.width=<span class="built_in">document</span>.body.scrollWidth；</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">parent.document.all(<span class="string">"框架ID名"</span>).style.height=<span class="built_in">document</span>.body.scrollHeight;</div><div class="line">parent.document.all(<span class="string">"框架ID名"</span>).style.width=<span class="built_in">document</span>.body.scrollWidth；</div></pre></td></tr></table></figure>
 </li>
 <li><p>给你网站里所有的被包含文件里面每个都加入，在WINXP、IE6下面测试通过；<br>实现 iframe 的自适应高度，能够随着页面的长度自动的适应以免除页面和 iframe 同时出现滚动条的现象；</p>
 </li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//** iframe自动适应页面 **//</span></span><br><span class="line"><span class="comment">//输入你希望根据页面高度自动调整高度的iframe的名称的列表</span></span><br><span class="line"><span class="comment">//用逗号把每个iframe的ID分隔. 例如: ["myframe1", "myframe2"]，可以只有一个窗体，则不用逗号。</span></span><br><span class="line"><span class="comment">//定义iframe的ID</span></span><br><span class="line"><span class="keyword">var</span> iframeids = [<span class="string">"test"</span>]</span><br><span class="line">    <span class="comment">//如果用户的浏览器不支持iframe是否将iframe隐藏 yes 表示隐藏，no表示不隐藏</span></span><br><span class="line"><span class="keyword">var</span> iframehide = <span class="string">"yes"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dyniframesize</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dyniframe = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; iframeids.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.getElementById) &#123;</span><br><span class="line">            <span class="comment">//自动调整iframe高度</span></span><br><span class="line">            dyniframe[dyniframe.length] = <span class="built_in">document</span>.getElementById(iframeids);</span><br><span class="line">            <span class="keyword">if</span> (dyniframe &amp;&amp; !<span class="built_in">window</span>.opera) &#123;</span><br><span class="line">                dyniframe.style.display = <span class="string">"block"</span></span><br><span class="line">                <span class="keyword">if</span> (dyniframe.contentDocument &amp;&amp; dyniframe.contentDocument.body.offsetHeight) <span class="comment">//如果用户的浏览器是NetScape</span></span><br><span class="line">                    dyniframe.height = dyniframe.contentDocument.body.offsetHeight;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dyniframe.Document &amp;&amp; dyniframe.Document.body.scrollHeight) <span class="comment">//如果用户的浏览器是IE</span></span><br><span class="line">                    dyniframe.height = dyniframe.Document.body.scrollHeight;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//根据设定的参数来处理不支持iframe的浏览器的显示问题</span></span><br><span class="line">        <span class="keyword">if</span> ((<span class="built_in">document</span>.all || <span class="built_in">document</span>.getElementById) &amp;&amp; iframehide == <span class="string">"no"</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> tempobj = <span class="built_in">document</span>.all ? <span class="built_in">document</span>.all[iframeids] : <span class="built_in">document</span>.getElementById(iframeids)</span><br><span class="line">            tempobj.style.display = <span class="string">"block"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.addEventListener)</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>, dyniframesize, <span class="literal">false</span>)</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.attachEvent)</span><br><span class="line">    <span class="built_in">window</span>.attachEvent(<span class="string">"onload"</span>, dyniframesize)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">window</span>.onload = dyniframesize</span><br></pre></td></tr></table></figure>
-<h2 id="参考资料">参考资料</h2><p><a href="http://www.html5cn.org/article-7272-1.html" target="_blank" rel="external">HTML教程：如何设置Iframe自适应高度</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//** iframe自动适应页面 **//</span></div><div class="line"><span class="comment">//输入你希望根据页面高度自动调整高度的iframe的名称的列表</span></div><div class="line"><span class="comment">//用逗号把每个iframe的ID分隔. 例如: ["myframe1", "myframe2"]，可以只有一个窗体，则不用逗号。</span></div><div class="line"><span class="comment">//定义iframe的ID</span></div><div class="line"><span class="keyword">var</span> iframeids = [<span class="string">"test"</span>]</div><div class="line">    <span class="comment">//如果用户的浏览器不支持iframe是否将iframe隐藏 yes 表示隐藏，no表示不隐藏</span></div><div class="line"><span class="keyword">var</span> iframehide = <span class="string">"yes"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">dyniframesize</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> dyniframe = <span class="keyword">new</span> <span class="built_in">Array</span>()</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; iframeids.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.getElementById) &#123;</div><div class="line">            <span class="comment">//自动调整iframe高度</span></div><div class="line">            dyniframe[dyniframe.length] = <span class="built_in">document</span>.getElementById(iframeids);</div><div class="line">            <span class="keyword">if</span> (dyniframe &amp;&amp; !<span class="built_in">window</span>.opera) &#123;</div><div class="line">                dyniframe.style.display = <span class="string">"block"</span></div><div class="line">                <span class="keyword">if</span> (dyniframe.contentDocument &amp;&amp; dyniframe.contentDocument.body.offsetHeight) <span class="comment">//如果用户的浏览器是NetScape</span></div><div class="line">                    dyniframe.height = dyniframe.contentDocument.body.offsetHeight;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (dyniframe.Document &amp;&amp; dyniframe.Document.body.scrollHeight) <span class="comment">//如果用户的浏览器是IE</span></div><div class="line">                    dyniframe.height = dyniframe.Document.body.scrollHeight;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//根据设定的参数来处理不支持iframe的浏览器的显示问题</span></div><div class="line">        <span class="keyword">if</span> ((<span class="built_in">document</span>.all || <span class="built_in">document</span>.getElementById) &amp;&amp; iframehide == <span class="string">"no"</span>) &#123;</div><div class="line">            <span class="keyword">var</span> tempobj = <span class="built_in">document</span>.all ? <span class="built_in">document</span>.all[iframeids] : <span class="built_in">document</span>.getElementById(iframeids)</div><div class="line">            tempobj.style.display = <span class="string">"block"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.addEventListener)</div><div class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>, dyniframesize, <span class="literal">false</span>)</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.attachEvent)</div><div class="line">    <span class="built_in">window</span>.attachEvent(<span class="string">"onload"</span>, dyniframesize)</div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">window</span>.onload = dyniframesize</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.html5cn.org/article-7272-1.html" target="_blank" rel="external">HTML教程：如何设置Iframe自适应高度</a></p>
 
   </div>
   <footer class="article-footer">
@@ -237,29 +230,23 @@
 </article>
 
 
-  <link rel="stylesheet" href="http://static.duoshuo.com/styles/embed.default.css?349d9313.css" type="text/css">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="HTML-如何设置Iframe自适应高度" data-title="HTML 如何设置Iframe自适应高度" data-url="http://huyaohui.com/2015/11/13/HTML-如何设置Iframe自适应高度/"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-    var duoshuoQuery = {
-      short_name: "makehui"
-    };
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';
-      ds.async = true;
-      ds.src = (document.location.protocol == 'https:'
-        ? 'https:'
-        : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <!-- 多说公共JS代码 end -->
-
-
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
 
 
@@ -275,10 +262,10 @@
       
     </div>
   </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css" type="text/css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css" type="text/css">
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -342,12 +329,12 @@
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js" type="text/javascript"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js" type="text/javascript"></script>
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/scripts/main.js" type="text/javascript"></script>
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
 
 </body>
 </html>
