@@ -19,7 +19,7 @@
 <meta property="og:url" content="http://huyaohui.com/2017/06/05/Python的Flask框架中使用Flask-Migrate扩展迁移数据库的教程/index.html">
 <meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="Flask-Migrate可以帮助Flask应用程序通过预设的Python脚本完成数据库迁移操作,这里我们就来看一下Python的Flask框架中使用Flask-Migrate扩展迁移数据库的教程,需要的朋友可以参考下 我们在升级系统的时候，经常碰到需要更新服务器端数据结构等操作，之前的方式是通过手工编写alter sql脚本处理，经常会发现遗漏，导致程序发布到服务器上后无法正常使用。 现在我们可">
-<meta property="og:updated_time" content="2017-06-05T09:59:21.000Z">
+<meta property="og:updated_time" content="2017-06-09T09:05:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python的Flask框架中使用Flask-Migrate扩展迁移数据库">
 <meta name="twitter:description" content="Flask-Migrate可以帮助Flask应用程序通过预设的Python脚本完成数据库迁移操作,这里我们就来看一下Python的Flask框架中使用Flask-Migrate扩展迁移数据库的教程,需要的朋友可以参考下 我们在升级系统的时候，经常碰到需要更新服务器端数据结构等操作，之前的方式是通过手工编写alter sql脚本处理，经常会发现遗漏，导致程序发布到服务器上后无法正常使用。 现在我们可">
@@ -174,7 +174,7 @@
 
   <div class="article-info">
     <span class="article-date">
-  Write: 2017-06-05 Update: 2017-06-05
+  Write: 2017-06-05 Update: 2017-06-09
 </span>
 
     
@@ -214,7 +214,7 @@
 <h2 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h2><p>一旦迁移脚本被审查且接受，就可以使用db upgrade命令更新到数据库中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ python hello.py db upgrade</div><div class="line">INFO [alembic.migration] Context impl SQLiteImpl.</div><div class="line">INFO [alembic.migration] Will assume non-transactional DDL.</div><div class="line">INFO [alembic.migration] Running upgrade None -&gt; 1bc594146bb5, initial migration</div></pre></td></tr></table></figure>
 <p>第一次迁移实际上相当于调用db.create_all()，但在后续迁移中，upgrade命令对表实施更新操作但不影响表中的内容。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python hello.py db initial    # 初始化</div><div class="line">                                # 仅在第一次时使用</div><div class="line">$ python hello.py db migrate -m &quot;initial migration&quot;     # 创建迁移脚本</div><div class="line">                                                        # 每次有修改后都需要重新生成迁移脚本</div><div class="line">$ python hello.py db upgrade    # 迁移数据, 也可升级数据库</div><div class="line">$ python hello.py db downgrade  # 降级数据库</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python hello.py db init       # 初始化</div><div class="line">                                # 仅在第一次时使用</div><div class="line">$ python hello.py db migrate -m &quot;initial migration&quot;     # 创建迁移脚本</div><div class="line">                                                        # 每次有修改后都需要重新生成迁移脚本</div><div class="line">$ python hello.py db upgrade    # 迁移数据, 也可升级数据库</div><div class="line">$ python hello.py db downgrade  # 降级数据库</div></pre></td></tr></table></figure>
 
   </div>
   <footer class="article-footer">
