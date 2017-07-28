@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2017-06-09T09:05:50.000Z</updated>
+  <updated>2017-07-28T13:58:49.000Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cocos2dx Texture、SpriteFrame、Sprite的区别</title>
+    <link href="http://huyaohui.com/2017/07/28/cocos2dx-Texture-SpriteFrame-Sprite%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://huyaohui.com/2017/07/28/cocos2dx-Texture-SpriteFrame-Sprite的区别/</id>
+    <published>2017-07-28T13:24:10.000Z</published>
+    <updated>2017-07-28T13:58:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然搞游戏开发已经有半年了, 但是始终都没有去深入了解引擎中的各种控件的具体含义, 仅仅就是知道怎么使用而已, 想必有很多程序员都和我有过一样的困惑.<br>前段时间查了下<code>Texture、SpriteFrame、Sprite的区别</code>(一直都不知道他们之间有什么其别, 也是囧), 这里索性就把它记录下来了.</p>
+<a id="more"></a>
+<h2 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h2><p>Texture是保存在GPU缓冲中的一张纹理。是由一张图片创建获得的</p>
+<h2 id="SpriteFrame"><a href="#SpriteFrame" class="headerlink" title="SpriteFrame"></a>SpriteFrame</h2><p><code>SpriteFrame</code> = <code>Texture</code> + <code>Rect</code><br>也就是说<code>SpriteFrame</code>是根据一张纹理材质来剪切而获得的</p>
+<h2 id="Sprite"><a href="#Sprite" class="headerlink" title="Sprite"></a>Sprite</h2><p>简单的说<code>Sprite</code>就是一个<code>SpriteFrame</code>的控制器, 可以控制<code>SpriteFrame</code>以何种形式进行渲染</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="http://www.voidcn.com/blog/hanbingfengying/article/p-1255620.html" target="_blank" rel="external">http://www.voidcn.com/blog/hanbingfengying/article/p-1255620.html</a><br><a href="http://blog.csdn.net/huaweitman/article/details/11477493" target="_blank" rel="external">http://blog.csdn.net/huaweitman/article/details/11477493</a><br><a href="http://dwz.cn/6kkzf2" target="_blank" rel="external">精灵 (计算机图形学)</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然搞游戏开发已经有半年了, 但是始终都没有去深入了解引擎中的各种控件的具体含义, 仅仅就是知道怎么使用而已, 想必有很多程序员都和我有过一样的困惑.&lt;br&gt;前段时间查了下&lt;code&gt;Texture、SpriteFrame、Sprite的区别&lt;/code&gt;(一直都不知道他们之间有什么其别, 也是囧), 这里索性就把它记录下来了.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Cocos2dx" scheme="http://huyaohui.com/categories/Cocos2dx/"/>
+    
+    
+      <category term="Cocos2dx" scheme="http://huyaohui.com/tags/Cocos2dx/"/>
+    
+      <category term="Texture" scheme="http://huyaohui.com/tags/Texture/"/>
+    
+      <category term="SpriteFrame" scheme="http://huyaohui.com/tags/SpriteFrame/"/>
+    
+      <category term="Sprite" scheme="http://huyaohui.com/tags/Sprite/"/>
+    
+  </entry>
   
   <entry>
     <title>Python的Flask框架中使用Flask-Migrate扩展迁移数据库</title>
@@ -1546,35 +1580,6 @@
       <category term="TextEditor" scheme="http://huyaohui.com/tags/TextEditor/"/>
     
       <category term="Branckets" scheme="http://huyaohui.com/tags/Branckets/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WebApp HTML5 Canvas 压缩上传图片</title>
-    <link href="http://huyaohui.com/2015/11/15/WebApp-Canvas-%E5%8E%8B%E7%BC%A9%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/"/>
-    <id>http://huyaohui.com/2015/11/15/WebApp-Canvas-压缩上传图片/</id>
-    <published>2015-11-15T09:53:38.000Z</published>
-    <updated>2016-01-03T03:11:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于H5图片上传一直是一个非常蛋痛的问题, 以至于现在都没有找到一个非常好的解决方案, 去年的年初尝试<a href="https://github.com/gokercebeci/canvasResize" target="_blank" rel="external">gokercebeci/canvasResize</a>这个方案勉强解决了这个问题, 但是并不算是十分理想, iOS上仍然是拍照后会莫名旋转, 曾经在GitHub上看到有位大神谢了一个库是专门处理这个问题的, 自己试了下貌似并不行, 也不知道现在是个什么情况了, 有空再去看下(但愿会有空吧), 这里提供一个Jquery版本的图片压缩上传的方案. </p>
-<a id="more"></a>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>底层代码是通过Canvas进行了压缩, 最终返回base64编码的字符串, H5的前端压缩除了Canvas应该没有更便捷的方法了吧, 嘻嘻..</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">id</span>=<span class="string">"change_avatar"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 这里需要写两个input代码才能执行, 原因密 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"photo"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"photo"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery.exif.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery.canvasResize.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">$(<span class="string">'#change_avatar'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="string">'input[name=photo]'</span>).trigger(<span class="string">'click'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$(<span class="string">'input[name=photo]'</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> file = e.target.files[<span class="number">0</span>];</div><div class="line">    <span class="comment">// CANVAS RESIZING</span></div><div class="line">    $.canvasResize(file, &#123;</div><div class="line">        <span class="attr">width</span>: <span class="number">150</span>,</div><div class="line">        <span class="attr">height</span>: <span class="number">0</span>,</div><div class="line">        <span class="attr">crop</span>: <span class="literal">false</span>,</div><div class="line">        <span class="attr">quality</span>: <span class="number">80</span>,</div><div class="line">        <span class="attr">callback</span>: <span class="function"><span class="keyword">function</span>(<span class="params">base64_img, width, height</span>) </span>&#123;</div><div class="line">            $.post(</div><div class="line">                settings.jsonp_Server + <span class="string">'/user/upload_image'</span>, &#123;</div><div class="line">                    <span class="attr">phone_num</span>: phone_num,</div><div class="line">                    <span class="attr">base64_img</span>: base64_img,</div><div class="line">                    <span class="attr">dataType</span>: <span class="string">"jsonp"</span></div><div class="line">                &#125;,</div><div class="line">                <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">                    alert(<span class="string">'上传成功'</span>);</div><div class="line">                &#125;,</div><div class="line">                <span class="string">"json"</span></div><div class="line">            );</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/gokercebeci/canvasResize" target="_blank" rel="external">gokercebeci/canvasResize</a><br><a href="https://github.com/think2011/LocalResizeIMG" target="_blank" rel="external">think2011/LocalResizeIMG</a><br><a href="http://a3147972.blog.51cto.com/2366547/1554698" target="_blank" rel="external">移动端图片上传方法【更好的兼容安卓IOS和微信】</a><br><a href="http://my.oschina.net/hzplay/blog/160806" target="_blank" rel="external">HTML5+Canvas手机拍摄，本地压缩上传图片，案例实测报告</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于H5图片上传一直是一个非常蛋痛的问题, 以至于现在都没有找到一个非常好的解决方案, 去年的年初尝试&lt;a href=&quot;https://github.com/gokercebeci/canvasResize&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gokercebeci/canvasResize&lt;/a&gt;这个方案勉强解决了这个问题, 但是并不算是十分理想, iOS上仍然是拍照后会莫名旋转, 曾经在GitHub上看到有位大神谢了一个库是专门处理这个问题的, 自己试了下貌似并不行, 也不知道现在是个什么情况了, 有空再去看下(但愿会有空吧), 这里提供一个Jquery版本的图片压缩上传的方案. &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="HTML5" scheme="http://huyaohui.com/categories/HTML5/"/>
-    
-    
-      <category term="HTML5" scheme="http://huyaohui.com/tags/HTML5/"/>
-    
-      <category term="Web" scheme="http://huyaohui.com/tags/Web/"/>
     
   </entry>
   
