@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2017-08-10T13:25:33.000Z</updated>
+  <updated>2017-09-25T07:48:15.000Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CMake C/CPP 混合编译</title>
+    <link href="http://huyaohui.com/2017/09/25/CMake-C-CPP-%E6%B7%B7%E5%90%88%E7%BC%96%E8%AF%91/"/>
+    <id>http://huyaohui.com/2017/09/25/CMake-C-CPP-混合编译/</id>
+    <published>2017-09-25T06:53:25.000Z</published>
+    <updated>2017-09-25T07:48:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实主要是要记录一下使用<code>CMake</code> <code>C/CPP</code>混编的一些细节, 要不然会被坑的很惨, 顺便把<code>C/CPP</code>混编原理和实现也说一下. </p>
+<a id="more"></a>
+<h2 id="C-C-混合编程是什么"><a href="#C-C-混合编程是什么" class="headerlink" title="C/C++混合编程是什么"></a>C/C++混合编程是什么</h2><p>就像问题本身所说, C/C++混合编程也就是一个工程中, 在C函数中调用C++函数的方法, 在C++的函数中能够调用C函数的方法.</p>
+<h2 id="C-C-混合编程有什么用"><a href="#C-C-混合编程有什么用" class="headerlink" title="C/C++混合编程有什么用"></a>C/C++混合编程有什么用</h2><p>在我们日常开发中, 也许会遇到这么一些情况, 同事A, C非常牛逼, 但是对C++一窍不通; 同事B, C++信手拈来, 但是对C却满头雾水. 但是在工作中有这么一种需求, 同事A需要用到C++的方法, 同事B需要用到C的方法,  这怎么办? </p>
+<p>没错, 最简单的就是, 同事A把C的代码写好, 然后同事B只管调用即可, 同理, 同事A只管调用同事B写好的C++代码, 各司其职, 提高工作效率.</p>
+<h2 id="C-C-混合编程应该怎么实现"><a href="#C-C-混合编程应该怎么实现" class="headerlink" title="C/C++混合编程应该怎么实现"></a>C/C++混合编程应该怎么实现</h2><p>那么, 这混合编程究竟要怎么实现呢?</p>
+<p>在介绍之前, 我们先简单了解下以下几个概念</p>
+<h3 id="函数重载-Overloading"><a href="#函数重载-Overloading" class="headerlink" title="函数重载(Overloading)"></a>函数重载(Overloading)</h3><p>C++和Java中的函数重载的定义一致, </p>
+<p>即在相同的作用域内, C++允许多个函数名称相同, 而形参列表不同: </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;	<span class="comment">// 没有参数</span></div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;	<span class="comment">// 有一个int类型的形参</span></div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">double</span> a)</span> </span>&#123;	<span class="comment">// 有一个double类型的形参</span></div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;	<span class="comment">// 有两个int类型的形参</span></div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">()</span> </span>&#123;	<span class="comment">// 报错, 函数重载体现在函数名相同形参列表不同和返回类型无关</span></div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然而大家有没有想过为什么C++支持函数重载, 而C却不支持函数重载呢? </p>
+<p>这个就要涉及到C++的名字改编机制了. 请往下看~</p>
+<h3 id="C-的名字改编机制"><a href="#C-的名字改编机制" class="headerlink" title="C++的名字改编机制"></a>C++的名字改编机制</h3><h4 id="在C中"><a href="#在C中" class="headerlink" title="在C中"></a>在C中</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>;    <span class="comment">// 该函数编译后编译器会对函数名称改写成`_test` </span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    test();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>output:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Undefined symbols <span class="keyword">for</span> architecture x86_64:</div><div class="line">  <span class="string">"_test"</span>, referenced from:</div><div class="line">      run in main.o</div><div class="line">ld: symbol(s) <span class="keyword">not</span> found <span class="keyword">for</span> architecture x86_64</div><div class="line">clang: error: linker command failed with <span class="built_in">exit</span> code <span class="number">1</span> (use -v to see invocation)</div></pre></td></tr></table></figure></p>
+<p>ps: 不提供test()函数的实现是让<code>CMake</code>链接的时候报错, 这样我们才能看清楚test()函数的真面目!</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span></span>;    <span class="comment">// 该函数编译后编译器改写函数名后依然是 _test</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    test(<span class="number">10</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>output:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Undefined symbols <span class="keyword">for</span> architecture x86_64:</div><div class="line">  <span class="string">"_test"</span>, referenced from:</div><div class="line">      run in main.o</div><div class="line">ld: symbol(s) <span class="keyword">not</span> found <span class="keyword">for</span> architecture x86_64</div><div class="line">clang: error: linker command failed with <span class="built_in">exit</span> code <span class="number">1</span> (use -v to see invocation)</div></pre></td></tr></table></figure></p>
+<h4 id="在C-中"><a href="#在C-中" class="headerlink" title="在C++中"></a>在C++中</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>;    <span class="comment">// 该函数编译后编译器会对函数名称改写成 test()</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    test();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>output:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Undefined symbols <span class="keyword">for</span> architecture x86_64:</div><div class="line">  <span class="string">"test()"</span>, referenced from:</div><div class="line">      run() in main.o</div><div class="line">ld: symbol(s) <span class="keyword">not</span> found <span class="keyword">for</span> architecture x86_64</div><div class="line">clang: error: linker command failed with <span class="built_in">exit</span> code <span class="number">1</span> (use -v to see invocation)</div></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span></span>;    <span class="comment">// 该函数编译后编译器改写函数名后是 test(int)</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    test(<span class="number">10</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>output:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Undefined symbols <span class="keyword">for</span> architecture x86_64:</div><div class="line">  <span class="string">"_test"</span>, referenced from:</div><div class="line">      run in main.o</div><div class="line">ld: symbol(s) <span class="keyword">not</span> found <span class="keyword">for</span> architecture x86_64</div><div class="line">clang: error: linker command failed with <span class="built_in">exit</span> code <span class="number">1</span> (use -v to see invocation)</div></pre></td></tr></table></figure></p>
+<p>ps : 有的系统的编译器会编译成_test_int 这种格式, 名字改编机制只是一种思路, 并没有一种唯一的命名规范, 不同的编译器命名规范不同, 但是思路一致! 如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>;    <span class="comment">// 编译后生成: test() 或 _test</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a)</span></span>;   <span class="comment">// 编译后生成: test(int) 或 _test_int</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">double</span> a)</span></span>;    <span class="comment">// 编译后生成: test(double) 或 _test_double</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;    <span class="comment">// 编译后生成: test(int, int) 或 _test_int_int</span></div></pre></td></tr></table></figure>
+<h4 id="extern-及-extern-“C”"><a href="#extern-及-extern-“C”" class="headerlink" title="extern 及 extern “C”"></a>extern 及 extern “C”</h4><p>extern相信大家比较熟悉, 它一般用来声明一个函数, 全局变量的作用域. extern告诉编译器, 其声明的函数和变量可以供本文件或者其他文件使用. 这里不再赘述. </p>
+<p>extern “C” 中的C是什么意思呢?</p>
+<p>这里的C不是指C语言这一门语言, 而是表示一种编译和链接的规约. C表示符合C语言的编译和连接规约的任何语言，如Fortran(公式翻译)、assembler(汇编语言)等。</p>
+<p>ps: extern “C” 只是指定编译和链接的规约, 并不会影响语义, 所以在C++文件中该怎么写还得怎么写, 必须遵循C++的语法规范. </p>
+<blockquote>
+<p>在C++源文件的语句前加上 extern “C” 的作用就是告诉编译器, 这一段代码按照类C的编译和链接规约来编译和链接(对, 也就是按照类C的函数命名规范编译)</p>
+</blockquote>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><blockquote>
+<p>通过上面几个例子, 相信大家很容易就能知道为什么C++支持重载而C不支持重载了.<br>因为C++有名字改编机制而C没有!<br>所以在C中, 只要函数名相同, 不管你的形参列表如何南辕北辙, 编译器均会将其编译为同一函数名, 这样在程序执行过程中就会造成函数调用的二义性(也就是对于相同函数名的函数, 程序并不知道应该调用哪一个函数), 这是不允许的, 所以会报错.<br>然而对于C++而言, 尽管他们的函数名相同, 但是因为他们的形参列表不同, 编译器编译后实际上会为他们改名为不同名字的函数, 所以程序执行调用函数的时候并不会产生二义性, 因此C++允许函数重载.<br>这里扯一句题外话, C++的重载被认为不是多态, 因为多态是动态运行时对方法的绑定, 而C++的函数重载最多算是编译时的”多态”. (这句话不一定正确, 请大家纠正)</p>
+</blockquote>
+<h2 id="CPP调用C代码"><a href="#CPP调用C代码" class="headerlink" title="CPP调用C代码"></a>CPP调用C代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第一种方法</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cpp.h"</span></span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"c.h"</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 第二种方法</span></div><div class="line"><span class="comment">// c.h 文件定义规则</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(__cplusplus)</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// Do something...</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(__cplusplus)</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里有一点需要注意当<code>CMake</code>的<code>project(projectname LANGUAGES CXX)</code>方法指定了语言时, <code>CMake</code>只会编译指定的语言的代码, 而导致<code>C</code>语言代码不被编译, 这里需要特别注意</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>当需要使用到C/CPP混编时需要用到<code>extern &quot;C&quot;</code></li>
+<li>当<code>CMake</code>指定了语言时, 只有指定的语言才会参与编译</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://stackoverflow.com/questions/4598308/how-do-i-compile-and-link-c-code-with-compiled-c-code" target="_blank" rel="external">https://stackoverflow.com/questions/4598308/how-do-i-compile-and-link-c-code-with-compiled-c-code</a><br><a href="http://guangming008.blog.163.com/blog/static/1203968201011634426908/" target="_blank" rel="external">http://guangming008.blog.163.com/blog/static/1203968201011634426908/</a><br><a href="http://www.jianshu.com/p/8d3eb96e142a" target="_blank" rel="external">http://www.jianshu.com/p/8d3eb96e142a</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实主要是要记录一下使用&lt;code&gt;CMake&lt;/code&gt; &lt;code&gt;C/CPP&lt;/code&gt;混编的一些细节, 要不然会被坑的很惨, 顺便把&lt;code&gt;C/CPP&lt;/code&gt;混编原理和实现也说一下. &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C/CPP" scheme="http://huyaohui.com/categories/C-CPP/"/>
+    
+    
+      <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
+    
+      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
+    
+      <category term="Build" scheme="http://huyaohui.com/tags/Build/"/>
+    
+  </entry>
   
   <entry>
     <title>Qt StyleSheet 作用范围</title>
@@ -1462,85 +1530,6 @@
       <category term="GitHub" scheme="http://huyaohui.com/tags/GitHub/"/>
     
       <category term="SSH" scheme="http://huyaohui.com/tags/SSH/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Branckets 如何开发插件</title>
-    <link href="http://huyaohui.com/2015/11/29/Branckets-%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6/"/>
-    <id>http://huyaohui.com/2015/11/29/Branckets-如何开发插件/</id>
-    <published>2015-11-29T06:08:12.000Z</published>
-    <updated>2016-01-03T02:58:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>有个功能Brackets一直没有, 也没有找到相关的插件, 所以转载官方的这篇关于<code>如何开发Brackets插件</code>的wiki, 方便自己有空的时候来学习下. </p>
-<a id="more"></a>
-<h2 id="如何开发Brackets插件"><a href="#如何开发Brackets插件" class="headerlink" title="如何开发Brackets插件"></a>如何开发Brackets插件</h2><p>开发一个插件需要三个步骤：</p>
-<ol>
-<li><a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#creating-an-extension" target="_blank" rel="external">创建</a>基本的插件模板。</li>
-<li><a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#wiki-common-how-tos" target="_blank" rel="external">开发</a>插件并<a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#testingdebugging-workflow" target="_blank" rel="external">调试</a>。</li>
-<li><a href="https://github.com/adobe/brackets/wiki/How-to-write-extensions#publishing-extensions" target="_blank" rel="external">打包并发布</a>插件以供其他人使用</li>
-</ol>
-<p>通过以上链接阅读这些章节的详细内容！</p>
-<h2 id="创建插件"><a href="#创建插件" class="headerlink" title="创建插件"></a>创建插件</h2><ul>
-<li>点击Brackets的“帮助&gt;显示插件目录”打开放置插件的文件夹。</li>
-<li>插件文件夹的“user”文件夹，并以“插件的名称”为文件夹名创建一个新的文件夹，再在新建的文件夹中新建main.js文件。</li>
-<li>为了快速开始，可以复制<a href="https://github.com/adobe/brackets/wiki/Simple-%22Hello-World%22-extension" target="_blank" rel="external">Simple “Hello World” extension</a>或[已存在的插件][<a href="https://github.com/adobe/brackets/wiki/Brackets-Extensions]，以开发相似的功能。" target="_blank" rel="external">https://github.com/adobe/brackets/wiki/Brackets-Extensions]，以开发相似的功能。</a></li>
-<li>如果你对Brackets有任何建议，可以发送到<a href="https://groups.google.com/forum/#!forum/brackets-dev" target="_blank" rel="external">brackets-dev Google group</a>或<a href="http://freenode.net/" target="_blank" rel="external">#brackets IRC channel on freenode，Brackets</a>会尽早给予反馈（可能其他人也会与你有相同的想法）。</li>
-</ul>
-<p>*注意：因为通过Brackets的插件管理器很容易删除正在开发的插件，所以更安全的方式是把插件文件夹新建在Brackets安装目录下的src/extensions/dev目录下。可通过修改权限保证文件夹是可写的，or by <a href="https://github.com/adobe/brackets/wiki/How-to-Hack-on-Brackets" target="_blank" rel="external">cloning the Brackets source</a> and using that copy.</p>
-<h2 id="测试或调试"><a href="#测试或调试" class="headerlink" title="测试或调试"></a>测试或调试</h2><ul>
-<li>编辑main.js文件。</li>
-<li>保存文件并通过Brackets的”Debug&gt;Reload Brackets”重启Brackets，以进行测试。</li>
-<li>通过Brackets的”Debug&gt;Show Developer Tools”（依赖于Chrome浏览器），并可使用Chrome浏览器的控制台。<ul>
-<li>在首次打开Developer Tools时，必须设置为<a href="https://groups.google.com/forum/?fromgroups=#!topic/brackets-dev/E5iqcD8VqD4" target="_blank" rel="external">禁用缓存</a>，否则在Developer Tools打开的状态下重新加载Brackets，不能反映出插件修改之后的变化。</li>
-</ul>
-</li>
-</ul>
-<p>查看<a href="https://github.com/adobe/brackets/wiki/Debugging-Brackets" target="_blank" rel="external">Debugging Brackets</a>获取更完善描述。</p>
-<p>还可以为插件编写单元测试。</p>
-<h2 id="发布插件"><a href="#发布插件" class="headerlink" title="发布插件"></a>发布插件</h2><ol>
-<li>向main.js所在的目录中添加<a href="https://github.com/adobe/brackets/wiki/Extension-package-format#packagejson-format" target="_blank" rel="external">package.json</a>文件。</li>
-<li>打包整个插件目录为ZIP格式（更快捷的使用GitHub的“Download ZIP”按钮下载ZIP包）或通过命令git archive –format zip -o yourextension.zip master生成ZIP包。</li>
-<li>通过上传ZIP包到<a href="https://brackets-registry.aboutweb.com/" target="_blank" rel="external">Brackets Extension Registry</a>，以发布插件</li>
-</ol>
-<p>更多信息，参见<a href="https://github.com/adobe/brackets/wiki/Extension-Registry-Help" target="_blank" rel="external">Extension Registry Help</a>。</p>
-<h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><h3 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h3><ul>
-<li>从插件的文件夹树中加载模块，使用require()方法，传入相对于插件根目录的相对路径做为参数。</li>
-<li>加载Brackets的核心模块，使用brackets.getModule()方法，传入相对于Brackets的src目录的相对路径做为参数。</li>
-<li>不能到其他插件中加载模块（暂时还不支持）</li>
-</ul>
-<p>也可以插件中使用其他的文件，例如下文的“Load a CSS file”。</p>
-<h3 id="添加菜单项与键盘快捷键"><a href="#添加菜单项与键盘快捷键" class="headerlink" title="添加菜单项与键盘快捷键"></a>添加菜单项与键盘快捷键</h3><p>查看<a href="https://github.com/adobe/brackets/wiki/Simple-%22Hello-World%22-extension" target="_blank" rel="external">Simple “Hello World” extension</a>代码示例。</p>
-<p>对于任何一个新的行为，都要通过CommandManager.resiger()方法注册一个Command以实现它。Command通过Command Id（字符串类型）映射到实现行为的函数。使用包命名的方式为Command Id命名（例如：myorg.myextendsion.mycommand）以避免与其他插件冲突。（参见：<a href="https://github.com/adobe/brackets/wiki/Brackets%20Development%20How%20Tos#commands" target="_blank" rel="external">higher-level overview of command architecture</a>）。</p>
-<p><em>添加菜单项:</em> 通过Menus.getMenu()方法，传入Menus.AppMenuBar常量（当前包含FILE_MENU，EDIT_MENU, VIEW_MENU, NAVIGATE_MENU或HELP_MENU），获取顶级菜单。再通过theMenu.addMenuItem()方法，传入要执行的Command Id以添加菜单项。这样就把菜单项与Command关联起来，Command被创建后，它的名称将被显示为菜单项标签。</p>
-<p>约定，调用addMenuItems()方法的同时为Command创建键盘快捷键。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取顶级的菜单</span></div><div class="line"><span class="keyword">var</span> editorMenu = Menus.getMenu(Menus.AppMenuBar.EDIT_MENU);</div><div class="line"><span class="comment">// 以包命名风格命名Command Id</span></div><div class="line"><span class="keyword">var</span> commandId = <span class="string">"com.wanggit.commandId"</span>;</div><div class="line"><span class="comment">// 注册Command</span></div><div class="line">CommandManager.register(<span class="string">"Custom Command"</span>, commandId, customFunction);</div><div class="line"><span class="comment">// 添加菜单项，并指菜单项执行commandId的命令，快捷键为Ctrl-Shift-O</span></div><div class="line">editorMenu.addMenuItem(commandId, <span class="string">"Ctrl-Shift-O"</span>);</div></pre></td></tr></table></figure>
-<p><em>添加上下文菜单项:</em> 通过Menus.getContextMenu()方法，传入Menus.ContextMenuIds常量（目前包含EDITOR_MENU, INLINE_EDITOR_MENU, PROJECT_MENU或WORKING_SET_MENU），可获取上下文菜单。通过theContextMenu.addMenuItem()方法，传入要执行的Command Id以添加上下文菜单项，上下文菜单项标签的显示与菜单项相同。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取编辑器的上下文菜单</span></div><div class="line"><span class="keyword">var</span> contextMenu = Menu.getContextMenu(Menus.ContextMenuIds.EDITOR_MENU);</div><div class="line"><span class="comment">// 省略Command的定义</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="comment">// 添加上下文菜单，并指定要执行的Command，指定快捷键</span></div><div class="line">contextMenu.addMenuItem(commandId, <span class="string">"Ctrl-Shift-L"</span>);</div></pre></td></tr></table></figure>
-<p><em>添加菜单分隔线:</em> 依据以上的说明获取顶级菜单或上下文菜单，再通过theMenu.addMenuDivider()添加菜单分隔线。这个方法总要把分隔线添加到菜单当前状态的最后一个位置。通过传入first与last参数，指分隔线的位置。另外，还可以通过传入before或after与相对那个菜单的Command Id，以指定分隔线显示的某菜单项之前或之后。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加一个分隔线到菜单当前状态的最后一个位置</span></div><div class="line">menu.addMenuDivider();</div><div class="line"><span class="comment">// 添加到最前面，相关参数还有FIRST,LAST,BEFORE,AFTER</span></div><div class="line">menu.addMenuDivider(Menus.FIRST);</div><div class="line"><span class="comment">// 在Commands.EDIT_FIND命令对应的菜单前添加分隔线</span></div><div class="line">menu.addMenuDivider(Menus.before, Commands.EDIT_FIND);</div></pre></td></tr></table></figure>
-<p><em>添加快捷键:</em> 通过KeyBindingManager.addBinding()方法，传入快捷键要执行的Command Id与快捷键组合，可以在不关联菜单项的情况下新建快捷键。务必在Brackets Shortcuts页面查看那些快捷键是没被占用，并把自定义的快捷键添中到此页面列表中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CommandManager.register(<span class="string">"Handler Enter"</span>, commandId, handlerEnter);</div><div class="line">KeyBindingManager.addBinding(commandId, <span class="string">"Ctrl-Enter"</span>, <span class="string">"linux"</span>);</div></pre></td></tr></table></figure>
-<p>通过拒绝(decline)键盘事件，并允许其他功能处理这个键盘事件，那么就一定要在Command的执行方法中返回一个已reject()的$.Promise对象。（如果想要光标在某个位置时重写Enter的事件，那么这就非常有用处）（此功能在Sprint 18及以上的版本有效）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> commandId = <span class="string">"wanggit.test"</span>;</div><div class="line"><span class="comment">// 捕捉Enter事件</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handlerEnter</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Handler Enter"</span>);</div><div class="line">    <span class="comment">// 创建Deferred对象</span></div><div class="line">    <span class="keyword">var</span> deferred = <span class="keyword">new</span> $.Deferred();</div><div class="line">    <span class="comment">// 拒绝Enter事件，在调用reject方法之后，并返回$.Promise对象，那么此时Enter事件，还可以被其他功能捕捉。</span></div><div class="line">    deferred.reject();</div><div class="line">    <span class="comment">// 返回$.Promise对象。如果不返回一个已调用过reject方法的$.Promise对象，那么其他功能就不能再捕捉到Enter事件了。</span></div><div class="line">    <span class="keyword">return</span> deferred.promise();</div><div class="line">&#125;</div><div class="line">CommandManager.register(<span class="string">"Handler Enter"</span>, commandId, handlerEnter);</div><div class="line"><span class="comment">// 绑定键盘事件</span></div><div class="line">KeyBindingManager.addBinding(commandId, <span class="string">"Enter"</span>, <span class="string">"linux"</span>);</div></pre></td></tr></table></figure>
-<h3 id="添加新UI元素"><a href="#添加新UI元素" class="headerlink" title="添加新UI元素"></a>添加新UI元素</h3><p>向Edtior的下面添加Panel:首先Panel要添加.bottom-panel，具体可以参见JSLint bottom-panel.html的例子。通过PanelManager.createBottomPanel(“yourExtension.name”, $(panelHtml))可以在状态栏之上新建一个Panel。You may see Resizer.makeResizable()and manual DOM insertion of panels in some extensions but this parctice is being phased out since the introduction of PanelManager.</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/adobe/brackets/wiki/如何开发插件" target="_blank" rel="external">如何开发插件</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;有个功能Brackets一直没有, 也没有找到相关的插件, 所以转载官方的这篇关于&lt;code&gt;如何开发Brackets插件&lt;/code&gt;的wiki, 方便自己有空的时候来学习下. &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="TextEditor" scheme="http://huyaohui.com/categories/TextEditor/"/>
-    
-    
-      <category term="TextEditor" scheme="http://huyaohui.com/tags/TextEditor/"/>
-    
-      <category term="Branckets" scheme="http://huyaohui.com/tags/Branckets/"/>
-    
-      <category term="Plugin" scheme="http://huyaohui.com/tags/Plugin/"/>
     
   </entry>
   
