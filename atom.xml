@@ -190,11 +190,11 @@
     
       <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
     
+      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
+    
       <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
     
       <category term="libgit2" scheme="http://huyaohui.com/tags/libgit2/"/>
-    
-      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
     
   </entry>
   
@@ -1014,13 +1014,13 @@
     
       <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
     
+      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
+    
       <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
     
       <category term="libgit2" scheme="http://huyaohui.com/tags/libgit2/"/>
     
       <category term="libqgit2" scheme="http://huyaohui.com/tags/libqgit2/"/>
-    
-      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
     
   </entry>
   
