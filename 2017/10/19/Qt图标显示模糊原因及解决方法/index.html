@@ -19,7 +19,7 @@
 <meta property="og:url" content="http://huyaohui.com/2017/10/19/Qt图标显示模糊原因及解决方法/index.html">
 <meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
 <meta property="og:description" content="自使用Qt以来其实一直都存在这个问题没能解决(Ps: 期间尝试N个版本), 要问为什么我能忍到现在, 主要还是找到一个临时的解决方案, 通过Qss来设置图标就不会出现失真的情况, 还有一种方案就是使用svg格式的图片, 也能解决部分问题但是这两种方法在设置QLineEdit的icon的时候无效了.没办法继续找答案, 灵光一闪间, 想起了iOS开发中有@2x和@3x的图片, 用来适配不同屏幕分辨率,">
-<meta property="og:updated_time" content="2017-10-19T10:58:40.000Z">
+<meta property="og:updated_time" content="2017-10-20T09:37:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt图标显示模糊原因及解决方法">
 <meta name="twitter:description" content="自使用Qt以来其实一直都存在这个问题没能解决(Ps: 期间尝试N个版本), 要问为什么我能忍到现在, 主要还是找到一个临时的解决方案, 通过Qss来设置图标就不会出现失真的情况, 还有一种方案就是使用svg格式的图片, 也能解决部分问题但是这两种方法在设置QLineEdit的icon的时候无效了.没办法继续找答案, 灵光一闪间, 想起了iOS开发中有@2x和@3x的图片, 用来适配不同屏幕分辨率,">
@@ -182,7 +182,7 @@
 
   <div class="article-info">
     <span class="article-date">
-  Write: 2017-10-19 Update: 2017-10-19
+  Write: 2017-10-19 Update: 2017-10-20
 </span>
 
     
@@ -210,6 +210,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">QRect destinationRect = ...</div><div class="line">QIcon icon = ...</div><div class="line">painter.drawPixmap(destinationRect, icon.pixmap(destinationRect.size()));</div><div class="line">QIcon::pixmap()</div></pre></td></tr></table></figure>
 <p>所以<code>Qt</code>使用<code>AA_UseHighDpiPixmaps</code>这个应用程序属性来控制渲染：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 在Qt 5.1和之后的版本中这个属性默认值是关闭的, 需要手动开启</div><div class="line">qApp-&gt;setAttribute(Qt::AA_UseHighDpiPixmaps);</div></pre></td></tr></table></figure>
+<h2 id="一些奇怪的地方"><a href="#一些奇怪的地方" class="headerlink" title="一些奇怪的地方"></a>一些奇怪的地方</h2><p>当没有开启搞质量<code>DPI</code>时:<br>经过尝试, 使用svg矢量图来显示icon一切正常, 单是设置<code>QPushButton</code>的<code>icon</code>时无效, 设置<code>QTreeViewItem</code>的<code>icon</code>是正常的<br>还有就是貌似使用QSS设置icon也不会出现这个bug, 但是不是绝对的, 设置<code>QLineEdit</code>的<code>icon</code>的时候还是会模糊</p>
 
   </div>
   <footer class="article-footer">
