@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2017-12-30T13:58:51.000Z</updated>
+  <updated>2018-01-04T08:55:47.000Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Fix Qt launching debugger not work</title>
+    <link href="http://huyaohui.com/2018/01/04/Fix-Qt-launching-debugger-not-work/"/>
+    <id>http://huyaohui.com/2018/01/04/Fix-Qt-launching-debugger-not-work/</id>
+    <published>2018-01-04T08:33:35.000Z</published>
+    <updated>2018-01-04T08:55:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记一次手贱导致 Qt debugger 无法工作的经历<br>事情是这样的, 因为电脑磁盘空间不够了, 于是我像往常一样打开 DaisyDisk 查看有哪些文件比较占空间, 于是乎故事就开始了.<br>我看到了 /Library/Python/2.7/site-packages 这个目录发现这是系统的 python 包路径, 因为我用的是 brew 安装的最新版 python , 就想当然的认为这个是没有用的了, 于是乎就删之, 删除之后我并没有发现有什么异样, 因为并不是需要经常用 Qt debugger 的, 于是乎某一天开启debug, 发现gg了, 起初还以为是系统更新的问题, 然后把 Qt, Xcode 都更新了一遍, 发现还是不行, google 到的信息, 也没能解决我的问题, 一直蛋疼了很久, 突然想起可以去看下 debug log, 或许能知道是什么原因, 打开 log 一看果然有问题, 知道问题了自然就好解决了, 下面就来说说我怎么解决的吧.</p>
+<a id="more"></a>
+<h2 id="错误log"><a href="#错误log" class="headerlink" title="错误log"></a>错误log</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">eERROR: Lldb stderr: Traceback (most recent call last):</div><div class="line">e  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">eERROR: Lldb stderr:   File &quot;/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Resources/Python/lldb/__init__.py&quot;, line 98, in &lt;module&gt;</div><div class="line">e    import six</div><div class="line">eImportError: No module named six</div><div class="line">eTraceback (most recent call last):</div><div class="line">e  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">eNameError: name &apos;run_one_line&apos; is not defined</div><div class="line">eTraceback (most recent call last):</div><div class="line">e  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">eNameError: name &apos;run_one_line&apos; is not defined</div><div class="line">eTraceback (most recent call last):</div><div class="line">e  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">eNameError: name &apos;run_one_line&apos; is not defined</div><div class="line">eTraceback (most recent call last):</div><div class="line">e  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">eNameError: name &apos;run_one_line&apos; is not defined</div><div class="line">eTraceback (most recent call last):</div><div class="line">e  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">eNameError: name &apos;run_one_line&apos; is not defined</div><div class="line">eTraceback (most recent call last):</div><div class="line">e  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">eNameError: name &apos;run_one_line&apos; is not defined</div><div class="line">eerror: python failed attempting to evaluate &apos;print(&apos;@\nlldbstartupok@\n&apos;)&apos;</div></pre></td></tr></table></figure>
+<p>google 到的解决方案是需要安装<code>pip install six</code>这个包</p>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><h3 id="卸载-brew-安装的-python"><a href="#卸载-brew-安装的-python" class="headerlink" title="卸载 brew 安装的 python"></a>卸载 brew 安装的 python</h3><p>如果不卸载, 无法使用系统 python, <code>LLDB</code>调用的是系统的 python 而不是自己安装的<br>需要注意的是, 卸载完后需要重启一下控制台</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew uninstall --ignore-dependencies python</div></pre></td></tr></table></figure>
+<h3 id="安装-pip"><a href="#安装-pip" class="headerlink" title="安装 pip"></a>安装 pip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://bootstrap.pypa.io/get-pip.py</div><div class="line">sudo python get-pip.py</div></pre></td></tr></table></figure>
+<h3 id="安装-six-包"><a href="#安装-six-包" class="headerlink" title="安装 six 包"></a>安装 six 包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install six</div></pre></td></tr></table></figure>
+<p>ok, 打完收工, 完美如初</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不要手贱, 不要手贱, 不要手贱…</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记一次手贱导致 Qt debugger 无法工作的经历&lt;br&gt;事情是这样的, 因为电脑磁盘空间不够了, 于是我像往常一样打开 DaisyDisk 查看有哪些文件比较占空间, 于是乎故事就开始了.&lt;br&gt;我看到了 /Library/Python/2.7/site-packages 这个目录发现这是系统的 python 包路径, 因为我用的是 brew 安装的最新版 python , 就想当然的认为这个是没有用的了, 于是乎就删之, 删除之后我并没有发现有什么异样, 因为并不是需要经常用 Qt debugger 的, 于是乎某一天开启debug, 发现gg了, 起初还以为是系统更新的问题, 然后把 Qt, Xcode 都更新了一遍, 发现还是不行, google 到的信息, 也没能解决我的问题, 一直蛋疼了很久, 突然想起可以去看下 debug log, 或许能知道是什么原因, 打开 log 一看果然有问题, 知道问题了自然就好解决了, 下面就来说说我怎么解决的吧.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Qt" scheme="http://huyaohui.com/categories/Qt/"/>
+    
+    
+      <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
+    
+      <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
+    
+      <category term="Debug" scheme="http://huyaohui.com/tags/Debug/"/>
+    
+  </entry>
   
   <entry>
     <title>解决Qt使用动画更改窗口大小时窗口内部件闪烁的问题</title>
@@ -1353,94 +1389,6 @@
       <category term="Windows" scheme="http://huyaohui.com/tags/Windows/"/>
     
       <category term="Thunder" scheme="http://huyaohui.com/tags/Thunder/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS6.5安装GitLab7.10.4</title>
-    <link href="http://huyaohui.com/2016/01/09/CentOS6.5%E5%AE%89%E8%A3%85GitLab7.10.4/"/>
-    <id>http://huyaohui.com/2016/01/09/CentOS6.5安装GitLab7.10.4/</id>
-    <published>2016-01-09T09:00:41.000Z</published>
-    <updated>2016-06-30T10:32:23.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>GitLab，是一个利用 Ruby on Rails 开发的开源应用程序，实现一个自托管的Git项目仓库，可通过Web界面进行访问公开的或者私人项目。<br>它拥有与GitHub类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序（Wall）进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。<br>GitLab 要求服务器端采用 Gitolite 搭建(为了方便安装，现已经用gitlab-shell代替Gitolite[1])。<a href="https://zh.wikipedia.org/wiki/Gitlab" target="_blank" rel="external">-&gt;wikipedia.org</a></p>
-<a id="more"></a>
-<h2 id="GitLab的安装方式"><a href="#GitLab的安装方式" class="headerlink" title="GitLab的安装方式"></a>GitLab的安装方式</h2><p>GitLab的两种安装方法</p>
-<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><ol>
-<li>优点：可定制性强。数据库既可以选择MySQL,也可以选择PostgreSQL;服务器既可以选择Apache，也可以选择Nginx。</li>
-<li>缺点：国外的源不稳定，被墙时，依赖软件包难以下载。配置流程繁琐、复杂，容易出现各种各样的问题。依赖关系多，不容易管理，卸载GitLab相对麻烦。</li>
-</ol>
-<h3 id="通过rpm包安装"><a href="#通过rpm包安装" class="headerlink" title="通过rpm包安装"></a>通过rpm包安装</h3><ol>
-<li>优点：安装过程简单，安装速度快。采用rpm包安装方式，安装的软件包便于管理。</li>
-<li>缺点：数据库默认采用PostgreSQL，服务器默认采用Nginx，不容易定制。</li>
-</ol>
-<h2 id="安装GitLab-CE-Omnibus包"><a href="#安装GitLab-CE-Omnibus包" class="headerlink" title="安装GitLab CE Omnibus包"></a>安装GitLab CE Omnibus包</h2><h3 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><p>在linux终端下，使用cat /etc/issue命令查询当前系统的发行版本，查询到阿里云所安装的linux版本为CentOS release 6.6 (Final)。</p>
-<h3 id="下载系统对应的安装包"><a href="#下载系统对应的安装包" class="headerlink" title="下载系统对应的安装包"></a>下载系统对应的安装包</h3><p><a href="https://about.gitlab.com/downloads/archives/" target="_blank" rel="external">https://about.gitlab.com/downloads/archives/</a><br>进入gitlab官方网站,选择对应的操作系统——CentOS 6 (and RedHat/Oracle/Scientific Linux 6)</p>
-<h3 id="按照官方的提示进行安装"><a href="#按照官方的提示进行安装" class="headerlink" title="按照官方的提示进行安装"></a>按照官方的提示进行安装</h3><h4 id="安装配置必要的依赖"><a href="#安装配置必要的依赖" class="headerlink" title="安装配置必要的依赖"></a>安装配置必要的依赖</h4><p>在Centos 6 和 7 中，以下的命令将会打开HTTP和SSH在系统防火墙中的可访问权限。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo yum install openssh-server</div><div class="line">sudo yum install postfix</div><div class="line">sudo yum install cronie</div><div class="line">sudo service postfix start</div><div class="line">sudo chkconfig postfix on</div><div class="line">sudo lokkit -s http -s ssh</div></pre></td></tr></table></figure>
-<h4 id="下载Omnibus-package包并安装"><a href="#下载Omnibus-package包并安装" class="headerlink" title="下载Omnibus package包并安装"></a>下载Omnibus package包并安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://downloads-packages.s3.amazonaws.com/centos-6.6/gitlab-ce-7.10.4~omnibus-1.x86_64.rpm</div><div class="line">sudo rpm -i gitlab-ce-7.10.4~omnibus-1.x86_64.rpm</div></pre></td></tr></table></figure>
-<p><code>Note:由于amazonaws的服务器被墙，下载这个包时可能需要翻墙下载。</code></p>
-<h4 id="配置并启动GitLab"><a href="#配置并启动GitLab" class="headerlink" title="配置并启动GitLab"></a>配置并启动GitLab</h4><ol>
-<li>打开<code>/etc/gitlab/gitlab.rb</code></li>
-<li>将<code>external_url = &#39;http://git.example.com&#39;</code>修改为自己的IP地址：<code>http://xxx.xx.xxx.xx</code></li>
-<li>然后执行下面的命令，对GitLab进行编译。<code>sudo gitlab-ctl reconfigure</code></li>
-</ol>
-<h4 id="登录GitLab"><a href="#登录GitLab" class="headerlink" title="登录GitLab"></a>登录GitLab</h4><p>Username: root<br>Password: 5iveL!fe</p>
-<h2 id="安装过程中出现的问题"><a href="#安装过程中出现的问题" class="headerlink" title="安装过程中出现的问题"></a>安装过程中出现的问题</h2><h3 id="在浏览器中访问GitLab出现502错误"><a href="#在浏览器中访问GitLab出现502错误" class="headerlink" title="在浏览器中访问GitLab出现502错误"></a>在浏览器中访问GitLab出现502错误</h3><p>原因：内存不足。</p>
-<p>解决办法：检查系统的虚拟内存是否随机启动了，如果系统无虚拟内存，则增加虚拟内存，再重新启动系统。</p>
-<h3 id="80端口冲突"><a href="#80端口冲突" class="headerlink" title="80端口冲突"></a>80端口冲突</h3><p>原因：Nginx默认使用了80端口。</p>
-<p>解决办法：</p>
-<ol>
-<li>为了使Nginx与Apache能够共存，并且为了简化GitLab的URL地址，Nginx端口保持不变，修改Apache的端口为<code>4040</code>。</li>
-<li>这样就可以直接用使用ip访问Gitlab。</li>
-<li>而禅道则可以使用<code>4040</code>端口进行访问，像这样：<code>xxx.xx.xxx.xx:4040/zentao</code>。</li>
-<li>具体修改的地方在<code>/etc/httpd/conf/httpd.conf</code>这个文件中</li>
-<li>找到<code>Listen 80</code>这一句并将之注释掉</li>
-<li>在底下添加一句<code>Listen 4040</code></li>
-<li>保存后执行<code>service httpd restart</code>重启apache服务即可。</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Listen 80 </span></div><div class="line">Listen 4040</div></pre></td></tr></table></figure>
-<h3 id="8080端口冲突"><a href="#8080端口冲突" class="headerlink" title="8080端口冲突"></a>8080端口冲突</h3><p>原因：由于unicorn默认使用的是8080端口。</p>
-<p>解决办法：</p>
-<ol>
-<li>打开<code>/etc/gitlab/gitlab.rb</code></li>
-<li>去掉<code># unicorn[&#39;port&#39;] = 8080</code>的注释，将<code>8080</code>修改为<code>9090</code></li>
-<li>保存后运行<code>sudo gitlab-ctl reconfigure</code>即可。</li>
-</ol>
-<h3 id="STMP设置"><a href="#STMP设置" class="headerlink" title="STMP设置"></a>STMP设置</h3><p>配置无效，暂时不知道原因。</p>
-<h3 id="GitLab头像无法正常显示"><a href="#GitLab头像无法正常显示" class="headerlink" title="GitLab头像无法正常显示"></a>GitLab头像无法正常显示</h3><p>原因：gravatar被墙<br>解决办法：<br>编辑 /etc/gitlab/gitlab.rb，将<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># gitlab_rails['gravatar_plain_url'] = 'http://gravatar.duoshuo.com/avatar/%&#123;hash&#125;?s=%&#123;size&#125;&amp;d=identicon'</span></div><div class="line"><span class="comment">## 修改为：</span></div><div class="line">gitlab_rails[<span class="string">'gravatar_plain_url'</span>] = <span class="string">'http://gravatar.duoshuo.com/avatar/%&#123;hash&#125;?s=%&#123;size&#125;&amp;d=identicon'</span></div></pre></td></tr></table></figure></p>
-<p>然后在命令行执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo gitlab-ctl reconfigure </div><div class="line">sudo gitlab-rake cache:clear RAILS_ENV=production</div></pre></td></tr></table></figure></p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="使用过程中-500"><a href="#使用过程中-500" class="headerlink" title="使用过程中 500"></a>使用过程中 500</h3><h4 id="起初以为是GitLab本身的问题"><a href="#起初以为是GitLab本身的问题" class="headerlink" title="起初以为是GitLab本身的问题"></a>起初以为是GitLab本身的问题</h4><p>期间试了N中方法, 并没有成功, 这里记录下来一种比较靠谱的说法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gitlab-rake gitlab:check</div><div class="line"></div><div class="line">gitlab-rake db:migrate</div><div class="line"></div><div class="line">gitlab-ctl reconfigure</div><div class="line">gitlab-ctl restart</div></pre></td></tr></table></figure>
-<h4 id="我遇到的实际的原因"><a href="#我遇到的实际的原因" class="headerlink" title="我遇到的实际的原因"></a>我遇到的实际的原因</h4><p>就只是应为我服务器的内存过小<br>真的就只是这个问题而已, 整了好久 %&gt;_&lt;%</p>
-<p><code>Ps: 推荐内存2GB以上</code></p>
-<h3 id="关于第三方有email的问题"><a href="#关于第三方有email的问题" class="headerlink" title="关于第三方有email的问题"></a>关于第三方有email的问题</h3><p>尝试了N久, 并没能成功</p>
-<p><a href="http://905010.com/archives/472" target="_blank" rel="external">http://905010.com/archives/472</a><br><a href="http://my.oschina.net/u/1158620/blog/289191?fromerr=hW0nWMlX" target="_blank" rel="external">http://my.oschina.net/u/1158620/blog/289191?fromerr=hW0nWMlX</a><br><a href="http://iceeggplant.blog.51cto.com/1446843/1611147" target="_blank" rel="external">http://iceeggplant.blog.51cto.com/1446843/1611147</a></p>
-<h3 id="系统发件问题"><a href="#系统发件问题" class="headerlink" title="系统发件问题"></a>系统发件问题</h3><h4 id="尽量不要用IP地址访问"><a href="#尽量不要用IP地址访问" class="headerlink" title="尽量不要用IP地址访问"></a>尽量不要用IP地址访问</h4><p>原因: IP地址访问会导致发件人的姓名变成<code>gitlab@xx.xx.xx.xx</code>, 而各大邮箱运营商都是屏蔽IP地址邮箱名的, 应为这个问题搞的我重装了此系统, 悲剧</p>
-<p>解决方法: </p>
-<ol>
-<li><p>使用域名访问</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vim /etc/gitlab/gitlab.rb</div><div class="line"><span class="comment"># 将</span></div><div class="line">external_url = <span class="string">'http://xxx.xx.xxx.xx'</span></div><div class="line"><span class="comment"># 修改为你的域名, 需要解析</span></div><div class="line">external_url = <span class="string">'http://git.example.com'</span></div><div class="line"><span class="comment"># 然后执行下面的命令，对GitLab进行编译。</span></div><div class="line">sudo gitlab-ctl reconfigure</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果你非要用ip地址访问</p>
-</li>
-</ol>
-<p>一定要把ip地址加到有收件人邮箱的白名单中<br><code>Ps: 是IP地址不是发件人, 是IP地址不是发件人, 是IP地址不是发件人, 这点非常重要</code></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://segmentfault.com/a/1190000002722631" target="_blank" rel="external">原文: GitLab 安装配置笔记</a>    (Ps: 对文章有删减, 如有侵权, 请及时联系本人)<br><a href="https://about.gitlab.com/" target="_blank" rel="external">https://about.gitlab.com/</a><br><a href="http://leo108.com/pid-2150.asp" target="_blank" rel="external">http://leo108.com/pid-2150.asp</a><br><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/2052" target="_blank" rel="external">https://gitlab.com/gitlab-org/gitlab-ce/issues/2052</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;GitLab，是一个利用 Ruby on Rails 开发的开源应用程序，实现一个自托管的Git项目仓库，可通过Web界面进行访问公开的或者私人项目。&lt;br&gt;它拥有与GitHub类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序（Wall）进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。&lt;br&gt;GitLab 要求服务器端采用 Gitolite 搭建(为了方便安装，现已经用gitlab-shell代替Gitolite[1])。&lt;a href=&quot;https://zh.wikipedia.org/wiki/Gitlab&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;-&amp;gt;wikipedia.org&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="CentOS" scheme="http://huyaohui.com/categories/CentOS/"/>
-    
-    
-      <category term="CentOS" scheme="http://huyaohui.com/tags/CentOS/"/>
-    
-      <category term="GitLab" scheme="http://huyaohui.com/tags/GitLab/"/>
     
   </entry>
   
