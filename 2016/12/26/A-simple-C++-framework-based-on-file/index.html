@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    A simple C++ framework based on file
+  
+</title>
+
+<meta name="description" content="A simple C++ framework based on file.">
+<meta name="keywords" content="FileDBR,C&#x2F;CPP,Library">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A simple C++ framework based on file">
+<meta property="og:url" content="http://huyaohui.com/2016/12/26/A-simple-C++-framework-based-on-file/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="A simple C++ framework based on file.">
+<meta property="og:updated_time" content="2017-07-30T04:35:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A simple C++ framework based on file">
+<meta name="twitter:description" content="A simple C++ framework based on file.">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">超平和バスターズはずっとなかよし</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SB/">SB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SB/">SB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/categories/SB" title="SB series">SB series</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/Niconiconi" title="Niconiconi">Niconiconi</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="external">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-A-simple-CPP-framework-based-on-file" class="article article-type-post">
+  
+    <h1 class="article-header">
+      A simple C++ framework based on file
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Write: 2016-12-26 Update: 2017-07-30
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C-CPP/">C/CPP</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-CPP/">C/CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FileDBR/">FileDBR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Library/">Library</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>A simple C++ framework based on file.</p>
+<a id="more"></a>
+<h2 id="瞎扯淡"><a href="#瞎扯淡" class="headerlink" title="瞎扯淡"></a>瞎扯淡</h2><blockquote>
+<p>前段时间(其实离现在已经不短了)印象笔记免费用户限制客户端同步个数, 像我这样 WindowsPC, WindowsBook, WindowsPad, WindowsPhoen, iPhone, MacBook, AndroidPad这么多设备需要同(我真不是装逼, 好吧我在装逼), 两台设备配额肯定不够的啊, 有木有, 别跟我说可以付费啊, 付费就不限制了, 反正我就不付费. </p>
+<p>于是乎就突发奇想, 自己开发一个笔记应用, 那么问题来了, 得需要服务器呢, 怎么办, 想来想去, 想到不是有git吗? 我可以用git来做服务器存储笔记文件啊, 我真他妈是个天才, 恩, 我差点就信了. </p>
+<p>经过一段时间的构思, 想起如果使用数据库的话, 会生成字节码文件, 这可不妙, git 对处理字节码可不在行, 思前想后, 最终决定使用纯纯文本文件为存储源, 存储数据, 反正也不会有很大的数据量, 于是乎就google了一番, 没找到相关的开源库, 心想这下坑爹了. 最终没办法, 只能自学了C++开始写这个库, 不要问我为什么不用自己擅长的语言写, 我要跨平台啊, 啊, 啊, 啊… 跨平台的话, 除了C/C++, 我还没有找到很好的选择. 这个项目我是准备支持全平台的, 好吧, 给自己挖了个巨坑… 反正无所谓了, 挖了就挖了, 填补填的上就看造化了.</p>
+<p>废话就这么多了, 下面是文档和开源地址</p>
+</blockquote>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><h2 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h2><h3 id="Use"><a href="#Use" class="headerlink" title="Use"></a>Use</h3><p>Drag <code>src/*</code> to your projects</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"FdbrQueryBuilder.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> FileDBR;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</div><div class="line">    <span class="function">FdbrQueryBuilder <span class="title">queryBuilder</span><span class="params">(<span class="string">"/Users/MakeHui/Desktop/"</span>)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Create table and delete table</p>
+<h4 id="createTable"><a href="#createTable" class="headerlink" title="createTable"></a>createTable</h4><p>Create table</p>
+<blockquote>
+<p>bool createTable(string table, vector&lt;string&gt; columns)</p>
+<ul>
+<li>table: The table name</li>
+<li>columns: create column name</li>
+<li></li>
+<li>return: bool</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.createTable(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>, <span class="string">"field3"</span>&#125;);</div></pre></td></tr></table></figure>
+<h4 id="deleteTable"><a href="#deleteTable" class="headerlink" title="deleteTable"></a>deleteTable</h4><p>Delete table</p>
+<blockquote>
+<p>bool createTable(string table)</p>
+<ul>
+<li>table: The table name</li>
+<li></li>
+<li>return: bool</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.deleteTable(<span class="string">"tablename.fdbr"</span>);</div></pre></td></tr></table></figure>
+<h3 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h3><p>In the basic use. You can use symbols to filter parameters.</p>
+<h4 id="equality"><a href="#equality" class="headerlink" title="equality"></a>equality</h4><p>field1 = 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;&#125;);</div><div class="line"><span class="comment">// or</span></div><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 ="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="not-equal"><a href="#not-equal" class="headerlink" title="not equal"></a>not equal</h4><p>field1 != 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 !="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="greater"><a href="#greater" class="headerlink" title="greater"></a>greater</h4><p>field1 &gt; 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &gt;"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="lesser"><a href="#lesser" class="headerlink" title="lesser"></a>lesser</h4><p>field1 &lt; 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &lt;"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="greater-or-equal"><a href="#greater-or-equal" class="headerlink" title="greater or equal"></a>greater or equal</h4><p>field1 &gt;= 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &gt;="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="lesser-or-equal"><a href="#lesser-or-equal" class="headerlink" title="lesser or equal"></a>lesser or equal</h4><p>field1 &lt;= 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &lt;="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="like"><a href="#like" class="headerlink" title="like"></a>like</h4><p>field1 like 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 ~"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="not-like"><a href="#not-like" class="headerlink" title="not like"></a>not like</h4><p>field1 not like 123</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 !~"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h3><p>Some to the query method in common use.</p>
+<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><p>Select data from table</p>
+<blockquote>
+<p>vector&lt;map&lt;string, string&gt;&gt; select(string table, vector&lt;string&gt; columns = {}, map&lt;string, string&gt; where = {}, map&lt;string, string&gt; order = {})</p>
+<ul>
+<li>table: The table name</li>
+<li>columns: The target columns of data will be fetched</li>
+<li>where: Query conditions</li>
+<li>order: Sorting conditions</li>
+<li></li>
+<li>return: vector&lt;map&lt;string, string&gt;&gt;</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"DESC"</span>&#125;&#125;)</div></pre></td></tr></table></figure>
+<h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h4><p>Insert new records in table</p>
+<blockquote>
+<p>bool insert(string table, map&lt;string, string&gt; datas)</p>
+<ul>
+<li>table: The table name</li>
+<li>datas: The data will be inserted into table</li>
+<li></li>
+<li>return: bool</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.insert(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;, &#123;<span class="string">"field3"</span>, <span class="string">"456"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>Modify data in table</p>
+<blockquote>
+<p>unsigned int update(string table, map&lt;string, string&gt; datas, map&lt;string, string&gt; where = {})</p>
+<ul>
+<li>table: The table name</li>
+<li>datas: The data that will be modified</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: The number of rows affected</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = queryBuilder.update(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"111"</span>&#125;&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="del"><a href="#del" class="headerlink" title="del"></a>del</h4><p>Delete data from table</p>
+<blockquote>
+<p>unsigned int del(string table, map&lt;string, string&gt; where = {})</p>
+<ul>
+<li>table: The table name</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: The number of rows affected</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = queryBuilder.del(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="get"><a href="#get" class="headerlink" title="get"></a>get</h4><p>Get only one record from table</p>
+<blockquote>
+<p>map&lt;string, string&gt; get(string table, vector&lt;string&gt; columns = {}, map&lt;string, string&gt; where = {}, map&lt;string, string&gt; order = {})</p>
+<ul>
+<li>table: The table name</li>
+<li>columns: The target columns of data will be fetched</li>
+<li>where: Query conditions</li>
+<li>order: Sorting conditions</li>
+<li></li>
+<li>return map&lt;string, string&gt;</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; data = queryBuilder.get(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"ASC"</span>&#125;&#125;)</div></pre></td></tr></table></figure>
+<h4 id="has"><a href="#has" class="headerlink" title="has"></a>has</h4><p>Determine whether the target data existed</p>
+<blockquote>
+<p>bool has(string table, map&lt;string, string&gt; where = {})</p>
+<ul>
+<li>table: The table name</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: bool</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.has(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="count"><a href="#count" class="headerlink" title="count"></a>count</h4><p>Counts the number of rows</p>
+<blockquote>
+<p>unsigned int count(string table, map&lt;string, string&gt; where = {});</p>
+<ul>
+<li>table: The table name</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: unsigned int</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = queryBuilder.count(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="max"><a href="#max" class="headerlink" title="max"></a>max</h4><p>Get the maximum value for the column and support string</p>
+<blockquote>
+<p>string max(string table, string column, map&lt;string, string&gt; where = {})</p>
+<ul>
+<li>table: The table name</li>
+<li>column: The target column will be calculated</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: string</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> data = queryBuilder.max(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="min"><a href="#min" class="headerlink" title="min"></a>min</h4><p>Get the minimum value for the column and support string</p>
+<blockquote>
+<p>string min(string table, string column, map&lt;string, string&gt; where = {});</p>
+<ul>
+<li>table: The table name</li>
+<li>column: The target column will be calculated</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: string</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> data = queryBuilder.min(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="avg"><a href="#avg" class="headerlink" title="avg"></a>avg</h4><p>Get the average value for the column</p>
+<blockquote>
+<p>long double avg(string table, string column, map&lt;string, string&gt; where = {});</p>
+<ul>
+<li>table: The table name</li>
+<li>column: The target column will be calculated</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: long double</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> <span class="keyword">double</span> data = queryBuilder.avg(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h4 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h4><p>Get the total value for the column</p>
+<blockquote>
+<p>long double sum(string table, string column, map&lt;string, string&gt; where = {});</p>
+<ul>
+<li>table: The table name</li>
+<li>column: The target column will be calculated</li>
+<li>where: Query conditions</li>
+<li></li>
+<li>return: long double</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> <span class="keyword">double</span> data = queryBuilder.sum(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>FileDBR is under the LGPLv2.1 license.</p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+          <div class="main-footer">
+  
+    © 2018 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

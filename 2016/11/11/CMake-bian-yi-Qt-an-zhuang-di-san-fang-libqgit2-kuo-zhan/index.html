@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    CMake 编译 Qt 安装第三方 libqgit2 扩展
+  
+</title>
+
+<meta name="description" content="虽然非常不愿意踏上编译这条不归路, 谁叫我爱折腾跨平台呢.之前一直在搞 Cordova, 不过现在彻底对 H5 跨平台绝望了, 这里不做过多说明了, 可能以后会单独拿出来说道说道.该扯得蛋也扯完了, ok, 进入正题, 编译 Qt 扩展, 坑坑坑…">
+<meta name="keywords" content="C&#x2F;CPP,CMake,Qt,libgit2,libqgit2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMake 编译 Qt 安装第三方 libqgit2 扩展">
+<meta property="og:url" content="http://huyaohui.com/2016/11/11/CMake-bian-yi-Qt-an-zhuang-di-san-fang-libqgit2-kuo-zhan/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="虽然非常不愿意踏上编译这条不归路, 谁叫我爱折腾跨平台呢.之前一直在搞 Cordova, 不过现在彻底对 H5 跨平台绝望了, 这里不做过多说明了, 可能以后会单独拿出来说道说道.该扯得蛋也扯完了, ok, 进入正题, 编译 Qt 扩展, 坑坑坑…">
+<meta property="og:updated_time" content="2017-01-08T07:36:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CMake 编译 Qt 安装第三方 libqgit2 扩展">
+<meta name="twitter:description" content="虽然非常不愿意踏上编译这条不归路, 谁叫我爱折腾跨平台呢.之前一直在搞 Cordova, 不过现在彻底对 H5 跨平台绝望了, 这里不做过多说明了, 可能以后会单独拿出来说道说道.该扯得蛋也扯完了, ok, 进入正题, 编译 Qt 扩展, 坑坑坑…">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">超平和バスターズはずっとなかよし</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SB/">SB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SB/">SB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/categories/SB" title="SB series">SB series</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/Niconiconi" title="Niconiconi">Niconiconi</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="external">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-CMake-编译-Qt-安装第三方-libqgit2-扩展" class="article article-type-post">
+  
+    <h1 class="article-header">
+      CMake 编译 Qt 安装第三方 libqgit2 扩展
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Write: 2016-11-11 Update: 2017-01-08
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Qt/">Qt</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-CPP/">C/CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CMake/">CMake</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/libgit2/">libgit2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/libqgit2/">libqgit2</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>虽然非常不愿意踏上编译这条不归路, 谁叫我爱折腾跨平台呢.<br>之前一直在搞 Cordova, 不过现在彻底对 H5 跨平台绝望了, 这里不做过多说明了, 可能以后会单独拿出来说道说道.<br>该扯得蛋也扯完了, ok, 进入正题, 编译 Qt 扩展, 坑坑坑…</p>
+<a id="more"></a>
+<p>这里我以编译<code>libqgit2</code>为例说明</p>
+<h2 id="下载安装相关依赖"><a href="#下载安装相关依赖" class="headerlink" title="下载安装相关依赖"></a>下载安装相关依赖</h2><p><a href="http://download.qt.io/official_releases/qt/5.7/5.7.0/" target="_blank" rel="external">download.qt.io 下载 qt-opensource-mac-x64-clang-5.7.0.dmg 安装包</a><br><a href="https://github.com/anselmolsm/libqgit2" target="_blank" rel="external">anselmolsm/libqgit2 下载libqgit2源码</a><br><a href="https://github.com/libgit2/libgit2/releases?after=v0.23.1" target="_blank" rel="external">libgit2/libgit2/releases 下载 libgit2 v0.23.0源码</a></p>
+<h3 id="安装-Qt"><a href="#安装-Qt" class="headerlink" title="安装 Qt"></a>安装 Qt</h3><p>傻瓜式安装 Pass…</p>
+<p>Ps: 不要忘记了安装目录, 要不就要悲剧了, 不过你不可能这么蠢的对不…</p>
+<h3 id="编译准备"><a href="#编译准备" class="headerlink" title="编译准备"></a>编译准备</h3><p>先列出几个遇到的错误, 编译最坑的莫过于各种依赖了, 而且安装方式还不一样</p>
+<h4 id="Building-with-Qt4-support"><a href="#Building-with-Qt4-support" class="headerlink" title="Building with Qt4 support"></a>Building with Qt4 support</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-- Building with Qt4 support</div><div class="line">CMake Error at /usr/<span class="built_in">local</span>/Cellar/cmake/3.6.3/share/cmake/Modules/FindQt4.cmake:1328 (message):</div><div class="line">  Found unsuitable Qt version <span class="string">""</span> from NOTFOUND, this code requires Qt 4.x</div><div class="line">Call Stack (most recent call first):</div><div class="line">  CMakeLists.txt:57 (find_package)</div><div class="line"></div><div class="line"></div><div class="line">-- Configuring incomplete, errors occurred!</div><div class="line">See also <span class="string">"/Users/MakeHui/Downloads/libqgit2-master/build/CMakeFiles/CMakeOutput.log"</span>.</div></pre></td></tr></table></figure>
+<p>错误原因: 是找不到 Qt 库<br>解决方法: 需要指定 Qt 库的路径</p>
+<h4 id="No-libgit2-found"><a href="#No-libgit2-found" class="headerlink" title="No libgit2 found"></a>No libgit2 found</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">FATAL_ERROR <span class="string">"No libgit2 found!</span></div><div class="line">Install the libgit2 development files to your system.</div><div class="line">Alternatively define LIBGIT2_SRC_DIR to point to a libgit2 source directory.</div></pre></td></tr></table></figure>
+<p>错误原因: 找不到 libgit2 库<br>解决方法: 有两种解决方法</p>
+<ol>
+<li>安装<code>libgit2</code>库, 但是千万别<code>brew install libgit2</code>这样安装(这个非常坑爹, 差点搞的但都碎了), 原因是这样安装的一定是最新版, 但是<code>libqgit2</code>这个库不支持最新版本的<code>libgit2</code>, 够囧吧(主要还是没什么人维护了, 库原地址: <a href="https://github.com/KDE/libqgit2" target="_blank" rel="external">https://github.com/KDE/libqgit2</a> 有能力的可以去贡献代码)</li>
+<li>指定 <code>LIBGIT2_SRC_DIR</code> 参数, 也就是指定<code>libgit2</code>源代码的位置, 直接一并编译安装, 或者你先去手动编译安装一个低版本的<code>libgit2</code>库同样没问题, 这里我推荐直接包含在<code>libqgit2</code>中编译</li>
+</ol>
+<h4 id="Could-NOT-find-Doxygen"><a href="#Could-NOT-find-Doxygen" class="headerlink" title="Could NOT find Doxygen"></a>Could NOT find Doxygen</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Could NOT find Doxygen (missing:  DOXYGEN_EXECUTABLE)</div></pre></td></tr></table></figure>
+<p>这个错误不是很懂什么意思, 不过直接<code>brew install doxygen</code>完事<br><a href="http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x" target="_blank" rel="external">http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x</a></p>
+<h4 id="修改-CMakeLists-txt-文件"><a href="#修改-CMakeLists-txt-文件" class="headerlink" title="修改 CMakeLists.txt 文件"></a>修改 CMakeLists.txt 文件</h4><p>添加下面两行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> (CMAKE_PREFIX_PATH <span class="string">"/Applications/Qt/5.7/clang_64"</span>)         <span class="comment"># Qt 库的路径</span></div><div class="line"><span class="built_in">set</span> (LIBGIT2_SRC_DIR <span class="string">"/Users/MakeHui/Downloads/libgit2-0.23.0"</span>) <span class="comment"># libgit2 源码的路径</span></div></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>上面的准备工作完成后执行下面的命令开始编译<br>Ps: 先切换到<code>libqgit2</code>源文件根目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Building (out of source build):</span></div><div class="line">$ &gt; mkdir build &amp;&amp; <span class="built_in">cd</span> build</div><div class="line">$ &gt; cmake .. </div><div class="line">$ &gt; cmake --build .</div><div class="line"><span class="comment"># Testing: 可不检查</span></div><div class="line">$ &gt; ctest -V</div><div class="line"><span class="comment"># Install:</span></div><div class="line">$ &gt; cmake --build . --target install</div></pre></td></tr></table></figure>
+<p>默认安装路径: <code>/usr/local</code></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>创建项目Libqgit2Test</li>
+<li>打开Libqgit2Test.pro</li>
+<li>右键 -&gt; Add Library… -&gt; External library -&gt; continue -&gt; 选择库安装路径 -&gt; continue</li>
+<li><p>生成代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../usr/local/lib/release/ -lqgit2</div><div class="line"><span class="keyword">else</span>:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../usr/local/lib/debug/ -lqgit2</div><div class="line"><span class="keyword">else</span>:unix: LIBS += -L$$PWD/../../../../../usr/local/lib/ -lqgit2</div><div class="line"></div><div class="line">INCLUDEPATH += $$PWD/../../../../../usr/local/include</div><div class="line">DEPENDPATH += $$PWD/../../../../../usr/local/include</div></pre></td></tr></table></figure>
+</li>
+<li><p>clone远程仓库</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> repository = <span class="keyword">new</span> LibQGit2::Repository();</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    repository-&gt;clone(<span class="string">"http://git.famishare.cn/MakeHui/test2.git"</span>, <span class="string">"/Users/MakeHui/Desktop/test3"</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (<span class="keyword">const</span> LibQGit2::Exception&amp; e) &#123;</div><div class="line">    qDebug() &lt;&lt; e.message();</div><div class="line">&#125;</div><div class="line">qDebug() &lt;&lt; repository-&gt;listReferences();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://doc.qt.io/qt-5/cmake-manual.html" target="_blank" rel="external">http://doc.qt.io/qt-5/cmake-manual.html</a><br><a href="http://blog.claves.me/2015/04/29/cmake/" target="_blank" rel="external">http://blog.claves.me/2015/04/29/cmake/</a><br><a href="http://www.cnblogs.com/listensong/p/4316944.html" target="_blank" rel="external">http://www.cnblogs.com/listensong/p/4316944.html</a><br><a href="https://svn.osgeo.org/ossim/trunk/ossim_package_support/cmake/CMakeModules/FindQt5.cmake" target="_blank" rel="external">https://svn.osgeo.org/ossim/trunk/ossim_package_support/cmake/CMakeModules/FindQt5.cmake</a><br><a href="http://stackoverflow.com/questions/15639781/how-to-find-qt5-cmake-module-on-windows" target="_blank" rel="external">http://stackoverflow.com/questions/15639781/how-to-find-qt5-cmake-module-on-windows</a><br><a href="http://www.cppblog.com/Error/archive/2013/04/13/199407.aspx" target="_blank" rel="external">http://www.cppblog.com/Error/archive/2013/04/13/199407.aspx</a><br><a href="http://blog.csdn.net/u010598445/article/details/46729705" target="_blank" rel="external">http://blog.csdn.net/u010598445/article/details/46729705</a><br><a href="http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x" target="_blank" rel="external">http://stackoverflow.com/questions/29846214/could-not-find-doxygen-missing-doxygen-executable-in-mac-os-x</a><br><a href="http://stackoverflow.com/questions/33728905/qt-creator-project-error-xcode-not-set-up-properly-you-may-need-to-confirm-t" target="_blank" rel="external">http://stackoverflow.com/questions/33728905/qt-creator-project-error-xcode-not-set-up-properly-you-may-need-to-confirm-t</a></p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+          <div class="main-footer">
+  
+    © 2018 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    在同个工程中使用 Swift 和 Objective-C(Swift and Objective-C in the Same Project)
+  
+</title>
+
+<meta name="description" content="Swift 与 Objective-C 的兼容能力使你可以在同一个工程中同时使用两种语言。你可以用这种叫做 mix and match 的特性来开发基于混合语言的应用，可以用 Swift 的最新特性实现应用的一部分功能，并无缝地并入已有的 Objective-C 的代码中。">
+<meta name="keywords" content="iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在同个工程中使用 Swift 和 Objective-C(Swift and Objective-C in the Same Project)">
+<meta property="og:url" content="http://huyaohui.com/2015/08/15/zai-tong-ge-gong-cheng-zhong-shi-yong-Swift-he-Objective-C(Swift-and-Objective-C-in-the-Same-Project)/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="Swift 与 Objective-C 的兼容能力使你可以在同一个工程中同时使用两种语言。你可以用这种叫做 mix and match 的特性来开发基于混合语言的应用，可以用 Swift 的最新特性实现应用的一部分功能，并无缝地并入已有的 Objective-C 的代码中。">
+<meta property="og:image" content="https://raw.githubusercontent.com/haolloyin/Welcome-to-Swift/translate/Using%20Swift%20with%20Cocoa%20and%20Objective-C/03Mix%20and%20Match/DAG_2x.png?raw=true">
+<meta property="og:image" content="https://raw.githubusercontent.com/haolloyin/Welcome-to-Swift/translate/Using%20Swift%20with%20Cocoa%20and%20Objective-C/03Mix%20and%20Match/bridgingheader_2x.png?raw=true">
+<meta property="og:updated_time" content="2016-12-20T01:17:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在同个工程中使用 Swift 和 Objective-C(Swift and Objective-C in the Same Project)">
+<meta name="twitter:description" content="Swift 与 Objective-C 的兼容能力使你可以在同一个工程中同时使用两种语言。你可以用这种叫做 mix and match 的特性来开发基于混合语言的应用，可以用 Swift 的最新特性实现应用的一部分功能，并无缝地并入已有的 Objective-C 的代码中。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/haolloyin/Welcome-to-Swift/translate/Using%20Swift%20with%20Cocoa%20and%20Objective-C/03Mix%20and%20Match/DAG_2x.png?raw=true">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">超平和バスターズはずっとなかよし</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SB/">SB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SB/">SB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/categories/SB" title="SB series">SB series</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/Niconiconi" title="Niconiconi">Niconiconi</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="external">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-在同个工程中使用-Swift-和-Objective-C(Swift-and-Objective-C-in-the-Same-Project)" class="article article-type-post">
+  
+    <h1 class="article-header">
+      在同个工程中使用 Swift 和 Objective-C(Swift and Objective-C in the Same Project)
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Write: 2015-08-15 Update: 2016-12-20
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/iOS/">iOS</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>Swift 与 Objective-C 的兼容能力使你可以在同一个工程中同时使用两种语言。你可以用这种叫做 mix and match 的特性来开发基于混合语言的应用，可以用 Swift 的最新特性实现应用的一部分功能，并无缝地并入已有的 Objective-C 的代码中。</p>
+<a id="more"></a>
+<blockquote>
+<p>翻译：<a href="https://github.com/haolloyin" target="_blank" rel="external">haolloyin</a></p>
+<p>校对：<a href="https://github.com/dabing1022" target="_blank" rel="external">ChildhoodAndy</a></p>
+</blockquote>
+<h1 id="在同个工程中使用-Swift-和-Objective-C"><a href="#在同个工程中使用-Swift-和-Objective-C" class="headerlink" title="在同个工程中使用 Swift 和 Objective-C"></a>在同个工程中使用 Swift 和 Objective-C</h1><p>本节包含内容：</p>
+<ul>
+<li><a href="#mix_and_match_overview">Mix and Match 概述（Mix and Match Overview）</a></li>
+<li><a href="#importing_code_from_within_the_same_app_target">在同个应用的 target 中导入（Importing Code from Within the Same App Target）</a></li>
+<li><a href="#importing_code_from_within_the_same_framework_target">在同个 Framework 的 target 中导入（Importing Code from Within the Same Framework Target）</a></li>
+<li><a href="#importing_external_frameworks">导入外部 framework（Importing External Frameworks）</a></li>
+<li><a href="#using_Swift_from_objective-c">在 Objective-C 中使用 Swift（Using Swift from Objective-C）</a></li>
+<li><a href="#overriding_Swift_names_for_Objective">为 Objective-C 接口重写 Swift 名称</a></li>
+<li><a href="#naming_your_product_module">Product 模块命名（Naming Your Product Module）</a></li>
+<li><a href="#troubleshooting_tips_and_reminders">问题解决提示（Troubleshooting Tips and Reminders）</a></li>
+</ul>
+<p><a name="mix_and_match_overview"></a></p>
+<h2 id="Mix-and-Match-概述"><a href="#Mix-and-Match-概述" class="headerlink" title="Mix and Match 概述"></a>Mix and Match 概述</h2><p>Objective-C 和 Swift 文件可以在一个工程中并存，不管这个工程原本是基于 Objective-C 还是 Swift。你可以直接往现有工程中简单地添加另一种语言的源文件。这种自然的工作流使得创建混合语言的应用或框架 target，与用单独一种语言时一样简单。</p>
+<p>混合语言的工作流程只有一点点区别，这取决于你是在写应用还是写框架。下面描述了普通的用两种语言在一个 target 中导入模型的情况，后续章节会有更多细节。</p>
+<p><img src="https://raw.githubusercontent.com/haolloyin/Welcome-to-Swift/translate/Using%20Swift%20with%20Cocoa%20and%20Objective-C/03Mix%20and%20Match/DAG_2x.png?raw=true" alt="DAG_2x.png"></p>
+<p><a name="importing_code_from_within_the_same_app_target"></a></p>
+<h2 id="在同个应用的-target-中导入"><a href="#在同个应用的-target-中导入" class="headerlink" title="在同个应用的 target 中导入"></a>在同个应用的 target 中导入</h2><p>如果你在写混合语言的应用，可能需要用 Swift 代码访问 Objective-C 代码，或者反之。下面的流程描述了在非框架 target 中的应用。</p>
+<h3 id="将-Objective-C-导入-Swift"><a href="#将-Objective-C-导入-Swift" class="headerlink" title="将 Objective-C 导入 Swift"></a>将 Objective-C 导入 Swift</h3><p>在一个应用的 target 中导入一些 Objective-C 文件供 Swift 代码使用时，你需要依赖于 Objective-C 的桥接头文件（<code>bridging header</code>）来暴露给 Swift。当你添加 Swift 文件到现有的 Objective-C 应用（或反之）时，Xcode 会自动创建这些头文件。</p>
+<p><img src="https://raw.githubusercontent.com/haolloyin/Welcome-to-Swift/translate/Using%20Swift%20with%20Cocoa%20and%20Objective-C/03Mix%20and%20Match/bridgingheader_2x.png?raw=true" alt="bridgingheader_2x.png"></p>
+<p>如果你同意，Xcode 会在源文件创建的同时生成头文件，并用 product 的模块名加上 <code>-Bridging-Header.h</code> 命名。关于 product 的模块名，详见 <a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_85" target="_blank" rel="external">Naming Your Product Module</a>。</p>
+<p>你应该编辑这个头文件来对 Swift 暴露出 Objective-C 代码。</p>
+<h4 id="在同一-target-中将-Objective-C-代码导入到-Swift-中"><a href="#在同一-target-中将-Objective-C-代码导入到-Swift-中" class="headerlink" title="在同一 target 中将 Objective-C 代码导入到 Swift 中"></a>在同一 target 中将 Objective-C 代码导入到 Swift 中</h4><ol>
+<li>在 Objective-C 桥接头文件中，<code>import</code>任何你想暴露给 Swift 的头文件，例如：</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">import</span> "XYZCustomCell.h"</div><div class="line">#<span class="keyword">import</span> "XYZCustomView.h"</div><div class="line">#<span class="keyword">import</span> "XYZCustomViewController.h"</div></pre></td></tr></table></figure>
+<ol>
+<li>确保在 <code>build Settings</code> 中 Objective-C 桥接头文件的 <code>build setting</code> 是基于 Swfit 编译器，即 <code>Code Generation</code> 含有头文件的路径。这个路径必须是头文件自身的路径，而不是它所在的目录。</li>
+</ol>
+<p>这个路径应该是你工程的相对路径，类似 <code>Info.plist</code> 在 <code>build Settings</code> 中指定的路径。在大多数情况下，你不需要修改这个设置。</p>
+<p>在这个桥接头文件中列出的所有 public 的 Objective-C 头文件都会对 Swift 可见。之后当前 target 的所有 Swift 文件都可以使用这些头文件中的方法，不需要任何 import 语句。用 Swift 语法使用这些 Objective-C 代码，就像使用系统自带的 Swift 类一样。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> myCell = <span class="type">XYZCustomCell</span>()</div><div class="line">myCell.subtitle = <span class="string">"A custom cell"</span></div></pre></td></tr></table></figure>
+<h3 id="将-Swift-导入到-Objective-C"><a href="#将-Swift-导入到-Objective-C" class="headerlink" title="将 Swift 导入到 Objective-C"></a>将 Swift 导入到 Objective-C</h3><p>当你在将 Swift 代码导入到 Objective-C 中时，你依赖于 Xcode 生成的头文件来将这些文件暴漏给 Objective-C。这个自动生成的文件是一个 Objective-C 头文件，它包含了你的 target 中所有 Swift 代码中定义的接口。可以把这个 Objective-C 头文件看作 Swift 代码的 <code>umbrella header</code>。头文件名称以 product 模块名加 <code>-Swift.h</code> 来命名。（关于 product 的模块名，详见<a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_85" target="_blank" rel="external">Naming Your Product Module</a>）。</p>
+<p>默认情况下，生成的头文件包含了标记有<code>public</code>修饰符的 Swift 声明接口。它还包含那些打上，如果您的应用程序的目标有一个Objective-C的桥接头内部修改。标有private修饰符声明不会出现在所生成的报头。私人声明没有接触到Objective-C的，除非它们被明确标有@IBAction，@IBOutlet，或@objc为好。如果您的应用程序的目标是编译测试启用，单元测试目标可以访问任何声明与内部修饰，仿佛他们与公众修饰符通过预先@testable的产品模块导入语句声明。</p>
+<p>你不需要做任何事情来生成这个头文件，只需要将它导入到你的 Objective-C 代码来使用它。注意这个头文件中的 Swift 接口包含了它所使用到的所有 Objective-C 类型。如果你在 Swift 代码中使用你自己的 Objective-C 类型，确保先将对应的 Objective-C 头文件导入到你的 Swift 代码中，然后才将 Swift 自动生成的头文件导入到 Objective-C .m 源文件中来访问 Swift 代码。</p>
+<h4 id="在同一-target-中将-Swift-代码导入到-Objective-C-中"><a href="#在同一-target-中将-Swift-代码导入到-Objective-C-中" class="headerlink" title="在同一 target 中将 Swift 代码导入到 Objective-C 中"></a>在同一 target 中将 Swift 代码导入到 Objective-C 中</h4><ul>
+<li>在相同 target 的 Objective-C.m 源文件中，用下面的语法来导入Swift 代码：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">import</span> "ProductModuleName-Swift.h"</div></pre></td></tr></table></figure>
+<p>target 中任何 Swift 文件将会对 Objective-C .m 源文件可见，包括这个 import 语句。关于在 Objective-C 代码中使用 Swift 代码，详见 <a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_84" target="_blank" rel="external">Using Swift from Objective-C</a>。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">导入到 Swift</th>
+<th style="text-align:center">导入到 Objective-C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swift 代码</td>
+<td style="text-align:center">不需要import语句</td>
+<td style="text-align:center">#import “ProductModuleName-Swift.h”</td>
+</tr>
+<tr>
+<td>Objective-C 代码</td>
+<td style="text-align:center">不需要import语句；需要 Objective-C bridging头文件</td>
+<td style="text-align:center">#import “Header.h”</td>
+</tr>
+</tbody>
+</table>
+<p><a name="importing_code_from_within_the_same_framework_target"></a></p>
+<h2 id="在同个-Framework-的-target-中导入"><a href="#在同个-Framework-的-target-中导入" class="headerlink" title="在同个 Framework 的 target 中导入"></a>在同个 Framework 的 target 中导入</h2><p>如果你在写一个混合语言的框架，可能会从 Swift 代码访问 Objective-C 代码，或者反之。</p>
+<h3 id="将-Objective-C-导入-Swift-1"><a href="#将-Objective-C-导入-Swift-1" class="headerlink" title="将 Objective-C 导入 Swift"></a>将 Objective-C 导入 Swift</h3><p>要将一些 Objective-C 文件导入到同个框架 target 的 Swift 代码中去，你需要将这些文件导入到 Objective-C 的 <code>umbrella header</code> 来供框架使用。</p>
+<h4 id="在同一-framework-中将-Objective-C-代码导入到-Swift-中"><a href="#在同一-framework-中将-Objective-C-代码导入到-Swift-中" class="headerlink" title="在同一 framework 中将 Objective-C 代码导入到 Swift 中"></a>在同一 framework 中将 Objective-C 代码导入到 Swift 中</h4><p>确保将框架 target 的 <code>build Settings &gt; Packaging &gt; Defines Module</code> 设置为 <code>Yes</code>。然后在你的 <code>umbrella header</code> 头文件中导入你想暴露给 Swift 访问的 Objective-C 头文件，例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">import</span> &lt;XYZ/XYZCustomCell.h&gt;</div><div class="line">#<span class="keyword">import</span> &lt;XYZ/XYZCustomView.h&gt;</div><div class="line">#<span class="keyword">import</span> &lt;XYZ/XYZCustomViewController.h&gt;</div></pre></td></tr></table></figure>
+<p>Swift 将会看到所有你在 <code>umbrella header</code> 中公开暴露出来的头文件，框架 target 中的所有 Swift 文件都可以访问你 Objective-C 文件的内容，不需要任何 import 语句。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> myCell = <span class="type">XYZCustomCell</span>()</div><div class="line">myCell.subtitle = <span class="string">"A custom cell"</span></div></pre></td></tr></table></figure>
+<h3 id="将-Swift-导入-Objective-C"><a href="#将-Swift-导入-Objective-C" class="headerlink" title="将 Swift 导入 Objective-C"></a>将 Swift 导入 Objective-C</h3><p>要将一些 Swift 文件导入到同个框架的 target 的 Objective-C 代码去，你不需要导入任何东西到 <code>umbrella header</code> 文件，而是将 Xcode 为你的 Swift 代码自动生成的头文件导入到你的 Obj .m 源文件去，以便在 Objective-C 代码中访问 Swift 代码。</p>
+<h4 id="在同一-framework-中将-Swift-代码导入到-Objective-C-中"><a href="#在同一-framework-中将-Swift-代码导入到-Objective-C-中" class="headerlink" title="在同一 framework 中将 Swift 代码导入到 Objective-C 中"></a>在同一 framework 中将 Swift 代码导入到 Objective-C 中</h4><p>确保将框架 target 的 <code>build Settings &gt; Packaging</code> 中的 <code>Defines Module</code> 设置为 <code>Yes</code>。用下面的语法将 Swift 代码导入到同个框架 target 下的 Objective-C .m 源文件去。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// OBJECTIVE-C</span></div><div class="line">#<span class="keyword">import</span> &lt;ProductName/ProductModuleName-Swift.h&gt;</div></pre></td></tr></table></figure>
+<p>这个 import 语句所包含的 Swift 文件都可以被同个框架 target 下的 Objective-C .m 源文件访问。关于在 Objective-C 代码中使用 Swift 代码，详见 <a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_84" target="_blank" rel="external">Using Swift from Objective-C</a>。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">导入到 Swift</th>
+<th style="text-align:center">导入到 Objective-C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swift 代码</td>
+<td style="text-align:center">不需要import语句</td>
+<td style="text-align:center">#import “ProductName/ProductModuleName-Swift.h”</td>
+</tr>
+<tr>
+<td>Objective-C 代码</td>
+<td style="text-align:center">不需要import语句；需要 Objective-C umbrella头文件</td>
+<td style="text-align:center">#import “Header.h”</td>
+</tr>
+</tbody>
+</table>
+<p><a name="importing_external_frameworks"></a></p>
+<h2 id="导入外部-Framework"><a href="#导入外部-Framework" class="headerlink" title="导入外部 Framework"></a>导入外部 Framework</h2><p>你可以导入外部框架，不管这个框架是纯 Objective-C，纯 Swift，还是混合语言的。import 外部框架的流程都是一样的，不管这个框架是用一种语言写的，还是包含两种语言。当你导入外部框架时，确保 <code>build Setting &gt; Pakaging &gt; Defines Module</code> 设置为 <code>Yes</code>。</p>
+<p>用下面的语法将框架导入到不同 target 的 Swift 文件中：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> FrameworkName</div></pre></td></tr></table></figure>
+<p>用下面的语法将框架导入到不同 target 的 Objective-C .m 文件中：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> FrameworkName;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">导入到 Swift</th>
+<th style="text-align:center">导入到 Objective-C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任意语言框架</td>
+<td style="text-align:center">import FrameworkName</td>
+<td style="text-align:center">@import FrameworkName;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="using_Swift_from_objective-c"></a></p>
+<h2 id="在-Objective-C-中使用-Swift"><a href="#在-Objective-C-中使用-Swift" class="headerlink" title="在 Objective-C 中使用 Swift"></a>在 Objective-C 中使用 Swift</h2><p>当你将 Swift 代码导入 Objective-C 之后，便可用常规的 Objective-C 语法来使用 Swift 类。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="type">MySwiftClass</span> *<span class="type">SwiftObject</span> = [[<span class="type">MySwiftClass</span> alloc] <span class="keyword">init</span>];</div><div class="line">[<span class="type">SwiftObject</span> <span class="type">SwiftMethod</span>];</div></pre></td></tr></table></figure>
+<p>Swift 的类或协议必须用 <code>@objc</code>属性来标记，以便在 Objective-C 中可访问。这个 属性告诉编译器这块 Swift 代码可以从 Objective-C 代码中访问。如果你的 Swift 类是 Objective-C 类的子类，编译器会自动为你添加 <code>@objc</code>。详见 <a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID53" target="_blank" rel="external">Swift Type Compatibility</a>。</p>
+<p>你可以访问在 Swift 类或协议中使用用<code>@objc</code>属性标记的任何对象，只要该对象与 Objective-C 兼容。不包括以下 Swift 独有的特性：</p>
+<ul>
+<li><p>范型（Generics）</p>
+</li>
+<li><p>元组（Tuples）</p>
+</li>
+<li><p>Swift 中定义的枚举不包括<code>Int</code>原始值类型（Enumerations defined in Swift without Int raw value type）</p>
+</li>
+<li><p>Swift 中定义的结构体（Structures defined in Swift）   </p>
+</li>
+<li><p>Swift 中定义的顶层函数（Top-level functions defined in Swift）</p>
+</li>
+<li><p>Swift 中定义的全局变量（Global variables defined in Swift）</p>
+</li>
+<li><p>Swift 中定义的类型别名（Typealiases defined in Swift）</p>
+</li>
+<li><p>Swift风格可变参数（Swift-style variadics）</p>
+</li>
+<li><p>嵌套类型（Nested types）</p>
+</li>
+<li><p>柯里化函数（Curried functions）</p>
+</li>
+</ul>
+<p>例如，使用范型类型作为参数，或者返回元组的方法将不能在 Objective-C 中使用。</p>
+<blockquote>
+<p>注意<br>你不能在 Objective-C 继承一个 Swift 类。</p>
+</blockquote>
+<h3 id="在-Objective-C-头文件中引用-Swift-类"><a href="#在-Objective-C-头文件中引用-Swift-类" class="headerlink" title="在 Objective-C 头文件中引用 Swift 类"></a>在 Objective-C 头文件中引用 Swift 类</h3><p>这样前向声明 Swift 类：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// OBJECTIVE-C</span></div><div class="line"><span class="comment">// MyObjective-CClass.h</span></div><div class="line"></div><div class="line">@<span class="class"><span class="keyword">class</span> <span class="title">MySwiftClass</span>;</span></div><div class="line"></div><div class="line">@<span class="title">interface</span> <span class="title">MyObjective</span>-<span class="title">CClass</span> : <span class="title">NSObject</span></div><div class="line">- (<span class="title">MySwiftClass</span> *)<span class="title">returnSwiftObject</span>;</div><div class="line">/* ... */</div><div class="line">@<span class="title">end</span></div></pre></td></tr></table></figure>
+<p><a name="overriding_Swift_names_for_Objective-C_interfaces"></a></p>
+<h2 id="为-Objective-C-接口重写-Swift-名称"><a href="#为-Objective-C-接口重写-Swift-名称" class="headerlink" title="为 Objective-C 接口重写 Swift 名称"></a>为 Objective-C 接口重写 Swift 名称</h2><p>Swift 编译器自动的将 Objective-C 代码作为常规 Swift 代码导入。它将 Objective-C 的类工厂方法作为 Swift 构造器导入，以及将 Objective-C 的枚举类型名称截断处理。</p>
+<p>在你的代码中也许存在不能够被自动处理的边界情况。如果你需要更改导入到 Swift 中的 Objective-C 方法，枚举，或者可选 set 值，你可以使用<code>NS_Swift_NAME</code>宏来自定义导入的声明。</p>
+<h3 id="类工厂方法"><a href="#类工厂方法" class="headerlink" title="类工厂方法"></a>类工厂方法</h3><p>如果 Swift 编译器无法识别类工厂方法，你可以使用<code>NS_Swift_NAME</code>宏，来正确导入构造器的 Swift 签名。例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)recordWithRPM:(<span class="type">NSUInteger</span>)<span class="type">RPM</span> <span class="type">NS_Swift_NAME</span>(<span class="keyword">init</span>(<span class="type">RPM</span>:));</div></pre></td></tr></table></figure>
+<p>如果 Swift 编译器错误的将一个方法识别为类工厂方法，你可以使用<code>NS_Swift_NAME</code>宏，来正确导入构造器的 Swift 签名。例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(id)recordWithQuality:(double)quality <span class="type">NS_Swift_NAME</span>(record(quality:));</div></pre></td></tr></table></figure>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>默认情况下，Swift 将枚举值的名称前缀做截断来导入枚举。如果要自定义枚举值的名称，你可以使用<code>NS_Swift_NAME</code>宏来传递 Swift 枚举值名称。例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">typedef <span class="type">NS_ENUM</span>(<span class="type">NSInteger</span>, <span class="type">ABCRecordSide</span>) &#123;</div><div class="line">  <span class="type">ABCRecordSideA</span>,</div><div class="line">  <span class="type">ABCRecordSideB</span> <span class="type">NS_Swift_NAME</span>(<span class="string">"FlipSide"</span>),</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><a name="naming_your_product_module"></a></p>
+<h2 id="Product-模块命名"><a href="#Product-模块命名" class="headerlink" title="Product 模块命名"></a>Product 模块命名</h2><p>Xcode 为 Swift 代码生成的头文件的名称，以及 Xcode 创建的 Objective-C 桥接头文件名称，都是从你的 product 模块名生成的。默认你的 product 模块名和 product 名一样。然而，如果你的 product 名有特殊字符（nonalphanumeric，非数字、字母的字符），例如点号，那么它们会被下划线（<code>_</code>）替换之后作为你的 product 模块名。如果 product 名以数字开头，那么第一个数字会用下划线替换掉。</p>
+<p>你可以给 product 模块名提供一个自定义的名称，Xcode 会用这个名称来命名桥接的和自动生成的头文件。你只需要在修改在 <code>build setting</code> 中的 <code>Product Module Name</code> 即可。</p>
+<p><a name="troubleshooting_tips_and_reminders"></a></p>
+<h2 id="问题解决提示"><a href="#问题解决提示" class="headerlink" title="问题解决提示"></a>问题解决提示</h2><ul>
+<li>把 Swift 和 Objective-C 文件看作相同的代码集合，并注意命名冲突。</li>
+<li>如果你使用了框架，确保在<code>Packaging</code>下的<code>Defines Module</code>编译设置被设置为 <code>Yes</code>。</li>
+<li>如果你使用了 Objective-C 桥接头文件，确保 Swift 编译器中 Objective-C 桥接头文件的编译设置<code>Code Generation</code>有一个与项目相关的头文件的路径。这个路径必须是头文件自身的路径，而不是它所在的目录。</li>
+<li>Xcode 使用你的工程模块名，而不是以<code>target</code>的名称来命名 Objective-C 桥接头文件以及为 Swift 代码 自动生成的头文件。详见 <a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID138" target="_blank" rel="external">Naming Your Product Module</a>。</li>
+<li>为了在 Objective-C 中可用， Swift 类必须是 Objective-C 类的子类，或者用 <code>@objc</code> 标记。</li>
+<li>当你将 Swift 导入到 Objective-C 中时，记住 Objective-C 不会将 Swift 独有的特性转化成 Objective-C 对应的特性。详见列表 <a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID136" target="_blank" rel="external">Using Swift from Objective-C</a>。</li>
+<li>如果你在 Swift 代码中使用你自己的 Objective-C 类型，确保先将对应的 Objective-C 头文件导入到你的 Swift 代码中，然后才将 Swift 自动生成的头文件导入到 Objective-C .m 源文件中来访问 Swift 代码。</li>
+<li>用<code>private</code>修饰符标记的 Swift 声明不会出现在自动生成的头文件中。私有声明不会暴漏给 Objective-C，除非它们被明确标记有<code>@IBAction</code>，<code>@IBOutlet</code>或者<code>@objc</code>等。</li>
+<li>对于应用 targets 而言，如果有 Objective-C 桥接头文件时，被<code>internal</code>修饰符标记的声明会出现在自动产生的头文件中。</li>
+<li>对于框架 targets 而言，只有被<code>public</code>修饰符标记的声明才会出现在自动生成的头文件中。你仍然可以在框架中的 Objective-C 部分使用被<code>internal</code>修饰符标记的 Swift 方法和属性，只要它们声明所在的类继承自 Objective-C 类。关于访问级别修饰符的更多信息，请查看<a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097" target="_blank" rel="external">The Swift Programming Language</a>中的<a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/Swift_Programming_Language/AccessControl.html#//apple_ref/doc/uid/TP40014097-CH41" target="_blank" rel="external">访问控制(Access Control)</a></li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><h3 id="转载"><a href="#转载" class="headerlink" title="转载"></a>转载</h3><p><a href="https://github.com/CocoaChina-editors/Welcome-to-Swift/blob/master/Using%20Swift%20with%20Cocoa%20and%20Objective-C/03Mix%20and%20Match/Swift%20and%20Objective-C%20in%20the%20Same%20Project.md" target="_blank" rel="external">在同个工程中使用 Swift 和 Objective-C</a></p>
+<h3 id="官方资料"><a href="#官方资料" class="headerlink" title="官方资料"></a>官方资料</h3><p><a href="https://developer.apple.com/library/prerelease/iOS/documentation/Swift/Conceptual/buildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_85" target="_blank" rel="external">Swift and Objective-C in the Same Project</a></p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+          <div class="main-footer">
+  
+    © 2018 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

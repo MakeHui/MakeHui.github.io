@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    学习使用 Swift 编写 iOS 应用程序教程 1： Welcome to Programming
+  
+</title>
+
+<meta name="description" content="你有没有想过iPhone或iPad是如何高效的运行在自己的应用程序的呢? 从来没有比现在更好的学习iOS开发的时机了 - 尤其是应为苹果刚刚发布了一个全新的编程语言Swift! 这个系列的教授如何从初学者到实际的iOS开发, 将带你从基础知识(开始一个Swift编程题目或开始一个command-line应用程序)一路直到做出一个带有漂亮的用户界面且完整的iOS应用程序. With iOS app">
+<meta name="keywords" content="iOS,Note,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习使用 Swift 编写 iOS 应用程序教程 1： Welcome to Programming">
+<meta property="og:url" content="http://huyaohui.com/2015/06/24/xue-xi-shi-yong-Swift-bian-xie-iOS-ying-yong-cheng-xu-jiao-cheng-1：-Welcome-to-Programming/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="你有没有想过iPhone或iPad是如何高效的运行在自己的应用程序的呢? 从来没有比现在更好的学习iOS开发的时机了 - 尤其是应为苹果刚刚发布了一个全新的编程语言Swift! 这个系列的教授如何从初学者到实际的iOS开发, 将带你从基础知识(开始一个Swift编程题目或开始一个command-line应用程序)一路直到做出一个带有漂亮的用户界面且完整的iOS应用程序. With iOS app">
+<meta property="og:image" content="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2JWDadpXXXXcTXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2n5G.dpXXXXXpXpXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2z8vndpXXXXXnXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB23LLfdpXXXXboXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2wmW3dpXXXXa.XpXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2pbYXdpXXXXbPXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2iL_gdpXXXXbkXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2hQa9dpXXXXXPXpXXXXXXXXXX_!!1134915854.jpg">
+<meta property="og:image" content="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2kEHEdpXXXXalXXXXXXXXXXXX_!!1134915854.jpg">
+<meta property="og:image" content="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB29lztdpXXXXXXXpXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2tKvEdpXXXXabXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2CUTDdpXXXXaBXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:image" content="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2lYTwdpXXXXcvXXXXXXXXXXXX_!!1134915854.png">
+<meta property="og:updated_time" content="2016-12-20T01:17:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习使用 Swift 编写 iOS 应用程序教程 1： Welcome to Programming">
+<meta name="twitter:description" content="你有没有想过iPhone或iPad是如何高效的运行在自己的应用程序的呢? 从来没有比现在更好的学习iOS开发的时机了 - 尤其是应为苹果刚刚发布了一个全新的编程语言Swift! 这个系列的教授如何从初学者到实际的iOS开发, 将带你从基础知识(开始一个Swift编程题目或开始一个command-line应用程序)一路直到做出一个带有漂亮的用户界面且完整的iOS应用程序. With iOS app">
+<meta name="twitter:image" content="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2JWDadpXXXXcTXXXXXXXXXXXX_!!1134915854.png">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">超平和バスターズはずっとなかよし</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SB/">SB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SB/">SB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/categories/SB" title="SB series">SB series</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/Niconiconi" title="Niconiconi">Niconiconi</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="external">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-学习使用-Swift-编写-iOS-应用程序教程-1" class="article article-type-post">
+  
+    <h1 class="article-header">
+      学习使用 Swift 编写 iOS 应用程序教程 1： Welcome to Programming
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Write: 2015-06-24 Update: 2016-12-20
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/iOS/">iOS</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>你有没有想过iPhone或iPad是如何高效的运行在自己的应用程序的呢?</p>
+<p>从来没有比现在更好的学习iOS开发的时机了 - 尤其是应为苹果刚刚发布了一个全新的编程语言<code>Swift</code>!</p>
+<p>这个系列的教授如何从初学者到实际的iOS开发, 将带你从基础知识(开始一个Swift编程题目或开始一个<code>command-line</code>应用程序)一路直到做出一个带有漂亮的用户界面且完整的iOS应用程序.</p>
+<p>With iOS app development, the sky is the limit(Ps: -_-|||). 这个系列的Swift教程将教你基本的知识, 最后你将会做出你梦寐以求的应用程序!</p>
+<p>Note: 如果你是一个初学编程者, 那么这个教程非常适合你! 那么如果你已经有一些编程经验的话或者想要快速学习的话, 请查看<a href="http://www.raywenderlich.com/74438/Swift-tutorial-a-quick-start" target="_blank" rel="external">这个系列的教程</a></p>
+<a id="more"></a>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>第一步是下载<code>Xcode</code> - 我们在这个软件里编写应用程序. 你可以在Mac 应用商店里<a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12&amp;uo=8&amp;at=11ld4k" target="_blank" rel="external">免费下载它</a>.<br><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2JWDadpXXXXcTXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>请确保你的Xcode的最新版本 - 你最少需要Xcode6或以上版本才能运行Swift.<br>一旦你安装了Xcode, 打开Xcode并且点击上面写着<code>Get started with a playground</code>的按钮.<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2n5G.dpXXXXXpXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>Note: 如果你看不到这个<code>Welcome to Xcode</code>的窗口, 请点击工具栏 -&gt; Window -&gt; Welcome to Xcode 就能显示它.</p>
+<p><code>playground</code>是一个简单的尝试和学习Swift编码的工具. </p>
+<p>你并不能把<code>playground</code>当做一个iPhone的应用程序来运行. 但是他仍然是很有用的, 它可以帮助你了解基本的Swift语法. 不过不用担心, 你很快将创建自己的iPhone应用程序!</p>
+<p>设置这个名字为<code>MyPlayground</code>, 平台是iOS, 然后点击<code>Next</code>. 最后保存到你喜欢的地方.<br><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2z8vndpXXXXXnXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h2 id="介绍Playgrounds"><a href="#介绍Playgrounds" class="headerlink" title="介绍Playgrounds"></a>介绍Playgrounds</h2><p>你将看到你创建的这个playground已经有三行代码了: </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: Playground - noun: a place where people can play</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"></div><div class="line"><span class="keyword">var</span> str = <span class="string">"Hello, playground"</span></div></pre></td></tr></table></figure>
+<p>让我们一次一行的来看这些代码<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: Playground - noun: a place where people can play</span></div></pre></td></tr></table></figure></p>
+<p>这是第一行, 其中有两个斜杠, 他表示注释<br>这行代码是唯一给你或任何其他程序员看的. 它不会影响你的代码功能. 把它看做是”一种写代码笔记(注释)的方法”.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div></pre></td></tr></table></figure></p>
+<p>第二行导入<code>UIKit</code>, 那么可以把它看做”一堆Apple公司牛B的人写的代码”. 所以你只需要知道在开发中必须加入这个代码.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"Hello, playground"</span></div></pre></td></tr></table></figure></p>
+<p>第三行是一个现在你应该注意的重点.</p>
+<p>这一行创建了一个<code>str</code>名字的变量, 它的值是<code>Hello, playground</code>. 在窗口的右侧, 你可以看到Xcode实时呈现了这个变量的值.<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB23LLfdpXXXXboXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>尝试吧”Hello playground”修改成”Look what I can do!”, 就像这样:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"Look what I can do!"</span></div></pre></td></tr></table></figure></p>
+<p>你看到了右侧窗口中就像之前说的那样它发生了改变? 恭喜, 你刚才完成了一个简单的编程!<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2wmW3dpXXXXa.XpXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<h2 id="你自己的计算器"><a href="#你自己的计算器" class="headerlink" title="你自己的计算器"></a>你自己的计算器</h2><p>现在让我们看看还有什么可做的. 尝试像这样键入一个基础的数学表达式并且敲击回车来到下一行<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2</span> + <span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p>在窗口的右侧playground会把答案显示出来<br><img src="http://img02.taobaocdn.com/imgextra/i2/1134915854/TB2pbYXdpXXXXbPXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>很吊, 不是吗? 你可以掌握任何其他的数学运算了.</p>
+<p>挑战: 尝试用Playground去计算<code>123*456</code>的结果.</p>
+<p>在playground中输入这一行:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">123</span>*<span class="number">456</span></div></pre></td></tr></table></figure></p>
+<p>在右边你将看到如下答案:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">56088</span></div></pre></td></tr></table></figure></p>
+<p>使用playground作为一个简单的计算器是很容易的, 所以现在让我们继续前进并进行一些编码! 请删除除了<code>import UIKit</code>外的其他代码, 以便保持一个干净的编码区域.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div></pre></td></tr></table></figure></p>
+<p>如果没有这一行playground是无法工作的, 所以请务必保留它.</p>
+<font class="remark">念念碎: 这句是自己强行翻译了下, 大概就是这意思吧.. 原文: It is extremely important that you leave that line there because the Playground will not work without it.</font>
+
+<h2 id="Variables-变量"><a href="#Variables-变量" class="headerlink" title="Variables (变量)"></a>Variables (变量)</h2><p>接下来, 让我们来多玩玩变量<br>你使用变量来存储值, 我们通常都是用下面这样的语句来创建一个变量:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> yourVariableName: yourType = yourInitialValue</div></pre></td></tr></table></figure></p>
+<p>说明: </p>
+<ul>
+<li>yourVariableName: 任何你喜欢的名字, 如: <code>str</code>或<code>age</code>(Ps: 千万不要用中文)</li>
+<li>yourType: 这是变量的类型, 如: <code>String</code>或<code>Int</code>. 更多时候不同情况下是不同的类型的.</li>
+<li>yourInitialValue: 你需要给你的变量设置一个任意值, 如 “Look what I can do!” 或 18.</li>
+</ul>
+<p>让我们尝试一个例子! 把下面的这些行添加到你的playground中:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str: <span class="type">String</span> = <span class="string">"Look what I can do!"</span></div><div class="line"><span class="keyword">var</span> age: <span class="type">Int</span> = <span class="number">18</span></div></pre></td></tr></table></figure></p>
+<p>在第一行, 你创建了一个<code>String</code>类型<code>str</code>名称的变量, 并且设置他的初始值为”Look what I can do!”<br>第二行, 你创建了一个<code>Int</code>类型<code>age</code>名称的变量, 并且设置他的初始值为18<br>你获得了一个好的开始, 如何使用变量, 但是你可能是想知道<code>String</code>和<code>Int</code>之间的差异和还有那些类型可以使用. 让我们继续往下看.</p>
+<h2 id="Types-类型"><a href="#Types-类型" class="headerlink" title="Types(类型)"></a>Types(类型)</h2><p>下面的这个列表是Swift提供的基本数据类型: </p>
+<ul>
+<li>Int: 整数类型</li>
+<li>Double: 带小数的数字类型</li>
+<li>Bool: 它的值只可能是<code>true</code>或<code>false</code></li>
+<li>String: 可以是一个任意的字符, 如: 字母或字符串</li>
+</ul>
+<p>让我们来实际使用这些数据类型. 把下面的这些行添加到你的playground中:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> luckyNumber: <span class="type">Int</span> = <span class="number">7</span></div><div class="line"><span class="keyword">var</span> costOfCandy: <span class="type">Double</span> = <span class="number">1.25</span></div><div class="line"><span class="keyword">var</span> hungry: <span class="type">Bool</span> = <span class="literal">true</span></div><div class="line"><span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">"Ryland"</span></div></pre></td></tr></table></figure>
+<p>注意: 每一行的值都会显示在右边的灰色窗口区域. 现在, 尝试修改name的值看下有什么变化.</p>
+<p>添加下面这行到你的playground中:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">name = <span class="string">"Ry"</span></div></pre></td></tr></table></figure></p>
+<p>这一行不需要使用<code>var</code>, 因为这个<code>String</code>对象已经创建好了. 你在这里做的只是改变它存储的值.</p>
+<p>挑战: 现在轮到你小试身手了. 在playground的底部, 尝试创建一个代表你喜欢的游戏的变量.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> favoriteGame: <span class="type">String</span> = <span class="string">"Mario Kart"</span></div><div class="line">favoriteGame = <span class="string">"Super Smash Bros."</span> </div><div class="line">```<span class="type">Swift</span></div><div class="line"></div><div class="line">## <span class="type">Constants</span>(常量)</div><div class="line">还有一些特别的变量称之为常量.</div><div class="line"></div><div class="line">常量并不是用`<span class="keyword">var</span>`声明, 而是使用`<span class="keyword">let</span>`关键字. 当这个常量被创造出来就不能改变它的值了.</div><div class="line"></div><div class="line">只要有可能你应该尽量使用`<span class="keyword">let</span>`, 而不是`<span class="keyword">var</span>`, 因为他可以让你的代码运行的更快, 原因是编译器不用去考虑这个值知否会发生改变. 任何数据类型都可用使用常量声明, 就像任意数据类型都可以使用变量一样.</div><div class="line"></div><div class="line">让我们现在尝试创建一些常量. 添加下面的代码到你的playground中: </div><div class="line">```<span class="type">Swift</span></div><div class="line"><span class="keyword">let</span> life: <span class="type">Int</span> = <span class="number">42</span></div><div class="line"><span class="keyword">let</span> pi: <span class="type">Double</span> = <span class="number">3.14</span></div><div class="line"><span class="keyword">let</span> canTouchThis: <span class="type">Bool</span> = <span class="literal">false</span></div><div class="line"><span class="keyword">let</span> captain: <span class="type">String</span> = <span class="string">"Kirk"</span></div></pre></td></tr></table></figure>
+<p>现在尝试重新赋一个值给 captain , 比如说”Hook”. 请吧下面这行代码添加到playground中:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">captain = <span class="string">"Hook"</span></div></pre></td></tr></table></figure></p>
+<p>注意: 一个红色的小感叹号标志出现在你的左手边. 这里告诉你在你的代码中又错误.</p>
+<p>点击这个图标, 查看这个弹出的错误信息<code>Cannot assign to &#39;let&#39; value &#39;captain&#39;</code>. 这个告诉你你是使用<code>let</code>初始化的值, 所以你不能更改它.</p>
+<p><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2iL_gdpXXXXbkXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>删除<code>captain = &quot;Hook&quot;</code> 这行 去掉这个错误.</p>
+<p>挑战: 创建一个<code>Int</code>类型, 名字为<code>favoriteNumber</code>的常量, 并且设置他的值为你喜欢的数字.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> favoriteNumber: <span class="type">Int</span> = <span class="number">3</span></div></pre></td></tr></table></figure>
+<h2 id="Inferred-Typing-自动推导类型"><a href="#Inferred-Typing-自动推导类型" class="headerlink" title="Inferred Typing(自动推导类型)"></a>Inferred Typing(自动推导类型)</h2><p>每次都要写类型是不是很累? 没必要担心, Swift比我们想想的要聪明的多了.</p>
+<p>有一个Swift新的特征<code>Inferred Typing</code>. 这意味着只要声明和初始化变量时提供的信息足够, Swift可以预测这个数据的类型, 所以你不必每次都指定它.</p>
+<p>这个类型不仅能节省你的时间和精力, 还能使你的程序更简洁和高效.</p>
+<p>去试试, 找到<code>var luckyNumber: Int = 7</code>这行, 并且替换成下面这行:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> luckyNumber = <span class="number">7</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2hQa9dpXXXXXPXpXXXXXXXXXX_!!1134915854.jpg" alt=""></p>
+<p>这个似乎并没卵用, 但是从长远来看还是能节省你时间的(Ps: 然并卵)</p>
+<p>只记得, 推导类型只有当信息足够的时候才有作用. 如果你想有一个名字为<code>luckyNumber</code>的<code>Double</code>类型变量, 你需要把它设置成<code>7.0</code>(你需要区分清楚<code>7</code>它是一个十进制的整数, 而不是一个小数).</p>
+<p>挑战: 你可以去试试, 确保你变量和常量都使用推导类型:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"> </div><div class="line"><span class="keyword">var</span> str = <span class="string">"Look what I can do!"</span></div><div class="line"><span class="keyword">var</span> age = <span class="number">18</span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> luckyNumber = <span class="number">7</span></div><div class="line"><span class="keyword">var</span> costOfCandy = <span class="number">1.25</span></div><div class="line"><span class="keyword">var</span> hungry = <span class="literal">true</span></div><div class="line"><span class="keyword">var</span> name = <span class="string">"Ryland"</span></div><div class="line"> </div><div class="line">name = <span class="string">"Ry"</span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> favoriteGame = <span class="string">"Mario Kart"</span></div><div class="line">favoriteGame = <span class="string">"Super Smash Bros."</span></div><div class="line"> </div><div class="line"><span class="keyword">let</span> life = <span class="number">42</span></div><div class="line"><span class="keyword">let</span> pi = <span class="number">3.14</span></div><div class="line"><span class="keyword">let</span> canTouchThis = <span class="literal">false</span></div><div class="line"><span class="keyword">let</span> captain = <span class="string">"Kirk"</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> favoriteNumber = <span class="number">3</span></div></pre></td></tr></table></figure>
+<h2 id="Comparison-Operators-比较运算符"><a href="#Comparison-Operators-比较运算符" class="headerlink" title="Comparison Operators(比较运算符)"></a>Comparison Operators(比较运算符)</h2><p>就像前面介绍的那样playground可以做简单的数学运算, 它还可以比较数字和值.<br>这些操作符如下: </p>
+<ul>
+<li>&lt; Greater Than</li>
+<li>&gt; Less Than</li>
+<li>== Equal To</li>
+<li>&lt;= Greater Than or Equal To</li>
+<li>&amp;&amp; AND</li>
+<li>|| OR</li>
+</ul>
+<font class="remark">念念碎: 上面几个实在没什么好翻的</font>
+
+<p>你可以使用这些运算符去比较两个值.<br>让我们来试试! 声明一些变量并添加到你的playground中, 开始比较他们的值</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> batmanCoolness = <span class="number">10</span></div><div class="line"><span class="keyword">var</span> supermanCoolness = <span class="number">9</span></div><div class="line"><span class="keyword">var</span> aquamanCoolness = <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>太吊了, 现在你可以使用两个变量来测试我们的比较运算符了. 将下面的代码块放到playground中.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">batmanCoolness &lt; aquamanCoolness</div><div class="line">supermanCoolness &gt;= <span class="number">8</span></div><div class="line">batmanCoolness == (aquamanCoolness + supermanCoolness)</div><div class="line">batmanCoolness &gt; aquamanCoolness &amp;&amp; batmanCoolness == (aquamanCoolness + supermanCoolness)</div><div class="line">batmanCoolness &lt; supermanCoolness || aquamanCoolness &lt; supermanCoolness</div></pre></td></tr></table></figure>
+<p>在右侧的窗口中检查得到的结果. playground将会判断你的描述, 并告诉你结果是<code>true</code>还是<code>false</code></p>
+<ul>
+<li><code>AND(&amp;&amp;)</code>语句: 两边的比较一定要是真实的, 最终结果就是<code>true</code>, 如果第一个是假的话, 那么程序根本就不会执行第二个, 因为没有必要.</li>
+<li><code>OR(||)</code>语句: 两边只要有一个是真实的, 那么最终结果就是<code>true</code>, 如果第一个是真的话, 那么程序根本就不会执行第二个, 因为没有必要.</li>
+</ul>
+<p>挑战: 尝试添加一个变量名为<code>spidermanCoolness</code>的变量, 并给他一个合适的值. 然后尝试使用一些算数运算符(如: &gt;, &lt;, ==, &amp;&amp;, and ||)去比较那些超级英雄的coolness(Ps: 真不知道这是什么鬼, 难道是什么梗吗).(注意<code>batmanCoolness</code>是<code>let</code>声明的, 你并不能改变它).</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> spidermanCoolness = <span class="number">7</span></div><div class="line">(spidermanCoolness + aquamanCoolness) &gt; supermanCoolness</div><div class="line">spidermanCoolness == <span class="number">7</span> &amp;&amp; aquamanCoolness == <span class="number">2</span></div></pre></td></tr></table></figure>
+<h2 id="If-else-语句"><a href="#If-else-语句" class="headerlink" title="If/else 语句"></a>If/else 语句</h2><p>if/else语句, 是计算机当条件为真时, 执行某些代码块, 条件为假时不执行某些代码块的语句(Ps: 就是所谓的流程控制)</p>
+<p>我们来试下这个! 添加这个例子到你的playground中: </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (batmanCoolness &gt; spidermanCoolness) &#123;</div><div class="line">	spidermanCoolness = spidermanCoolness - <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (batmanCoolness &gt;= spidermanCoolness) &#123;</div><div class="line">	spidermanCoolness = spidermanCoolness - <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">	spidermanCoolness = spidermanCoolness + <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>This block of code decreases Spiderman’s coolness if Batman is cooler, but increases Spiderman’s coolness if Spiderman is cooler.</p>
+<p>As you can tell from the Playground, Spiderman’s coolness decreases to 6 from the realization that he is not as cool as Batman. </p>
+<font class="remark">念念碎: Ps: 翻起来好别扭, 哎. 不管他了, 我按自己的理解翻一下</font>
+
+<p><code>if/else if</code>后面的条件是真的时候, 就会执行后面<code>{}</code>中的代码块了</p>
+<p>正如你看到的一样, 这个流程从没有经过<code>else if</code>语句, 即便他也是符合条件的. 这是应为这个流程发现<code>if</code>是符合条件的所以它就不会再执行其它的代码块了. </p>
+<p>挑战: 使上面的例子创建一个我们自己的流程控制语句. 请记住, 不是所有的<code>if</code>或<code>else if</code> 都会满足条件的. 这个程序将可能执行一个<code>else</code>语句, 或继续执行下去.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(supermanCoolness &lt; spidermanCoolness)  &#123;</div><div class="line">	supermanCoolness = supermanCoolness - <span class="number">1</span> </div><div class="line">	spidermanCoolness = spidermanCoolness + <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (supermanCoolness == spidermanCoolness)  &#123;</div><div class="line">	supermanCoolness = &gt; supermanCoolness + <span class="number">1</span></div><div class="line">	spidermanCoolness = spidermanCoolness + <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>  &#123;</div><div class="line">	supermanCoolness = &gt; supermanCoolness + <span class="number">1</span> </div><div class="line">	spidermanCoolness = spidermanCoolness - <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Simple-Functions-简单的函数"><a href="#Simple-Functions-简单的函数" class="headerlink" title="Simple Functions(简单的函数)"></a>Simple Functions(简单的函数)</h2><p>function(函数)是执行特定任务的(完成特功能的)代码块. 例如: 名字为<code>printMyFavoriteSnack()</code>的函数可以打印出<code>Pringles</code>.</p>
+<p><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2kEHEdpXXXXalXXXXXXXXXXXX_!!1134915854.jpg" alt=""></p>
+<p>你可已使用自己编写的函数, 或使用其他程序员编写的函数. 例如, Apple提供了大量的内置函数, 你可以在你的应用中使用这些函数.</p>
+<p>举一个<code>println()</code>函数的例子. 无论你输入什么到括号内, 它都会出现在控制台内. </p>
+<p>让我们来尝试下这个例子. 键入下面的代码到你的playground的最后面<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">println</span>(<span class="string">"Hello, World"</span>)</div></pre></td></tr></table></figure></p>
+<p>你你应该看到”Hello World”输出到了右侧的窗口中. </p>
+<p>程序设计中需要用到很多不同的函数. 我们会经常需要用到苹果提供的或别人写的代码, 在你自己的编码过程中你就能体会到了.</p>
+<p>挑战: 尝试修改<code>println()</code>方法中的字符串, 把自己吹嘘一番.<br>并尝试把我们上面用到过的变量打印一下, 看看会发生什么. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">println</span>(<span class="string">"Ry is awesome"</span>)</div><div class="line"><span class="built_in">println</span>(batmanCoolness)</div></pre></td></tr></table></figure>
+<h2 id="String-Interpolation-字符串中插入值"><a href="#String-Interpolation-字符串中插入值" class="headerlink" title="String Interpolation(字符串中插入值)"></a>String Interpolation(字符串中插入值)</h2><p>能打印字符串到控制台是很好的, 但是如果能把一个字符串和一个值结合起来输出到控制台, 那岂不是更吊.</p>
+<p>筒子们好消息! 你可以做到的, 这就是<code>String Interpolation</code>.</p>
+<p>当你要这样做是非常好用的: “Sally has (some value) apples.”, 尝试把下面的代码放到playground中去吧: </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> apples = <span class="number">5</span></div><div class="line"><span class="built_in">println</span>(<span class="string">"Sally has \\(apples) apples"</span>)</div></pre></td></tr></table></figure>
+<p>看到了吗? 只用这种格式<code>\(variable name)</code>, 你可以把任何变量或值转换成字符串. 在括号内如果你愿意, 甚至你可以进行其它操作. 添加下面的代码到你playground中.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">println</span>(<span class="string">"Sally has \\(apples - 5) apples"</span>)</div></pre></td></tr></table></figure>
+<p>干得好! 在字符串中插入值, 每个项目中都会用到.<br><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB29lztdpXXXXXXXpXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>挑战: 现在是时候要结合下你的学会的概念了. 创建两个学生成绩的变量: John(95), Sam(85). 然后, 设计一个<code>if/else</code>语句, 比较John和Sam的等级, 并打印出谁的分数高于谁的分数. 你能做到的!</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> johnsGrade = <span class="number">95</span></div><div class="line"><span class="keyword">var</span> samsGrade = <span class="number">82</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> (johnsGrade &lt; samsGrade) &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"\(johnsGrade) is less than \(samsGrade)"</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (johnsGrade &gt; samsGrade) &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"\(johnsGrade) is greater than \(samsGrade)"</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"\(johnsGrade) is equal to \(samsGrade)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="While-Loops-循环语句"><a href="#While-Loops-循环语句" class="headerlink" title="While Loops(循环语句)"></a>While Loops(循环语句)</h2><p>就像<code>if/else</code>语句一样<code>while</code>语句也是一种流程控制语句. 他们所需要的执行条件是相似的. </p>
+<p>当然, <code>while</code>并不是简单只执行一次代码, 而是会继续执行下去, 直到条件不在成立. 键入下面的代码到你的playground中. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> secondsLeft = <span class="number">3</span></div><div class="line"><span class="keyword">while</span> (secondsLeft &gt; <span class="number">0</span>) &#123;</div><div class="line">	<span class="built_in">println</span>(secondsLeft)</div><div class="line">	secondsLeft = secondsLeft - <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">println</span>(<span class="string">"Blast off!"</span>)</div></pre></td></tr></table></figure>
+<p>请确保你的代码的条件在某些情况下是假的. 你肯定不希望你创建了一个无限循环的代码, 因为他会导致你的程序无法运行循环之后的代码. </p>
+<p>当你运行他时, 你可以在右侧看到<code>(3 times)</code>这行, 那是代表<code>println()</code>语句运行的次数. 因为那里有多个值输出, 你可以打一个名为<code>Assistant Editor</code>窗口就可以看到他们了.</p>
+<p>像这样做, 去你的工具栏并且选择 <code>View -&gt; Assistant Editor -&gt; Show Assistant Editor</code>. </p>
+<p>你可以看到一个<code>Console Output</code>的标志, 你应该能从中看到你的输出:<br><img src="http://img04.taobaocdn.com/imgextra/i4/1134915854/TB2tKvEdpXXXXabXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>挑战: 抗木昂, 来尝试写一个自己的<code>while</code>循环 - 例如: 做出一个警察吃一盒甜甜圈的<code>while</code>循环. 千万要记住, 不能让他无限循环. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> donutsLeft = <span class="number">6</span></div><div class="line"><span class="keyword">while</span>(donutsLeft &gt; <span class="number">0</span>)  &#123;</div><div class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span class="built_in">println</span>(<span class="string">"You have \(donutsLeft) donuts left"</span>)</div><div class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;donutsLeft = donutsLeft - <span class="number">1</span></div><div class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span class="built_in">println</span>(<span class="string">"You eat one donut"</span>)</div><div class="line">&#125;</div><div class="line"><span class="built_in">println</span>(<span class="string">"You are all out of donuts :("</span>)</div></pre></td></tr></table></figure>
+<h2 id="Break-Statement-break语句"><a href="#Break-Statement-break语句" class="headerlink" title="Break Statement(break语句)"></a>Break Statement(break语句)</h2><p>假设你的程序里有某种循环, 如果你想在一个特定情况下, 退出这个循环, 这时你需要用到<code>break</code>. 添加下面的代码到你的playground中. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cokesLeft = <span class="number">7</span></div><div class="line"><span class="keyword">var</span> fantasLeft = <span class="number">4</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>(cokesLeft &gt; <span class="number">0</span>)  &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"You have \(cokesLeft) Cokes left."</span>)</div><div class="line">	cokesLeft = cokesLeft - <span class="number">1</span></div><div class="line">	<span class="keyword">if</span>(cokesLeft &lt;= fantasLeft)  &#123;</div><div class="line">		<span class="keyword">break</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">println</span>(<span class="string">"You stop drinking Cokes."</span>)</div></pre></td></tr></table></figure>
+<p>在这个例子里, 你在不停的喝可乐, 直到它被喝完. 然而, 你意识到在冰箱里还有芬达(汽水), 你决定停止喝可乐, 因为这个时候你的可乐的量小于等于芬达了. 当这种情况出现时, 你退出了循环, 从而停止喝可乐.<br><img src="http://img03.taobaocdn.com/imgextra/i3/1134915854/TB2CUTDdpXXXXaBXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>挑战: 现在轮到你来试试. 创建一个<code>while</code>循环, 最终有一个结束点 - 例如: 你上班偷懒, 老板每隔一段时间就会查岗一次. 你需要做好准备, 哈哈.. 在这个循环中, 添加一个当老板快来查岗时退出的语句. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> goofOffTime = <span class="number">10</span></div><div class="line"><span class="keyword">var</span> bossComing = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>(goofOffTime &gt; <span class="number">0</span>)  &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"Goofing off!"</span>)</div><div class="line">	goofOffTime = goofOffTime - <span class="number">1</span></div><div class="line">	bossComing = bossComing + <span class="number">1</span></div><div class="line"></div><div class="line">	<span class="keyword">if</span>(goofOffTime == bossComing)  &#123;</div><div class="line">		<span class="keyword">break</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">println</span>(<span class="string">"Done goofing off."</span>)</div></pre></td></tr></table></figure>
+<h2 id="Continue-Statement-Continue语句"><a href="#Continue-Statement-Continue语句" class="headerlink" title="Continue Statement(Continue语句)"></a>Continue Statement(Continue语句)</h2><p>这个<code>continue</code>语句非常类似于<code>break</code>. <code>continue</code>语句并不是退出整个循环, 而是跳出当前的这次循环, 继续执行下一个次循环. 把下面的代码写入你的playground中.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> numbers = <span class="number">0</span></div><div class="line"><span class="keyword">while</span>(numbers &lt;= <span class="number">10</span>)  &#123;</div><div class="line">	<span class="keyword">if</span>(numbers == <span class="number">9</span>)  &#123;</div><div class="line">		numbers = numbers + <span class="number">1</span></div><div class="line">		<span class="keyword">continue</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">println</span>(numbers)</div><div class="line">	numbers = numbers + <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正如你看到的一样, 除了被<code>continue</code>排除在外的9, 其它的数字都被打印在的控制台中. It’s too bad that 7 ate 9, but for that reason, you can’t include him in our list.(Ps: -_-|||)</p>
+<p><img src="http://img01.taobaocdn.com/imgextra/i1/1134915854/TB2lYTwdpXXXXcvXXXXXXXXXXXX_!!1134915854.png" alt=""></p>
+<p>挑战: 在你自己的循环里使用<code>continue</code>语句. 找到一个特定值, 使她跳过本次循环, 并能继续循环下去. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">println</span>(<span class="string">"List of World Wars:"</span>)</div><div class="line"><span class="keyword">var</span> ww = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>(ww &lt;= <span class="number">5</span>)  &#123;</div><div class="line">	<span class="keyword">if</span>(ww == <span class="number">3</span> || ww == <span class="number">4</span>)  &#123;</div><div class="line">		ww = ww + <span class="number">1</span></div><div class="line">		<span class="keyword">continue</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"World War \(ww)"</span>)</div><div class="line">	ww = ww + <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">println</span>(<span class="string">"That's the beauty of World War V, Lois. It's so intense it skips over the other two. - Peter Griffin"</span>)</div></pre></td></tr></table></figure>
+<h2 id="Optionals-可选类型"><a href="#Optionals-可选类型" class="headerlink" title="Optionals(可选类型)"></a>Optionals(可选类型)</h2><p>有时由于功能的不同, 你并不知道一个变量的值是多少. 当他没值的时候, 那么他就是<code>nil</code>(空), 这时就需要用到<code>optionals</code>类型了. </p>
+<p>可选变量可以包含值或包含<code>nil</code>. 声明一个可选值你可以将其设置为<code>nil</code>.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> optionalNumber: <span class="type">Int</span>? = <span class="number">5</span></div><div class="line">optionalNumber = <span class="literal">nil</span></div></pre></td></tr></table></figure></p>
+<p>这个<code>?</code>是用来声明可选值的. 如果要判断一个可选值是否有值, 可以使用<code>if let</code>语句. 就像下面的代码一样:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> number = optionalNumber</div></pre></td></tr></table></figure></p>
+<p><code>if let</code>类似于<code>if</code>语句. 如果<code>optionalNumber</code>有一个<code>Int</code>的值, <code>number</code>将被设定为该值并执行大括号中的代码. </p>
+<p>或者你可以设计一个<code>else</code>语句来执行<code>optionalNumber</code>为<code>nil</code>的情况</p>
+<p>挑战: 自己尝试一下, 写一个<code>if let</code>语句判断<code>optionalNumber</code><br>是有值还是<code>nil</code>, 并让让输出不同的字符串到控制台.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> number = optionalNumber  &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"It is a number"</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>  &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"It is not a number"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Conversion-Between-Data-Types-类型转换"><a href="#Conversion-Between-Data-Types-类型转换" class="headerlink" title="Conversion Between Data Types(类型转换)"></a>Conversion Between Data Types(类型转换)</h2><p>让我们来看下如何在一个程序中, 进行类型转换. 可选类型可以帮助你进行类型转换. 尝试下面的例子, 将一个字符串转换成一个数字.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> languagesLearned: <span class="type">String</span> = <span class="string">"3"</span></div><div class="line"><span class="keyword">var</span> languagesLearnedNum: <span class="type">Int</span>? = languagesLearned.toInt()</div></pre></td></tr></table></figure></p>
+<p>在这里, 声明和初始化<code>languages​​Learned</code>的字符串值为<code>&quot;3&quot;</code>, 再声明一个<code>languagesLearnedNum</code>并使用<code>toInt()</code>方法进行初始化. 这个方法非常类似之间前学过的println()函数, 只不过, 他是类的一部分. 你以后将会学到更多类似的函数.</p>
+<p><code>toInt()</code>方法是一个已经存在的方法, 所以你得知道这个函数是接收一个字符串类型的值并返回一个<code>Int</code>类型的值. 你同时必须声明一个可选的<code>languagesLearnedNum</code>变量, 使用等于号去接受他的返回值, 因为他的返回值可能是<code>nil</code>, 所以必须使用可选类型. 如果你尝试去转换一个非数字的字符串时, 他的返回值就是<code>nil</code>, 如: “hello. world”.</p>
+<p>键入下面的代码, 测试下上面的结论是否正确:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> num = languagesLearnedNum  &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"It is a number"</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>  &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"It is not a number"</span>)</div><div class="line">&#125;</div><div class="line">```<span class="type">Swift</span></div><div class="line"></div><div class="line">使用`<span class="keyword">if</span> <span class="keyword">let</span>`语句去测试`languagesLearnedNum`是否有值. 如果他有值, 这个值赋值给`num`并执行大括号中的代码. 否则, 执行<span class="keyword">else</span>后面大括号中的代码. </div><div class="line"></div><div class="line">修改`languagesLearned`这个字符串为<span class="string">"Three"</span>, 看下会发生什么. 这个程序应该打印`<span class="keyword">is</span> not a number`, 因为languagesLearnedNum的值已经被设置成了`<span class="literal">nil</span>`, <span class="string">"Three"</span>并不能转换陈`<span class="type">Int</span>`类型.</div><div class="line"></div><div class="line">## <span class="type">Putting</span> it all together(综合练习)</div><div class="line"></div><div class="line">挑战: 最后一个挑战! 尝试创建一个你自己的变量并尝试将这个字符串转换成一个数字. 然后比较这些变量的值并使用`<span class="built_in">println</span>()`解释这些值的的作用. 这些`<span class="built_in">println</span>()`解释应该包含在字符串中插入值, 你可以在里面说明哪个值大于/小于哪个值.</div><div class="line"></div><div class="line">![](http:<span class="comment">//img01.taobaocdn.com/imgextra/i1/1134915854/TB2LRntdpXXXXXkXpXXXXXXXXXX_!!1134915854.png)</span></div><div class="line"></div><div class="line">```<span class="type">Swift</span></div><div class="line"><span class="keyword">var</span> tutorialTeam: <span class="type">String</span> = <span class="string">"55"</span></div><div class="line"><span class="keyword">var</span> editorialTeam = <span class="number">23</span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> tutorialTeamNum: <span class="type">Int</span>? = tutorialTeam.toInt()</div><div class="line"> </div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> numTutorial = tutorialTeamNum  &#123;</div><div class="line">	<span class="keyword">if</span>(numTutorial &gt; editorialTeam)  &#123;</div><div class="line">		<span class="built_in">println</span>(<span class="string">"\(numTutorial) is greater than \(editorialTeam)"</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (numTutorial &lt; editorialTeam) &#123;</div><div class="line">		<span class="built_in">println</span>(<span class="string">"\(numTutorial) is less than \(editorialTeam)"</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span>  &#123;</div><div class="line">		<span class="built_in">println</span>(<span class="string">"\(numTutorial) is equal to \(editorialTeam)"</span>)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>  &#123;</div><div class="line">	<span class="built_in">println</span>(<span class="string">"Invalid entry"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Where-To-Go-From-Here"><a href="#Where-To-Go-From-Here" class="headerlink" title="Where To Go From Here?"></a>Where To Go From Here?</h2><p>这里是本系列教程使用到现在的<a href="http://cdn1.raywenderlich.com/wp-content/uploads/2014/10/MyPlaygroundPart1.zip" target="_blank" rel="external">playground文件</a></p>
+<p>点击这里到<a href="http://www.raywenderlich.com/75919/Learn-to-code-iOS-apps-with-Swift-tutorial-2" target="_blank" rel="external">下一部分</a>, 那里你将会用到你学到的知识, 使用Swift 编写一个简单的命令行猜谜游戏!</p>
+<p>如果你有任何问题或意见, 请加入论坛下面的讨论. </p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://a.disquscdn.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+          <div class="main-footer">
+  
+    © 2018 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
