@@ -13,7 +13,7 @@
 </title>
 
 <meta name="description" content="本来一直都是用html5来做iOS开发, 在开发过程发现了很多html5中的不足, 比较纠结. 所以来折腾下Swift. 用原生代码来做框架, html来做展现视觉效果. 物尽其用, 人尽其才">
-<meta name="keywords" content="iOS,Note,Swift">
+<meta name="keywords" content="iOS,Swift,Note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="To Learn Swift">
 <meta property="og:url" content="http://huyaohui.com/2015/05/04/To-Learn-Swift/index.html">
@@ -237,7 +237,7 @@
 <h2 id="TableView-中关闭软键盘-结束编辑"><a href="#TableView-中关闭软键盘-结束编辑" class="headerlink" title="TableView 中关闭软键盘 结束编辑"></a>TableView 中关闭软键盘 结束编辑</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">scrollViewWillBeginDragging</span><span class="params">(scrollView: UIScrollView)</span></span> &#123;</div><div class="line">    <span class="keyword">self</span>.view.endEditing(<span class="literal">true</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="日期转时间戳"><a href="#日期转时间戳" class="headerlink" title="日期转时间戳"></a>日期转时间戳</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dateString = <span class="string">"2014-07-15"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> dateFormatter = <span class="type">NSDateFormatter</span>()</div><div class="line">dateFormatter.dateFormat = <span class="string">"yyyy-MM-dd"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> date = dateFormatter.dateFromString(dateString)</div><div class="line"></div><div class="line"><span class="built_in">println</span>(date!.timeIntervalSince1970)</div></pre></td></tr></table></figure>
 <h2 id="隐藏navigation-bar-的下边线"><a href="#隐藏navigation-bar-的下边线" class="headerlink" title="隐藏navigation bar 的下边线"></a>隐藏navigation bar 的下边线</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">navigationController?.navigationBar.shadowImage = <span class="type">UIImage</span>()</div><div class="line">navigationController?.navigationBar.setBackgroundImage(<span class="type">UIImage</span>(), forBarMetrics: .<span class="type">Default</span>)</div></pre></td></tr></table></figure>
-<h2 id="获取-UISearchbar-的输入结果"><a href="#获取-UISearchbar-的输入结果" class="headerlink" title="获取 UISearchbar 的输入结果"></a>获取 UISearchbar 的输入结果</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">实现 <span class="type">UISearchBarDelegate</span></div><div class="line"></div><div class="line"><span class="comment">// MARK: 获取搜索输入结果</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">searchBarSearchButtonClicked</span><span class="params">(searchBar: UISearchBar)</span></span> &#123;</div><div class="line">    <span class="built_in">println</span>(<span class="string">"searchText2 \(searchBar.text)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取-UISearchbar-的输入结果"><a href="#获取-UISearchbar-的输入结果" class="headerlink" title="获取 UISearchbar 的输入结果"></a>获取 UISearchbar 的输入结果</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">实现 <span class="type">UISearchBarDelegate</span></div><div class="line"></div><div class="line"><span class="comment">// MARK: 获取搜索输入结果</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">searchBarSearchButtonClicked</span><span class="params">(searchBar: UISearchBar)</span></span> &#123;</div><div class="line">    <span class="built_in">println</span>(<span class="string">"searchText2 <span class="subst">\(searchBar.text)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="字符串切割-截取"><a href="#字符串切割-截取" class="headerlink" title="字符串切割, 截取"></a>字符串切割, 截取</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myString: <span class="type">String</span> = <span class="string">"hello hi"</span>;</div><div class="line"><span class="keyword">var</span> myStringArr = myString.componentsSeparatedByString(<span class="string">" "</span>)</div><div class="line"></div><div class="line"><span class="comment">// 从第几位开始截取</span></div><div class="line"><span class="keyword">var</span> ns1=(s <span class="keyword">as</span> <span class="type">NSString</span>).substringFromIndex(<span class="number">5</span>)</div><div class="line"><span class="comment">// 截取到第几位</span></div><div class="line"><span class="keyword">var</span> ns2=(s <span class="keyword">as</span> <span class="type">NSString</span>).substringToIndex(<span class="number">4</span>)</div><div class="line"><span class="comment">// 综合上面</span></div><div class="line"><span class="keyword">var</span> ns3=(s <span class="keyword">as</span> <span class="type">NSString</span>).substringWithRange(<span class="type">NSMakeRange</span>(<span class="number">4</span>, <span class="number">1</span>))</div><div class="line"><span class="comment">// 去掉字符串的最后一个字符</span></div><div class="line">(s <span class="keyword">as</span> <span class="type">NSString</span>).substringToIndex(<span class="built_in">count</span>(s)-<span class="number">1</span>)</div></pre></td></tr></table></figure>
 <h2 id="confirm-dialog"><a href="#confirm-dialog" class="headerlink" title="confirm dialog"></a>confirm dialog</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> refreshAlert = <span class="type">UIAlertController</span>(title: <span class="string">"Refresh"</span>, message: <span class="string">"All data will be lost."</span>, preferredStyle: <span class="type">UIAlertControllerStyle</span>.<span class="type">Alert</span>)</div><div class="line">        </div><div class="line">refreshAlert.addAction(<span class="type">UIAlertAction</span>(title: <span class="string">"Ok"</span>, style: .<span class="type">Default</span>, handler: &#123; (action: <span class="type">UIAlertAction</span>!) <span class="keyword">in</span></div><div class="line">    <span class="built_in">println</span>(<span class="string">"Handle Ok logic here"</span>)</div><div class="line">&#125;))</div><div class="line"></div><div class="line">refreshAlert.addAction(<span class="type">UIAlertAction</span>(title: <span class="string">"Cancel"</span>, style: .<span class="type">Default</span>, handler: &#123; (action: <span class="type">UIAlertAction</span>!) <span class="keyword">in</span></div><div class="line">    <span class="built_in">println</span>(<span class="string">"Handle Cancel Logic here"</span>)</div><div class="line">&#125;))</div><div class="line"></div><div class="line">presentViewController(refreshAlert, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</div></pre></td></tr></table></figure>
 <h2 id="修改应用display-name"><a href="#修改应用display-name" class="headerlink" title="修改应用display name"></a>修改应用display name</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">Targets</span> -&gt; application -&gt; build setting -&gt; product name</div></pre></td></tr></table></figure>
@@ -303,21 +303,27 @@
 
 
 
-<section id="comments">
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'makehui'; // required: replace example with your forum shortname
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://makehui.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'https://a.disquscdn.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
+
 
 
 
