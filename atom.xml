@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2018-12-05T11:52:30.173Z</updated>
+  <updated>2019-01-12T05:05:29.054Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -14,6 +14,167 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sqlite3 单表级联删除数据</title>
+    <link href="http://huyaohui.com/2018/12/18/Sqlite3-dan-biao-ji-lian-shan-chu-shu-ju/"/>
+    <id>http://huyaohui.com/2018/12/18/Sqlite3-dan-biao-ji-lian-shan-chu-shu-ju/</id>
+    <published>2018-12-18T02:51:17.000Z</published>
+    <updated>2019-01-12T05:05:29.054Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在写一个网络相关的 iOS 库, 遇到一个需要级联删除数据的地方, 本来想用外键约束的级联删除来解决<br>后来发现, 在外键约束时 插入数据是有条件限制的, 在某些情况下插入数据会失败, 不过蛋疼之余还是给我想到解决方案了, 嘻嘻</p>
+<a id="more"></a>
+<h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><p>这里我不会讲<code>外键约束</code>是什么, 其他地方可以找到很多资料<br>这里只关注当前需要解决的问题</p>
+<h3 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">"test_table"</span> (</div><div class="line">  <span class="string">"id"</span> <span class="built_in">INTEGER</span> PRIMARY <span class="keyword">KEY</span>,</div><div class="line">  <span class="string">"uuid"</span> <span class="built_in">TEXT</span>,</div><div class="line">  <span class="string">"parent_uuid"</span> <span class="built_in">TEXT</span> <span class="keyword">REFERENCES</span> test_table(<span class="keyword">uuid</span>) <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<h3 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h3><p>当插入数据时, 就会看到如下错误</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> test_table (<span class="keyword">uuid</span>, parent_uuid)<span class="keyword">VALUES</span>(<span class="string">'a'</span>, <span class="string">'a'</span>);</div><div class="line"></div><div class="line"><span class="comment">-- foreign key mismatch - "test_table" referencing "test_table", Time: 0.003000s</span></div></pre></td></tr></table></figure>
+<p>根据外键约束的原理, 可以知道这就是一个先有鸡还是先有蛋的问题<br>因为 在插入数据时会检查<code>parent_uuid</code>中的值是否存在<code>uuid</code>列中, 如果不存在则插入失败</p>
+<h3 id="可行的方案"><a href="#可行的方案" class="headerlink" title="可行的方案"></a>可行的方案</h3><p>如果你的<code>uuid</code>是主键的并且在插入数据时满足以下两个条件的任意一个可以插入成功</p>
+<ol>
+<li><code>parent_uuid</code>为<code>NULL</code></li>
+<li><code>parent_uuid</code>等于<code>uuid</code></li>
+</ol>
+<p>而实际情况则是多变的, 这样处理的话制约性太强了, 方案并不好<br>Ps: 虽然我当前的这个项目用的是在代码中递归实现的, 但是我还是要说下下面的这个方案<br>    之后会改成这个方案😁</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>同样的在这里我不会叫<code>触发器</code>是什么, 资料其他地方很多</p>
+<p>数据表还是上面的那个结构<br>下面是数据表中的数据(Ps: 因为是触发器实现所以不存在参入检查的问题)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">id</th>
+<th style="text-align:center">uuid</th>
+<th style="text-align:center">parent_uuid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">c</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">c</td>
+<td style="text-align:center">d</td>
+</tr>
+</tbody>
+</table>
+<h3 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h3><p>下面是触发器Sql: </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> <span class="string">"tri_test_table"</span> <span class="keyword">AFTER</span> <span class="keyword">DELETE</span> <span class="keyword">ON</span> <span class="string">"test_table"</span> </div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	<span class="keyword">DELETE</span> <span class="keyword">FROM</span> test_table <span class="keyword">WHERE</span> parent_uuid = old.uuid;</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure>
+<p>下面是删除删除数据Sql: </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">PRAGMA</span> recursive_triggers = <span class="literal">true</span>;</div><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> test_table <span class="keyword">where</span> <span class="keyword">uuid</span> = <span class="string">'a'</span>;</div><div class="line"><span class="keyword">PRAGMA</span> recursive_triggers = <span class="literal">false</span>;</div></pre></td></tr></table></figure>
+<h3 id="关于recursive-triggers"><a href="#关于recursive-triggers" class="headerlink" title="关于recursive_triggers"></a>关于recursive_triggers</h3><p>如果不开启的话, 触发器只会触发一次, 那么最终<code>id=3</code>这条记录仍然是会存在的, 这样效果级联删除的效果就没有达到了<br>但是 Sqlite3 默认是关闭 recursive_triggers 这个选项的, 需要手动开启, 具体的可以看下面参考资料的官方文档</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://sqlite.org/pragma.html#pragma_recursive_triggers" target="_blank" rel="external">https://sqlite.org/pragma.html#pragma_recursive_triggers</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在写一个网络相关的 iOS 库, 遇到一个需要级联删除数据的地方, 本来想用外键约束的级联删除来解决&lt;br&gt;后来发现, 在外键约束时 插入数据是有条件限制的, 在某些情况下插入数据会失败, 不过蛋疼之余还是给我想到解决方案了, 嘻嘻&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Sql" scheme="http://huyaohui.com/categories/Sql/"/>
+    
+    
+      <category term="Sqlite3" scheme="http://huyaohui.com/tags/Sqlite3/"/>
+    
+      <category term="Sql" scheme="http://huyaohui.com/tags/Sql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS Storyboard 和 UIColor 创建出来的颜色显示效果不同</title>
+    <link href="http://huyaohui.com/2018/12/06/iOS-Storyboard-he-UIColor-chuang-jian-chu-lai-de-yan-se-xian-shi-xiao-guo-bu-tong/"/>
+    <id>http://huyaohui.com/2018/12/06/iOS-Storyboard-he-UIColor-chuang-jian-chu-lai-de-yan-se-xian-shi-xiao-guo-bu-tong/</id>
+    <published>2018-12-06T07:25:49.000Z</published>
+    <updated>2019-01-12T05:05:29.055Z</updated>
+    
+    <content type="html"><![CDATA[<p>路漫漫其修远兮，吾将上下而求索。<br>真是绝了，这个问题从我开始搞 iOS 开发时就一直困扰这我了，虽然那时候我也尝试这找解决方案，但是一直都没能找到怎么解决，只是大概知道是配色文件到诊的，但是要如果更改正确却无从下手了。<br>现在看来，我找不到解决方案也是理所应当的了，至于原因接着往下看。（提示：我搞 iOS 开发那会还是 iOS8 时代）。</p>
+<a id="more"></a>
+<p>你有没有遇到过以下问题：</p>
+<ul>
+<li>设计师给你的颜色值在 Interface Builder 中设置以及代码设置与真机与模拟器显示的颜色不一致，甚至肉眼完全看的出来。</li>
+<li>为一个普通的控件设置 Color，设置了颜色为 XXXXXX。取色工具测的也是正常的 XXXXXX，但是模拟器 / 真机运行起来之后，颜色变色了，用取色工具测，颜色变成了 YYYYYY。</li>
+<li>为什么当我用颜色吸管工具在 Photoshop 选择一个颜色的和 RGB 值，在 Xcode 中设置后得不到相同的颜色?</li>
+<li>为什么真机或者模拟器截图后，用吸管取色后得到的值与 Interface Builder 中设置的颜色值不一样？</li>
+<li>太恶心了，就一个颜色为什么不一样？</li>
+<li>我做错了什么吗?</li>
+</ul>
+<p>看完这篇文章后，这些问题将会全部消失。</p>
+<h2 id="color-space"><a href="#color-space" class="headerlink" title="color space"></a>color space</h2><p>色彩空间，色域。我不会在这里详细介绍, 进一步了解可以阅读: <a href="http://www.dpbestflow.org/color/color-space-and-color-profiles" target="_blank" rel="external">http://www.dpbestflow.org/color/color-space-and-color-profiles</a>  在那里, 你可以找到关于色彩模型, 色彩空间和色彩配置的定义, 以获得更深的理解。我也会稍后再博客中翻译整篇文章。</p>
+<h2 id="color-profile"><a href="#color-profile" class="headerlink" title="color profile"></a>color profile</h2><p>色彩配置。我不会在这里详细介绍, 进一步了解可以阅读: <a href="http://www.dpbestflow.org/color/color-space-and-color-profiles" target="_blank" rel="external">http://www.dpbestflow.org/color/color-space-and-color-profiles</a>  在那里, 你可以找到关于色彩模型, 色彩空间和色彩配置的定义, 以获得更深的理解。我也会稍后再博客中翻译整篇文章。</p>
+<h2 id="理解苹果的颜色处理"><a href="#理解苹果的颜色处理" class="headerlink" title="理解苹果的颜色处理"></a>理解苹果的颜色处理</h2><p>苹果认为相同的 RGB 值在任何地方都应该显示相同。其实应用一个 RGB 的组合在不同的设备上不会总是有着相同的颜色，这取决于你使用的是哪一个颜色配置（color profile）。</p>
+<p>需要知道是，color profile 是展现一个色彩空间中颜色的数值模型 (色彩空间, 色域（color space）是展现颜色的一个方式, 例如: RGB, CMYK, HSV, 等等)，一些色彩配置（color profile）是“设备相关” 的，一些色彩配置（color profile）是 “设备无关” 的。这意味着同样的颜色在不同的设备 (“设备无关”) 上会展现相同的颜色，其中一些将会根据设备的特点改变颜色(“设备相关”)</p>
+<p>同样有趣的是, 当你截图时, 不仅每个像素的 RGB 值都得到了存储, 而且还有关于被截取的设备的互补信息。这样, 苹果可以通过计算不同的 RGB 组合来使颜色在不同的设备中看起来相同, 以最佳的方式使这些颜色与设备的特性和限制相匹配。</p>
+<p>说了这么多, 给定一个色彩空间（color space） (例如, RGB), 您将在其中有多个色彩配置 (一般 RGB、Adobe RGB、PAL/SECAM 等), 因此你将有多种方法使用不同的 RGB 组合来获得相同的颜色。</p>
+<p>Xcode 中的 RGB 色彩配置（color profile）有 Adobe RGB、Apple RGB、Device RGB（设备 RGB）、Generic RGB（通用 RGB）、Wide Gamut RGB（广域 RGB）。要查看整个色彩配置列表, 可以从 Xcode 的 Interface Builder 的色彩选择工具中查看。</p>
+<p><a href="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-142804.png" target="_blank" rel="external"><img src="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-142804.png" alt=""></a></p>
+<p>因此, 当您选择选择了 RGB 值组合，并更改了要使用的色彩配置时, 您将获得相同的颜色，但是会得出不同的 RGB 值，这是应用颜色时使开发人员非常恼火的主要问题。</p>
+<p>例如, 通用 RGB (10、80、105) 和设备 RGB (0、99、124) 是相同的颜色，但有不同的 RGB 值。如你所见。这就是为什么最终可以有不同的颜色， 即使你使用的是你从别处取色的精确的 RGB 组合 (Photoshop 吸管, 数码测色计（Digital Color Meter）等)。</p>
+<p><a href="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-142805.png" target="_blank" rel="external"><img src="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-142805.png" alt=""></a></p>
+<p>同样, 如果在不同的色彩配置中使用相同的 RGB 组合, 则会得到不同的颜色。 <a href="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-142806.png" target="_blank" rel="external"><img src="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-142806.png" alt=""></a></p>
+<p>此外, Photoshop 处理颜色时，使用 Photoshop 的人与使用 RGB 值的人不是同一台设备不说，Adobe 使用人员 Photoshop 的色彩空间也未必与开发人员一致 (可能会是 Adobe 发明的颜色空间), 所以当你试图直接从 Photoshop 中选取它们并将其应用于 Xcode 时, 情况可能会变得更糟。</p>
+<p>Photoshop 在编辑菜单的颜色设置中可以查看更改色彩配置。</p>
+<p><a href="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-170957.png" target="_blank" rel="external"><img src="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-170957.png" alt=""></a></p>
+<p>所有这一切都解释了为什么当你使用数码测色计选择一个颜色, 你可能会得到不同的 RGB 值但是是相同的颜色。如果你在不同的显示器 (因为额外的设备信息可以添加到每个像素, 当你选择颜色, 取决于您使用的是与设备相关的色彩配置还是与设备无关的。</p>
+<p>你可以猜到，我们要使用一个设备无关的， 如 sRGB (代表标准的 RGB), 所以无论我们将在什么地方显示，我们将得到相同的 RGB 值时。</p>
+<p>iOS 中代码自定义设置 RGB 与 Interface Builder 自定义设置 RGB 颜色一致。都使用了 sRGB 色彩配置。</p>
+<h3 id="在-XIB-中的色彩配置"><a href="#在-XIB-中的色彩配置" class="headerlink" title="在 XIB 中的色彩配置"></a>在 XIB 中的色彩配置</h3><p><strong>选择颜色后使用 sublime 等文本编辑器直接打开 storyboard 或者 xib 文件。即可看到如下几种结果。</strong></p>
+<p>如果色彩配置采用了 sRGB ，sb/xib 的 xml 中会这样写，colorSpace=”custom” customColorSpace=”sRGB” ，一般都是使用颜色选择器自定义 RGB 后自动选择的 sRGB 色彩配置</p>
+<p>如果色彩配置采用了 Display P3， sb/xib 的 xml 中会这样写，colorSpace=”custom” customColorSpace=”displayP3”，</p>
+<p>如果色彩配置采用了 Generic RGB， sb/xib 的 xml 中会这样写，colorSpace=”calibratedRGB” ，一般都是使用颜色选择器自定义 RGB 后手动选择的 Generic RGB 色彩配置</p>
+<p>如果色彩配置采用了 Generic Gray ， sb/xib 的 xml 中会这样写，colorSpace=”calibratedWhite”，一般都是系统默认的灰白颜色。</p>
+<p>如果色彩配置采用了 Device Gray ， sb/xib 的 xml 中会这样写，colorSpace=”deviceRGB”，，一般都是使用颜色选择器自定义 RGB 后手动选择的 DeviceRGB 色彩配置</p>
+<p>如果色彩配置采用了 Adobe RGB ， sb/xib 的 xml 中会这样写，colorSpace=”adobeRGB1998”，，一般都是使用颜色选择器自定义 RGB 后手动选择的 Adobe RGB 色彩配置</p>
+<p>最后发现，手动选择的 Apple RGB 色彩配置，sb/xib 的 xml 中会这样写，colorSpace=”sRGB”，说明苹果默认统一成了 sRGB.</p>
+<h3 id="在纯代码中的色彩配置"><a href="#在纯代码中的色彩配置" class="headerlink" title="在纯代码中的色彩配置"></a>在纯代码中的色彩配置</h3><p>最新 Xcode8 测试, 以下代码使用 sRGB 色彩配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (UIColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha</div></pre></td></tr></table></figure>
+<p>类似 [UIColor darkGrayColor] 使用 Generic Gray 色彩配置</p>
+<p>不信我们 log 下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CGColorSpaceRef   ref = CGColorGetColorSpace([UIColor colorWithRed:104/255.0 green:104/255.0 blue:104/255.0 alpha:1].CGColor);</div><div class="line">NSLog(@&quot;%@&quot;,ref);</div><div class="line">CGColorSpaceRef   ref2 =  CGColorGetColorSpace([UIColor darkGrayColor].CGColor);</div><div class="line">NSLog(@&quot;%@&quot;,ref2);</div><div class="line"></div><div class="line">&lt;CGColorSpace 0x60000003f2a0&gt; (kCGColorSpaceICCBased; kCGColorSpaceModelRGB; sRGB IEC61966-2.1; extended range)</div><div class="line">&lt;CGColorSpace 0x60800002af20&gt; (kCGColorSpaceICCBased; kCGColorSpaceModelMonochrome; Generic Gray Gamma 2.2 Profile; extended range)</div></pre></td></tr></table></figure>
+<h2 id="颜色拾取与应用"><a href="#颜色拾取与应用" class="headerlink" title="颜色拾取与应用"></a>颜色拾取与应用</h2><p>既然你明白了这件事的 ‘原因’, 让我们来谈谈技巧。</p>
+<p>要选择颜色， 我们将使用苹果系统自带的 “数码测色计” 应用，你可以在系统的实用工具或者 Spotlight 找到。这个程序适用于一些色彩配置计算屏幕上的一个像素的 RGB 值。</p>
+<p><a href="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-145700.png" target="_blank" rel="external"><img src="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-145700.png" alt=""></a></p>
+<p><strong>Xcode 的颜色选择器也支持拾取，但是不能设置指定色彩配置的颜色拾取。只能是 sRGB(代表标准的 RGB)。</strong></p>
+<p>要应用颜色，我们将使用 Xcode 的 Interface Builder， 或者， 我们也可以以代码方式进行。</p>
+<h3 id="颜色拾取"><a href="#颜色拾取" class="headerlink" title="颜色拾取"></a>颜色拾取</h3><p>打开数码测色计（Digital Color Meter），下拉中选择 “以 sRGB 显示”/ “Display in sRGB”, 使用取色吸管取色，shift+cmd+c，快捷键拷贝当前屏幕像素 RGB 的值.</p>
+<p><a href="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-151913.png" target="_blank" rel="external"><img src="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-151913.png" alt=""></a></p>
+<p>如果想拷贝 16 进制颜色，在菜单的显示中可以设置切换。</p>
+<p><a href="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-151422.png" target="_blank" rel="external"><img src="http://www.skyfox.org/wp-content/uploads/2017/08/QQ20170817-151422.png" alt=""></a></p>
+<p>然后再 Xcode 的 Interface Builder，颜色选择器中选择 sRGB(默认也是 sRGB)，填入取的颜色 RGB 值。</p>
+<p>或者代码设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.label.backgroundColor = [UIColor colorWithRed:39/255.0 green:45/255.0 blue:51/255.0 alpha:0];</div></pre></td></tr></table></figure>
+<p><strong>所以，总结下技巧：</strong></p>
+<p>使用取色软件，以 sRGB 色彩配置，取得 RGB 值。</p>
+<p>设计最好也使用 sRGB 色彩配置进行设计。</p>
+<p>如果设计要给开发取色要使用 sRGB 取色。</p>
+<p>因为代码初始化 UIColor 是不能像 NSColor 一样指定色彩空间的。所以要以不变（sRGB）应万变。</p>
+<p>使用 sRGB 在 Xcode Interface Builder(或通过代码) 中应用这些 RGB 值。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://stackoverflow.com/questions/28367811/color-in-storyboard-not-matching-uicolor" target="_blank" rel="external">https://stackoverflow.com/questions/28367811/color-in-storyboard-not-matching-uicolor</a><br><a href="http://www.skyfox.org/ios-app-color-set-and-color-profile.html" target="_blank" rel="external">http://www.skyfox.org/ios-app-color-set-and-color-profile.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;路漫漫其修远兮，吾将上下而求索。&lt;br&gt;真是绝了，这个问题从我开始搞 iOS 开发时就一直困扰这我了，虽然那时候我也尝试这找解决方案，但是一直都没能找到怎么解决，只是大概知道是配色文件到诊的，但是要如果更改正确却无从下手了。&lt;br&gt;现在看来，我找不到解决方案也是理所应当的了，至于原因接着往下看。（提示：我搞 iOS 开发那会还是 iOS8 时代）。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://huyaohui.com/categories/iOS/"/>
+    
+    
+      <category term="iOS" scheme="http://huyaohui.com/tags/iOS/"/>
+    
+      <category term="Storyboard" scheme="http://huyaohui.com/tags/Storyboard/"/>
+    
+      <category term="XIB" scheme="http://huyaohui.com/tags/XIB/"/>
+    
+      <category term="XML" scheme="http://huyaohui.com/tags/XML/"/>
+    
+  </entry>
   
   <entry>
     <title>如何计算算法的空间复杂度</title>
@@ -1195,249 +1356,6 @@
     
     
       <category term="Game" scheme="http://huyaohui.com/tags/Game/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Libqgit2 clone error &quot;unable to lock mwindow mutex&quot;</title>
-    <link href="http://huyaohui.com/2017/01/08/Libqgit2-clone-error-%22unable-to-lock-mwindow-mutex%22/"/>
-    <id>http://huyaohui.com/2017/01/08/Libqgit2-clone-error-&quot;unable-to-lock-mwindow-mutex&quot;/</id>
-    <published>2017-01-08T07:40:31.000Z</published>
-    <updated>2017-07-30T04:35:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先说明一下这个error已经困扰了我两个多月了，求助了不少人，也找了N多资料都没能找到答案，关键是google都没能发现任何相关资料，简直崩溃。<br>不过今天终于才勉强解决了，但是感觉我的处理方式应该有问题，不过毕竟能用暂时就不纠结这么多了，下面具体说下我的解决方案，挺有意思的</p>
-<a id="more"></a>
-<h2 id="找到解决方案过程"><a href="#找到解决方案过程" class="headerlink" title="找到解决方案过程"></a>找到解决方案过程</h2><p>在找到解决方案前，尝试了无数次的重新编译，换版本编译，得到的结果仍然是同样的蛋疼。<br>并且，我发现仅仅是<code>clone</code>会出现这个错误，<code>init</code>并不会发生崩溃，当时我就在想会不会不是<code>libqgit2</code>的问题呢，因为使用<code>ctest -V</code>测试是<code>clone</code>是可以成功的。<br>由此推断出，应该是<code>QT Creator</code>的问题（还有一个件事也能佐证我这个猜测，就是期间我使用了一个<a href="http://github.com/qtpm/qtpm" target="_blank" rel="external">qtpm</a>的包管理工具去安装<code>libqgit2</code>是可以正常<code>clone</code>的，但是这个东西不能导入<code>QT Creator</code>而写项目关注的人也不多，遂放弃），但是到底是什么问题我并不清楚，我也不是很懂<code>QT</code>和编译相关的东西。<br>为此我还在<a href="http://stackoverflow.com/questions/41297760/unable-to-lock-mwindow-mutex" target="_blank" rel="external">stackoverflow</a>上提交了我这个问题，但是并没人鸟我，囧…<br>到最后，是在没办法，就使用这个错误中的关键词在项目源代码中所有，但是一无所得，后来我想到是不是不是<code>libqgit2</code>的问题是<code>libgit2</code>的问题呢，我一搜索，瞬间懵逼了，这个错误能再<code>libgit2</code>的源码中找到，瞬间燃气了星星之火，感觉有希望了，遂去翻阅<code>libgit2</code>的文档，然而可想而知我又懵逼了，并没有找到相关的文档<br>好吧心想硬着头皮去看源代码吧，这一看又看到希望了，里面的注释有说到这些方法使用来锁定window用的，但我根本就没有用到它的window啊，我有我自己的图形库，并不需要它去锁定什么window。<br>我这样一想，能不能把这些东西删除掉的内部实现注释掉呢，想想反正死马当活马医了，本以为会是一堆报错来打我脸，没想到居然行了，行了，了，天不亡我</p>
-<h2 id="修改如下"><a href="#修改如下" class="headerlink" title="修改如下"></a>修改如下</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vim libgit2/src/mwindow.c</div><div class="line"></div><div class="line"><span class="comment">// 注释到所有 git__mwindow_mutex 相关的判断</span></div><div class="line"><span class="comment">// 会有几处，我这里全部注释掉了</span></div><div class="line"><span class="comment">// if (git_mutex_lock(&amp;git__mwindow_mutex)) &#123;</span></div><div class="line"><span class="comment">//  giterr_set(GITERR_THREAD, "unable to lock mwindow mutex");</span></div><div class="line"><span class="comment">//  return;</span></div><div class="line"><span class="comment">// &#125;</span></div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>一直以为是<code>libqgit2</code>或者是<code>QT Creator</code>的问题，但是…</li>
-<li>不要过分相信权威（<code>libqgit2</code>已经没人维护了，让我一直以为是它出了问题）</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先说明一下这个error已经困扰了我两个多月了，求助了不少人，也找了N多资料都没能找到答案，关键是google都没能发现任何相关资料，简直崩溃。&lt;br&gt;不过今天终于才勉强解决了，但是感觉我的处理方式应该有问题，不过毕竟能用暂时就不纠结这么多了，下面具体说下我的解决方案，挺有意思的&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Qt" scheme="http://huyaohui.com/categories/Qt/"/>
-    
-    
-      <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
-    
-      <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
-    
-      <category term="libgit2" scheme="http://huyaohui.com/tags/libgit2/"/>
-    
-      <category term="libqgit2" scheme="http://huyaohui.com/tags/libqgit2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>A simple C++ framework based on file</title>
-    <link href="http://huyaohui.com/2016/12/26/A-simple-C++-framework-based-on-file/"/>
-    <id>http://huyaohui.com/2016/12/26/A-simple-C++-framework-based-on-file/</id>
-    <published>2016-12-26T12:49:12.000Z</published>
-    <updated>2017-07-30T04:35:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>A simple C++ framework based on file.</p>
-<a id="more"></a>
-<h2 id="瞎扯淡"><a href="#瞎扯淡" class="headerlink" title="瞎扯淡"></a>瞎扯淡</h2><blockquote>
-<p>前段时间(其实离现在已经不短了)印象笔记免费用户限制客户端同步个数, 像我这样 WindowsPC, WindowsBook, WindowsPad, WindowsPhoen, iPhone, MacBook, AndroidPad这么多设备需要同(我真不是装逼, 好吧我在装逼), 两台设备配额肯定不够的啊, 有木有, 别跟我说可以付费啊, 付费就不限制了, 反正我就不付费. </p>
-<p>于是乎就突发奇想, 自己开发一个笔记应用, 那么问题来了, 得需要服务器呢, 怎么办, 想来想去, 想到不是有git吗? 我可以用git来做服务器存储笔记文件啊, 我真他妈是个天才, 恩, 我差点就信了. </p>
-<p>经过一段时间的构思, 想起如果使用数据库的话, 会生成字节码文件, 这可不妙, git 对处理字节码可不在行, 思前想后, 最终决定使用纯纯文本文件为存储源, 存储数据, 反正也不会有很大的数据量, 于是乎就google了一番, 没找到相关的开源库, 心想这下坑爹了. 最终没办法, 只能自学了C++开始写这个库, 不要问我为什么不用自己擅长的语言写, 我要跨平台啊, 啊, 啊, 啊… 跨平台的话, 除了C/C++, 我还没有找到很好的选择. 这个项目我是准备支持全平台的, 好吧, 给自己挖了个巨坑… 反正无所谓了, 挖了就挖了, 填补填的上就看造化了.</p>
-<p>废话就这么多了, 下面是文档和开源地址</p>
-</blockquote>
-<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><h2 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h2><h3 id="Use"><a href="#Use" class="headerlink" title="Use"></a>Use</h3><p>Drag <code>src/*</code> to your projects</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"FdbrQueryBuilder.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> FileDBR;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</div><div class="line">    <span class="function">FdbrQueryBuilder <span class="title">queryBuilder</span><span class="params">(<span class="string">"/Users/MakeHui/Desktop/"</span>)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Create table and delete table</p>
-<h4 id="createTable"><a href="#createTable" class="headerlink" title="createTable"></a>createTable</h4><p>Create table</p>
-<blockquote>
-<p>bool createTable(string table, vector&lt;string&gt; columns)</p>
-<ul>
-<li>table: The table name</li>
-<li>columns: create column name</li>
-<li></li>
-<li>return: bool</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.createTable(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>, <span class="string">"field3"</span>&#125;);</div></pre></td></tr></table></figure>
-<h4 id="deleteTable"><a href="#deleteTable" class="headerlink" title="deleteTable"></a>deleteTable</h4><p>Delete table</p>
-<blockquote>
-<p>bool createTable(string table)</p>
-<ul>
-<li>table: The table name</li>
-<li></li>
-<li>return: bool</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.deleteTable(<span class="string">"tablename.fdbr"</span>);</div></pre></td></tr></table></figure>
-<h3 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h3><p>In the basic use. You can use symbols to filter parameters.</p>
-<h4 id="equality"><a href="#equality" class="headerlink" title="equality"></a>equality</h4><p>field1 = 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;&#125;);</div><div class="line"><span class="comment">// or</span></div><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 ="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="not-equal"><a href="#not-equal" class="headerlink" title="not equal"></a>not equal</h4><p>field1 != 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 !="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="greater"><a href="#greater" class="headerlink" title="greater"></a>greater</h4><p>field1 &gt; 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &gt;"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="lesser"><a href="#lesser" class="headerlink" title="lesser"></a>lesser</h4><p>field1 &lt; 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &lt;"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="greater-or-equal"><a href="#greater-or-equal" class="headerlink" title="greater or equal"></a>greater or equal</h4><p>field1 &gt;= 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &gt;="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="lesser-or-equal"><a href="#lesser-or-equal" class="headerlink" title="lesser or equal"></a>lesser or equal</h4><p>field1 &lt;= 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 &lt;="</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="like"><a href="#like" class="headerlink" title="like"></a>like</h4><p>field1 like 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 ~"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="not-like"><a href="#not-like" class="headerlink" title="not like"></a>not like</h4><p>field1 not like 123</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1 !~"</span>, <span class="string">"123"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h3 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h3><p>Some to the query method in common use.</p>
-<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><p>Select data from table</p>
-<blockquote>
-<p>vector&lt;map&lt;string, string&gt;&gt; select(string table, vector&lt;string&gt; columns = {}, map&lt;string, string&gt; where = {}, map&lt;string, string&gt; order = {})</p>
-<ul>
-<li>table: The table name</li>
-<li>columns: The target columns of data will be fetched</li>
-<li>where: Query conditions</li>
-<li>order: Sorting conditions</li>
-<li></li>
-<li>return: vector&lt;map&lt;string, string&gt;&gt;</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;&gt; data = queryBuilder.select(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field1"</span>, <span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"DESC"</span>&#125;&#125;)</div></pre></td></tr></table></figure>
-<h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h4><p>Insert new records in table</p>
-<blockquote>
-<p>bool insert(string table, map&lt;string, string&gt; datas)</p>
-<ul>
-<li>table: The table name</li>
-<li>datas: The data will be inserted into table</li>
-<li></li>
-<li>return: bool</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.insert(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;, &#123;<span class="string">"field3"</span>, <span class="string">"456"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>Modify data in table</p>
-<blockquote>
-<p>unsigned int update(string table, map&lt;string, string&gt; datas, map&lt;string, string&gt; where = {})</p>
-<ul>
-<li>table: The table name</li>
-<li>datas: The data that will be modified</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: The number of rows affected</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = queryBuilder.update(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"111"</span>&#125;&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="del"><a href="#del" class="headerlink" title="del"></a>del</h4><p>Delete data from table</p>
-<blockquote>
-<p>unsigned int del(string table, map&lt;string, string&gt; where = {})</p>
-<ul>
-<li>table: The table name</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: The number of rows affected</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = queryBuilder.del(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="get"><a href="#get" class="headerlink" title="get"></a>get</h4><p>Get only one record from table</p>
-<blockquote>
-<p>map&lt;string, string&gt; get(string table, vector&lt;string&gt; columns = {}, map&lt;string, string&gt; where = {}, map&lt;string, string&gt; order = {})</p>
-<ul>
-<li>table: The table name</li>
-<li>columns: The target columns of data will be fetched</li>
-<li>where: Query conditions</li>
-<li>order: Sorting conditions</li>
-<li></li>
-<li>return map&lt;string, string&gt;</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; data = queryBuilder.get(<span class="string">"tablename.fdbr"</span>, &#123;<span class="string">"field2"</span>&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"123"</span>&#125;&#125;, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"ASC"</span>&#125;&#125;)</div></pre></td></tr></table></figure>
-<h4 id="has"><a href="#has" class="headerlink" title="has"></a>has</h4><p>Determine whether the target data existed</p>
-<blockquote>
-<p>bool has(string table, map&lt;string, string&gt; where = {})</p>
-<ul>
-<li>table: The table name</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: bool</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> data = queryBuilder.has(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="count"><a href="#count" class="headerlink" title="count"></a>count</h4><p>Counts the number of rows</p>
-<blockquote>
-<p>unsigned int count(string table, map&lt;string, string&gt; where = {});</p>
-<ul>
-<li>table: The table name</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: unsigned int</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = queryBuilder.count(<span class="string">"tablename.fdbr"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="max"><a href="#max" class="headerlink" title="max"></a>max</h4><p>Get the maximum value for the column and support string</p>
-<blockquote>
-<p>string max(string table, string column, map&lt;string, string&gt; where = {})</p>
-<ul>
-<li>table: The table name</li>
-<li>column: The target column will be calculated</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: string</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> data = queryBuilder.max(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="min"><a href="#min" class="headerlink" title="min"></a>min</h4><p>Get the minimum value for the column and support string</p>
-<blockquote>
-<p>string min(string table, string column, map&lt;string, string&gt; where = {});</p>
-<ul>
-<li>table: The table name</li>
-<li>column: The target column will be calculated</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: string</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> data = queryBuilder.min(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="avg"><a href="#avg" class="headerlink" title="avg"></a>avg</h4><p>Get the average value for the column</p>
-<blockquote>
-<p>long double avg(string table, string column, map&lt;string, string&gt; where = {});</p>
-<ul>
-<li>table: The table name</li>
-<li>column: The target column will be calculated</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: long double</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> <span class="keyword">double</span> data = queryBuilder.avg(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h4 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h4><p>Get the total value for the column</p>
-<blockquote>
-<p>long double sum(string table, string column, map&lt;string, string&gt; where = {});</p>
-<ul>
-<li>table: The table name</li>
-<li>column: The target column will be calculated</li>
-<li>where: Query conditions</li>
-<li></li>
-<li>return: long double</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> <span class="keyword">double</span> data = queryBuilder.sum(<span class="string">"tablename.fdbr"</span>, <span class="string">"field2"</span>, &#123;&#123;<span class="string">"field1"</span>, <span class="string">"100"</span>&#125;&#125;);</div></pre></td></tr></table></figure>
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>FileDBR is under the LGPLv2.1 license.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;A simple C++ framework based on file.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="C/CPP" scheme="http://huyaohui.com/categories/C-CPP/"/>
-    
-    
-      <category term="FileDBR" scheme="http://huyaohui.com/tags/FileDBR/"/>
-    
-      <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
-    
-      <category term="Library" scheme="http://huyaohui.com/tags/Library/"/>
     
   </entry>
   

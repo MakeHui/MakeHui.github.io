@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huyaohui.com/2018/12/06/iOS-Storyboard-he-UIColor-chuang-jian-chu-lai-de-yan-se-xian-shi-xiao-guo-bu-tong/</loc>
+    
+    <lastmod>2019-01-12T05:05:29.055Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2018/12/18/Sqlite3-dan-biao-ji-lian-shan-chu-shu-ju/</loc>
+    
+    <lastmod>2019-01-12T05:05:29.054Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2018/12/05/ru-he-ji-suan-suan-fa-de-kong-jian-fu-za-du/</loc>
     
     <lastmod>2018-12-05T11:52:30.173Z</lastmod>
@@ -198,56 +212,7 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/06/24/xue-xi-shi-yong-Swift-bian-xie-iOS-ying-yong-cheng-xu-jiao-cheng-1%EF%BC%9A-Welcome-to-Programming/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/09/25/Xcode-chang-yong-cha-jian/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/06/23/Swift-Language-Tutorials-zhong-wen-ban/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/05/04/To-Learn-Swift/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/09/30/Apple-D-U-N-S-Number-zhu-ce-liu-cheng-xiang-jie/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/08/20/iOS-Swift-kai-fa-di-san-fang-zi-liao-zong-hui/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/08/15/zai-tong-ge-gong-cheng-zhong-shi-yong-Swift-he-Objective-C(Swift-and-Objective-C-in-the-Same-Project)/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/08/15/iOS-Swift-kai-fa-chang-yong-ku-shi-yong-shuo-ming/</loc>
+    <loc>http://huyaohui.com/2015/06/04/iOS-Swift-checkmark-for-TableViewCell/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
@@ -261,7 +226,35 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/09/26/guan-yu-fan-yu-tu-se-fang-wen-Google-de-fang-fa/</loc>
+    <loc>http://huyaohui.com/2015/09/30/Apple-developer-zhang-hao-zhu-ce-liu-cheng-xiang-jie/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/06/24/xue-xi-shi-yong-Swift-bian-xie-iOS-ying-yong-cheng-xu-jiao-cheng-1%EF%BC%9A-Welcome-to-Programming/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/09/30/Apple-D-U-N-S-Number-zhu-ce-liu-cheng-xiang-jie/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/05/04/To-Learn-Swift/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/09/25/Xcode-chang-yong-cha-jian/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
@@ -275,14 +268,14 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/09/30/Apple-developer-zhang-hao-zhu-ce-liu-cheng-xiang-jie/</loc>
+    <loc>http://huyaohui.com/2015/08/15/zai-tong-ge-gong-cheng-zhong-shi-yong-Swift-he-Objective-C(Swift-and-Objective-C-in-the-Same-Project)/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/07/12/iOS-CocoaPods-an-zhuang-he-shi-yong-jiao-cheng/</loc>
+    <loc>http://huyaohui.com/2015/08/20/iOS-Swift-kai-fa-di-san-fang-zi-liao-zong-hui/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
@@ -296,7 +289,7 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/06/04/iOS-Swift-checkmark-for-TableViewCell/</loc>
+    <loc>http://huyaohui.com/2015/06/23/Swift-Language-Tutorials-zhong-wen-ban/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
@@ -310,7 +303,7 @@
   </url>
   
   <url>
-    <loc>http://huyaohui.com/2015/05/30/iOS-Swift-UIImageView-loadingload-webImg/</loc>
+    <loc>http://huyaohui.com/2015/09/26/guan-yu-fan-yu-tu-se-fang-wen-Google-de-fang-fa/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
@@ -339,6 +332,27 @@
   
   <url>
     <loc>http://huyaohui.com/2015/06/01/iOS-Swift-tiao-zhuan-chuan-zhi/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/05/30/iOS-Swift-UIImageView-loadingload-webImg/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/08/15/iOS-Swift-kai-fa-chang-yong-ku-shi-yong-shuo-ming/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://huyaohui.com/2015/07/12/iOS-CocoaPods-an-zhuang-he-shi-yong-jiao-cheng/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
