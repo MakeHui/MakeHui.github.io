@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    TypeScript 基本语法
+  
+</title>
+
+<meta name="description" content="TypeScript 是微软开发的 JavaScript 的超集，TypeScript 兼容 JavaScript，可以载入 JavaScript 代码然后运行。TypeScript 与 JavaScript 相比进步的地方 包括：加入注释，让编译器理解所支持的对象和函数，编译器会移除注释，不会增加开销；增加一个完整的类结构，使之更新是传统的面向对象语言。 TypeScript 微软官方网站 h">
+<meta name="keywords" content="JavaScript,TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 基本语法">
+<meta property="og:url" content="http://huyaohui.com/2019/02/21/TypeScript-ji-ben-yu-fa/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="TypeScript 是微软开发的 JavaScript 的超集，TypeScript 兼容 JavaScript，可以载入 JavaScript 代码然后运行。TypeScript 与 JavaScript 相比进步的地方 包括：加入注释，让编译器理解所支持的对象和函数，编译器会移除注释，不会增加开销；增加一个完整的类结构，使之更新是传统的面向对象语言。 TypeScript 微软官方网站 h">
+<meta property="og:updated_time" content="2019-02-21T13:13:12.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript 基本语法">
+<meta name="twitter:description" content="TypeScript 是微软开发的 JavaScript 的超集，TypeScript 兼容 JavaScript，可以载入 JavaScript 代码然后运行。TypeScript 与 JavaScript 相比进步的地方 包括：加入注释，让编译器理解所支持的对象和函数，编译器会移除注释，不会增加开销；增加一个完整的类结构，使之更新是传统的面向对象语言。 TypeScript 微软官方网站 h">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">超平和バスターズはずっとなかよし</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SB/">SB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sql/">Sql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SB/">SB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sqlite3/">Sqlite3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeScript/">TypeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XIB/">XIB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/std/">std</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/categories/SB" title="SB series">SB series</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/Niconiconi" title="Niconiconi">Niconiconi</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="external">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-TypeScript-基本语法" class="article article-type-post">
+  
+    <h1 class="article-header">
+      TypeScript 基本语法
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Write: 2019-02-21 Update: 2019-02-21
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JavaScript/">JavaScript</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/">TypeScript</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <blockquote>
+<p>TypeScript 是微软开发的 JavaScript 的超集，TypeScript 兼容 JavaScript，可以载入 JavaScript 代码然后运行。TypeScript 与 JavaScript 相比进步的地方 包括：加入注释，让编译器理解所支持的对象和函数，编译器会移除注释，不会增加开销；增加一个完整的类结构，使之更新是传统的面向对象语言。</p>
+<p>TypeScript 微软官方网站 <a href="http://www.typescriptlang.org/" target="_blank" rel="external">http://www.typescriptlang.org/</a><br>TypeScript 源码 <a href="http://typescript.codeplex.com" target="_blank" rel="external">http://typescript.codeplex.com</a></p>
+</blockquote>
+<a id="more"></a>
+<h1 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1. 基本数据类型"></a>1. 基本数据类型</h1><h2 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Boolean</div><div class="line">var isDone:boolean = false;</div></pre></td></tr></table></figure>
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//Number</div><div class="line">var width:number = 100;</div></pre></td></tr></table></figure>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//String</div><div class="line">var name:string = &quot;hello&quot;;</div></pre></td></tr></table></figure>
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//Array</div><div class="line">var list:number[] = [1, 2, 3];</div><div class="line">var list:Array&lt;number&gt;=[1, 2, 3];</div></pre></td></tr></table></figure>
+<h2 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//Enum</div><div class="line">enum Color &#123;Red, Green, Blue&#125;</div><div class="line">var c: Color = Color.Red;</div><div class="line">alert(c);//默认值从0开始，alert(0);</div><div class="line">//可以手动指定值</div><div class="line">enum Color1 &#123;Red = 1, Green, Blue&#125;</div><div class="line">var c1: Color1 = Color1.Green;</div><div class="line">alert(c1);//alert(2)</div><div class="line">//根据值查找名称</div><div class="line">enum Color2 &#123;Red = 1, Green=2, Blue=4&#125;</div><div class="line">var c2: string = Color2[4];</div><div class="line">alert(c2);//alert(Blue)</div></pre></td></tr></table></figure>
+<h2 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//不确定类型，退出编译检查</div><div class="line">var notSure: any = 4;</div><div class="line">notSure = &quot;maybe a string instead&quot;;</div><div class="line">notSure = false; // okay, definitely a boolean</div><div class="line"></div><div class="line">//不确定数组元素类型</div><div class="line">var anylist:any[] = [1, true, &quot;free&quot;];</div><div class="line">anylist[1] = 100;</div></pre></td></tr></table></figure>
+<h2 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//空白</div><div class="line">function warnUser(): void &#123;</div><div class="line">    alert(123);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="2-类"><a href="#2-类" class="headerlink" title="2. 类"></a>2. 类</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">    animalName:string;</div><div class="line"></div><div class="line">    constructor(name:string) &#123;</div><div class="line">        this.animalName = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sayHello() &#123;</div><div class="line">        alert(this.animalName + &quot;: Hello&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var tom = new Animal(&quot;Tom&quot;);</div><div class="line">tom.sayHello();//alert(Tom:Hello)</div></pre></td></tr></table></figure>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">    animalName:string;</div><div class="line"></div><div class="line">    constructor(name:string) &#123;</div><div class="line">        this.animalName = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sayHello() &#123;</div><div class="line">        alert(this.animalName + &quot;: Hello&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Cat extends Animal &#123;</div><div class="line">    //重写sayHello方法</div><div class="line">    sayHello() &#123;</div><div class="line">        alert(this.animalName + &quot;(Cat)：&quot; + &quot;Hello&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Mouse extends Animal &#123;</div><div class="line">    sayHello() &#123;</div><div class="line">        alert(this.animalName + &quot;(Mouse)：&quot; + &quot;Hello&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var tom:Animal = new Cat(&quot;Tom&quot;);</div><div class="line">tom.sayHello();//alert(Tom(Cat):Hello)</div><div class="line">var jerry:Animal = new Mouse(&quot;Jerry&quot;);</div><div class="line">jerry.sayHello();//alert(Jerry(Mouse):Hello)</div></pre></td></tr></table></figure>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><p>当我们把 animalName 改为 private</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">    private animalName:string;//默认是public</div><div class="line"></div><div class="line">    constructor(name:string) &#123;</div><div class="line">        this.animalName = name;</div><div class="line">    &#125;</div><div class="line">    //...</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Cat extends Animal &#123;</div><div class="line">    //重写sayHello方法</div><div class="line">    sayHello() &#123;</div><div class="line">        alert(this.animalName + &quot;(Cat)：&quot; + &quot;Hello&quot;);//Error 编译不通过</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="get，set-访问器"><a href="#get，set-访问器" class="headerlink" title="get，set 访问器"></a>get，set 访问器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">    private _animalName:string;//默认是public</div><div class="line"></div><div class="line">    get animalName():string &#123;</div><div class="line">        return this._animalName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    set animalName(name:string):string &#123;</div><div class="line">        this._animalName = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//静态属性</div><div class="line">class Table &#123;</div><div class="line">    static width = 100;</div><div class="line">    static height = 200;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var width = Table.width;</div><div class="line">alert(width);//alert(100)</div></pre></td></tr></table></figure>
+<h1 id="3-接口"><a href="#3-接口" class="headerlink" title="3. 接口"></a>3. 接口</h1><h2 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">interface ICar &#123;</div><div class="line">    color:string;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Bus implements ICar &#123;</div><div class="line">    color:string;</div><div class="line">    constructor() &#123;</div><div class="line">        this.color = &quot;Blue&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var bus = new Bus();</div><div class="line">alert(bus.color);</div></pre></td></tr></table></figure>
+<h2 id="继承接口"><a href="#继承接口" class="headerlink" title="继承接口"></a>继承接口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//继承接口</div><div class="line">interface Shape &#123;</div><div class="line">    color: string;</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface PenStroke &#123;</div><div class="line">    penWidth: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface Square extends Shape, PenStroke &#123;</div><div class="line">    sideLength: number;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">interface ICar &#123;</div><div class="line">    color:string;</div><div class="line">    safetyDevice?:any;//实现类无需实现</div><div class="line">&#125;</div><div class="line"></div><div class="line">function MoveCar(car:ICar)&#123;</div><div class="line">    if(car.safetyDevice)</div><div class="line">    &#123;</div><div class="line">        alert(&quot;The car is safe&quot;);</div><div class="line">    &#125;</div><div class="line">    else</div><div class="line">    &#123;</div><div class="line">        alert(&quot;The car is not safe&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="4-模块（Modules）"><a href="#4-模块（Modules）" class="headerlink" title="4. 模块（Modules）"></a>4. 模块（Modules）</h1><blockquote>
+<p>作用：1. 防止命名空间冲突；2. 将一个功能模块很容易的划分到不同文件中，更容易维护；</p>
+</blockquote>
+<h2 id="基本语法-2"><a href="#基本语法-2" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module MyDemo &#123;</div><div class="line">    export interface IDemo &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    export class Demo implements IDemo &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module Shapes &#123;</div><div class="line">    export module Polygons &#123;</div><div class="line">        export class Triangle &#123; &#125;</div><div class="line">        export class Square &#123; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">import polygons = Shapes.Polygons;</div><div class="line">var sq = new polygons.Square(); // 类似于 &apos;new Shapes.Polygons.Square()&apos;</div></pre></td></tr></table></figure>
+<h1 id="5-函数（Function）"><a href="#5-函数（Function）" class="headerlink" title="5. 函数（Function）"></a>5. 函数（Function）</h1><h2 id="基本语法-3"><a href="#基本语法-3" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function add(x:number, y:number):number &#123;</div><div class="line">    return x + y;</div><div class="line">&#125;</div><div class="line">// or</div><div class="line">var myAdd = function (x:number, y:number):number &#123;</div><div class="line">    return x + y;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="完整的函数类型"><a href="#完整的函数类型" class="headerlink" title="完整的函数类型"></a>完整的函数类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myAdd:(x:number, y:number)=&gt;number =</div><div class="line">    function (x:number, y:number):number &#123;</div><div class="line">        return x + y;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<p>为了增强可读性，给参数 x、y 具有实际的意义，可以这样写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myAdd:(baseValue:number, increment:number)=&gt;number =</div><div class="line">    function (x:number, y:number):number &#123;</div><div class="line">        return x + y;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<p>第二部分 number 是一个返回类型，如果无需返回类型，请使用’void’<br>第三部分的 function 参数类型，根据上下文类型进行推断，可以省略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myAdd:(baseValue:number, increment:number)=&gt;number =</div><div class="line">    function (x, y) &#123;</div><div class="line">        return x + y;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<h2 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//可选参数</div><div class="line">function buildName(firstName:string, lastName?:string) &#123;</div><div class="line">    if (lastName)</div><div class="line">        return firstName + &quot; &quot; + lastName;</div><div class="line">    else return firstName;</div><div class="line">&#125;</div><div class="line">var result1 = buildName(&quot;Bob&quot;);</div></pre></td></tr></table></figure>
+<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//默认参数</div><div class="line">function buildNameDefaultValue(firstName: string, lastName = &quot;Smith&quot;) &#123;</div><div class="line">        return firstName + &quot; &quot; + lastName;</div><div class="line">&#125;</div><div class="line">var result1 = buildNameDefaultValue(&quot;Bob&quot;);</div></pre></td></tr></table></figure>
+<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><p>例如在 C# 中，方法参数定义使用 param int[], 调用方法时，就可以传递多个 int 类型的参数<br>在 TypeScript 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function buildNameRest(firstName:string, ...restOfName:string[]) &#123;</div><div class="line">    return firstName + &quot; &quot; + restOfName.join(&quot; &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var employeeName = buildNameRest(&quot;Joseph&quot;, &quot;Samuel&quot;, &quot;Lucas&quot;, &quot;MacKinzie&quot;)</div></pre></td></tr></table></figure>
+<h2 id="Lambads-和-this-关键字"><a href="#Lambads-和-this-关键字" class="headerlink" title="Lambads 和 this 关键字"></a>Lambads 和 this 关键字</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var people=&#123;</div><div class="line">    name:[&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;,&quot;赵六&quot;],</div><div class="line">    getName:function()&#123;</div><div class="line">        return function()&#123;</div><div class="line">            var i=Math.floor(Math.random()*4);</div><div class="line">            return &#123;</div><div class="line">                n:this.name[i]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var pname=people.getName();</div><div class="line">alert(&quot;名字：&quot;+pname().n);</div></pre></td></tr></table></figure>
+<p>调用发现 getName 中的 this 关键字指向的是 getName, 访问不到外部的 name 属性<br>所以我们修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var people = &#123;</div><div class="line">    name: [&quot;张三&quot;, &quot;李四&quot;, &quot;王五&quot;, &quot;赵六&quot;],</div><div class="line">    getName: function () &#123;</div><div class="line">        return  ()=&gt; &#123;</div><div class="line">            var i = Math.floor(Math.random() * 4);</div><div class="line">            return &#123;</div><div class="line">                n: this.name[i]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var pname = people.getName();</div><div class="line">alert(&quot;名字：&quot; + pname().n);</div></pre></td></tr></table></figure>
+<h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//重载</div><div class="line">function student(name:string):string;</div><div class="line">function student(age:number):number;</div><div class="line">function student(numberorage:any):any &#123;</div><div class="line">    if (numberorage &amp;&amp; typeof (numberorage) == &quot;string&quot;)</div><div class="line">        alert(&quot;姓名&quot;);</div><div class="line">    else</div><div class="line">        alert(&quot;年龄&quot;);</div><div class="line">&#125;</div><div class="line">student(&quot;Tom&quot;);//alert(&quot;姓名&quot;)</div><div class="line">student(15);//alert(&quot;年龄&quot;)</div></pre></td></tr></table></figure>
+<h1 id="6-泛型"><a href="#6-泛型" class="headerlink" title="6. 泛型"></a>6. 泛型</h1><h2 id="基本语法-4"><a href="#基本语法-4" class="headerlink" title="基本语法"></a>基本语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function identity&lt;T&gt;(arg: T): T &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//数组泛型</div><div class="line">function identity&lt;T&gt;(arg: T[]): T[] &#123;</div><div class="line">    console.log(arg.length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="泛型类型（通用的函数类型）"><a href="#泛型类型（通用的函数类型）" class="headerlink" title="泛型类型（通用的函数类型）"></a>泛型类型（通用的函数类型）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function identity&lt;T&gt;(arg:T):T &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div><div class="line">var myIdentity:&lt;T&gt;(arg:T)=&gt;T = identity;//T也可使用其他字母表示</div><div class="line">//也可以这么写</div><div class="line">//var myIdentity:&#123;&lt;T&gt;(arg:T): T&#125; = identity;</div></pre></td></tr></table></figure>
+<h2 id="接口泛型"><a href="#接口泛型" class="headerlink" title="接口泛型"></a>接口泛型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">interface GenericIdentityFn &#123;</div><div class="line">    &lt;T&gt;(arg:T): T;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function identity&lt;T&gt;(arg:T):T &#123;</div><div class="line">    return arg;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var myIdentity:GenericIdentityFn = identity;</div></pre></td></tr></table></figure>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class GenericNumber&lt;T&gt; &#123;</div><div class="line">    zeroValue:T;</div><div class="line">    add:(x:T, y:T) =&gt; T;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var myGenericNumber = new GenericNumber&lt;number&gt;();</div><div class="line">myGenericNumber.zeroValue = 0;</div><div class="line">myGenericNumber.add = function (x, y) &#123;</div><div class="line">    return x + y;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">interface Lengthwise &#123;</div><div class="line">    length: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function loggingIdentity&lt;T extends Lengthwise&gt;(arg:T):T &#123;</div><div class="line">    console.log(arg.length);</div><div class="line">    return arg;</div><div class="line">&#125;</div><div class="line"></div><div class="line">loggingIdentity(3);//error</div><div class="line">loggingIdentity(&#123;length: 10, value: 3&#125;);  //只要类型包含length属性即可</div></pre></td></tr></table></figure>
+<h2 id="泛型类约束"><a href="#泛型类约束" class="headerlink" title="泛型类约束"></a>泛型类约束</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Findable&lt;T&gt;</div><div class="line">&#123;</div><div class="line">    //...</div><div class="line">&#125;</div><div class="line">function find&lt;T&gt;(n: T, s: Findable&lt;T&gt;) &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="7-合并"><a href="#7-合并" class="headerlink" title="7. 合并"></a>7. 合并</h1><h2 id="合并接口"><a href="#合并接口" class="headerlink" title="合并接口"></a>合并接口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">interface Box &#123;</div><div class="line">    height: number;</div><div class="line">    width: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface Box &#123;</div><div class="line">    scale: number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var box: Box = &#123;height: 5, width: 6, scale: 10&#125;;</div></pre></td></tr></table></figure>
+<h2 id="合并模块"><a href="#合并模块" class="headerlink" title="合并模块"></a>合并模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">module Animals &#123;</div><div class="line">    exportclass Zebra &#123; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module Animals &#123;</div><div class="line">    exportinterface Legged &#123; numberOfLegs: number; &#125;</div><div class="line">    exportclass Dog &#123; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//相当于</div><div class="line">module Animals &#123;</div><div class="line">    exportinterface Legged &#123; numberOfLegs: number; &#125;</div><div class="line"></div><div class="line">    exportclass Zebra &#123; &#125;</div><div class="line">    exportclass Dog &#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="合并模块和类"><a href="#合并模块和类" class="headerlink" title="合并模块和类"></a>合并模块和类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Album &#123;</div><div class="line">    label:Album.AlbumLabel;</div><div class="line">&#125;</div><div class="line">module Album &#123;</div><div class="line">    export class AlbumLabel &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="合并模块和函数"><a href="#合并模块和函数" class="headerlink" title="合并模块和函数"></a>合并模块和函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function buildLabel(name:string):string &#123;</div><div class="line">    return buildLabel.prefix + name + buildLabel.suffix;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module buildLabel &#123;</div><div class="line">    export var suffix = &quot;&quot;;</div><div class="line">    export var prefix = &quot;Hello, &quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">alert(buildLabel(&quot;Sam Smith&quot;));</div></pre></td></tr></table></figure>
+<h2 id="合并模块与枚举"><a href="#合并模块与枚举" class="headerlink" title="合并模块与枚举"></a>合并模块与枚举</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">enum Color &#123;</div><div class="line">    red = 1,</div><div class="line">    green = 2,</div><div class="line">    blue = 4</div><div class="line">&#125;</div><div class="line"></div><div class="line">module Color &#123;</div><div class="line">    export function mixColor(colorName:string) &#123;</div><div class="line">        if (colorName == &quot;yellow&quot;) &#123;</div><div class="line">            return Color.red + Color.green;</div><div class="line">        &#125;</div><div class="line">        else if (colorName == &quot;white&quot;) &#123;</div><div class="line">            return Color.red + Color.green + Color.blue;</div><div class="line">        &#125;</div><div class="line">        else if (colorName == &quot;magenta&quot;) &#123;</div><div class="line">            return Color.red + Color.blue;</div><div class="line">        &#125;</div><div class="line">        else if (colorName == &quot;cyan&quot;) &#123;</div><div class="line">            return Color.green + Color.blue;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="不能合并"><a href="#不能合并" class="headerlink" title="不能合并"></a>不能合并</h2><ul>
+<li>类与类不能合并</li>
+<li>接口与类不能合并</li>
+<li>变量与类不能合并</li>
+</ul>
+<h2 id="转载"><a href="#转载" class="headerlink" title="转载"></a>转载</h2><blockquote>
+<p>转载请注明出处：<a href="http://www.cnblogs.com/xcong/p/4570235.html" target="_blank" rel="external">http://www.cnblogs.com/xcong/p/4570235.html</a><br>文中代码引用自 Ts 官网和极客学院<br>TS 文件下载 <a href="http://files.cnblogs.com/files/xcong/TsDemo.zip" target="_blank" rel="external">http://files.cnblogs.com/files/xcong/TsDemo.zip</a></p>
+</blockquote>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://makehui.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2019 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
