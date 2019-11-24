@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huyaohui.com/about/index.html</loc>
+    
+    <lastmod>2019-11-24T07:01:32.056Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2019/04/19/Jenkins-iOS-da-bao-bing-shang-chuan-zhi-pu-gong-ying/</loc>
     
     <lastmod>2019-11-17T05:02:33.774Z</lastmod>
@@ -82,13 +89,6 @@
     <loc>http://huyaohui.com/2015/03/22/Hexo-GitHub-Pages-da-jian-ge-ren-bo-ke-de-xin-suan-li-cheng/</loc>
     
     <lastmod>2018-05-26T05:25:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/about/index.html</loc>
-    
-    <lastmod>2018-05-26T05:11:53.000Z</lastmod>
     
   </url>
   
