@@ -924,9 +924,9 @@
       <category term="Build" scheme="http://huyaohui.com/categories/Build/"/>
     
     
-      <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
-    
       <category term="Build" scheme="http://huyaohui.com/tags/Build/"/>
+    
+      <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
     
       <category term="macOS" scheme="http://huyaohui.com/tags/macOS/"/>
     
@@ -1270,11 +1270,11 @@
     
       <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
     
+      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
+    
       <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
     
       <category term="libgit2" scheme="http://huyaohui.com/tags/libgit2/"/>
-    
-      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
     
   </entry>
   
