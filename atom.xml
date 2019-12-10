@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2019-04-27T11:52:35.659Z</updated>
+  <updated>2019-12-10T15:08:11.379Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -14,6 +14,141 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS 诡异横屏 BUG 解决思路全记录 以及一些对软件开发的思考</title>
+    <link href="http://huyaohui.com/2019/12/09/iOS-gui-yi-heng-ping-BUG-jie-jue-si-lu-quan-ji-lu-yi-ji-yi-xie-dui-ruan-jian-kai-fa-de-si-kao/"/>
+    <id>http://huyaohui.com/2019/12/09/iOS-gui-yi-heng-ping-BUG-jie-jue-si-lu-quan-ji-lu-yi-ji-yi-xie-dui-ruan-jian-kai-fa-de-si-kao/</id>
+    <published>2019-12-09T06:30:58.000Z</published>
+    <updated>2019-12-10T15:08:11.379Z</updated>
+    
+    <content type="html"><![CDATA[<p>“如果代码执行结果和预期不一致, 那么不用质疑肯定是你那里写错了”, 前辈当前如是说到<br>软件行业经过这么多年的变革, 感觉软件质量反而不如当年了(这里我说的软件质量不过说的是应用软件, 还包含操作系统层面), 不过这只是一个前言而已, 抛砖引玉而已, 暂时放下不表, 我留到最后再来谈谈我的看法</p>
+<a id="more"></a>
+<h2 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a>整体思路</h2><p>这里我会分成三个步骤进行处理</p>
+<ul>
+<li>列出问题症状</li>
+<li>分析问题可能原因</li>
+<li>最终找到并解决问题</li>
+</ul>
+<h3 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h3><p>前置常量</p>
+<ul>
+<li>PA: 页面 A, 竖屏</li>
+<li>PB: 页面 B, 横屏</li>
+<li>PA 是主项目中的页面</li>
+<li>PB 是 Framework 中的页面</li>
+<li>PA 以 Link Binary with Libraries 的方式引用 PB</li>
+</ul>
+<h4 id="复现-1"><a href="#复现-1" class="headerlink" title="复现 1"></a>复现 1</h4><p>变量</p>
+<ul>
+<li>iOS 10</li>
+</ul>
+<p>流程</p>
+<ul>
+<li>PA 进入 PB, 此时 PB 页面显示正常</li>
+<li>PB 退出回到 PA, 此时 PA 亦是正常</li>
+<li>PA 再次进入 PB, 此时 PB 显示异常, 此时为竖屏</li>
+<li>PB 再次退回到 PA, 此时 PA 还是正常的, 也就是说, 仅是 PB 存在问题</li>
+<li>退到桌面再回到 App, 问题恢复到 step 1(这里也是非常诡异, 不过之后我会解释)</li>
+</ul>
+<p>PS: 就上面的症状来看, 你是不是认为问题肯定处在 PB 上了, 真是 Naive 啊, 我也差点掉到坑里去了</p>
+<h4 id="复现-2"><a href="#复现-2" class="headerlink" title="复现 2"></a>复现 2</h4><p>变量</p>
+<ul>
+<li>iOS 13</li>
+</ul>
+<p>流程</p>
+<ul>
+<li>PA 进入 PB, 此时 PB 页面显示正常</li>
+<li>PB 退出回到 PA, 此时 PA 亦是正常</li>
+<li>PA 再次进入 PB, 此时 PB 显示异常, 次数页面显示为横屏, 但是里面的布局却是安装竖屏的方式布局的( PB 使用的绝对布局)</li>
+<li>PB 再次退回到 PA, 此时 PA 还是正常的, 也就是说, 仅是 PB 存在问题</li>
+<li>退入桌面再回到 App, 问题恢复到 step 1</li>
+</ul>
+<p>PS: 症状有些不同, 此时你肯定又会去怀疑是不是操作系统的问题了呢, 还是 Native</p>
+<h4 id="无法复现"><a href="#无法复现" class="headerlink" title="无法复现"></a>无法复现</h4><ul>
+<li>在 iOS 12 中时无法复现</li>
+<li>当 PB 不是以 Link Binary with Libraries 的方式引用的时候无法复现</li>
+</ul>
+<p>PS: 看似是一个小问题, 坑是真的不少</p>
+<h3 id="可能原因"><a href="#可能原因" class="headerlink" title="可能原因"></a>可能原因</h3><p>下面按照我当时判断的可能性进行排序, 可能性高大放在前面</p>
+<ul>
+<li>Library Linker 的问题(我曾经遇到很多诡异的问题都是因为库连接器导致的, 这次我理所当然的也这么认为, 但是如果真是这个原因, 那就很难办了)</li>
+<li>iOS 系统 BUG(因为在 iOS 12 上是正常的, 但是怀疑是系统 BUG 是没什么意义的, 即便是系统 BUG 你照样需要去解决)</li>
+<li>代码层面的问题, 排查个个环节(详见下图)</li>
+</ul>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>如果你认为我会安装上面我认为的可能原因去解决这个 Bug 那就大错特错了<br>上面我认为的可能原因, 不管是按照哪条去排查无疑都是工作量巨大, 特别还是遇上了前人留下来的代码山(PB), 更是难上加难</p>
+<h4 id="以堵代疏"><a href="#以堵代疏" class="headerlink" title="以堵代疏"></a>以堵代疏</h4><p>俗话说得好堵不如疏, 但是在软件行业恰恰是反其道而行的, 常常是能堵上漏洞就已是大功一件了(虽然我现在也打算这么干, 但是我仍然觉得这是一件很操蛋的事)<br>这里先不去管可能原因, 仅针对表象进行处理</p>
+<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><p>由上得到可用信息如下:</p>
+<ul>
+<li>PB 采用固定布局</li>
+<li>PB 可以横屏, 但布局为竖屏(大雾~)</li>
+</ul>
+<p>方案: 找出所用用到屏幕长和宽的代码, 替换为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// 竖屏的屏幕宽和高</div><div class="line">width = MAX(view.width, wiew.height)</div><div class="line">height = MIN(view.width, wiew.height)</div></pre></td></tr></table></figure>
+<p>找到宽和高的宏定义 -&gt; 替换代码 -&gt; 重新编译 -&gt; 运行</p>
+<h5 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h5><ul>
+<li>PB 中的代码并不是严格的使用宏中的宽和高</li>
+<li>症状并不完全是按照<code>可以横屏, 但布局为竖屏</code>, 这个是致命问题</li>
+</ul>
+<p>首先, 这个方案是失败, 但是并不妨碍我认为这个方案是可行的<br>其次假设如果 有第 2 条这个致命问题的话, 或许我真的会把所用用到屏幕长和宽的代码, 都替换一遍</p>
+<h4 id="一些尝试"><a href="#一些尝试" class="headerlink" title="一些尝试"></a>一些尝试</h4><ul>
+<li>使用新版本编译系统, 重新编译 PB Framework</li>
+<li>调高 PB Target 版本号</li>
+</ul>
+<p>以上均失败(能成功就有鬼了)</p>
+<h4 id="可能原因排查"><a href="#可能原因排查" class="headerlink" title="可能原因排查"></a>可能原因排查</h4><p>能想到的黑招都使用了, 这下就只能老老实实的按照可能原因去排查了, 但不要以为我会按照上面的顺序去排查</p>
+<h5 id="标准写法"><a href="#标准写法" class="headerlink" title="标准写法"></a>标准写法</h5><p>首先按照苹果的标准来做, 要对页面进行旋转, 就必须在页面中实现<code>shouldAutorotate</code>和<code>supportedInterfaceOrientations</code>这两个方法, <code>shouldAutorotate</code>设置为<code>true</code>, <code>supportedInterfaceOrientations</code>设置为需要旋转到的方向, 横屏<code>UIInterfaceOrientationMaskLandscapeRight</code>, 竖屏<code>UIInterfaceOrientationMaskPortrait</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (BOOL)shouldAutorotate</div><div class="line">&#123;</div><div class="line">    return true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations</div><div class="line">&#123;</div><div class="line">    return UIInterfaceOrientationMaskPortrait;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打开 Find Navigator 输入 <code>shouldAutorotate</code>, <code>supportedInterfaceOrientations</code> 疯狂 Next<br>一通操作猛如虎, 一看结果 0/5</p>
+<h5 id="排查流程"><a href="#排查流程" class="headerlink" title="排查流程"></a>排查流程</h5><p>按照上图中列出的流程, 根据<code>ViewController</code>的生命周期, 查询是否有代码影响到了屏幕的旋转<br>这里不卖关子了, 问题找到了, 我大致的罗列一下关键的代码</p>
+<p>PA:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)viewWillAppear:(BOOL)animated</div><div class="line">&#123;</div><div class="line">    [super viewWillAppear:animated];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>PB:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)viewWillAppear:(BOOL)animated</div><div class="line">&#123;</div><div class="line">    [super viewWillAppear:animated];</div><div class="line">    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)interfaceOrientation:(UIInterfaceOrientation)orientation</div><div class="line">&#123;</div><div class="line">    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) &#123;</div><div class="line">        SEL selector             = NSSelectorFromString(@&quot;setOrientation:&quot;);</div><div class="line">        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];</div><div class="line">        [invocation setSelector:selector];</div><div class="line">        [invocation setTarget:[UIDevice currentDevice]];</div><div class="line">        int val                  = orientation;</div><div class="line">        [invocation setArgument:&amp;val atIndex:2];</div><div class="line">        [invocation invoke];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过上面列出的关键代码, 想必大家已经能看出问题处在那里了<br>看到上面的代码瞬间就茅塞顿开(至少大部分的问题已经能解释通了), 万恶的黑魔法, 老是有人使用一些奇技淫巧来解决问题(这里我并不是要抨击这种行为, 其实我也经常会这么干, 但是还是那句话我并不喜欢, 这个到最后再来谈谈我的看法)</p>
+<h4 id="原因梳理"><a href="#原因梳理" class="headerlink" title="原因梳理"></a>原因梳理</h4><p>PA 进入 PB -&gt; PB 调用 <code>interfaceOrientation:</code><br>这时还是正常的, 尽管这里使用了黑魔法</p>
+<p>PB 返回 PA -&gt; 页面显示正常<br>其实在这里就已经出现问题了, 通过黑魔法改变的值并没有改回来, 当再次进入 PB, 调用<code>interfaceOrientation:</code>, 黑魔法失效了(我猜测的原因是重复设置同一个值时, 无法触发系统判断此时应该需要进行旋转操作了, 这个没有找到可以验证的方法)</p>
+<h4 id="一些未解之谜"><a href="#一些未解之谜" class="headerlink" title="一些未解之谜"></a>一些未解之谜</h4><ul>
+<li>iOS 10, 和 iOS 13 Bug 表现不一样的问题</li>
+<li>在 iOS 12 中时无法复现</li>
+<li>当 PB 不是以 Link Binary with Libraries 的方式引用的时候无法复现</li>
+</ul>
+<p>上面的原因都可以通过使用了黑魔法这个原因来解释吗?(没有检验的方法)<br>我在这里持保留意见</p>
+<h2 id="一些对软件开发的思考"><a href="#一些对软件开发的思考" class="headerlink" title="一些对软件开发的思考"></a>一些对软件开发的思考</h2><p>上面写了这么多, 看似没什么用, 其实暴露出了很多的问题<br>在我个人来看其实不应存在这种问题, 如果每个人都按照标准流程去处理, 无论是程序员之间的代码通讯还是代码和系统底层进行通讯, 出离奇问题的概率应该会大大减少, 即使出现了网上也大概率能找到相似的问题<br>那么程序员们到底是为什么要如此做呢? 难道他们就不清楚会导致这个结果吗?<br>有太多问题需要解释, 但又无从解释, 不过我还是想尝试强行解释一下, 对不对就随他去了</p>
+<h3 id="系统层之罪"><a href="#系统层之罪" class="headerlink" title="系统层之罪"></a>系统层之罪</h3><p>苹果的软件质量下滑, 想必大家都是有目共睹的, 下面我就随便举一些我遇到过的例子(只讲开发中的问题, 苹果的系统应用问题这里不聊)</p>
+<ul>
+<li>在 App 中没法调用 Framework 中的类和方法, 至今我没能找到问题所在(换公司电脑同样的操作却没问题), 即便是强制加载 Framework 也仍然是行不通</li>
+<li>AutoLayout 在 UITableViewCell 中进行 UILabel 的横向布局, 第一个 UILabel 会被压缩, 但是在 UIView 中确实正常的</li>
+<li>在 Storyboard 中的 UITableView 如果 UITableViewCell 的个数超过一屏的话, 超出的 UITableViewCell 的 AutoLayout 的显示会出错, 但是在实际的运行中却是正常的</li>
+<li>Debug 断点的时候首次触发断点, 你永远不知道它在那里 loading 什么东西, 为什么要那么久</li>
+<li>Leaks, View UI Hierarchy 等工具, 开发了一万年, 用起来仍然是各种卡, 各种崩溃</li>
+<li>Xcode 10 导致 iOS 9.2 崩溃的问题, Xcode 10.1 上线了明明写着修复了, 问题依旧(最后的说法貌似是在服务器端修复了, 我没有得到可靠的消息, 无法证实)</li>
+<li>相同的代码经常在不同的 iOS 版本中的表现不一致(这里不做详细的描述)</li>
+</ul>
+<p>上面我仅仅是列举除了一些影响正常开发的问题, 一些不影响开发的小问题简直懒得说了<br>这些我想足够能解释为什么我会认为是系统的问题了吧<br>当然这并不是要把一切问题都甩给系统, 而是当系统层经常性不稳定时, 开发者就会自然而然的对系统产生不信任感, 从而影响到开发者自身对问题的判断, 以至于被引导到一条死胡同里</p>
+<h3 id="开发者之罪"><a href="#开发者之罪" class="headerlink" title="开发者之罪"></a>开发者之罪</h3><p>试想一下, 当一个不懂互设计, 甚至连<code>UIKit</code>都没听说个的人, 设计出来的页面, 然后再交给一个三流的程序员去开发(没有贬低的意思, 我也是三流程序员), 结果可想而知<br>问题不在于是否存在问题, 而是在于整个生产环境就是不健康的, 导致整条流水线上的人都很浮躁, 只想着守着自己的一亩三分地, 不愿改变也不想改变, 最后的结果就是, 先来的坑后来的, 后来的继续坑下去, 进入死循环<br>以至于愿意改变和学习的人也被大环境的洪流给拉下了水, 比如你去接手前辈们留下来的代码(垃圾山), 你会如何做呢, 是重写(重构几无可能, 能进行重构的代码表示还是有大致的设计的), 还是继续往垃圾山中倾倒垃圾呢? 我想答案不言自明了<br>至于什么代码写的好就随时都能被替代这种说法我就不想说什么了, 随它去了</p>
+<h3 id="开发模式之罪"><a href="#开发模式之罪" class="headerlink" title="开发模式之罪"></a>开发模式之罪</h3><p>业界从传统软件开发迈向现代软件开发过程中, 疯狂的强调这<code>Change</code>, <code>Runing</code>, <code>More</code><br>我不能说这是错的, 其实我反倒是赞同现在软件开发模式的, 但是并不能因为我赞同就不去讨论这里面存在的问题了<br>当敏捷软件开发大行其道的时候, 效率虽然得到了提升, 各种新的特性被加入到了软件中, 这是一件好事, 但是伴随着这些明显的好处带来的确实软件的质量的不断的下滑<br>比如什么不影响使用的 Bug 可以暂时性的忽略, 先上线, 但是最后的结果就变成了, 这个 Bug 伴随着软件走向了终结都没能去解决(并不是没能力解决), 新特性却是一大堆, 而新的特性随之又带来了新的 Bug 以至于把开发者带入了 Bug 泥潭, 最终逼迫开发人员用脚投票放弃高质量代码</p>
+<p>再次重申一下我是赞同现代软件开发的, 当然我现在也不知道这算不上是一个问题, 因为这完全可以通过人治的方式解决, 比如工作量的精准量化(尽量小的安排工作量, 0.5 天一个迭代), Bug 过多, 可以安排一整个大的迭代周期进行修复, 代码优化重构可以一定的周期进行一次, 或者每个大周期进行一次, 总归来说还是人治的成分在里面, 需要管理人员有很强的业务能力(了解开发和产品细节, 了解开发人员的能力, 能够把握开发的节奏), 在小型的团队中很难找到这样的人来总览全局, 小型团队中更多的是突击型的开发人员, 如何让这种类型的开发者参与到敏捷开发总来, 而且能够高产出和高质量代码都兼顾还不能对管理人员的要求太高<br>要找出这种情况适用的方案的解, 虽然有点强人所难, 但是我觉得真是因为有困难我们才更应该去解决, 毕竟程序员就是一群专门解决问题的人, 不是吗?</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>无论软件行业如何变化, 作为程序员的我们应该做也必须做的就不断的学习和思考, 并努力写出优秀的代码去影响后来者, 实现正循环<br>与君共勉</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;“如果代码执行结果和预期不一致, 那么不用质疑肯定是你那里写错了”, 前辈当前如是说到&lt;br&gt;软件行业经过这么多年的变革, 感觉软件质量反而不如当年了(这里我说的软件质量不过说的是应用软件, 还包含操作系统层面), 不过这只是一个前言而已, 抛砖引玉而已, 暂时放下不表, 我留到最后再来谈谈我的看法&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://huyaohui.com/categories/iOS/"/>
+    
+    
+      <category term="iOS" scheme="http://huyaohui.com/tags/iOS/"/>
+    
+      <category term="Think" scheme="http://huyaohui.com/tags/Think/"/>
+    
+      <category term="Objective-C" scheme="http://huyaohui.com/tags/Objective-C/"/>
+    
+      <category term="Framework" scheme="http://huyaohui.com/tags/Framework/"/>
+    
+  </entry>
   
   <entry>
     <title>Gitnoter 项目弃就一个坑</title>
@@ -789,9 +924,9 @@
       <category term="Build" scheme="http://huyaohui.com/categories/Build/"/>
     
     
-      <category term="Build" scheme="http://huyaohui.com/tags/Build/"/>
-    
       <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
+    
+      <category term="Build" scheme="http://huyaohui.com/tags/Build/"/>
     
       <category term="macOS" scheme="http://huyaohui.com/tags/macOS/"/>
     
@@ -1135,11 +1270,11 @@
     
       <category term="C/CPP" scheme="http://huyaohui.com/tags/C-CPP/"/>
     
-      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
-    
       <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
     
       <category term="libgit2" scheme="http://huyaohui.com/tags/libgit2/"/>
+    
+      <category term="CMake" scheme="http://huyaohui.com/tags/CMake/"/>
     
   </entry>
   
@@ -1174,58 +1309,6 @@
       <category term="SpriteFrame" scheme="http://huyaohui.com/tags/SpriteFrame/"/>
     
       <category term="Sprite" scheme="http://huyaohui.com/tags/Sprite/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python的Flask框架中使用Flask-Migrate扩展迁移数据库</title>
-    <link href="http://huyaohui.com/2017/06/05/Python-de-Flask-kuang-jia-zhong-shi-yong-Flask-Migrate-kuo-zhan-qian-yi-shu-ju-ku/"/>
-    <id>http://huyaohui.com/2017/06/05/Python-de-Flask-kuang-jia-zhong-shi-yong-Flask-Migrate-kuo-zhan-qian-yi-shu-ju-ku/</id>
-    <published>2017-06-05T09:51:25.000Z</published>
-    <updated>2017-06-09T09:05:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Flask-Migrate可以帮助Flask应用程序通过预设的Python脚本完成数据库迁移操作,这里我们就来看一下Python的Flask框架中使用Flask-Migrate扩展迁移数据库的教程,需要的朋友可以参考下</p>
-<p>我们在升级系统的时候，经常碰到需要更新服务器端数据结构等操作，之前的方式是通过手工编写alter sql脚本处理，经常会发现遗漏，导致程序发布到服务器上后无法正常使用。</p>
-<p>现在我们可以使用Flask-Migrate插件来解决之，Flask-Migrate插件是基于Alembic，Alembic是由大名鼎鼎的SQLAlchemy作者开发数据迁移工具。</p>
-<a id="more"></a>
-<h2 id="安装Flask-Migrate插件"><a href="#安装Flask-Migrate插件" class="headerlink" title="安装Flask-Migrate插件"></a>安装Flask-Migrate插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install Flask-Migrate</div></pre></td></tr></table></figure>
-<h2 id="修改Flask-App部分的代码，以增加Migrate相关的Command"><a href="#修改Flask-App部分的代码，以增加Migrate相关的Command" class="headerlink" title="修改Flask App部分的代码，以增加Migrate相关的Command"></a>修改Flask App部分的代码，以增加Migrate相关的Command</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">db = SQLAlchemy(app)</div><div class="line">migrate = Migrate(app, db)</div><div class="line"></div><div class="line">manager = Manager(app)</div><div class="line">manager.add_command(&apos;db&apos;, MigrateCommand)</div></pre></td></tr></table></figure>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python app.py db init</div></pre></td></tr></table></figure>
-<p>使用Flask-Migrate迁移数据库<br>随着开发进度不断向前，你会发现你的数据库模型需要更改，而当这种情况发生时需要更新数据库。<br>Flask-SQLAlchemy只有当数据库表不存在了才从模型创建它们，所以更新表的唯一途径就是销毁旧的表，当然这将导致所有数据库中的数据丢失。</p>
-<p>有个更好的解决方案就是使用数据库迁移框架。和源码版本控制工具跟踪更改源码文件一样，数据库迁移框架跟踪更改数据库模型，然后将增量变化应用到数据库中。</p>
-<p>SQLAlchemy的主要开发人员写了一个Alembic迁移框架，但我们不直接使用Alembic，Flask应用可以使用Flask-Migrate扩展，一个集成了Flask-Script来提供所有操作命令的轻量级Alembic包。</p>
-<h2 id="创建迁移仓库"><a href="#创建迁移仓库" class="headerlink" title="创建迁移仓库"></a>创建迁移仓库</h2><p>下面展示扩展如何初始化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from flask.ext.migrate import Migrate, MigrateCommand </div><div class="line"></div><div class="line"># 其他配置略过...</div><div class="line"></div><div class="line">migrate = Migrate(app, db)</div><div class="line">manager.add_command(&apos;db&apos;, MigrateCommand)</div></pre></td></tr></table></figure>
-<p>为了可以使用数据库迁移命令，Flask-Migrate提供MigrateCommand类来连接Flask-Script的manager对象。在这个示例中使用db来连接到命令。</p>
-<p>在数据库迁移可以维护之前，必须通过init子命令来创建一个迁移库：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ python hello.py db init</div><div class="line"> Creating directory /home/flask/flasky/migrations...done</div><div class="line"> Creating directory /home/flask/flasky/migrations/versions...done</div><div class="line"> Generating /home/flask/flasky/migrations/alembic.ini...done</div><div class="line"> Generating /home/flask/flasky/migrations/env.py...done</div><div class="line"> Generating /home/flask/flasky/migrations/env.pyc...done</div><div class="line"> Generating /home/flask/flasky/migrations/README...done</div><div class="line"> Generating /home/flask/flasky/migrations/script.py.mako...done</div><div class="line"> Please edit configuration/connection/logging settings in</div><div class="line"> &apos;/home/flask/flasky/migrations/alembic.ini&apos; before proceeding.</div></pre></td></tr></table></figure>
-<p>这个命令创建一个migrations文件夹，里面存放了所有迁移脚本。</p>
-<h2 id="创建迁移脚本"><a href="#创建迁移脚本" class="headerlink" title="创建迁移脚本"></a>创建迁移脚本</h2><p>在Alembic，数据库迁移工作由迁移脚本完成。这个脚本有两个函数，分别叫做upgrade()和downgrade()。upgrade()函数实施数据库更改，是迁移的一部分，downgrade()函数则删除它们。通过添加和删除数据库变化的能力，Alembic可以重新配置数据库从历史记录中的任何时间点。</p>
-<p>Alembic迁移可以分别使用revision和migrate命令手动或自动创建。手动迁移通过由开发人员使用Alembic的Operations对象指令实现的空upgrade()和downgrade()函数创建迁移框架脚本。另一方面，自动迁移通过寻找模型定义和数据库当前状态间的不同为upgrade()和downgrade()生成代码。</p>
-<p>警告：自动迁移并不总是准确的，可以忽略一些细节。所以应该经常审查一下自动生成的迁移脚本。<br>migrate子命令创建自动迁移脚本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ python hello.py db migrate -m &quot;initial migration&quot;</div><div class="line">INFO [alembic.migration] Context impl SQLiteImpl.</div><div class="line">INFO [alembic.migration] Will assume non-transactional DDL.</div><div class="line">INFO [alembic.autogenerate] Detected added table &apos;roles&apos;</div><div class="line">INFO [alembic.autogenerate] Detected added table &apos;users&apos;</div><div class="line">INFO [alembic.autogenerate.compare] Detected added index</div><div class="line">&apos;ix_users_username&apos; on &apos;[&apos;username&apos;]&apos;</div><div class="line"> Generating /home/flask/flasky/migrations/versions/1bc</div><div class="line"> 594146bb5_initial_migration.py...done</div></pre></td></tr></table></figure>
-<h2 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h2><p>一旦迁移脚本被审查且接受，就可以使用db upgrade命令更新到数据库中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ python hello.py db upgrade</div><div class="line">INFO [alembic.migration] Context impl SQLiteImpl.</div><div class="line">INFO [alembic.migration] Will assume non-transactional DDL.</div><div class="line">INFO [alembic.migration] Running upgrade None -&gt; 1bc594146bb5, initial migration</div></pre></td></tr></table></figure>
-<p>第一次迁移实际上相当于调用db.create_all()，但在后续迁移中，upgrade命令对表实施更新操作但不影响表中的内容。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python hello.py db init       # 初始化</div><div class="line">                                # 仅在第一次时使用</div><div class="line">$ python hello.py db migrate -m &quot;initial migration&quot;     # 创建迁移脚本</div><div class="line">                                                        # 每次有修改后都需要重新生成迁移脚本</div><div class="line">$ python hello.py db upgrade    # 迁移数据, 也可升级数据库</div><div class="line">$ python hello.py db downgrade  # 降级数据库</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Flask-Migrate可以帮助Flask应用程序通过预设的Python脚本完成数据库迁移操作,这里我们就来看一下Python的Flask框架中使用Flask-Migrate扩展迁移数据库的教程,需要的朋友可以参考下&lt;/p&gt;
-&lt;p&gt;我们在升级系统的时候，经常碰到需要更新服务器端数据结构等操作，之前的方式是通过手工编写alter sql脚本处理，经常会发现遗漏，导致程序发布到服务器上后无法正常使用。&lt;/p&gt;
-&lt;p&gt;现在我们可以使用Flask-Migrate插件来解决之，Flask-Migrate插件是基于Alembic，Alembic是由大名鼎鼎的SQLAlchemy作者开发数据迁移工具。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Python" scheme="http://huyaohui.com/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="http://huyaohui.com/tags/Python/"/>
-    
-      <category term="Flask" scheme="http://huyaohui.com/tags/Flask/"/>
-    
-      <category term="Flask-Migrate" scheme="http://huyaohui.com/tags/Flask-Migrate/"/>
     
   </entry>
   

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huyaohui.com/2019/12/09/iOS-gui-yi-heng-ping-BUG-jie-jue-si-lu-quan-ji-lu-yi-ji-yi-xie-dui-ruan-jian-kai-fa-de-si-kao/</loc>
+    
+    <lastmod>2019-12-10T15:08:11.379Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/about/index.html</loc>
     
     <lastmod>2019-11-24T07:01:32.056Z</lastmod>
@@ -289,6 +296,13 @@
   </url>
   
   <url>
+    <loc>http://huyaohui.com/2015/08/14/iOS-Storyboard-bu-ju-jing-gao-xiang-guan-shuo-ming/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2015/07/12/iOS-CocoaPods-an-zhuang-he-shi-yong-jiao-cheng/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
@@ -297,13 +311,6 @@
   
   <url>
     <loc>http://huyaohui.com/2015/06/04/iOS-Swift-checkmark-for-TableViewCell/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/08/14/iOS-Storyboard-bu-ju-jing-gao-xiang-guan-shuo-ming/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
@@ -324,6 +331,13 @@
   </url>
   
   <url>
+    <loc>http://huyaohui.com/2015/08/14/iOS-Swift-ming-ming-bu-ju-xi-guan/</loc>
+    
+    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://huyaohui.com/2015/06/03/iOS-Swift-dong-tai-gei-tableView-cha-ru-hang/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
@@ -332,13 +346,6 @@
   
   <url>
     <loc>http://huyaohui.com/2015/06/01/iOS-Swift-tiao-zhuan-chuan-zhi/</loc>
-    
-    <lastmod>2016-12-20T01:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://huyaohui.com/2015/08/14/iOS-Swift-ming-ming-bu-ju-xi-guan/</loc>
     
     <lastmod>2016-12-20T01:17:57.000Z</lastmod>
     
