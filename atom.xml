@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2019-12-10T15:08:11.379Z</updated>
+  <updated>2019-12-11T11:25:48.663Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://huyaohui.com/2019/12/09/iOS-gui-yi-heng-ping-BUG-jie-jue-si-lu-quan-ji-lu-yi-ji-yi-xie-dui-ruan-jian-kai-fa-de-si-kao/"/>
     <id>http://huyaohui.com/2019/12/09/iOS-gui-yi-heng-ping-BUG-jie-jue-si-lu-quan-ji-lu-yi-ji-yi-xie-dui-ruan-jian-kai-fa-de-si-kao/</id>
     <published>2019-12-09T06:30:58.000Z</published>
-    <updated>2019-12-10T15:08:11.379Z</updated>
+    <updated>2019-12-11T11:25:48.663Z</updated>
     
     <content type="html"><![CDATA[<p>“如果代码执行结果和预期不一致, 那么不用质疑肯定是你那里写错了”, 前辈当前如是说到<br>软件行业经过这么多年的变革, 感觉软件质量反而不如当年了(这里我说的软件质量不过说的是应用软件, 还包含操作系统层面), 不过这只是一个前言而已, 抛砖引玉而已, 暂时放下不表, 我留到最后再来谈谈我的看法</p>
 <a id="more"></a>
@@ -75,6 +75,7 @@
 <li>iOS 系统 BUG(因为在 iOS 12 上是正常的, 但是怀疑是系统 BUG 是没什么意义的, 即便是系统 BUG 你照样需要去解决)</li>
 <li>代码层面的问题, 排查个个环节(详见下图)</li>
 </ul>
+<p><img src="https://user-images.githubusercontent.com/8622405/70617543-ca470b80-1c4b-11ea-9786-8250e7d21f6e.png" alt="时序图"></p>
 <h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>如果你认为我会安装上面我认为的可能原因去解决这个 Bug 那就大错特错了<br>上面我认为的可能原因, 不管是按照哪条去排查无疑都是工作量巨大, 特别还是遇上了前人留下来的代码山(PB), 更是难上加难</p>
 <h4 id="以堵代疏"><a href="#以堵代疏" class="headerlink" title="以堵代疏"></a>以堵代疏</h4><p>俗话说得好堵不如疏, 但是在软件行业恰恰是反其道而行的, 常常是能堵上漏洞就已是大功一件了(虽然我现在也打算这么干, 但是我仍然觉得这是一件很操蛋的事)<br>这里先不去管可能原因, 仅针对表象进行处理</p>
 <h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><p>由上得到可用信息如下:</p>
