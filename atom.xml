@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huyaohui.com/"/>
-  <updated>2019-12-11T11:25:48.663Z</updated>
+  <updated>2020-01-01T07:59:59.293Z</updated>
   <id>http://huyaohui.com/</id>
   
   <author>
@@ -14,6 +14,69 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>历经 5 年, 一次业余网页游戏项目惨痛的失败经历</title>
+    <link href="http://huyaohui.com/2020/01/01/li-jing-5-nian-,-yi-ci-ye-yu-wang-ye-you-xi-xiang-mu-can-tong-de-shi-bai-jing-li/"/>
+    <id>http://huyaohui.com/2020/01/01/li-jing-5-nian-,-yi-ci-ye-yu-wang-ye-you-xi-xiang-mu-can-tong-de-shi-bai-jing-li/</id>
+    <published>2020-01-01T07:44:01.000Z</published>
+    <updated>2020-01-01T07:59:59.293Z</updated>
+    
+    <content type="html"><![CDATA[<p>翻译自：<a href="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/" target="_blank" rel="external">http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/</a><br>最近在看像素游戏开发相关的资料, 偶然发现了这篇 8 年前写的文章<br>也正是我上篇文章想表达的内容, 行文也比我写的流畅, 故转载过来, 作为对上篇文章的补充</p>
+<a id="more"></a>
+<h2 id="I-介绍、"><a href="#I-介绍、" class="headerlink" title="I. 介绍、"></a>I. 介绍、</h2><p>我在 2005 年开始和我一个朋友开发一个网页游戏：<a href="http://yoannsculo.fr/projets/simerion/" target="_blank" rel="external">Simerion</a>. 这是一个混合了 RPG 和经营类的游戏。想法是让玩家成为新开发星球的殖民地移民。 每天每个玩家都要选择一个职业，然后主要很简单：RolePlay. 每个人都可以做他想做的，做什么都可以. 捡主要的说，就是一个理想的游戏，但是实现起来却不那么回事了.</p>
+<p>我在 5 年的设计 / 开发后离开了 Simerion. 那是 2009 年。 我会在后面说明为什么. 但是我得借这次机会做个项目的总结。在我的观点下，就是想做个反馈下我们在这个项目里所学到的特别还有我们所做的错误决定. 特别还希望帮助正在做类似项目的人. 首先， 我得解释下这个游戏还没停止开发，不过是我个人退出了而已. 所以如果你们谁想加入开发团队，请别犹豫上这里：<a href="http://www.simerion.fr/portail/" target="_blank" rel="external">www.Simerion.fr</a></p>
+<p>现在首先先来一个概览：</p>
+<p>-2005： Wett 和我从抽屉底里找到我 2 年前画的草图. 然后接下来的 5 个月我们就把我们所有的点子都写在了论坛和 WIKI 上. 但是后来因为学业的关系我们暂停了项目 (Prepa: 就是法国上工程师学院等高等学院前的预备班).</p>
+<p>-2006 年 7 月：一年以后，我们又重新拿起项目，策划持续了一个月.</p>
+<p>-2006 年 8 月: 我们终于开始开发了，并且我们加入了 <a href="http://www.nainwak.org/" target="_blank" rel="external">Nainwak</a>.</p>
+<p>-2007 年 8 月：又是一年，在 3 月份后借着 Altheran 的帮助，我们成功的弄出了一个 Alpha 测试版本，那时玩家大概有 50 多个.</p>
+<p>-2009 年 3 月：又是一年半，Beta 版出来了而我离开了团队。</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/simerion_screen.jpg" alt="">  </p>
+<h2 id="II-团队协作"><a href="#II-团队协作" class="headerlink" title="II 团队协作"></a>II 团队协作</h2><p>在这项目期间，我发现了多人合作开发的重要性. 有各种原因，比如首先当有人失去积极性的时候可以互相鼓励. 并且有多个人的时候可以更轻松的跨过障碍. 像开发 SIMERION 这种网页游戏不应该闭门造车. 但是也要注意负面效应，如果有太多人参加的时候反而会产生负面的效果，所以应该要有数量正好的程序员，当然至于数量多少这是要考虑到他们的能力和时间做决定.</p>
+<h2 id="III-选好开发语言"><a href="#III-选好开发语言" class="headerlink" title="III 选好开发语言"></a>III 选好开发语言</h2><p>我们刚开始的时候是选择用 PHP + Ajax 来开发一个在网络上可以让玩家们互相互动的游戏. 为什么 PHP？ 因为我比较熟悉 PHP 所以可以更简单的上手. 但是后来我发现范了个严重的错误，就是不应该选择这个语言。当初应该用 Java 或者 C++ 来制作一个真正地 MMORPG.  我们后来很快的就发现了 PHP 和 Ajax 的限制，特别是需要让玩家们实时的产生互动的时候，但是那时候要换语言已经太迟了. 所以在这里我严重建议大家要先参考全部可用的语言后再做慎重的决定！当我们开始开发一个大型的 WEB 项目时，每一个语言都有它的长处和短处，需要比较后做决定. 但是我们却没有这么做， 所以我们就作茧自缚了… 当在这种情况下，甚至应该先做一个 PoC(Proof of Concetp) 来确定一个语言，API，或者其他什么东西. 这样就可以避免那些不想要的 “惊喜” 并且可以知道哪些比起另外那些更好，更健壮.</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_13.jpg" alt="">  </p>
+<h2 id="IV-不要重新造轮子"><a href="#IV-不要重新造轮子" class="headerlink" title="IV. 不要重新造轮子"></a>IV. 不要重新造轮子</h2><p>另外一个我们做的错误决定是没有用那些已经做好的 Php 和 Ajax 框架. 但是我们太疯了，居然自己从 A-Z 做一个游戏引擎，还有自己的 Ajax 框架. 我们在重新造轮子的期间了浪费了超级多的时间. 另外一方面，我们甚至不知道这些工具已经被做好就放在那边给我们用，如果用上这些东西甚至能早点我们明白一些技术和技巧. 如果当时重新做的话，我绝对不会再重新造轮子了. 当开始一个大型的项目时，我觉得真的需要先看，比较那些可用的工具然后不要直接就低着头乱冲. 用那些已经存在的工具真的可以帮你赢的非常珍贵的时间.</p>
+<h2 id="V-使用-UML-图"><a href="#V-使用-UML-图" class="headerlink" title="V.  使用 UML 图"></a>V.  使用 UML 图</h2><p>使用 UML 图非常重要，当然在整个过程中想要严谨的把整个想法都写在纸上还是非常困难的， 但是到最后总是有益的，因为这样可以赢的非常多的时间. 虽然 UML 图只在我们不想修改想法的时候才有用。而且有些时候，UML 图却可能会经常产生疑问，所以可能会浪费非常多的时间</p>
+<h2 id="VI-避免-“全部面向对象”"><a href="#VI-避免-“全部面向对象”" class="headerlink" title="VI. 避免 “全部面向对象”"></a>VI. 避免 “全部面向对象”</h2><p>一个网页游戏的类还是非常复杂的. 第一眼看上去的时候， “全物品” 可能是一个不错的东西，但是类却不是数据库的好朋友。 说到类就是属性，说道属性就是背后数据库不停的更新和过于的负载. 用类和实例工作代表者需要长期的优化代码让服务器不会因为 SQL 请求而崩溃. 比如，如果我要载入一个 Simerion 里一个玩家的建筑，我们首先要载入一个定义它类型的物体 (class)，然后载入另外一个定义它的实例 (建筑) 之后还有它的类. 然后有时候我们还需要给这个建筑定位，所以我们还需要加载这个建筑所在的地区 (另外一个表). 因为有很多星球所以还必须加载这个地区所在的星球 (又是一个表). 最后创建这个物体就变得非常吃资源，并且需要大堆的 SQL 请求. 想象下你还需要这个样子载入这整个建筑里的其他物体… 简直是服务器杀手阿。。。 所以我们就不得不不停地优化代码然后慢慢得就远离了平常的那 “全物品” 系统. 虽然原来那样非常有趣，但是当我们需要做一些需要面对非常多用户的页面时，性能就非常的重要. 我想绝对的解决办法是不存在的还有就是为了代码的可维护性必须放弃 “全 OOP”. 不过话说回来，关于和数据库的交互，必须找到一个平衡点，然后试着远离平时那种在创建物品的载入全部有关物品的做法.</p>
+<p>我想这里应该需要看一些大型的框架看看他们是怎么做的，和数据库交互是件非常复杂且尖端的学问， 我想甚至在 5 年后，这些代码也没有最大化的优化过. 所以结论是，还是去看一些已经存在的工具看看他们是怎么做的，非常有帮助.</p>
+<p>.<img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_17.jpg" alt=""></p>
+<h2 id="VII-不要老是把那些旧的代码拿出来研究"><a href="#VII-不要老是把那些旧的代码拿出来研究" class="headerlink" title="VII. 不要老是把那些旧的代码拿出来研究"></a>VII. 不要老是把那些旧的代码拿出来研究</h2><p>另外一件我们浪费了很多时间的事情就是长期的把旧的代码拿出来研究. 这说起来比作起来容易，特别是千万不要一开始就直接把代码优化到死！要慢慢的时候到了你就会觉得哪里该优化了. 我等下说下如何一步步工作的问题， 但是通过我开发 SIMERION 的经验来看，就是千万千万要先让代码运行起来就 OK 然后走到下一步而不是老是不停地把一些代码拿出来研究. 当这些代码可以运行了以后，就可以优化了，但是千万要先可运行然后才是低着头优化游戏的安全性和流畅性.</p>
+<h2 id="VIII-选择好开发周期"><a href="#VIII-选择好开发周期" class="headerlink" title="VIII 选择好开发周期"></a>VIII 选择好开发周期</h2><p>我们的开发周期肯定是不对的. 而这应该是我们 (我) 的失败. 5 年啊！ 我们花了 5 年的时间在这个项目上而直到我离开居然都还没有一个可以公开给大家玩的游戏… 这也是我离开的其中一个原因. 这甚至可以说是对自己的剥削了.  我们选择了只有这个游戏完全可以玩了之后才公布游戏. 然而，Simerion 的主要想法是可以做任何事情，所以全部都是必须的还有全部都互相平衡. 所以只要游戏还没有完全完成就没办法公布一个可以玩的游戏. 这真是太大的错误啦！ 当策划写好了以后，我认为，一个业余游戏应该要以最快的时间推出.</p>
+<p>不止可以尽快得到玩家的回馈，而且还能激励团队坚持下去。 因为连续几个月甚至几年 (比如说我们) 没有其他人的意见和回馈真的是非常让人沮丧的， 所以激情自然也就消磨了。 还有就是不能想当然的把任务托付给团队的其他人，因为他们也同样在消磨着激情。 所以我强烈建议尽快推出可以进行游戏的版本(起码对业余项目来说)， 要经常推出新的版本，而不是像我们那样在每个版本里都花费那么久的时间。 </p>
+<p>如果那样做的话就可能会保持一个玩家社区，玩家和开发者就能互相照应，开发者也能更能保持项目开发的热情。如果不这样的话，经过 N 个月 N 年后很可能会流产. 然后所有的努力都会白费。</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_28.jpg" alt="">  </p>
+<h2 id="IX-创建玩家社区"><a href="#IX-创建玩家社区" class="headerlink" title="IX. 创建玩家社区"></a>IX. 创建玩家社区</h2><p>就像我前面说的那样，在项目开始的时候就应该着手打造玩家社区。 他们可以帮助测试游戏，返回回馈，发表他们的主意… 等等， Simerion 由于没有发布可以玩的版本，所以我们在开发时就没有玩家社区来支持我们. 而这就有了个非常坏的结果. 所以我非常建议在开发初期就要有个社区，因为社区还可以吸引新的玩家，其中可能就会有人称为你项目组里的新成员。</p>
+<h2 id="X-业余的不能和专业的对碰。"><a href="#X-业余的不能和专业的对碰。" class="headerlink" title="X. 业余的不能和专业的对碰。"></a>X. 业余的不能和专业的对碰。</h2><p>虽然很不情愿，但是做一个完整又复杂的 RPG 游戏的确不是业余玩家随随便便就能做出来的。如果有人站出来反对我的话我会非常开心！ 但是制作图片，装饰，背景，剧情，声音，任务 等等 全都需要非常多的投入，我 95% 的时间都同时作为程序员，编剧，美工存在，但是这个到了后来越来越无法支撑下去， 所以在队伍里应该要最少一个开发者，一个编剧和一个美工才能完成项目。 不能以为任何事情都要自己亲自完成。 </p>
+<p>在这点上，我是比较悲观的，我认为像 辐射，最终幻想，塞尔达传说，这些 “终极” 游戏是不可能被业余开发者完成的，我感觉上，一个业余游戏在开始的时候必须不能是雄心勃勃的，要慢慢来，一边开心的扩展项目一边要认识到是不可能和那些专业做游戏的公司比的。  一个业余的 “终极” 游戏是不可能实现的，因为有太多的工作要做了. 在 Simerionsa 上我们从策划开始就像的非常复杂，太理想化了。。。 成功的钥匙是在刚开始就找到创意和代码量之间的平衡点。</p>
+<h2 id="XI-持续保持更新项目的文档"><a href="#XI-持续保持更新项目的文档" class="headerlink" title="XI. 持续保持更新项目的文档"></a>XI. 持续保持更新项目的文档</h2><p>非常重要的一点，要持续保持游戏文档的更新，因为通常项目都会遇到需要暂停 N 个月的情况。 如果在那些时间之后再重新拿起以前的代码的话可能连自己都看不明白， 项目文档可以让人对项目有个整体的视角，让人可以更轻松的组织和认识到以前的想法， 在技术方面它可以解释游戏的运行方式，更可以解释为什么会选择某个算法到游戏里.</p>
+<p>在重新回到项目的时候文档还可以帮你省下 N 多理解你和其他开发者写的代码上用的时间. 这些工具还可以帮助项目组新的成员更容易的加入进来。 </p>
+<p>在 Simerion 上因为这个项目代码实在是已经变成了一个如同毒气室一样的东西，几乎没有人会咬紧牙关一点点的理解那些缺少注释没有解释的代码。  所以缺少对项目的解释会阻碍新成员的加入。</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_22.jpg" alt="">  </p>
+<h2 id="XII-得到其他人的支持"><a href="#XII-得到其他人的支持" class="headerlink" title="XII. 得到其他人的支持"></a>XII. 得到其他人的支持</h2><p>我们在刚开始的时候就加入了 <a href="http://www.nainwak.org/" target="_blank" rel="external">Nainwak</a> 协会，他们帮我们部署游戏，支持我们并且给我们建议。 如果没有他们的帮助我们一定无法支持那么久的时间. 通过他们的帮助我们甚至还得到了参加游戏展示的机会。 我们还遇到了很多对我们游戏有兴趣的职业游戏开发者. 那真的是非常有意思的经历，所以我非常建议大家如果要做网页游戏的话就联系他们把。 这个协会的任务就是帮助业余的游戏开发者，而且他们做的非常好。</p>
+<h2 id="XIII-总结"><a href="#XIII-总结" class="headerlink" title="XIII 总结."></a><strong>XIII 总结.</strong></h2><p>2009 年，我离开了项目。</p>
+<p>那时候我完全放弃了 Simerion 的开发因为对我来说那时是在已经没有任何激情了。 开发这个的任务已经变得无法完成，而我也必须要去做其他事情了。 放弃 Simerion 对我来说的确是个困难的决定，但是我觉得在 5 年以后，是时候去干其他事情了。 开发 Simerion 的经历来说对我非常有帮助. 我学到了非常多也认识了很多人。 但是现在我认为如果在刚开始的时候不那么做的话应该会有更好的成功，而我也应该还是会在项目上.</p>
+<p>不过那也是学习经历的一部分，失败是成功之母。 不管怎么说，我们那时候的确是在一个荒唐的，认为任何事情都是可以做到的项目上.  一个那样的游戏不过是无法实现的，而且完全不切实际 (除非是一个大公司). </p>
+<p>错误的选择，太雄心勃勃的策划，错误的开发步骤，重新造轮子都是让 Simerion 无法完全的原因。 我们学到了这些错误然后我希望我们的经历能对您有用处。</p>
+<h2 id="查考资料"><a href="#查考资料" class="headerlink" title="查考资料"></a>查考资料</h2><p>转载至: <a href="https://blog.csdn.net/diablox0147/article/details/7734935" target="_blank" rel="external">https://blog.csdn.net/diablox0147/article/details/7734935</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;翻译自：&lt;a href=&quot;http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/&lt;/a&gt;&lt;br&gt;最近在看像素游戏开发相关的资料, 偶然发现了这篇 8 年前写的文章&lt;br&gt;也正是我上篇文章想表达的内容, 行文也比我写的流畅, 故转载过来, 作为对上篇文章的补充&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Game" scheme="http://huyaohui.com/categories/Game/"/>
+    
+    
+      <category term="Game" scheme="http://huyaohui.com/tags/Game/"/>
+    
+      <category term="Think" scheme="http://huyaohui.com/tags/Think/"/>
+    
+      <category term="Pixels" scheme="http://huyaohui.com/tags/Pixels/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS 诡异横屏 BUG 解决思路全记录 以及一些对软件开发的思考</title>
@@ -1276,40 +1339,6 @@
       <category term="Qt" scheme="http://huyaohui.com/tags/Qt/"/>
     
       <category term="libgit2" scheme="http://huyaohui.com/tags/libgit2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cocos2dx Texture、SpriteFrame、Sprite的区别</title>
-    <link href="http://huyaohui.com/2017/07/28/cocos2dx-Texture%E3%80%81SpriteFrame%E3%80%81Sprite-de-qu-bie/"/>
-    <id>http://huyaohui.com/2017/07/28/cocos2dx-Texture、SpriteFrame、Sprite-de-qu-bie/</id>
-    <published>2017-07-28T13:24:10.000Z</published>
-    <updated>2017-07-28T13:58:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>虽然搞游戏开发已经有半年了, 但是始终都没有去深入了解引擎中的各种控件的具体含义, 仅仅就是知道怎么使用而已, 想必有很多程序员都和我有过一样的困惑.<br>前段时间查了下<code>Texture、SpriteFrame、Sprite的区别</code>(一直都不知道他们之间有什么其别, 也是囧), 这里索性就把它记录下来了.</p>
-<a id="more"></a>
-<h2 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h2><p>Texture是保存在GPU缓冲中的一张纹理。是由一张图片创建获得的</p>
-<h2 id="SpriteFrame"><a href="#SpriteFrame" class="headerlink" title="SpriteFrame"></a>SpriteFrame</h2><p><code>SpriteFrame</code> = <code>Texture</code> + <code>Rect</code><br>也就是说<code>SpriteFrame</code>是根据一张纹理材质来剪切而获得的</p>
-<h2 id="Sprite"><a href="#Sprite" class="headerlink" title="Sprite"></a>Sprite</h2><p>简单的说<code>Sprite</code>就是一个<code>SpriteFrame</code>的控制器, 可以控制<code>SpriteFrame</code>以何种形式进行渲染</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="http://www.voidcn.com/blog/hanbingfengying/article/p-1255620.html" target="_blank" rel="external">http://www.voidcn.com/blog/hanbingfengying/article/p-1255620.html</a><br><a href="http://blog.csdn.net/huaweitman/article/details/11477493" target="_blank" rel="external">http://blog.csdn.net/huaweitman/article/details/11477493</a><br><a href="http://dwz.cn/6kkzf2" target="_blank" rel="external">精灵 (计算机图形学)</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;虽然搞游戏开发已经有半年了, 但是始终都没有去深入了解引擎中的各种控件的具体含义, 仅仅就是知道怎么使用而已, 想必有很多程序员都和我有过一样的困惑.&lt;br&gt;前段时间查了下&lt;code&gt;Texture、SpriteFrame、Sprite的区别&lt;/code&gt;(一直都不知道他们之间有什么其别, 也是囧), 这里索性就把它记录下来了.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Cocos2dx" scheme="http://huyaohui.com/categories/Cocos2dx/"/>
-    
-    
-      <category term="Cocos2dx" scheme="http://huyaohui.com/tags/Cocos2dx/"/>
-    
-      <category term="Texture" scheme="http://huyaohui.com/tags/Texture/"/>
-    
-      <category term="SpriteFrame" scheme="http://huyaohui.com/tags/SpriteFrame/"/>
-    
-      <category term="Sprite" scheme="http://huyaohui.com/tags/Sprite/"/>
     
   </entry>
   
