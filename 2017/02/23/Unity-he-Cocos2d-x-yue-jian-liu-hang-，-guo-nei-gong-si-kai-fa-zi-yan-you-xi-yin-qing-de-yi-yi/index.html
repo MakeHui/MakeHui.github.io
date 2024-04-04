@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义
+  
+</title>
+
+<meta name="description" content="该篇文章来自至cocos贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.原文貌似来自知乎: https://www.zhihu.com/question/23881759">
+<meta name="keywords" content="Game,Unity,Cocos2d-x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义">
+<meta property="og:url" content="http://huyaohui.com/2017/02/23/Unity-he-Cocos2d-x-yue-jian-liu-hang-，-guo-nei-gong-si-kai-fa-zi-yan-you-xi-yin-qing-de-yi-yi/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="该篇文章来自至cocos贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.原文貌似来自知乎: https://www.zhihu.com/question/23881759">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-02-23T10:37:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义">
+<meta name="twitter:description" content="该篇文章来自至cocos贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.原文貌似来自知乎: https://www.zhihu.com/question/23881759">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body class="monochrome">
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">心有所觉, 但亦作不解</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sql/">Sql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Framework/">Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pixels/">Pixels</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sqlite3/">Sqlite3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeScript/">TypeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XIB/">XIB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk/">apk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/std/">std</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向工程/">逆向工程</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义" class="article article-type-post">
+  
+    <h1 class="article-header">
+      Unity和Cocos2d-x越渐流行，国内公司开发自研游戏引擎的意义
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Published: 2017-02-23 Updated: 2017-02-23
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Think/">Think</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Game/">Game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>该篇文章来自至<code>cocos</code>贴吧, 里面说到自研引擎相关的问题, 也是我一直想说的, 遂转载过来.<br>原文貌似来自知乎: <a href="https://www.zhihu.com/question/23881759" target="_blank" rel="noopener">https://www.zhihu.com/question/23881759</a></p>
+<a id="more"></a>
+<h2 id="A回答"><a href="#A回答" class="headerlink" title="A回答"></a>A回答</h2><blockquote>
+<p>我觉得比我早回答的人都已经说了很多了，我就说一点我看到的东西吧。</p>
+</blockquote>
+<blockquote>
+<p>去年到今年大半年都从事有关引擎和前端适配的工作，给我的感觉就是这两个引擎以目前的势头来说必定会席卷整个业界。</p>
+</blockquote>
+<blockquote>
+<p>但是如果从我的工作上来看的话，一个开发公司往往要的不是一个单纯的引擎，而是一个解决方案，所以Cocos2d-x相比于u3d还是有很大差距的，在3D方面的工作我不了解，所以对U3D不做评价。而在2D游戏的制作方面，采用Cocos2d-x带来的问题也会不少，最为突出的还是美术和程序之间的矛盾。最为诟病的是官方出的那个编辑器，虽然引擎是开源的，但是编辑器是闭源的，而且还做的很烂（相比于传统老牌Flash来说）。在一个项目要动工的时候，必须去权衡这个编辑器不能提供的功能所带来的损失，截止我不参与这项工作的时候，官方编辑器能支持的东西还是很少，很多项目上要用的也没有，因此而转向我原来参与的编辑器适配的技术，希望能够找到一个功能完善（如Flash）的编辑器，通过一个通用的适配器来适配上各种引擎。这个愿景是美好的。</p>
+</blockquote>
+<blockquote>
+<p>但是，最终我不得不承认，由于很多数据架构的问题，在编辑器和引擎之间想要搭建通用的适配器解决方案几乎是一件不可能完成的事情，虽然我硬着头皮解决了大多数，但是最终的效果还是非常不理想。相反在之前自研的引擎上，由于采用的方案就是类似Flash的，很顺理成章地适配的比较好。</p>
+</blockquote>
+<blockquote>
+<p>举这样一个栗子就是想说明，一个引擎再优秀，当项目需求发生变化时，也不可能做出万全的准备，各种各样的需求也就催生出各种各样的解决方案，这些方案里面就不乏自研引擎。感觉这个就好像是即使在windows统一天下的时候，也还存在着各种linux，正式他们不放弃，才得以发展。</p>
+</blockquote>
+<blockquote>
+<p>存在即合理。从技术研究上讲我是很喜欢公司做这种基础建设的，虽然研究了好久的东西最终还是被砍了TAT</p>
+</blockquote>
+<h2 id="B回答"><a href="#B回答" class="headerlink" title="B回答"></a>B回答</h2><blockquote>
+<p>我们团队08年顺应端游大潮，出来创业，本人负责改引擎。当时手握的一款05年前的商业引擎，连shader系统都没有，于是剃掉渲染层和一些老旧的部件重做。终于到了10年游戏出来了，当时的市面上国产网游整个场景用动态阴影的并不多，更流行的做法是只是人物做成动态，毕竟网游需要照顾低端配置，我们能上得益于深度定制引擎所带来的效能提升，这种提升是完全依赖于当时的游戏类型的，估计自研的优势也在于此。 举些例子，比如固定视角时，地形的像素面积过大，可以通过编写美术工具来限制层数，废弃多遍渲染。又比如，如果玩家视野有限，用多层阴影略显浪费，但单层又有些不够用，于是可以定制一个梯形变形+渐变的解决方案。深度定制还有个好处是可以满足美术的特殊需求，比如某些奇怪的光泽，某些奇怪的朦胧的雾或者水下的感觉，美术们都很感性，但需要你的理性实现他们。</p>
+</blockquote>
+<blockquote>
+<p>接着后话，游戏代理给了某知名网游公司，一直不温不火。团队快饿死了，于是饿死之前做了款全3D的，在此之前我的理想游戏挣钱了是全新开发一款全3d的引擎，但既然是要饿死了也没这些想法了，直接把这款完全为2.5d定制的引擎硬改成3d，效率勉强撑得住，12年游戏又上了，牛逼哄哄滴注册个名著的名字，然后依然不温不火。公司被收购，我们一帮核心成员带着遗憾离开，多少理想热血已成往事。</p>
+</blockquote>
+<blockquote>
+<p>再接着，再次组建团队，当然规模小了，但还是端游，周边项目组都是些用unity的年轻人， 我自己因为人手不足也写起了逻辑，写起了ai. 讨论起了游戏策划，更多的困扰是经济以及前途的压力，以及各种烦人的人事。 当年怀揣一本doom启示录以引擎程序员为骄傲杀入行业，如今觉得真的到了离开的时候。<br>也许我在软件园门口买烧饼的时候，能和顾客们讨论讨论PSSM，呵呵。</p>
+</blockquote>
+<h2 id="C回答"><a href="#C回答" class="headerlink" title="C回答"></a>C回答</h2><p>分几个角度来说：</p>
+<blockquote>
+<p>一、我认为，Unity3D将无可挽回的，或者说，势在必得的，成为接下来很多年内，世界移动领域游戏引擎市场霸主。</p>
+<blockquote>
+<p>回顾历史，正如同咱们经历过一次又一次的互联网时代变革一样，x86，windows，Google，facebook，twitter，当一个具备一定规模的产品在一定领域达成霸主地位之后，其它的同类产品从技术积累上、推广成本上、对用户的掌握程度上等等方面的差距均会无可挽回的越拉越大。即使对于引擎这种核心技术较多的产品，这种差距也不是一两个明星级别的程序员可以挽回的。不论是易用性、性能优化、提供更多功能、覆盖更多平台，这些对于引擎开发团队来说，都是赤裸裸的成本。随着时间的推移，这个门槛会越来越高，高到后来者根本没有办法企及的程度。<br>这就正如你打算现在开一家公司，研发一个操作系统去销售，即使你投入数以亿计的资金，可能你也刚刚攻关完微软早在十几年前就在实验室得出结论的问题。这还仅仅是技术，比起微软完备的推广、销售渠道，你在创业初期多半还需要自己上门推广；比起微软完备的亿级用户的体验收集分析系统，你可能不得不邀请数以十计的朋友或家人体验你的产品。这一切的门槛，都是无法挽回的。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>二、我认为，cocos2d将在2D游戏研发领域持续的占据一定的市场，但在3D领域会败的体无完肤。</p>
+<blockquote>
+<p>cocos2d与Unity3D的关系某种程度上类似linux与windows的关系。前者打着开源的旗号，由社区发展而来，后者从诞生开始就是商业闭源的。根据程序员的劣根性，开源会让他们产生一种虚假的掌控感，让他们以为，如果引擎是开源的，那么在引擎遇到BUG的时候，他们就可以去查看代码并修复。尽管这种感觉在大多数时候是错误的（这里不深入讨论了），即使在小部分时候正确，带来的好处也远不如使用商业引擎降低的成本，但这有助于保证一部分忠实用户，一旦用户花费了大量的学习成本去学习一个引擎，在没有特别的必要性的情况下，他转投其它类似产品的可能性是很小的。另一方面，Unity3D在2D领域多少还有一些水土不服的现状，它并没有完好的提供大部分2D游戏研发者所适应的工作模式，它的体积庞大，不能满足众多小渠道瘦身包的要求。它的架构和设计严丝合缝，因此并不容易满足一部分特殊的需求。所以在需求多变的2D游戏领域，目前cocos2d才是当之无愧的霸主，Unity3D并不容易吃下这部分市场。<br>但是在3D领域，cocos3d落后的太多，不论是资源管理、场景管理、渲染框架，这在OpenGL ES 2.0普及的时代可能还不明显，但是随着OpenGL ES 3.0的发布到普及，技术门槛会大幅的提高，cocos3dx将沦为一个只能画画简单场景的小众引擎，时间的差距和投入的差距会让它跟Unity3D无法抗衡。<br>另一方面，cocos2d的结构较为松散，比起Unity3D富有设计感的API，cocos2d更像一个功能堆砌的产物。对于小规模的项目来说，问题可能并不明显，只要少量的增加程序员（或者让他们加班！？）就能解决问题，但是随着项目规模的扩大，参与人数的增加，混乱和无尽的BUG是我能看到的唯一结局。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>三、我认为，国产自研引擎尤其是商业自研引擎在一段时间内还将继续持续存在。</p>
+<blockquote>
+<p>且不说楼上有人提到的“自研情节”，单纯从商业角度来分析一下。<br>1、引擎市场是一个对技术支持等服务要求非常高的市场。对于一个非英语母语的国家来说，本地化服务是一个非常重要的服务。在Unity3D真正成长为一个强大的跨国企业之前，还有充足的时间留给国产引擎公司存活，并且很可能成长为类似百度在搜索领域这样独霸一方的角色。某种程度上，我认为搜狐畅游的Genesis-3D打的是这个算盘，结果怎样还需观察。<br>2、正如同有人提到的，像Unity3D这样通用化的引擎，还是很难为一个特定的游戏类型提供足够的支撑服务。对于一个特定的游戏类型，在Unity3D完美覆盖之前，还有充足的时间留给一个特定的引擎成长，建立稳定的社区，拥有稳定的用户。典型的代表有橙光文字游戏制作工具。<br>3、对于一个一定规模的公司来说，拥有自己的引擎，拥有一个属于自己的公司的技术支撑团队，就目前来看依然是有价值的。这不但会大大降低引擎学习研究适应的风险，也有助于这家公司在某些细分领域建立自己的技术门槛，甚至还有利于降低核心员工流失率。<br>4、对于一些具备核心技术人员的小型团队，只要不奢望一个大而全的引擎解决方案，拥有一个自己的引擎（不是一个庞然大物，而是一个小清新的工具&amp;库集合和自我的积累）依然是一个既有助于调动核心技术人员积极性，又能快速响应和满足当下并不复杂的需求的方案。这个思路的典型代表是云风的Ejoy2D。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>四、引擎研发团队还有更多新的机会。</p>
+<blockquote>
+<p>1、船小好调头，任何一个大的引擎，达到一定的规模，它登陆一个新的平台或环境都会有比较大的时间成本。相比起来，小规模引擎快速登陆一个平台，在新的平台上快速抢占市场，会是比较大的机会。这个方案的典型代表是Unity3D自己。在几年前，提到游戏引擎的时候人们想到的都是Unreal、Crystal，而那时候的Unity3D只是一个活在浏览器插件里的、主要面向甚至不完全是游戏的，极小众的引擎。但是Unity3D抓住了智能手机浪潮的先机，快速抢占了市场，不但成就了新一轮的神话，甚至在PC、主机等平台上产生了反攻之势。这件事是否会重演？谁也不知道。<br>2、服务，服务，还是服务。对于一部分客户来说，他们不关心这个引擎的核心多么有技术含量，所用的算法有多么高大上，他们最关心的，是他们面临的需求和问题能否得到解决。比起十几年的技术积累，丰富的文档资料，他们更想要的是一封快速回复的邮件，一个电话，甚至是一次上门的培训或技术支撑。想要做好服务，你需要是一个有一定技术积累的团队，但你甚至未必需要有一个自己的引擎。想想吧，当windows大潮来临的时候，真正赚钱的是投入几千万几亿研发一个新操作系统试图跟windows正面抗衡的公司，还是那些卖盗版碟，搞windows office培训班的团队？<br>3、适应新的互联网时代社会化大生产模式。作为一个引擎团队，你具备的可能是技术实力、研发能力，有可能你认为自己不适合去做什么经销培训的事情，那么一定还有一件事情你可以做，就是借助社区和平台，进行互联网式的分工协作。一个别人无法完成的需求，一个别人无法实现的技术难题，如果对于你来说是迎刃而解的，那么不必拥有自己的引擎，你也可以在互联网时代获得你自己的立足之地。</p>
+</blockquote>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>原贴地址: <a href="http://tieba.baidu.com/p/4055902638" target="_blank" rel="noopener">http://tieba.baidu.com/p/4055902638</a></p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://makehui.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2024 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

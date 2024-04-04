@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    历经 5 年, 一次业余网页游戏项目惨痛的失败经历
+  
+</title>
+
+<meta name="description" content="翻译自：http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/最近在看像素游戏开发相关的资料, 偶然发现了这篇 8 年前写的文章也正是我上篇文章想表达的内容, 行文也比我写的流畅, 故转载过来, 作为对上篇文章的补充">
+<meta name="keywords" content="Game,Think,Pixels">
+<meta property="og:type" content="article">
+<meta property="og:title" content="历经 5 年, 一次业余网页游戏项目惨痛的失败经历">
+<meta property="og:url" content="http://huyaohui.com/2020/01/01/li-jing-5-nian-,-yi-ci-ye-yu-wang-ye-you-xi-xiang-mu-can-tong-de-shi-bai-jing-li/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="翻译自：http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/最近在看像素游戏开发相关的资料, 偶然发现了这篇 8 年前写的文章也正是我上篇文章想表达的内容, 行文也比我写的流畅, 故转载过来, 作为对上篇文章的补充">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/simerion_screen.jpg">
+<meta property="og:image" content="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_13.jpg">
+<meta property="og:image" content="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_17.jpg">
+<meta property="og:image" content="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_28.jpg">
+<meta property="og:image" content="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_22.jpg">
+<meta property="og:updated_time" content="2020-01-01T07:59:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="历经 5 年, 一次业余网页游戏项目惨痛的失败经历">
+<meta name="twitter:description" content="翻译自：http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/最近在看像素游戏开发相关的资料, 偶然发现了这篇 8 年前写的文章也正是我上篇文章想表达的内容, 行文也比我写的流畅, 故转载过来, 作为对上篇文章的补充">
+<meta name="twitter:image" content="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/simerion_screen.jpg">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body class="monochrome">
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">心有所觉, 但亦作不解</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sql/">Sql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Framework/">Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pixels/">Pixels</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sqlite3/">Sqlite3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeScript/">TypeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XIB/">XIB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk/">apk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/std/">std</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向工程/">逆向工程</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-simpread-历经 5 年-一次业余网页游戏项目惨痛的失败经历" class="article article-type-post">
+  
+    <h1 class="article-header">
+      历经 5 年, 一次业余网页游戏项目惨痛的失败经历
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Published: 2020-01-01 Updated: 2020-01-01
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Game/">Game</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Game/">Game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pixels/">Pixels</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Think/">Think</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>翻译自：<a href="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/" target="_blank" rel="noopener">http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/</a><br>最近在看像素游戏开发相关的资料, 偶然发现了这篇 8 年前写的文章<br>也正是我上篇文章想表达的内容, 行文也比我写的流畅, 故转载过来, 作为对上篇文章的补充</p>
+<a id="more"></a>
+<h2 id="I-介绍、"><a href="#I-介绍、" class="headerlink" title="I. 介绍、"></a>I. 介绍、</h2><p>我在 2005 年开始和我一个朋友开发一个网页游戏：<a href="http://yoannsculo.fr/projets/simerion/" target="_blank" rel="noopener">Simerion</a>. 这是一个混合了 RPG 和经营类的游戏。想法是让玩家成为新开发星球的殖民地移民。 每天每个玩家都要选择一个职业，然后主要很简单：RolePlay. 每个人都可以做他想做的，做什么都可以. 捡主要的说，就是一个理想的游戏，但是实现起来却不那么回事了.</p>
+<p>我在 5 年的设计 / 开发后离开了 Simerion. 那是 2009 年。 我会在后面说明为什么. 但是我得借这次机会做个项目的总结。在我的观点下，就是想做个反馈下我们在这个项目里所学到的特别还有我们所做的错误决定. 特别还希望帮助正在做类似项目的人. 首先， 我得解释下这个游戏还没停止开发，不过是我个人退出了而已. 所以如果你们谁想加入开发团队，请别犹豫上这里：<a href="http://www.simerion.fr/portail/" target="_blank" rel="noopener">www.Simerion.fr</a></p>
+<p>现在首先先来一个概览：</p>
+<p>-2005： Wett 和我从抽屉底里找到我 2 年前画的草图. 然后接下来的 5 个月我们就把我们所有的点子都写在了论坛和 WIKI 上. 但是后来因为学业的关系我们暂停了项目 (Prepa: 就是法国上工程师学院等高等学院前的预备班).</p>
+<p>-2006 年 7 月：一年以后，我们又重新拿起项目，策划持续了一个月.</p>
+<p>-2006 年 8 月: 我们终于开始开发了，并且我们加入了 <a href="http://www.nainwak.org/" target="_blank" rel="noopener">Nainwak</a>.</p>
+<p>-2007 年 8 月：又是一年，在 3 月份后借着 Altheran 的帮助，我们成功的弄出了一个 Alpha 测试版本，那时玩家大概有 50 多个.</p>
+<p>-2009 年 3 月：又是一年半，Beta 版出来了而我离开了团队。</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/simerion_screen.jpg" alt>  </p>
+<h2 id="II-团队协作"><a href="#II-团队协作" class="headerlink" title="II 团队协作"></a>II 团队协作</h2><p>在这项目期间，我发现了多人合作开发的重要性. 有各种原因，比如首先当有人失去积极性的时候可以互相鼓励. 并且有多个人的时候可以更轻松的跨过障碍. 像开发 SIMERION 这种网页游戏不应该闭门造车. 但是也要注意负面效应，如果有太多人参加的时候反而会产生负面的效果，所以应该要有数量正好的程序员，当然至于数量多少这是要考虑到他们的能力和时间做决定.</p>
+<h2 id="III-选好开发语言"><a href="#III-选好开发语言" class="headerlink" title="III 选好开发语言"></a>III 选好开发语言</h2><p>我们刚开始的时候是选择用 PHP + Ajax 来开发一个在网络上可以让玩家们互相互动的游戏. 为什么 PHP？ 因为我比较熟悉 PHP 所以可以更简单的上手. 但是后来我发现范了个严重的错误，就是不应该选择这个语言。当初应该用 Java 或者 C++ 来制作一个真正地 MMORPG.  我们后来很快的就发现了 PHP 和 Ajax 的限制，特别是需要让玩家们实时的产生互动的时候，但是那时候要换语言已经太迟了. 所以在这里我严重建议大家要先参考全部可用的语言后再做慎重的决定！当我们开始开发一个大型的 WEB 项目时，每一个语言都有它的长处和短处，需要比较后做决定. 但是我们却没有这么做， 所以我们就作茧自缚了… 当在这种情况下，甚至应该先做一个 PoC(Proof of Concetp) 来确定一个语言，API，或者其他什么东西. 这样就可以避免那些不想要的 “惊喜” 并且可以知道哪些比起另外那些更好，更健壮.</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_13.jpg" alt>  </p>
+<h2 id="IV-不要重新造轮子"><a href="#IV-不要重新造轮子" class="headerlink" title="IV. 不要重新造轮子"></a>IV. 不要重新造轮子</h2><p>另外一个我们做的错误决定是没有用那些已经做好的 Php 和 Ajax 框架. 但是我们太疯了，居然自己从 A-Z 做一个游戏引擎，还有自己的 Ajax 框架. 我们在重新造轮子的期间了浪费了超级多的时间. 另外一方面，我们甚至不知道这些工具已经被做好就放在那边给我们用，如果用上这些东西甚至能早点我们明白一些技术和技巧. 如果当时重新做的话，我绝对不会再重新造轮子了. 当开始一个大型的项目时，我觉得真的需要先看，比较那些可用的工具然后不要直接就低着头乱冲. 用那些已经存在的工具真的可以帮你赢的非常珍贵的时间.</p>
+<h2 id="V-使用-UML-图"><a href="#V-使用-UML-图" class="headerlink" title="V.  使用 UML 图"></a>V.  使用 UML 图</h2><p>使用 UML 图非常重要，当然在整个过程中想要严谨的把整个想法都写在纸上还是非常困难的， 但是到最后总是有益的，因为这样可以赢的非常多的时间. 虽然 UML 图只在我们不想修改想法的时候才有用。而且有些时候，UML 图却可能会经常产生疑问，所以可能会浪费非常多的时间</p>
+<h2 id="VI-避免-“全部面向对象”"><a href="#VI-避免-“全部面向对象”" class="headerlink" title="VI. 避免 “全部面向对象”"></a>VI. 避免 “全部面向对象”</h2><p>一个网页游戏的类还是非常复杂的. 第一眼看上去的时候， “全物品” 可能是一个不错的东西，但是类却不是数据库的好朋友。 说到类就是属性，说道属性就是背后数据库不停的更新和过于的负载. 用类和实例工作代表者需要长期的优化代码让服务器不会因为 SQL 请求而崩溃. 比如，如果我要载入一个 Simerion 里一个玩家的建筑，我们首先要载入一个定义它类型的物体 (class)，然后载入另外一个定义它的实例 (建筑) 之后还有它的类. 然后有时候我们还需要给这个建筑定位，所以我们还需要加载这个建筑所在的地区 (另外一个表). 因为有很多星球所以还必须加载这个地区所在的星球 (又是一个表). 最后创建这个物体就变得非常吃资源，并且需要大堆的 SQL 请求. 想象下你还需要这个样子载入这整个建筑里的其他物体… 简直是服务器杀手阿。。。 所以我们就不得不不停地优化代码然后慢慢得就远离了平常的那 “全物品” 系统. 虽然原来那样非常有趣，但是当我们需要做一些需要面对非常多用户的页面时，性能就非常的重要. 我想绝对的解决办法是不存在的还有就是为了代码的可维护性必须放弃 “全 OOP”. 不过话说回来，关于和数据库的交互，必须找到一个平衡点，然后试着远离平时那种在创建物品的载入全部有关物品的做法.</p>
+<p>我想这里应该需要看一些大型的框架看看他们是怎么做的，和数据库交互是件非常复杂且尖端的学问， 我想甚至在 5 年后，这些代码也没有最大化的优化过. 所以结论是，还是去看一些已经存在的工具看看他们是怎么做的，非常有帮助.</p>
+<p>.<img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_17.jpg" alt></p>
+<h2 id="VII-不要老是把那些旧的代码拿出来研究"><a href="#VII-不要老是把那些旧的代码拿出来研究" class="headerlink" title="VII. 不要老是把那些旧的代码拿出来研究"></a>VII. 不要老是把那些旧的代码拿出来研究</h2><p>另外一件我们浪费了很多时间的事情就是长期的把旧的代码拿出来研究. 这说起来比作起来容易，特别是千万不要一开始就直接把代码优化到死！要慢慢的时候到了你就会觉得哪里该优化了. 我等下说下如何一步步工作的问题， 但是通过我开发 SIMERION 的经验来看，就是千万千万要先让代码运行起来就 OK 然后走到下一步而不是老是不停地把一些代码拿出来研究. 当这些代码可以运行了以后，就可以优化了，但是千万要先可运行然后才是低着头优化游戏的安全性和流畅性.</p>
+<h2 id="VIII-选择好开发周期"><a href="#VIII-选择好开发周期" class="headerlink" title="VIII 选择好开发周期"></a>VIII 选择好开发周期</h2><p>我们的开发周期肯定是不对的. 而这应该是我们 (我) 的失败. 5 年啊！ 我们花了 5 年的时间在这个项目上而直到我离开居然都还没有一个可以公开给大家玩的游戏… 这也是我离开的其中一个原因. 这甚至可以说是对自己的剥削了.  我们选择了只有这个游戏完全可以玩了之后才公布游戏. 然而，Simerion 的主要想法是可以做任何事情，所以全部都是必须的还有全部都互相平衡. 所以只要游戏还没有完全完成就没办法公布一个可以玩的游戏. 这真是太大的错误啦！ 当策划写好了以后，我认为，一个业余游戏应该要以最快的时间推出.</p>
+<p>不止可以尽快得到玩家的回馈，而且还能激励团队坚持下去。 因为连续几个月甚至几年 (比如说我们) 没有其他人的意见和回馈真的是非常让人沮丧的， 所以激情自然也就消磨了。 还有就是不能想当然的把任务托付给团队的其他人，因为他们也同样在消磨着激情。 所以我强烈建议尽快推出可以进行游戏的版本(起码对业余项目来说)， 要经常推出新的版本，而不是像我们那样在每个版本里都花费那么久的时间。 </p>
+<p>如果那样做的话就可能会保持一个玩家社区，玩家和开发者就能互相照应，开发者也能更能保持项目开发的热情。如果不这样的话，经过 N 个月 N 年后很可能会流产. 然后所有的努力都会白费。</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_28.jpg" alt>  </p>
+<h2 id="IX-创建玩家社区"><a href="#IX-创建玩家社区" class="headerlink" title="IX. 创建玩家社区"></a>IX. 创建玩家社区</h2><p>就像我前面说的那样，在项目开始的时候就应该着手打造玩家社区。 他们可以帮助测试游戏，返回回馈，发表他们的主意… 等等， Simerion 由于没有发布可以玩的版本，所以我们在开发时就没有玩家社区来支持我们. 而这就有了个非常坏的结果. 所以我非常建议在开发初期就要有个社区，因为社区还可以吸引新的玩家，其中可能就会有人称为你项目组里的新成员。</p>
+<h2 id="X-业余的不能和专业的对碰。"><a href="#X-业余的不能和专业的对碰。" class="headerlink" title="X. 业余的不能和专业的对碰。"></a>X. 业余的不能和专业的对碰。</h2><p>虽然很不情愿，但是做一个完整又复杂的 RPG 游戏的确不是业余玩家随随便便就能做出来的。如果有人站出来反对我的话我会非常开心！ 但是制作图片，装饰，背景，剧情，声音，任务 等等 全都需要非常多的投入，我 95% 的时间都同时作为程序员，编剧，美工存在，但是这个到了后来越来越无法支撑下去， 所以在队伍里应该要最少一个开发者，一个编剧和一个美工才能完成项目。 不能以为任何事情都要自己亲自完成。 </p>
+<p>在这点上，我是比较悲观的，我认为像 辐射，最终幻想，塞尔达传说，这些 “终极” 游戏是不可能被业余开发者完成的，我感觉上，一个业余游戏在开始的时候必须不能是雄心勃勃的，要慢慢来，一边开心的扩展项目一边要认识到是不可能和那些专业做游戏的公司比的。  一个业余的 “终极” 游戏是不可能实现的，因为有太多的工作要做了. 在 Simerionsa 上我们从策划开始就像的非常复杂，太理想化了。。。 成功的钥匙是在刚开始就找到创意和代码量之间的平衡点。</p>
+<h2 id="XI-持续保持更新项目的文档"><a href="#XI-持续保持更新项目的文档" class="headerlink" title="XI. 持续保持更新项目的文档"></a>XI. 持续保持更新项目的文档</h2><p>非常重要的一点，要持续保持游戏文档的更新，因为通常项目都会遇到需要暂停 N 个月的情况。 如果在那些时间之后再重新拿起以前的代码的话可能连自己都看不明白， 项目文档可以让人对项目有个整体的视角，让人可以更轻松的组织和认识到以前的想法， 在技术方面它可以解释游戏的运行方式，更可以解释为什么会选择某个算法到游戏里.</p>
+<p>在重新回到项目的时候文档还可以帮你省下 N 多理解你和其他开发者写的代码上用的时间. 这些工具还可以帮助项目组新的成员更容易的加入进来。 </p>
+<p>在 Simerion 上因为这个项目代码实在是已经变成了一个如同毒气室一样的东西，几乎没有人会咬紧牙关一点点的理解那些缺少注释没有解释的代码。  所以缺少对项目的解释会阻碍新成员的加入。</p>
+<p><img src="http://yoannsculo.developpez.com/tutoriels/jeux/retour-experience-sur-developpement-jeu-amateur/images/screenshot_22.jpg" alt>  </p>
+<h2 id="XII-得到其他人的支持"><a href="#XII-得到其他人的支持" class="headerlink" title="XII. 得到其他人的支持"></a>XII. 得到其他人的支持</h2><p>我们在刚开始的时候就加入了 <a href="http://www.nainwak.org/" target="_blank" rel="noopener">Nainwak</a> 协会，他们帮我们部署游戏，支持我们并且给我们建议。 如果没有他们的帮助我们一定无法支持那么久的时间. 通过他们的帮助我们甚至还得到了参加游戏展示的机会。 我们还遇到了很多对我们游戏有兴趣的职业游戏开发者. 那真的是非常有意思的经历，所以我非常建议大家如果要做网页游戏的话就联系他们把。 这个协会的任务就是帮助业余的游戏开发者，而且他们做的非常好。</p>
+<h2 id="XIII-总结"><a href="#XIII-总结" class="headerlink" title="XIII 总结."></a><strong>XIII 总结.</strong></h2><p>2009 年，我离开了项目。</p>
+<p>那时候我完全放弃了 Simerion 的开发因为对我来说那时是在已经没有任何激情了。 开发这个的任务已经变得无法完成，而我也必须要去做其他事情了。 放弃 Simerion 对我来说的确是个困难的决定，但是我觉得在 5 年以后，是时候去干其他事情了。 开发 Simerion 的经历来说对我非常有帮助. 我学到了非常多也认识了很多人。 但是现在我认为如果在刚开始的时候不那么做的话应该会有更好的成功，而我也应该还是会在项目上.</p>
+<p>不过那也是学习经历的一部分，失败是成功之母。 不管怎么说，我们那时候的确是在一个荒唐的，认为任何事情都是可以做到的项目上.  一个那样的游戏不过是无法实现的，而且完全不切实际 (除非是一个大公司). </p>
+<p>错误的选择，太雄心勃勃的策划，错误的开发步骤，重新造轮子都是让 Simerion 无法完全的原因。 我们学到了这些错误然后我希望我们的经历能对您有用处。</p>
+<h2 id="查考资料"><a href="#查考资料" class="headerlink" title="查考资料"></a>查考资料</h2><p>转载至: <a href="https://blog.csdn.net/diablox0147/article/details/7734935" target="_blank" rel="noopener">https://blog.csdn.net/diablox0147/article/details/7734935</a></p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://makehui.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2024 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

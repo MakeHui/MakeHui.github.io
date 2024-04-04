@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    iOS 诡异横屏 BUG 解决思路全记录 以及一些对软件开发的思考
+  
+</title>
+
+<meta name="description" content="“如果代码执行结果和预期不一致, 那么不用质疑肯定是你那里写错了”, 前辈当前如是说到软件行业经过这么多年的变革, 感觉软件质量反而不如当年了(这里我说的软件质量不过说的是应用软件, 还包含操作系统层面), 不过这只是一个前言而已, 抛砖引玉而已, 暂时放下不表, 我留到最后再来谈谈我的看法">
+<meta name="keywords" content="iOS,Think,Objective-C,Framework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 诡异横屏 BUG 解决思路全记录 以及一些对软件开发的思考">
+<meta property="og:url" content="http://huyaohui.com/2019/12/09/iOS-gui-yi-heng-ping-BUG-jie-jue-si-lu-quan-ji-lu-yi-ji-yi-xie-dui-ruan-jian-kai-fa-de-si-kao/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="“如果代码执行结果和预期不一致, 那么不用质疑肯定是你那里写错了”, 前辈当前如是说到软件行业经过这么多年的变革, 感觉软件质量反而不如当年了(这里我说的软件质量不过说的是应用软件, 还包含操作系统层面), 不过这只是一个前言而已, 抛砖引玉而已, 暂时放下不表, 我留到最后再来谈谈我的看法">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/70617543-ca470b80-1c4b-11ea-9786-8250e7d21f6e.png">
+<meta property="og:updated_time" content="2019-12-11T11:25:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 诡异横屏 BUG 解决思路全记录 以及一些对软件开发的思考">
+<meta name="twitter:description" content="“如果代码执行结果和预期不一致, 那么不用质疑肯定是你那里写错了”, 前辈当前如是说到软件行业经过这么多年的变革, 感觉软件质量反而不如当年了(这里我说的软件质量不过说的是应用软件, 还包含操作系统层面), 不过这只是一个前言而已, 抛砖引玉而已, 暂时放下不表, 我留到最后再来谈谈我的看法">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/8622405/70617543-ca470b80-1c4b-11ea-9786-8250e7d21f6e.png">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body class="monochrome">
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">心有所觉, 但亦作不解</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sql/">Sql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Framework/">Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pixels/">Pixels</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sqlite3/">Sqlite3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeScript/">TypeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XIB/">XIB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk/">apk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/std/">std</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向工程/">逆向工程</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-iOS-诡异横屏-BUG-解决思路全记录-以及一些对软件开发的思考" class="article article-type-post">
+  
+    <h1 class="article-header">
+      iOS 诡异横屏 BUG 解决思路全记录 以及一些对软件开发的思考
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Published: 2019-12-09 Updated: 2019-12-11
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/iOS/">iOS</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Framework/">Framework</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Think/">Think</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>“如果代码执行结果和预期不一致, 那么不用质疑肯定是你那里写错了”, 前辈当前如是说到<br>软件行业经过这么多年的变革, 感觉软件质量反而不如当年了(这里我说的软件质量不过说的是应用软件, 还包含操作系统层面), 不过这只是一个前言而已, 抛砖引玉而已, 暂时放下不表, 我留到最后再来谈谈我的看法</p>
+<a id="more"></a>
+<h2 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a>整体思路</h2><p>这里我会分成三个步骤进行处理</p>
+<ul>
+<li>列出问题症状</li>
+<li>分析问题可能原因</li>
+<li>最终找到并解决问题</li>
+</ul>
+<h3 id="症状"><a href="#症状" class="headerlink" title="症状"></a>症状</h3><p>前置常量</p>
+<ul>
+<li>PA: 页面 A, 竖屏</li>
+<li>PB: 页面 B, 横屏</li>
+<li>PA 是主项目中的页面</li>
+<li>PB 是 Framework 中的页面</li>
+<li>PA 以 Link Binary with Libraries 的方式引用 PB</li>
+</ul>
+<h4 id="复现-1"><a href="#复现-1" class="headerlink" title="复现 1"></a>复现 1</h4><p>变量</p>
+<ul>
+<li>iOS 10</li>
+</ul>
+<p>流程</p>
+<ul>
+<li>PA 进入 PB, 此时 PB 页面显示正常</li>
+<li>PB 退出回到 PA, 此时 PA 亦是正常</li>
+<li>PA 再次进入 PB, 此时 PB 显示异常, 此时为竖屏</li>
+<li>PB 再次退回到 PA, 此时 PA 还是正常的, 也就是说, 仅是 PB 存在问题</li>
+<li>退到桌面再回到 App, 问题恢复到 step 1(这里也是非常诡异, 不过之后我会解释)</li>
+</ul>
+<p>PS: 就上面的症状来看, 你是不是认为问题肯定处在 PB 上了, 真是 Naive 啊, 我也差点掉到坑里去了</p>
+<h4 id="复现-2"><a href="#复现-2" class="headerlink" title="复现 2"></a>复现 2</h4><p>变量</p>
+<ul>
+<li>iOS 13</li>
+</ul>
+<p>流程</p>
+<ul>
+<li>PA 进入 PB, 此时 PB 页面显示正常</li>
+<li>PB 退出回到 PA, 此时 PA 亦是正常</li>
+<li>PA 再次进入 PB, 此时 PB 显示异常, 次数页面显示为横屏, 但是里面的布局却是安装竖屏的方式布局的( PB 使用的绝对布局)</li>
+<li>PB 再次退回到 PA, 此时 PA 还是正常的, 也就是说, 仅是 PB 存在问题</li>
+<li>退入桌面再回到 App, 问题恢复到 step 1</li>
+</ul>
+<p>PS: 症状有些不同, 此时你肯定又会去怀疑是不是操作系统的问题了呢, 还是 Native</p>
+<h4 id="无法复现"><a href="#无法复现" class="headerlink" title="无法复现"></a>无法复现</h4><ul>
+<li>在 iOS 12 中时无法复现</li>
+<li>当 PB 不是以 Link Binary with Libraries 的方式引用的时候无法复现</li>
+</ul>
+<p>PS: 看似是一个小问题, 坑是真的不少</p>
+<h3 id="可能原因"><a href="#可能原因" class="headerlink" title="可能原因"></a>可能原因</h3><p>下面按照我当时判断的可能性进行排序, 可能性高大放在前面</p>
+<ul>
+<li>Library Linker 的问题(我曾经遇到很多诡异的问题都是因为库连接器导致的, 这次我理所当然的也这么认为, 但是如果真是这个原因, 那就很难办了)</li>
+<li>iOS 系统 BUG(因为在 iOS 12 上是正常的, 但是怀疑是系统 BUG 是没什么意义的, 即便是系统 BUG 你照样需要去解决)</li>
+<li>代码层面的问题, 排查个个环节(详见下图)</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/8622405/70617543-ca470b80-1c4b-11ea-9786-8250e7d21f6e.png" alt="时序图"></p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>如果你认为我会安装上面我认为的可能原因去解决这个 Bug 那就大错特错了<br>上面我认为的可能原因, 不管是按照哪条去排查无疑都是工作量巨大, 特别还是遇上了前人留下来的代码山(PB), 更是难上加难</p>
+<h4 id="以堵代疏"><a href="#以堵代疏" class="headerlink" title="以堵代疏"></a>以堵代疏</h4><p>俗话说得好堵不如疏, 但是在软件行业恰恰是反其道而行的, 常常是能堵上漏洞就已是大功一件了(虽然我现在也打算这么干, 但是我仍然觉得这是一件很操蛋的事)<br>这里先不去管可能原因, 仅针对表象进行处理</p>
+<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><p>由上得到可用信息如下:</p>
+<ul>
+<li>PB 采用固定布局</li>
+<li>PB 可以横屏, 但布局为竖屏(大雾~)</li>
+</ul>
+<p>方案: 找出所用用到屏幕长和宽的代码, 替换为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 竖屏的屏幕宽和高</span><br><span class="line">width = MAX(view.width, wiew.height)</span><br><span class="line">height = MIN(view.width, wiew.height)</span><br></pre></td></tr></table></figure>
+<p>找到宽和高的宏定义 -&gt; 替换代码 -&gt; 重新编译 -&gt; 运行</p>
+<h5 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h5><ul>
+<li>PB 中的代码并不是严格的使用宏中的宽和高</li>
+<li>症状并不完全是按照<code>可以横屏, 但布局为竖屏</code>, 这个是致命问题</li>
+</ul>
+<p>首先, 这个方案是失败, 但是并不妨碍我认为这个方案是可行的<br>其次假设如果 有第 2 条这个致命问题的话, 或许我真的会把所用用到屏幕长和宽的代码, 都替换一遍</p>
+<h4 id="一些尝试"><a href="#一些尝试" class="headerlink" title="一些尝试"></a>一些尝试</h4><ul>
+<li>使用新版本编译系统, 重新编译 PB Framework</li>
+<li>调高 PB Target 版本号</li>
+</ul>
+<p>以上均失败(能成功就有鬼了)</p>
+<h4 id="可能原因排查"><a href="#可能原因排查" class="headerlink" title="可能原因排查"></a>可能原因排查</h4><p>能想到的黑招都使用了, 这下就只能老老实实的按照可能原因去排查了, 但不要以为我会按照上面的顺序去排查</p>
+<h5 id="标准写法"><a href="#标准写法" class="headerlink" title="标准写法"></a>标准写法</h5><p>首先按照苹果的标准来做, 要对页面进行旋转, 就必须在页面中实现<code>shouldAutorotate</code>和<code>supportedInterfaceOrientations</code>这两个方法, <code>shouldAutorotate</code>设置为<code>true</code>, <code>supportedInterfaceOrientations</code>设置为需要旋转到的方向, 横屏<code>UIInterfaceOrientationMaskLandscapeRight</code>, 竖屏<code>UIInterfaceOrientationMaskPortrait</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)shouldAutorotate</span><br><span class="line">&#123;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations</span><br><span class="line">&#123;</span><br><span class="line">    return UIInterfaceOrientationMaskPortrait;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打开 Find Navigator 输入 <code>shouldAutorotate</code>, <code>supportedInterfaceOrientations</code> 疯狂 Next<br>一通操作猛如虎, 一看结果 0/5</p>
+<h5 id="排查流程"><a href="#排查流程" class="headerlink" title="排查流程"></a>排查流程</h5><p>按照上图中列出的流程, 根据<code>ViewController</code>的生命周期, 查询是否有代码影响到了屏幕的旋转<br>这里不卖关子了, 问题找到了, 我大致的罗列一下关键的代码</p>
+<p>PA:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewWillAppear:(BOOL)animated</span><br><span class="line">&#123;</span><br><span class="line">    [super viewWillAppear:animated];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PB:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewWillAppear:(BOOL)animated</span><br><span class="line">&#123;</span><br><span class="line">    [super viewWillAppear:animated];</span><br><span class="line">    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)interfaceOrientation:(UIInterfaceOrientation)orientation</span><br><span class="line">&#123;</span><br><span class="line">    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) &#123;</span><br><span class="line">        SEL selector             = NSSelectorFromString(@&quot;setOrientation:&quot;);</span><br><span class="line">        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];</span><br><span class="line">        [invocation setSelector:selector];</span><br><span class="line">        [invocation setTarget:[UIDevice currentDevice]];</span><br><span class="line">        int val                  = orientation;</span><br><span class="line">        [invocation setArgument:&amp;val atIndex:2];</span><br><span class="line">        [invocation invoke];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面列出的关键代码, 想必大家已经能看出问题处在那里了<br>看到上面的代码瞬间就茅塞顿开(至少大部分的问题已经能解释通了), 万恶的黑魔法, 老是有人使用一些奇技淫巧来解决问题(这里我并不是要抨击这种行为, 其实我也经常会这么干, 但是还是那句话我并不喜欢, 这个到最后再来谈谈我的看法)</p>
+<h4 id="原因梳理"><a href="#原因梳理" class="headerlink" title="原因梳理"></a>原因梳理</h4><p>PA 进入 PB -&gt; PB 调用 <code>interfaceOrientation:</code><br>这时还是正常的, 尽管这里使用了黑魔法</p>
+<p>PB 返回 PA -&gt; 页面显示正常<br>其实在这里就已经出现问题了, 通过黑魔法改变的值并没有改回来, 当再次进入 PB, 调用<code>interfaceOrientation:</code>, 黑魔法失效了(我猜测的原因是重复设置同一个值时, 无法触发系统判断此时应该需要进行旋转操作了, 这个没有找到可以验证的方法)</p>
+<h4 id="一些未解之谜"><a href="#一些未解之谜" class="headerlink" title="一些未解之谜"></a>一些未解之谜</h4><ul>
+<li>iOS 10, 和 iOS 13 Bug 表现不一样的问题</li>
+<li>在 iOS 12 中时无法复现</li>
+<li>当 PB 不是以 Link Binary with Libraries 的方式引用的时候无法复现</li>
+</ul>
+<p>上面的原因都可以通过使用了黑魔法这个原因来解释吗?(没有检验的方法)<br>我在这里持保留意见</p>
+<h2 id="一些对软件开发的思考"><a href="#一些对软件开发的思考" class="headerlink" title="一些对软件开发的思考"></a>一些对软件开发的思考</h2><p>上面写了这么多, 看似没什么用, 其实暴露出了很多的问题<br>在我个人来看其实不应存在这种问题, 如果每个人都按照标准流程去处理, 无论是程序员之间的代码通讯还是代码和系统底层进行通讯, 出离奇问题的概率应该会大大减少, 即使出现了网上也大概率能找到相似的问题<br>那么程序员们到底是为什么要如此做呢? 难道他们就不清楚会导致这个结果吗?<br>有太多问题需要解释, 但又无从解释, 不过我还是想尝试强行解释一下, 对不对就随他去了</p>
+<h3 id="系统层之罪"><a href="#系统层之罪" class="headerlink" title="系统层之罪"></a>系统层之罪</h3><p>苹果的软件质量下滑, 想必大家都是有目共睹的, 下面我就随便举一些我遇到过的例子(只讲开发中的问题, 苹果的系统应用问题这里不聊)</p>
+<ul>
+<li>在 App 中没法调用 Framework 中的类和方法, 至今我没能找到问题所在(换公司电脑同样的操作却没问题), 即便是强制加载 Framework 也仍然是行不通</li>
+<li>AutoLayout 在 UITableViewCell 中进行 UILabel 的横向布局, 第一个 UILabel 会被压缩, 但是在 UIView 中确实正常的</li>
+<li>在 Storyboard 中的 UITableView 如果 UITableViewCell 的个数超过一屏的话, 超出的 UITableViewCell 的 AutoLayout 的显示会出错, 但是在实际的运行中却是正常的</li>
+<li>Debug 断点的时候首次触发断点, 你永远不知道它在那里 loading 什么东西, 为什么要那么久</li>
+<li>Leaks, View UI Hierarchy 等工具, 开发了一万年, 用起来仍然是各种卡, 各种崩溃</li>
+<li>Xcode 10 导致 iOS 9.2 崩溃的问题, Xcode 10.1 上线了明明写着修复了, 问题依旧(最后的说法貌似是在服务器端修复了, 我没有得到可靠的消息, 无法证实)</li>
+<li>相同的代码经常在不同的 iOS 版本中的表现不一致(这里不做详细的描述)</li>
+</ul>
+<p>上面我仅仅是列举除了一些影响正常开发的问题, 一些不影响开发的小问题简直懒得说了<br>这些我想足够能解释为什么我会认为是系统的问题了吧<br>当然这并不是要把一切问题都甩给系统, 而是当系统层经常性不稳定时, 开发者就会自然而然的对系统产生不信任感, 从而影响到开发者自身对问题的判断, 以至于被引导到一条死胡同里</p>
+<h3 id="开发者之罪"><a href="#开发者之罪" class="headerlink" title="开发者之罪"></a>开发者之罪</h3><p>试想一下, 当一个不懂互设计, 甚至连<code>UIKit</code>都没听说个的人, 设计出来的页面, 然后再交给一个三流的程序员去开发(没有贬低的意思, 我也是三流程序员), 结果可想而知<br>问题不在于是否存在问题, 而是在于整个生产环境就是不健康的, 导致整条流水线上的人都很浮躁, 只想着守着自己的一亩三分地, 不愿改变也不想改变, 最后的结果就是, 先来的坑后来的, 后来的继续坑下去, 进入死循环<br>以至于愿意改变和学习的人也被大环境的洪流给拉下了水, 比如你去接手前辈们留下来的代码(垃圾山), 你会如何做呢, 是重写(重构几无可能, 能进行重构的代码表示还是有大致的设计的), 还是继续往垃圾山中倾倒垃圾呢? 我想答案不言自明了<br>至于什么代码写的好就随时都能被替代这种说法我就不想说什么了, 随它去了</p>
+<h3 id="开发模式之罪"><a href="#开发模式之罪" class="headerlink" title="开发模式之罪"></a>开发模式之罪</h3><p>业界从传统软件开发迈向现代软件开发过程中, 疯狂的强调这<code>Change</code>, <code>Runing</code>, <code>More</code><br>我不能说这是错的, 其实我反倒是赞同现在软件开发模式的, 但是并不能因为我赞同就不去讨论这里面存在的问题了<br>当敏捷软件开发大行其道的时候, 效率虽然得到了提升, 各种新的特性被加入到了软件中, 这是一件好事, 但是伴随着这些明显的好处带来的确实软件的质量的不断的下滑<br>比如什么不影响使用的 Bug 可以暂时性的忽略, 先上线, 但是最后的结果就变成了, 这个 Bug 伴随着软件走向了终结都没能去解决(并不是没能力解决), 新特性却是一大堆, 而新的特性随之又带来了新的 Bug 以至于把开发者带入了 Bug 泥潭, 最终逼迫开发人员用脚投票放弃高质量代码</p>
+<p>再次重申一下我是赞同现代软件开发的, 当然我现在也不知道这算不上是一个问题, 因为这完全可以通过人治的方式解决, 比如工作量的精准量化(尽量小的安排工作量, 0.5 天一个迭代), Bug 过多, 可以安排一整个大的迭代周期进行修复, 代码优化重构可以一定的周期进行一次, 或者每个大周期进行一次, 总归来说还是人治的成分在里面, 需要管理人员有很强的业务能力(了解开发和产品细节, 了解开发人员的能力, 能够把握开发的节奏), 在小型的团队中很难找到这样的人来总览全局, 小型团队中更多的是突击型的开发人员, 如何让这种类型的开发者参与到敏捷开发总来, 而且能够高产出和高质量代码都兼顾还不能对管理人员的要求太高<br>要找出这种情况适用的方案的解, 虽然有点强人所难, 但是我觉得真是因为有困难我们才更应该去解决, 毕竟程序员就是一群专门解决问题的人, 不是吗?</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>无论软件行业如何变化, 作为程序员的我们应该做也必须做的就不断的学习和思考, 并努力写出优秀的代码去影响后来者, 实现正循环<br>与君共勉</p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://makehui.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2024 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

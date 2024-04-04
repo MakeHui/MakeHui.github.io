@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    Jenkins iOS 打包并上传至蒲公英
+  
+</title>
+
+<meta name="description" content="CI/CD with Jenkins 折腾良久用于还是给我搞掂了, 下面就来说说我到底是怎么淌过这些坑的(真心就是不停的淌坑, 简直毫无乐趣可言, 不过淌完后还是很畅快的:-D)">
+<meta name="keywords" content="iOS,Jenkins,CI&#x2F;CD,DevOps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins iOS 打包并上传至蒲公英">
+<meta property="og:url" content="http://huyaohui.com/2019/04/19/Jenkins-iOS-da-bao-bing-shang-chuan-zhi-pu-gong-ying/index.html">
+<meta property="og:site_name" content="MakeHui&#39;s 超平和バスターズはずっとなかよし">
+<meta property="og:description" content="CI/CD with Jenkins 折腾良久用于还是给我搞掂了, 下面就来说说我到底是怎么淌过这些坑的(真心就是不停的淌坑, 简直毫无乐趣可言, 不过淌完后还是很畅快的:-D)">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/56410566-1a81ef80-62b0-11e9-81b9-22c38a005a63.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/56411125-4900ca00-62b2-11e9-8092-ce04eed3a3fe.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/56412555-30df7980-62b7-11e9-8df9-b0ffe39eced6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/56412810-f62a1100-62b7-11e9-95d6-55c0fe90a608.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/56412907-4acd8c00-62b8-11e9-9c37-4028f2e69653.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/56413116-f70f7280-62b8-11e9-95a9-acc22fda6977.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8622405/56413198-45247600-62b9-11e9-8a28-82962ba96bd3.png">
+<meta property="og:updated_time" content="2019-11-17T05:02:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jenkins iOS 打包并上传至蒲公英">
+<meta name="twitter:description" content="CI/CD with Jenkins 折腾良久用于还是给我搞掂了, 下面就来说说我到底是怎么淌过这些坑的(真心就是不停的淌坑, 简直毫无乐趣可言, 不过淌完后还是很畅快的:-D)">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/8622405/56410566-1a81ef80-62b0-11e9-81b9-22c38a005a63.png">
+<meta name="twitter:creator" content="@Make_hui">
+<link rel="publisher" href="https://plus.google.com/u/0/104498839687178541049/posts">
+
+
+  <link rel="alternative" href="/atom.xml" title="MakeHui&#39;s 超平和バスターズはずっとなかよし" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/images/info/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body class="monochrome">
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">MakeHui&#39;s 超平和バスターズはずっとなかよし</a></h1>
+    
+      <p class="subtitle">
+        あの日見た花の名前を僕達はまだ知らない。
+      </p>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">心有所觉, 但亦作不解</div>
+        
+        
+          <div class="author">MakeHui</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="/images/info/author.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Brew/">Brew</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-CPP/">C/CPP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CentOS/">CentOS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cocos2dx/">Cocos2dx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CocosCreator/">CocosCreator</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Google/">Google</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nginx/">Nginx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sql/">Sql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TextEditor/">TextEditor</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iTerm/">iTerm</a><span class="category-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Branckets/">Branckets</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brew/">Brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Build/">Build</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-CPP/">C/CPP</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLI/">CLI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2d-x/">Cocos2d-x</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocos2dx/">Cocos2dx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocosCreator/">CocosCreator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Config/">Config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dialog/">Dialog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FileDBR/">FileDBR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/">Flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask-Migrate/">Flask-Migrate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Framework/">Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-page/">GitHub page</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitLab/">GitLab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google/">Google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HybridApp/">HybridApp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/">JMeter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/">Jenkins</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LNMP/">LNMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Library/">Library</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/">MVP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Note/">Note</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pixels/">Pixels</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Plugin/">Plugin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qss/">Qss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL/">STL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShareSDK/">ShareSDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sprite/">Sprite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpriteFrame/">SpriteFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sql/">Sql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sqlite3/">Sqlite3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Storyboard/">Storyboard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TextEditor/">TextEditor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Texture/">Texture</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Think/">Think</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thunder/">Thunder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeScript/">TypeScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unity/">Unity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebApp/">WebApp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XIB/">XIB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/">Xcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk/">apk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iTerm/">iTerm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libgit2/">libgit2</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libqgit2/">libqgit2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/">macOS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sshpass/">sshpass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/std/">std</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆向工程/">逆向工程</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">38</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/categories/iOS" title="iOS">iOS</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/MakeHui" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-Jenkins-iOS-打包并上传至蒲公英" class="article article-type-post">
+  
+    <h1 class="article-header">
+      Jenkins iOS 打包并上传至蒲公英
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  Published: 2019-04-19 Updated: 2019-11-17
+</span>
+
+    
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/iOS/">iOS</a></li></ul>
+	</span>
+
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/">DevOps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p><code>CI/CD</code> with <code>Jenkins</code> 折腾良久用于还是给我搞掂了, 下面就来说说我到底是怎么淌过这些坑的(真心就是不停的淌坑, 简直毫无乐趣可言, 不过淌完后还是很畅快的:-D)</p>
+<a id="more"></a>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>这里不得不先来说下步骤, 因为每一步都非常重要, 稍不注意都会 GG</p>
+<ol>
+<li>安装 Java</li>
+<li>安装 Jenkins</li>
+<li>配置 ssh key</li>
+<li>Xcode 相关配置(这里神坑)</li>
+<li>Command 编译, 打包脚本(这里照样坑的一匹)</li>
+<li>上传安装包至<code>蒲公英</code></li>
+<li>使用 Jenkins 自动化</li>
+</ol>
+<h2 id="开搞"><a href="#开搞" class="headerlink" title="开搞"></a>开搞</h2><p>再次<strong>温馨提示</strong>: 请务必按照步骤来</p>
+<h3 id="安装-Java"><a href="#安装-Java" class="headerlink" title="安装 Java"></a>安装 Java</h3><p>本来这里没什么好说的一个命令搞定的事<br>但是众所周知 Oracle 开始对 Java 收费, 现在安装 Java 会出现一些麻烦, 不过可以到网上找到一些镜像</p>
+<p><strong>注意:</strong> 这里最好安装 <code>OracleJava8</code>, 我尝试了 <code>OpenJava12</code> 并不行</p>
+<h3 id="安装-Jenkins"><a href="#安装-Jenkins" class="headerlink" title="安装 Jenkins"></a>安装 Jenkins</h3><p>Java 安装好后这里基本就没啥好说的了, 到官网下载对应平台的的二进制文件安装, 无脑 next 就行</p>
+<p>使用<code>homebrew</code>进行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew install jenkins</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">cd cd /usr/local/Cellar/jenkins/&#123;version&#125;/libexec</span><br><span class="line">java -jar ./jenkins.war</span><br></pre></td></tr></table></figure>
+<p><strong>注意:</strong> 按理说二进制安装后<code>Jenkins</code>的服务会自动启动并打开, 但是我遇到了他自己没有启动的情况, 这里就需要自己检查一下端口占用的问题了, 我的情况是<code>8080</code>端口被我安装的<code>Docker</code>给占用了, 这时可以关闭<code>Docker</code>或者更改<code>Jenkins</code>的端口, 更改方式我这里就不给出了, 可以自行搜索</p>
+<h4 id="Jenkins-配置"><a href="#Jenkins-配置" class="headerlink" title="Jenkins 配置"></a>Jenkins 配置</h4><p>奏是按照提示无脑下一步</p>
+<p>第一次进入会告诉你需要输入密码, 按照提示打开改路径下的文件密码就在里面, 填入就行<br>记住需要使用<code>sudo</code>才能打开, 否则没权限(当然密码在你启动<code>Jenkins</code>的时候其实就已经显示在控制台了, 仔细查看还是能找到的)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cat /Users/wsh/.jenkins/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure>
+<p>选择安装建议插件, 我这个用到的就只有<code>shell</code>和<code>git</code></p>
+<p>建议创建一个新的账号, 如果你奏是像用<code>root</code>账号登录的话, 那么我告诉你密码就是<code>initialAdminPassword</code>里的那个长串</p>
+<h3 id="配置-ssh-key"><a href="#配置-ssh-key" class="headerlink" title="配置 ssh key"></a>配置 ssh key</h3><p>请看我的另一篇<code>Blog</code>: <a href="https://huyaohui.com/2015/12/31/SSH-keys-gong-yue-pei-zhi-yu-shi-yong/">SSH keys 公钥配置与使用</a></p>
+<p><code>github</code>公钥配置上文中已给出, 其他平台的配置方法大同小异, 这里不赘述,可执行搜索</p>
+<h3 id="Xcode-相关配置-这里神坑"><a href="#Xcode-相关配置-这里神坑" class="headerlink" title="Xcode 相关配置(这里神坑)"></a>Xcode 相关配置(这里神坑)</h3><p><strong>如果是在你自己的开发机上进行编译的话, 那你可能就不会遇到这些问题, 不过最好还是看下以供参考</strong></p>
+<ul>
+<li>Macos: 10.14.4</li>
+<li>Xcode: 10.2.1</li>
+</ul>
+<p>上面是我的系统和编译环境</p>
+<h4 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h4><p>查看<a href="https://huyaohui.com/2015/10/01/Xcode-lian-jie-zhen-ji-tiao-shi/">Xcode 链接真机调试</a>这篇文章中关于证书相关的内容, 安装证书</p>
+<p>当然你可以把你开发机上的证书拷贝到你的编译机上去, 同样的我这里不做阐述, 执行搜索</p>
+<h4 id="登录-Apple-账号"><a href="#登录-Apple-账号" class="headerlink" title="登录 Apple 账号"></a>登录 Apple 账号</h4><p><img src="https://user-images.githubusercontent.com/8622405/56410566-1a81ef80-62b0-11e9-81b9-22c38a005a63.png" alt></p>
+<h4 id="编译归档-神坑"><a href="#编译归档-神坑" class="headerlink" title="编译归档(神坑)"></a>编译归档(神坑)</h4><p>为什么说这里是神坑呢, 如果你不用<code>Xcode</code>先进行一次编译归档操作就直接进行命令行打包就会出现找不到<code>provisioning profile</code>文件, 打包失败</p>
+<p>点击<code>Product</code> -&gt; <code>Archive</code>等待编译完成后进入归档页面, 此时选择<code>Ad Hoc</code>, 然后无脑下一步<br>最后点击<code>Export</code>导出, 然后找到导出的问题件夹内的<code>ExportOptions.plist</code>文件保存好, 之后使用命令行编译时需要用到(这里很重要, 网上一大堆资料都没说怎么得到这个文件, 以及这个文件的作用)</p>
+<p><img src="https://user-images.githubusercontent.com/8622405/56411125-4900ca00-62b2-11e9-8092-ce04eed3a3fe.png" alt></p>
+<p>网上的资料全部都是选择第一项<code>App Store</code>, 但是我选择使玩这项后, 使用命令行打包出来的<code>ipa</code>并不能成功安装到手机上</p>
+<h3 id="Command-编译-打包脚本-这里照样坑的一匹"><a href="#Command-编译-打包脚本-这里照样坑的一匹" class="headerlink" title="Command 编译, 打包脚本(这里照样坑的一匹)"></a>Command 编译, 打包脚本(这里照样坑的一匹)</h3><p>这里把编译先搞清楚, 之后再来部署<code>Jenkins</code>就水到渠成了, 所以我把命令行编译这块单独拿出来解释说明<br><code>Jenkins</code>最终要执行的就是这些命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据实际情况修改target和scheme名字</span></span><br><span class="line"><span class="comment"># 通常情况下他们的名字都是一样的, 如果你修改的了的话就当我没说</span></span><br><span class="line">TARGET_NAME=<span class="string">"MHDemo"</span></span><br><span class="line">SCHEME_NAME=<span class="string">"MHDemo"</span></span><br><span class="line">XCARCHIVE_NAME=<span class="string">"MHDemo.xcarchive"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># clean 清理编译缓存</span></span><br><span class="line">xcodebuild clean -target <span class="variable">$&#123;TARGET_NAME&#125;</span> \</span><br><span class="line">    -scheme <span class="variable">$&#123;SCHEME_NAME&#125;</span> \</span><br><span class="line">    -configuration Release</span><br><span class="line"></span><br><span class="line">rm -rf ./build</span><br><span class="line">rm -rf ./ExportOptions.plist</span><br><span class="line">mkdir -p ./build/Release-iphoneos</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 ExportOptions.plist 文件</span></span><br><span class="line"><span class="comment"># 当然你也可以把它放在本地的某个地方, 但是我出于管理方便所以我把它放在了 shell 脚本中自动生成了</span></span><br><span class="line"><span class="comment"># 这个文件就是上面通过 Xcode 归档后生成的, 我这里剔除了所有不必要的信息, 只保留的核心内容</span></span><br><span class="line"><span class="comment"># Update 2019-10-11: Xcode 11 需要添加: &lt;key&gt;compileBitcode&lt;/key&gt;&lt;false/&gt;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;plist version=\"1.0\"&gt;&lt;dict&gt;&lt;key&gt;method&lt;/key&gt;&lt;string&gt;ad-hoc&lt;/string&gt;&lt;key&gt;compileBitcode&lt;/key&gt;&lt;false/&gt;&lt;/dict&gt;&lt;/plist&gt;"</span> &gt; ExportOptions.plist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行归档操作</span></span><br><span class="line">xcodebuild -archivePath ./build/Release-iphoneos/<span class="variable">$&#123;XCARCHIVE_NAME&#125;</span> \</span><br><span class="line">    -target <span class="variable">$&#123;TARGET_NAME&#125;</span> \</span><br><span class="line">    -scheme <span class="variable">$&#123;SCHEME_NAME&#125;</span> \</span><br><span class="line">    -configuration Release \</span><br><span class="line">    archive</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成 ipa 安装文件</span></span><br><span class="line">xcodebuild -exportArchive -archivePath ./build/Release-iphoneos/<span class="variable">$&#123;XCARCHIVE_NAME&#125;</span>\</span><br><span class="line">    -exportPath ./build/ \</span><br><span class="line">    -exportOptionsPlist ./ExportOptions.plist \</span><br><span class="line">    -allowProvisioningUpdates</span><br></pre></td></tr></table></figure>
+<p>如果上述操作都没有问题的话, <code>ipa</code>安装包应该会生成在项目根目录下的<code>build</code>文件夹下</p>
+<h3 id="上传安装包至蒲公英"><a href="#上传安装包至蒲公英" class="headerlink" title="上传安装包至蒲公英"></a>上传安装包至蒲公英</h3><p>上传到<code>fir.im</code>应该也是大同小异的, 大家执行搜索一下, 我这里只以蒲公英为例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 蒲公英上的User Key</span><br><span class="line">uKey=&quot;3582ee5da8a51e153d89233389exxxxx&quot;</span><br><span class="line"># 蒲公英上的API Key</span><br><span class="line">apiKey=&quot;7eec744cc7509408231e0792594xxxxx&quot;</span><br><span class="line"># 要上传的ipa文件路径</span><br><span class="line">IPA_PATH=&quot;./build/$&#123;TARGET_NAME&#125;.ipa&quot;</span><br><span class="line"># 密码</span><br><span class="line">PASSWORD=&quot;lzq951236&quot;</span><br><span class="line">MSG=`git log -1 --pretty=%B`</span><br><span class="line"># 执行上传至蒲公英的命令</span><br><span class="line">echo &quot;++++++++++++++upload+++++++++++++&quot;</span><br><span class="line">curl -F &quot;file=@$&#123;IPA_PATH&#125;&quot; -F &quot;uKey=$&#123;uKey&#125;&quot; -F &quot;_api_key=$&#123;apiKey&#125;&quot; -F &quot;updateDescription=$&#123;MSG&#125;&quot; -F &quot;password=$&#123;PASSWORD&#125;&quot; http://www.pgyer.com/apiv1/app/upload</span><br></pre></td></tr></table></figure>
+<p>上传成功, 命令行会返回<code>code: 0</code>, 表示成功</p>
+<p>如果需要上传到自己的服务器, 其实也是同理, 使用上面脚本的之后一行的<code>curl</code>命令就好, 具体可自行搜索<code>curl</code>如何使用</p>
+<h3 id="使用-Jenkins-自动化"><a href="#使用-Jenkins-自动化" class="headerlink" title="使用 Jenkins 自动化"></a>使用 Jenkins 自动化</h3><p>上面的所有环节都打通了, 使用<code>Jenkins</code>完成自动化, 还会有什么难度吗?</p>
+<p>不过我这里还是简单的说一下把, 免得大家看了网上的一些资料后又走上了歪路</p>
+<h4 id="新建任务"><a href="#新建任务" class="headerlink" title="新建任务"></a>新建任务</h4><p>新建任务 -&gt; 输入任务名称 -&gt; 构建一个自由风格的软件</p>
+<p><img src="https://user-images.githubusercontent.com/8622405/56412555-30df7980-62b7-11e9-8df9-b0ffe39eced6.png" alt></p>
+<h4 id="源码管理"><a href="#源码管理" class="headerlink" title="源码管理"></a>源码管理</h4><p>源码管理 -&gt; Git -&gt; Repository URL -&gt; 输入创库地址</p>
+<p><img src="https://user-images.githubusercontent.com/8622405/56412810-f62a1100-62b7-11e9-95d6-55c0fe90a608.png" alt></p>
+<p>添加 clone 创库的凭证</p>
+<p>私钥来自之前我们创建的<code>ssh key</code>, 私钥路径<code>~/.ssh/id_rsa</code> <strong>注意:</strong> 公钥必须首先配置到了<code>git</code>托管平台, 公钥路径<code>~/.ssh/id_rsa.pub</code></p>
+<p><img src="https://user-images.githubusercontent.com/8622405/56412907-4acd8c00-62b8-11e9-9c37-4028f2e69653.png" alt></p>
+<h4 id="执行-shell"><a href="#执行-shell" class="headerlink" title="执行 shell"></a>执行 shell</h4><p>首先增加构建步骤</p>
+<p><img src="https://user-images.githubusercontent.com/8622405/56413116-f70f7280-62b8-11e9-95a9-acc22fda6977.png" alt></p>
+<p>拷贝上文的脚本至命令输入框内, 注意替换你实际的项目名称, 人后点击保存, 最后点击<code>立即构建</code>, 开始执行自动化构建<br>此时大功告成, 如果你想使用<code>构建触发器</code>的话, 请执行查阅资料, 这个比较简单, 这里就不做说明了</p>
+<p><img src="https://user-images.githubusercontent.com/8622405/56413198-45247600-62b9-11e9-8a28-82962ba96bd3.png" alt></p>
+<h3 id="关于-Xcode-integration-插件"><a href="#关于-Xcode-integration-插件" class="headerlink" title="关于 Xcode integration 插件"></a>关于 Xcode integration 插件</h3><p>最开始也是使用的这种方式进行的部署, 但是很遗憾无论我怎么折腾都没能完成工作</p>
+<p>遇到的问题: <code>userString = &quot;Your session has expired.  Please log in.&quot;;</code><br>网友的说法是, 只要<code>Xcode</code>重新登录就能解决问题了<br>还有的说法是没有解<code>锁钥匙串</code>, 我个人任务这个说法比较可信, 但是很遗憾按照网友的说法并没能解决问题<br>如果哪位大佬能看到这篇文章的话, 知道这是怎么回事, 劳烦我说一声, 🙏</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://forums.developer.apple.com/thread/70326" target="_blank" rel="noopener">https://forums.developer.apple.com/thread/70326</a><br><a href="https://medium.com/xcblog/xcodebuild-deploy-ios-app-from-command-line-c6defff0d8b8" target="_blank" rel="noopener">https://medium.com/xcblog/xcodebuild-deploy-ios-app-from-command-line-c6defff0d8b8</a><br><a href="https://shashikantjagtap.net/full-stack-ios-continuous-delivery-with-xcodebuild-and-exportoptions-plist/" target="_blank" rel="noopener">https://shashikantjagtap.net/full-stack-ios-continuous-delivery-with-xcodebuild-and-exportoptions-plist/</a><br><a href="http://oriochan.com/projectManage.html" target="_blank" rel="noopener">http://oriochan.com/projectManage.html</a><br><a href="https://www.jianshu.com/p/91e8f571fc2b" target="_blank" rel="noopener">https://www.jianshu.com/p/91e8f571fc2b</a><br><a href="https://www.jianshu.com/p/9cb3d8c8c78d" target="_blank" rel="noopener">https://www.jianshu.com/p/9cb3d8c8c78d</a><br><a href="https://www.jianshu.com/p/ce36997919b4" target="_blank" rel="noopener">https://www.jianshu.com/p/ce36997919b4</a></p>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+<div id="disqus_thread"></div>
+<script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://makehui.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2024 MakeHui&#39;s 超平和バスターズはずっとなかよし - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
